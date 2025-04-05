@@ -55,11 +55,11 @@ public val Format.extensions: List<String>
  * @throws IllegalStateException If the format is not recognized.
  */
 public fun formatOf(file: Path): Format =
-    Format.values().find { it.matches(file) }
+    Format.entries.find { it.matches(file) }
         ?: error("Unrecognized settings format: `${file.name}`.")
 
 /**
  * Tells if this file is of one of the supported [formats][Format].
  */
 public fun Path.hasSupportedFormat(): Boolean =
-    Format.values().any { it.matches(this) }
+    Format.entries.any { it.matches(this) }

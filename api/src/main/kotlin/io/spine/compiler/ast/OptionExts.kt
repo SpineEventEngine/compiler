@@ -39,18 +39,22 @@ import com.google.protobuf.Descriptors.GenericDescriptor
 import com.google.protobuf.Descriptors.MethodDescriptor
 import com.google.protobuf.Descriptors.OneofDescriptor
 import com.google.protobuf.Descriptors.ServiceDescriptor
-import com.google.protobuf.GeneratedMessage.GeneratedExtension
 import com.google.protobuf.GeneratedMessageV3.ExtendableMessage
 import com.google.protobuf.Message
 import io.spine.base.EventMessage
+import io.spine.compiler.protobuf.name
+import io.spine.compiler.protobuf.type
 import io.spine.option.OptionsProto
 import io.spine.protobuf.TypeConverter
 import io.spine.protobuf.defaultInstance
 import io.spine.protobuf.pack
 import io.spine.protobuf.unpack
-import io.spine.compiler.protobuf.name
-import io.spine.compiler.protobuf.type
 import io.spine.type.UnexpectedTypeException
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.IllegalArgumentException
+import kotlin.IllegalStateException
+import kotlin.String
 import com.google.protobuf.Any as ProtoAny
 
 /**

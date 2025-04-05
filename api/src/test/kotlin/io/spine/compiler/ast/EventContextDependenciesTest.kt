@@ -34,6 +34,10 @@ import com.google.protobuf.DurationProto
 import com.google.protobuf.Timestamp
 import com.google.protobuf.TimestampProto
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.spine.compiler.ast.Cardinality.CARDINALITY_SINGLE
+import io.spine.compiler.protobuf.ProtoFileList
+import io.spine.compiler.protobuf.toPbSourceFile
+import io.spine.compiler.type.TypeSystem
 import io.spine.core.ActorContext
 import io.spine.core.ActorContextProto
 import io.spine.core.Command
@@ -59,11 +63,6 @@ import io.spine.net.EmailAddress
 import io.spine.net.EmailAddressProto
 import io.spine.net.InternetDomain
 import io.spine.net.InternetDomainProto
-import io.spine.compiler.ast.Cardinality.CARDINALITY_SINGLE
-import io.spine.compiler.protobuf.ProtoFileList
-import io.spine.compiler.protobuf.file
-import io.spine.compiler.protobuf.toPbSourceFile
-import io.spine.compiler.type.TypeSystem
 import io.spine.time.TimeProto
 import io.spine.time.ZoneId
 import io.spine.time.ZoneOffset

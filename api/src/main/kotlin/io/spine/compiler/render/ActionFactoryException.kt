@@ -31,7 +31,7 @@ import org.checkerframework.checker.signature.qual.FqBinaryName
 
 /**
  * Thrown when [ActionFactory] cannot instantiate
- * a [RenderAction][io.spine.compiler.renderer.RenderAction].
+ * a [RenderAction][io.spine.compiler.render.RenderAction].
  */
 public class ActionFactoryException private constructor(message: String, cause: Throwable?)
     : ReflectiveOperationException(message, cause) {
@@ -40,7 +40,6 @@ public class ActionFactoryException private constructor(message: String, cause: 
 
     internal companion object {
 
-        @Suppress("ConstPropertyName") // To conform Java convention.
         private const val serialVersionUID: Long = -3922823622064715639L
 
         /**

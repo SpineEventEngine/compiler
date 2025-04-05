@@ -31,8 +31,8 @@ import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.fileTypes.FileTypeRegistry
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
-import io.spine.compiler.ast.file
 import io.spine.compiler.ast.toProto
+import io.spine.compiler.render.SourceFile.Companion.fromCode
 import io.spine.compiler.util.Cache
 import io.spine.server.query.select
 import io.spine.text.Text

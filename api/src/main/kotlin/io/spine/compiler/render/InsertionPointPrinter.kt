@@ -26,11 +26,10 @@
 
 package io.spine.compiler.render
 
-import io.spine.core.userId
-import io.spine.compiler.ast.toAbsoluteFile
 import io.spine.compiler.ast.toProto
 import io.spine.compiler.render.CoordinatesFactory.Companion.endOfFile
 import io.spine.compiler.render.event.insertionPointPrinted
+import io.spine.core.userId
 import io.spine.text.TextCoordinates
 import io.spine.text.TextCoordinates.KindCase.END_OF_TEXT
 import io.spine.text.TextCoordinates.KindCase.INLINE

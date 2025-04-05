@@ -30,7 +30,6 @@ import com.google.common.collect.ImmutableSet
 import io.kotest.matchers.collections.shouldContainExactly
 import io.spine.base.EventMessage
 import io.spine.compiler.ast.file
-import io.spine.compiler.settings.event.SettingsFileDiscovered
 import io.spine.compiler.settings.event.settingsFileDiscovered
 import io.spine.server.BoundedContext
 import io.spine.server.BoundedContextBuilder

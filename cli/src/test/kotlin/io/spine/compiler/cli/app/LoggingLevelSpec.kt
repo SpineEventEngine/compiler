@@ -30,9 +30,6 @@ import com.github.ajalt.clikt.core.UsageError
 import com.google.protobuf.compiler.codeGeneratorRequest
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
-import io.spine.logging.Level
-import io.spine.logging.WithLogging
-import io.spine.compiler.ast.file
 import io.spine.compiler.ast.toAbsoluteDirectory
 import io.spine.compiler.ast.toAbsoluteFile
 import io.spine.compiler.ast.toProto
@@ -42,10 +39,11 @@ import io.spine.compiler.params.WorkingDirectory
 import io.spine.compiler.params.pipelineParameters
 import io.spine.compiler.plugin.Plugin
 import io.spine.compiler.render.SourceFileSet
-import io.spine.compiler.test.Project
 import io.spine.compiler.test.StubSoloRenderer
 import io.spine.compiler.testing.googleProtobufProtos
 import io.spine.compiler.testing.spineOptionProtos
+import io.spine.logging.Level
+import io.spine.logging.WithLogging
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.prototap.CompiledProtosFile
 import java.io.File

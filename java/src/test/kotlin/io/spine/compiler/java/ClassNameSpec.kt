@@ -30,7 +30,6 @@ import assertCode
 import com.google.protobuf.Timestamp
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
-import io.spine.compiler.test.Incarnation
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test

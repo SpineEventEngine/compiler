@@ -30,7 +30,6 @@
 package io.spine.compiler;
 
 import com.google.errorprone.annotations.CheckReturnValue;
-import io.spine.compiler.Constants;
 import io.spine.logging.JvmLoggingDomain;
 
 import javax.annotation.ParametersAreNonnullByDefault;

@@ -34,7 +34,7 @@ import io.spine.text.TextCoordinates
 import io.spine.tools.code.Kotlin
 
 public class VariousKtInsertionPointsPrinter :
-    InsertionPointPrinter<Kotlin>(Kotlin, KotlinInsertionPoint.values().toSet())
+    InsertionPointPrinter<Kotlin>(Kotlin, KotlinInsertionPoint.entries.toSet())
 
 public enum class KotlinInsertionPoint : NonRepeatingInsertionPoint {
 

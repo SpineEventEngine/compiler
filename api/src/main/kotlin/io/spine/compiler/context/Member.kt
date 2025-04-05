@@ -35,7 +35,6 @@ import io.spine.compiler.ast.ProtoFileHeader
 import io.spine.compiler.ast.ProtobufSourceFile
 import io.spine.compiler.ast.ServiceInFile
 import io.spine.compiler.ast.enums
-import io.spine.compiler.ast.unixPath
 import io.spine.compiler.ast.messages
 import io.spine.compiler.ast.services
 import io.spine.compiler.settings.LoadsSettings

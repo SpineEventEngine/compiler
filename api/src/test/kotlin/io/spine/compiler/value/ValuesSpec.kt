@@ -34,7 +34,6 @@ import io.kotest.matchers.shouldBe
 import io.spine.base.Time
 import io.spine.compiler.ast.qualifiedName
 import io.spine.compiler.test.postcard
-import io.spine.compiler.value.toValue
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 

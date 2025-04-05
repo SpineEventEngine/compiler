@@ -93,7 +93,7 @@ private class StubRenderer : Renderer<AnyLanguage>(AnyLanguage) {
     /**
      * Opens the access to [typeSystem] property for being checked in tests.
      */
-    fun typeSystem(): TypeSystem? = typeSystem
+    fun typeSystem(): TypeSystem = typeSystem
 
     override fun render(sources: SourceFileSet) = Unit
 }
