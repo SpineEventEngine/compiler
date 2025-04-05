@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package spine.compiler.test;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.compiler.test";
+option java_outer_classname = "MetaAnnotatedProto";
+option java_multiple_files = true;
+
+import "spine/compiler/file.proto";
+import "spine/compiler/ast.proto";
+
+// A view of an annotated field.
+//
+message Annotated {
+    option (entity).kind = PROJECTION;
+
+    FieldId id = 1;
+
+    string java_annotation = 2;
+}
+
+message FieldId {
+
+    spine.compiler.File file = 1;
+
+    spine.compiler.TypeName type = 2;
+
+    spine.compiler.FieldName field = 3;
+}

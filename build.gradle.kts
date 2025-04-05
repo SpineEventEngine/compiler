@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,17 +76,17 @@ spinePublishing {
         .minus("gradle-plugin") // because of custom publishing.
 
     destinations = setOf(
-        PublishingRepos.gitHub("ProtoData"),
+        PublishingRepos.gitHub("compiler"),
         PublishingRepos.cloudArtifactRegistry
     )
-    artifactPrefix = "protodata-"
+    artifactPrefix = "compiler-"
 }
 
 allprojects {
     apply(plugin = Dokka.GradlePlugin.id)
     apply(from = "$rootDir/version.gradle.kts")
-    group = "io.spine.protodata"
-    version = extra["protoDataVersion"]!!
+    group = "io.spine.compiler"
+    version = extra["compilerVersion"]!!
 
     repositories.standardToSpineSdk()
 

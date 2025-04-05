@@ -1,0 +1,66 @@
+/*
+ * Copyright 2024, TeamDev. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Redistribution and use in source and/or binary forms, with or without
+ * modification, must retain the above copyright notice and the following
+ * disclaimer.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+syntax = "proto3";
+
+package spine.compiler;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.compiler.settings";
+option java_outer_classname = "SettingsProto";
+option java_multiple_files = true;
+
+import "google/protobuf/empty.proto";
+import "spine/compiler/file.proto";
+
+// A view on the ProtoData user configuration.
+//
+// Describes parameters passed to a component of the code generation process.
+// The user may then obtain those parameters by finding the instance of this view.
+//
+// @see io.spine.compiler.settings.LoadsSettings
+//
+message Settings {
+    option (entity).kind = VIEW;
+
+    // A name of a ProtoData component which is going to consume the settings.
+    string consumer = 1;
+
+    oneof kind {
+        option (is_required) = true;
+
+        // No settings are supplied.
+        google.protobuf.Empty empty = 2;
+
+        // A file which contains the configuration.
+        //
+        // The format of the configuration is inferred from the file extension.
+        //
+        File file = 3;
+    }
+}

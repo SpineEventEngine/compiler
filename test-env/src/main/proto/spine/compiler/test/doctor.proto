@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package spine.compiler.test;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.compiler.test";
+option java_outer_classname = "DoctorProto";
+option java_multiple_files = true;
+
+import "spine/time/time.proto";
+
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+// Detached 1.
+
+/*
+   Detached 2.
+  Indentation is not preserved in Protobuf.
+
+  Bla bla!
+ */
+
+// A Doctor's journey.
+//
+// A test type
+//
+message Journey {
+    /* Impl note: test type. */
+
+    option (beta_type) = true;
+
+    time.LocalDate from = 1 [(required) = true];
+
+    time.LocalDate to = 2 [(required) = true];
+
+    oneof crew {
+        google.protobuf.Empty alone = 3;
+        Sidekick sidekick = 4 [(validate) = true];
+    }
+
+    Incarnation incarnation = 5;
+
+    message Destination {
+
+        string where = 1;
+
+        time.LocalDate when = 2;
+    }
+
+    repeated Destination route = 6;
+}
+
+message Sidekick {
+    string name = 1;
+}
+
+enum Incarnation {
+
+    UNKNOWN = 0;
+    CLASSIC = 1;
+    CURRENT = 2;
+}
+
+message Yes {
+}
+
+message Episode {
+
+    uint32 series = 1;
+
+    uint32 episode = 2;
+}
+
+service DoctorsPhone {
+
+    rpc Who(google.protobuf.Empty) returns (google.protobuf.Empty) {
+        option idempotency_level = NO_SIDE_EFFECTS;
+    };
+
+    rpc RescueCall(stream PersonName) returns (Yes);
+
+    rpc WhereAreYou(google.protobuf.Empty) returns (stream google.protobuf.StringValue);
+
+    rpc WhichActor(stream Episode) returns (stream PersonName);
+}
+
+message PersonName {
+
+    string name = 1;
+}
+
+// A test type ending with an underscore.
+//
+// In tests, the files generated from this type are deleted from the source set.
+//
+// Please, DO NOT delete this type.
+//
+message DeleteMe_ {
+}
+
+extend google.protobuf.FieldOptions {
+
+    repeated string rhyme = 74010;
+}
+
+message Word {
+
+    string test = 1 [(rhyme) = "best", (rhyme) = "west", (rhyme) = "nest"];
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package spine.compiler.test;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.compiler.test";
+option java_outer_classname = "DeletedProto";
+option java_multiple_files = true;
+
+import "spine/compiler/ast.proto";
+
+message DeletedType {
+    option (entity).kind = PROJECTION;
+
+    spine.compiler.TypeName name = 1;
+
+    spine.compiler.MessageType type = 2;
+}

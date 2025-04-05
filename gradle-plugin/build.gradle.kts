@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -101,21 +101,21 @@ java {
 
 publishing.publications.withType<MavenPublication>().all {
     groupId = "io.spine"
-    artifactId = "protodata"
+    artifactId = "compiler"
 }
 
-val pluginName = "protoDataPlugin"
+val pluginName = "spineCompilerPlugin"
 
 gradlePlugin {
     website.set("https://spine.io/")
-    vcsUrl.set("https://github.com/SpineEventEngine/ProtoData.git")
+    vcsUrl.set("https://github.com/SpineEventEngine/compiler.git")
     plugins {
         create(pluginName) {
-            id = "io.spine.protodata"
-            implementationClass = "io.spine.protodata.gradle.plugin.Plugin"
-            displayName = "ProtoData Gradle Plugin"
-            description = "Sets up the ProtoData tool to be used in your project."
-            tags.set(listOf("spine", "protobuf", "protodata", "code generation", "codegen"))
+            id = "io.spine.compiler"
+            implementationClass = "io.spine.compiler.gradle.plugin.Plugin"
+            displayName = "Spine Compiler Gradle Plugin"
+            description = "Sets up the Spine Compiler to be used in your project."
+            tags.set(listOf("spine", "protobuf", "compiler", "code generation", "codegen"))
         }
     }
     val functionalTest by sourceSets.getting
@@ -124,10 +124,10 @@ gradlePlugin {
     )
 }
 
-val protoDataVersion: String by extra
+val compilerVersion: String by extra
 
 val publishPlugins: Task by tasks.getting {
-    enabled = !protoDataVersion.isSnapshot()
+    enabled = !compilerVersion.isSnapshot()
 }
 
 val publish: Task by tasks.getting {

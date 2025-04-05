@@ -1,11 +1,11 @@
 /*
- * Copyright 2023, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -29,22 +29,22 @@
 import io.spine.dependency.lib.JavaX
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.Spine
-import io.spine.protodata.gradle.CodegenSettings
+import io.spine.compiler.gradle.CodegenSettings
 
 buildscript {
     standardSpineSdkRepositories()
     apply(from = "$rootDir/../version.gradle.kts")
-    val protoDataVersion: String by extra
+    val compilerVersion: String by extra
     dependencies {
-        classpath("io.spine.protodata:gradle-plugin:$protoDataVersion")
+        classpath("io.spine.compiler:gradle-plugin:$compilerVersion")
     }
 }
 
-apply(plugin = "io.spine.protodata")
+apply(plugin = "io.spine.compiler")
 
 dependencies {
-    val extensionSubproject = project(":protodata-extension")
-    "protoData"(extensionSubproject)
+    val extensionSubproject = project(":compiler-extension")
+    "spineCompiler"(extensionSubproject)
     implementation(extensionSubproject)
     implementation(JavaX.annotations)
     testImplementation(Base.lib)?.because("tests use packing and unpacking extension functions.")
@@ -52,7 +52,7 @@ dependencies {
 
 extensions.getByType<CodegenSettings>().apply {
     plugins(
-        "io.spine.protodata.test.uuid.UuidPlugin",
-        "io.spine.protodata.test.annotation.AnnotationPlugin"
+        "io.spine.compiler.test.uuid.UuidPlugin",
+        "io.spine.compiler.test.annotation.AnnotationPlugin"
     )
 }

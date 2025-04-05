@@ -1,11 +1,11 @@
 /*
- * Copyright 2023, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -39,12 +39,12 @@ plugins {
 }
 
 repositories {
-    mavenLocal() // Must come first for `protodata-test-env`.
+    mavenLocal() // Must come first for `compiler-test-env`.
     standardToSpineSdk()
 }
 
 dependencies {
-    protoData("io.spine.protodata:protodata-test-env:+")
+    spineCompiler("io.spine.compiler:compiler-test-env:+")
 }
 
 protobuf {
@@ -53,9 +53,9 @@ protobuf {
     }
 }
 
-protoData {
+compiler {
     plugins(
-        "io.spine.protodata.test.UnderscorePrefixRendererPlugin",
-        "io.spine.protodata.test.TestPlugin"
+        "io.spine.compiler.test.UnderscorePrefixRendererPlugin",
+        "io.spine.compiler.test.TestPlugin"
     )
 }

@@ -1,4 +1,4 @@
-# ProtoData
+# Spine Compiler
 
 [![Build on Ubuntu](https://github.com/SpineEventEngine/ProtoData/actions/workflows/build-on-ubuntu.yml/badge.svg)][ubuntu-build]
 [![Build on Windows](https://github.com/SpineEventEngine/ProtoData/actions/workflows/build-on-windows.yml/badge.svg)][windows-build]
@@ -7,7 +7,8 @@
 
 [![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)][apache-license]
 
-_ProtoData_ is a collection of tools for generating quality domain models from Protobuf definitions.
+Spine Compiler is a collection of tools for generating quality
+domain models from Protobuf definitions.
 
 The project is under development right now. Proceed with caution.
 
@@ -20,14 +21,14 @@ See the [Gradle plugin](gradle-plugin/README.md) doc for more info.
 
 ### *nix
 
-To install ProtoData on a *nix system:
+To install Spine Compiler on a *nix system:
 
  1. [Download](https://github.com/SpineEventEngine/ProtoData/packages/710696) 
-    the `protodata-setup-<version>.jar` archive.
+    the `compiler-setup-<version>.jar` archive.
 
  2. Unzip the archive:
  ```
- unzip -d ./target/dir path/to/protodata.jar
+ unzip -d ./target/dir path/to/compiler.jar
  ```
 
  3. Run the installer script:
@@ -44,9 +45,9 @@ To install ProtoData on a *nix system:
  the `PATH` environmental variable. If you use another shell, you will have to update the `PATH`
  variable manually.
 
-Now ProtoData CLI should be accessible. To check the correctness of the installation, run:
+Now Spine Compiler CLI should be accessible. To check the correctness of the installation, run:
 ```
-protodata -h
+compiler -h
 ```
 
 ### Windows
@@ -56,9 +57,9 @@ There is currently no installation script for Windows.
 Start using the app:
 
  1. [Download](https://github.com/SpineEventEngine/ProtoData/packages/710696) and extract 
-    the `protodata-setup-<version>.jar` archive.
+    the `compiler-setup-<version>.jar` archive.
 
- 2. To launch the app, launch the `bin/protodata.bat` script.
+ 2. To launch the app, launch the `bin/compiler.bat` script.
 
 Note that it is necessary to keep the structure of the archive intact: the scripts in `bin` rely
 on the relative path to other files in the archive.

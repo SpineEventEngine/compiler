@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package spine.compiler.cli.test;
+
+import "spine/options.proto";
+import "spine/time_options.proto";
+import "spine/compiler/cli/test/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.compiler.cli.test";
+option java_outer_classname = "TestProto";
+option java_multiple_files = true;
+
+import "google/protobuf/timestamp.proto";
+import "spine/compiler/ast.proto";
+
+message Type {
+
+    string custom_field_for_test = 1 [(.spine.compiler.cli.test.custom) = { bar: "yes" }];
+}
+
+message SpineAnnotatedType {
+
+    string required_field_for_test = 1 [(required) = true];
+
+    google.protobuf.Timestamp value_in_future = 2 [(when).in = FUTURE];
+}

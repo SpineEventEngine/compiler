@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package spine.compiler.cli.test;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.compiler.cli.test";
+option java_outer_classname = "DefaultOptionsCounterProto";
+option java_multiple_files = true;
+
+import "spine/compiler/ast.proto";
+
+message DefaultOptionsCounter {
+    option (entity).kind = PROJECTION;
+
+    compiler.TypeName type_name = 1;
+
+    bool timestamp_in_future_encountered = 2;
+
+    bool required_field_for_test_encountered = 3;
+}

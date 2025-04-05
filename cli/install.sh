@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 #
-# Copyright 2022, TeamDev. All rights reserved.
+# Copyright 2025, TeamDev. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+# https://www.apache.org/licenses/LICENSE-2.0
 #
 # Redistribution and use in source and/or binary forms, with or without
 # modification, must retain the above copyright notice and the following
@@ -28,7 +28,7 @@
 
 distribution_dir=$(realpath "$0")
 distribution_dir=$(dirname "$distribution_dir")
-application_dir="$distribution_dir/protodata"
+application_dir="$distribution_dir/SpineCompiler"
 
 if [[ ! -d "$application_dir" ]]; then
   echo "Directory '$application_dir' doesn't exist."
@@ -47,12 +47,12 @@ else
     target="$1"
 fi
 
-echo "Installing ProtoData into '$target'..."
+echo "Installing Spine Compiler into '$target'..."
 
 cp -r "$application_dir" "$target"
 
 # Try to add the launcher script to PATH.
-bin_dir="$target/protodata/bin"
+bin_dir="$target/SpineCompiler/bin"
 
 if ! echo "$PATH" | grep -q "$bin_dir"; then
     echo "Adding '$bin_dir' to the PATH..."
@@ -68,7 +68,7 @@ if ! echo "$PATH" | grep -q "$bin_dir"; then
 
     echo "Adding executables to PATH via '$shell_rc'."
 
-    chmod +x "$bin_dir/protodata"
+    chmod +x "$bin_dir/spine-compiler"
 
     echo "export PATH=\"\$PATH:$bin_dir\"" >> "$shell_rc"
 

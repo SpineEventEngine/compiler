@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,8 +70,15 @@ sourceSets.test {
 /** The publishing settings from the root project. */
 val spinePublishing = rootProject.the<SpinePublishing>()
 
-/** Use the same prefix for naming application files as for published artifacts. */
-val appName = spinePublishing.artifactPrefix.replace("-", "")
+/**
+ * The prefix used when publishing modules.
+ */
+val modulePrefix = spinePublishing.artifactPrefix
+
+/**
+ * Use the same suffix for naming application files as the prefix for published artifacts.
+ */
+val appName = SpinePublishing.DEFAULT_PREFIX + modulePrefix.replace("-", "")
 
 /** The names of the published modules defined the parent project. */
 val modules: Set<String> = spinePublishing.modules
@@ -106,7 +113,7 @@ tasks.distTar {
 }
 
 application {
-    mainClass.set("io.spine.protodata.cli.app.MainKt")
+    mainClass.set("io.spine.compiler.cli.app.MainKt")
     applicationName = appName
 }
 
@@ -140,12 +147,12 @@ val stageProtoData by tasks.registering(Copy::class) {
     dependsOn(setupJar)
 }
 
-val protoDataLocationProperty = "protoDataLocation"
+val spineCompilerLocationProperty = "spineCompilerLocation"
 
-tasks.register("installProtoData", Exec::class) {
+tasks.register("installSpineCompiler", Exec::class) {
     val cmd = mutableListOf("$stagingDir/install.sh")
-    if (rootProject.hasProperty(protoDataLocationProperty)) {
-        cmd.add(rootProject.property(protoDataLocationProperty)!!.toString())
+    if (rootProject.hasProperty(spineCompilerLocationProperty)) {
+        cmd.add(rootProject.property(spineCompilerLocationProperty)!!.toString())
     }
     commandLine(cmd)
     dependsOn(stageProtoData)
@@ -166,23 +173,25 @@ publishing {
     val pVersion = project.version.toString()
 
     publications {
-        create("setup", MavenPublication::class) {
+        create<MavenPublication>("setup") {
             groupId = pGroup
             artifactId = "$appName-setup"
             version = pVersion
 
             setArtifacts(project.configurations.getAt(setupArchiveConfig).allArtifacts)
         }
-        create("fat-jar", MavenPublication::class) {
+
+        create<MavenPublication>("fat-jar") {
             groupId = pGroup
-            artifactId = "$appName-fat-cli"
+            artifactId = "${modulePrefix}fat-cli"
             version = pVersion
 
             artifact(tasks.shadowJar) {
                 // Avoid `-all` suffix in the published artifact.
                 // We cannot remove the suffix by setting the `archiveClassifier` for
                 // the `shadowJar` task because of the duplication check for pairs
-                // (classifier, artifact extension) performed by `ValidatingMavenPublisher` class.
+                // (classifier, artifact extension) performed by
+                // the `ValidatingMavenPublisher` class.
                 classifier = ""
             }
         }
@@ -196,6 +205,7 @@ tasks.publish {
 tasks.shadowJar {
     mergeServiceFiles("desc.ref")
     mergeServiceFiles("META-INF/services/io.spine.option.OptionsProvider")
+    // minimize() ?
     isZip64 = true
     exclude(
         // Exclude license files that cause or may cause issues with LicenseReport.

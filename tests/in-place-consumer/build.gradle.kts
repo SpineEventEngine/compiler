@@ -1,11 +1,11 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -29,25 +29,26 @@ import com.google.protobuf.gradle.protobuf
 buildscript {
     standardSpineSdkRepositories()
     apply(from = "$rootDir/../version.gradle.kts")
-    val protoDataVersion: String by extra
+    val compilerVersion: String by extra
     dependencies {
-        classpath("io.spine.protodata:gradle-plugin:$protoDataVersion")
+        classpath("io.spine.compiler:gradle-plugin:$compilerVersion")
     }
 }
 
 plugins {
-    id("io.spine.protodata")
+    id("io.spine.compiler")
 }
 
 dependencies {
-    protoData(project(":protodata-extension"))
+    spineCompiler(project(":compiler-extension"))
+    implementation(project(":compiler-extension"))
 }
 
 val protobufDir = "$projectDir/proto-gen/"
 
-protoData {
+compiler {
     plugins(
-        "io.spine.protodata.test.uuid.UuidPlugin"
+        "io.spine.compiler.test.uuid.UuidPlugin"
     )
     outputBaseDir.set(project.layout.projectDirectory.dir(protobufDir))
 }

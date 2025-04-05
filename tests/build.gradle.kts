@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,9 +73,9 @@ subprojects {
         from("$rootDir/../version.gradle.kts")
     }
 
-    val protoDataVersion: String by extra
-    group = "io.spine.protodata.tests"
-    version = protoDataVersion
+    val compilerVersion: String by extra
+    group = "io.spine.compiler.tests"
+    version = compilerVersion
 
     repositories.standardToSpineSdk()
 

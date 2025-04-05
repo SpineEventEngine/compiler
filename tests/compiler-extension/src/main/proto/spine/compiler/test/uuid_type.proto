@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package spine.compiler.test;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.compiler.test";
+option java_outer_classname = "UuidTypeProto";
+option java_multiple_files = true;
+
+import "spine/compiler/file.proto";
+import "spine/compiler/ast.proto";
+
+// A type which is a wrapper for a UUID string.
+//
+message UuidType {
+    option (entity).kind = PROJECTION;
+
+    // Name of the type.
+    compiler.TypeName name = 1;
+
+    // The file where the type is declared.
+    compiler.File declared_in = 2;
+}

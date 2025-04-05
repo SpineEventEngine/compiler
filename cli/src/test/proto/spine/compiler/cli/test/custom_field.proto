@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package spine.compiler.cli.test;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.compiler.cli.test";
+option java_outer_classname = "CustomFieldProto";
+option java_multiple_files = true;
+
+import "spine/compiler/ast.proto";
+
+message CustomField {
+    option (entity).kind = PROJECTION;
+
+    compiler.FieldName field = 1;
+}
