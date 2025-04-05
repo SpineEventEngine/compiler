@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,11 @@
  */
 
 /**
- * The version of the ProtoData to publish.
+ * The version of the Spine Compiler to publish.
  *
  * This version also used by integration test projects.
  * E.g. see `tests/consumer/build.gradle.kts`.
  *
  * For dependencies on Spine SDK module please see [io.spine.dependency.local.Spine].
  */
-val protoDataVersion: String by extra("0.93.10")
+val compilerVersion: String by extra("2.0.0-SNAPSHOT.1")
