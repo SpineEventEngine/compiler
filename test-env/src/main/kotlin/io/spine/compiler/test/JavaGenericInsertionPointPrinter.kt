@@ -35,7 +35,7 @@ import io.spine.text.TextCoordinates
 import io.spine.tools.code.Java
 
 public class JavaGenericInsertionPointPrinter :
-    InsertionPointPrinter<Java>(Java, GenericInsertionPoint.values().toSet())
+    InsertionPointPrinter<Java>(Java, GenericInsertionPoint.entries.toSet())
 
 public enum class GenericInsertionPoint : NonRepeatingInsertionPoint {
 
