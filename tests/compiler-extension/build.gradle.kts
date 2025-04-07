@@ -39,5 +39,5 @@ apply {
 
 dependencies {
     compileOnly("io.spine.compiler:backend")
-    implementation("io.spine.compiler:java")
+    implementation("io.spine.compiler:jvm")
 }

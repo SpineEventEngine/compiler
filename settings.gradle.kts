@@ -35,7 +35,7 @@ include(
     "protoc-plugin",
     "test-env",
     "testlib",
-    "java",
+    "jvm",
     "gradle-api",
     "gradle-plugin"
 )

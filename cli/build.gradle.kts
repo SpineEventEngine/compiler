@@ -53,7 +53,7 @@ dependencies {
         ":api",
         ":params",
         ":backend",
-        ":java"
+        ":jvm"
     ).forEach { implementation(project(it)) }
 
     testAnnotationProcessor(AutoService.processor)?.because(

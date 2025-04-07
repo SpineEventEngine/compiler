@@ -29,10 +29,9 @@ package io.spine.compiler.test.annotation;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableList;
 import io.spine.compiler.plugin.Plugin;
-import io.spine.compiler.plugin.Plugin;
 import io.spine.compiler.plugin.ViewRepository;
 import io.spine.compiler.render.Renderer;
-import io.spine.compiler.java.annotation.GeneratedTypeAnnotation;
+import io.spine.compiler.jvm.annotation.GeneratedTypeAnnotation;
 
 import java.util.Set;
 import java.util.List;

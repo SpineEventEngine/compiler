@@ -26,7 +26,7 @@
 
 package io.spine.compiler.test.annotation;
 
-import io.spine.compiler.java.render.JavaRenderer;
+import io.spine.compiler.jvm.render.JavaRenderer;
 import io.spine.compiler.render.SourceFileSet;
 import io.spine.compiler.test.Annotated;
 import io.spine.compiler.test.FieldId;

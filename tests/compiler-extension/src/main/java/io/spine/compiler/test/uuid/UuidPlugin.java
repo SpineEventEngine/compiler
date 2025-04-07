@@ -32,7 +32,7 @@ import io.spine.compiler.plugin.Plugin;
 import io.spine.compiler.plugin.ViewRepository;
 import io.spine.compiler.render.Renderer;
 import io.spine.compiler.test.UuidType;
-import io.spine.compiler.java.file.PrintBeforePrimaryDeclaration;
+import io.spine.compiler.jvm.file.PrintBeforePrimaryDeclaration;
 
 import java.util.Set;
 import java.util.List;
