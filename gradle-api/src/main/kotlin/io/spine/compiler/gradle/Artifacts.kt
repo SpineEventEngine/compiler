@@ -38,16 +38,9 @@ public object Artifacts {
     public const val group: String = "io.spine.compiler"
 
     /**
-     * The name of the artifact of Spine Compiler.
+     * The name of the Spine Compiler artifact.
      */
     public const val compiler: String = "compiler"
-
-    /**
-     * The prefix to be used in an artifact name before a submodule name.
-     *
-     * It should be the same as defined in `spinePublishing` in the root `build.gradle.kts`.
-     */
-    internal const val prefix: String = "compiler"
 
     /**
      * Obtains Maven coordinates of the `fat-cli` variant of command-line application.
@@ -55,13 +48,16 @@ public object Artifacts {
      * "fat-cli" is an all-in-one distribution of the Compiler, published somewhat in the past.
      * Ironically, we need it in the Compiler development.
      * It removes the dependency conflicts between Compiler-s.
+     *
+     * Please make sure that the module name in this constant (`cli-all`) has the same value
+     * as the `MavenPublication` named `cliFatJar` in the `cli/build.gradle.kts` file.
      */
-    public fun fatCli(version: String): String = "$group:$prefix-fat-cli:$version"
+    public fun fatCli(version: String): String = "$group:cli-all:$version"
 
     /**
      * Obtains Maven coordinates for ProtoData command-line application.
      */
-    public fun cli(version: String): String = "$group:$prefix-cli:$version"
+    public fun cli(version: String): String = "$group:cli:$version"
 
     /**
      * Obtains Maven coordinates for the ProtoData plugin to Google Protobuf Compiler (`protoc`).
@@ -76,8 +72,11 @@ public object Artifacts {
  */
 public data class ProtocPluginArtifact(val version: String) {
 
+    /**
+     * The Maven cooridates of the Spine Compiler plugin for `protoc`.
+     */
     public val coordinates: String =
-        "${Artifacts.group}:${Artifacts.prefix}-protoc-plugin:$version:exe@jar"
+        "${Artifacts.group}:protoc-plugin:$version:exe@jar"
 
     /**
      * Obtains Maven artifact coordinates.

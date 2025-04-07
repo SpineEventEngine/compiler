@@ -42,8 +42,12 @@ public final class Constants {
     public static final String LOGGING_PREFIX = '[' + LOGGING_DOMAIN + "] ";
 
     /**
-     * The name of the ProtoData command-line application main class.
+     * The name of the Compiler command-line application main class.
      */
+    @SuppressWarnings(
+            /* Duplications are in the generated test code. */
+            "DuplicateStringLiteralInspection"
+    )
     public static final String CLI_APP_CLASS = "io.spine.compiler.cli.app.MainKt";
 
     /**

@@ -44,7 +44,7 @@ repositories {
 }
 
 dependencies {
-    spineCompiler("io.spine.compiler:compiler-test-env:+")
+    spineCompiler("io.spine.compiler:test-env:+")
 }
 
 protobuf {

@@ -33,6 +33,8 @@ dependencies {
     implementation(Base.lib)?.because("`MessageOrBuilder.toJson()` is needed.")
 }
 
+description = "The Spine Compiler plugin for `protoc`."
+
 tasks.jar {
     manifest {
         attributes(mapOf("Main-Class" to "io.spine.compiler.protoc.Plugin"))
@@ -48,8 +50,8 @@ tasks.jar {
         // Protobuf proto source files.
         "google/**",
     )
-    // We should provide a classifier or else Protobuf Gradle plugin will substitute it with
-    // an OS-specific one.
+    // We should provide a classifier or else Protobuf Gradle plugin will
+    // substitute it with an OS-specific one.
     archiveClassifier.set("exe")
     duplicatesStrategy = INCLUDE
 }

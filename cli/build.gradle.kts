@@ -29,6 +29,7 @@ import io.spine.dependency.lib.AutoServiceKsp
 import io.spine.dependency.lib.Clikt
 import io.spine.dependency.local.Logging
 import io.spine.gradle.publish.SpinePublishing
+import io.spine.gradle.publish.handleMergingServiceFiles
 
 plugins {
     application
@@ -83,35 +84,6 @@ val appName = SpinePublishing.DEFAULT_PREFIX + modulePrefix.replace("-", "")
 /** The names of the published modules defined the parent project. */
 val modules: Set<String> = spinePublishing.modules
 
-/**
- * A callback for distribution archive tasks that prepends [appName] to the file name,
- * if the file is an archive of a project module. Otherwise, the file name is intact.
- *
- * This is used to make archives with our code more visible and grouped together (by their names)
- * under the `lib` folder.
- */
-fun addPrefixIfModule(fcd: FileCopyDetails) {
-    val sourceName = fcd.sourceName
-    val isModule = modules.any { sourceName.startsWith("$it-") }
-    if (isModule) {
-        fcd.name = "$appName-$sourceName"
-    }
-}
-
-tasks.distZip {
-    archiveFileName.set("${appName}.zip")
-    eachFile {
-        addPrefixIfModule(this)
-    }
-}
-
-tasks.distTar {
-    archiveFileName.set("${appName}.tar")
-    eachFile {
-        addPrefixIfModule(this)
-    }
-}
-
 application {
     mainClass.set("io.spine.compiler.cli.app.MainKt")
     applicationName = appName
@@ -123,67 +95,14 @@ tasks.getByName<CreateStartScripts>("startScripts") {
     (unixStartScriptGenerator as TemplateBasedScriptGenerator).template = template
 }
 
-/**
- * A task re-packing the distribution ZIP archive into a JAR.
- *
- * Some Maven repositories, particularly GitHub Packages, do not support publishing arbitrary files.
- * This way, we trick it to accept this file (as a JAR).
- */
-val setupJar by tasks.registering(Jar::class) {
-    from(zipTree(tasks.distZip.get().archiveFile))
-    from("$projectDir/install.sh")
-
-    archiveFileName.set("${appName}.jar")
-
-    dependsOn(tasks.distZip)
-}
-
-val stagingDir: String = layout.buildDirectory.dir("staging").get().asFile.path
-
-val stageProtoData by tasks.registering(Copy::class) {
-    from(zipTree(setupJar.get().archiveFile))
-    into(stagingDir)
-
-    dependsOn(setupJar)
-}
-
-val spineCompilerLocationProperty = "spineCompilerLocation"
-
-tasks.register("installSpineCompiler", Exec::class) {
-    val cmd = mutableListOf("$stagingDir/install.sh")
-    if (rootProject.hasProperty(spineCompilerLocationProperty)) {
-        cmd.add(rootProject.property(spineCompilerLocationProperty)!!.toString())
-    }
-    commandLine(cmd)
-    dependsOn(stageProtoData)
-}
-
-/**
- * Create a configuration for re-archived distribution ZIP so that it later can be used
- * for the publication.
- */
-val setupArchiveConfig = "setupArchive"
-configurations.create(setupArchiveConfig)
-artifacts {
-    add(setupArchiveConfig, setupJar)
-}
-
 publishing {
     val pGroup = project.group.toString()
     val pVersion = project.version.toString()
 
     publications {
-        create<MavenPublication>("setup") {
+        create<MavenPublication>("cliFatJar") {
             groupId = pGroup
-            artifactId = "$appName-setup"
-            version = pVersion
-
-            setArtifacts(project.configurations.getAt(setupArchiveConfig).allArtifacts)
-        }
-
-        create<MavenPublication>("fat-jar") {
-            groupId = pGroup
-            artifactId = "${modulePrefix}fat-cli"
+            artifactId = "cli-all"
             version = pVersion
 
             artifact(tasks.shadowJar) {
@@ -203,9 +122,10 @@ tasks.publish {
 }
 
 tasks.shadowJar {
-    mergeServiceFiles("desc.ref")
-    mergeServiceFiles("META-INF/services/io.spine.option.OptionsProvider")
+    handleMergingServiceFiles()
+
     // minimize() ?
+
     isZip64 = true
     exclude(
         // Exclude license files that cause or may cause issues with LicenseReport.

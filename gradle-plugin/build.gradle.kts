@@ -104,13 +104,11 @@ publishing.publications.withType<MavenPublication>().all {
     artifactId = "compiler"
 }
 
-val pluginName = "spineCompilerPlugin"
-
 gradlePlugin {
     website.set("https://spine.io/")
     vcsUrl.set("https://github.com/SpineEventEngine/compiler.git")
     plugins {
-        create(pluginName) {
+        create("spineCompilerGradlePlugin") {
             id = "io.spine.compiler"
             implementationClass = "io.spine.compiler.gradle.plugin.Plugin"
             displayName = "Spine Compiler Gradle Plugin"
