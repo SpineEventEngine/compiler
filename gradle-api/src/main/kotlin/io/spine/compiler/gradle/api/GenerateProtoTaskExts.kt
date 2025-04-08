@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.compiler.gradle
+package io.spine.compiler.gradle.api
 
 import com.google.protobuf.gradle.GenerateProtoTask
 import com.google.protobuf.gradle.GenerateProtoTask.PluginOptions

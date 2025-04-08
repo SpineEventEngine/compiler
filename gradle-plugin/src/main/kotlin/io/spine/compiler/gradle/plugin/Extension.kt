@@ -27,7 +27,7 @@
 package io.spine.compiler.gradle.plugin
 
 import com.google.common.annotations.VisibleForTesting
-import io.spine.compiler.gradle.CodegenSettings
+import io.spine.compiler.gradle.api.CodegenSettings
 import io.spine.tools.fs.DirectoryName.generated
 import io.spine.tools.gradle.protobuf.generatedSourceProtoDir
 import org.gradle.api.Project

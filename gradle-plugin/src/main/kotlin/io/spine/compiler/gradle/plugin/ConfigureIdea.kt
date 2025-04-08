@@ -27,10 +27,10 @@
 package io.spine.compiler.gradle.plugin
 
 import com.google.protobuf.gradle.GenerateProtoTask
-import io.spine.compiler.gradle.builtins
-import io.spine.compiler.gradle.debug
-import io.spine.compiler.gradle.plugins
-import io.spine.compiler.gradle.generatedDir
+import io.spine.compiler.gradle.api.builtins
+import io.spine.compiler.gradle.api.debug
+import io.spine.compiler.gradle.api.plugins
+import io.spine.compiler.gradle.api.generatedDir
 import io.spine.tools.gradle.protobuf.generatedSourceProtoDir
 import java.io.File
 import java.nio.file.Path

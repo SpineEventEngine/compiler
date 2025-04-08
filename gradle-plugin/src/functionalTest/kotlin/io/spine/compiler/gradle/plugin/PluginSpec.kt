@@ -27,8 +27,8 @@
 package io.spine.compiler.gradle.plugin
 
 import io.kotest.matchers.shouldBe
-import io.spine.compiler.gradle.CompilerTaskName
-import io.spine.compiler.gradle.Names.GRADLE_PLUGIN_ID
+import io.spine.compiler.gradle.api.CompilerTaskName
+import io.spine.compiler.gradle.api.Names.GRADLE_PLUGIN_ID
 import io.spine.testing.SlowTest
 import io.spine.testing.assertDoesNotExist
 import io.spine.tools.code.SourceSetName

@@ -34,18 +34,18 @@ import com.google.common.collect.ImmutableList
 import com.google.errorprone.annotations.CanIgnoreReturnValue
 import com.google.protobuf.gradle.GenerateProtoTask
 import io.spine.code.proto.DescriptorReference
-import io.spine.compiler.gradle.Artifacts
-import io.spine.compiler.gradle.CleanProtoDataTask
-import io.spine.compiler.gradle.CodegenSettings
-import io.spine.compiler.gradle.CompilerTask
-import io.spine.compiler.gradle.Names.COMPILER_RAW_ARTIFACT
-import io.spine.compiler.gradle.Names.EXTENSION_NAME
-import io.spine.compiler.gradle.Names.PROTOBUF_GRADLE_PLUGIN_ID
-import io.spine.compiler.gradle.Names.SPINE_COMPILER_PROTOC_PLUGIN
-import io.spine.compiler.gradle.Names.USER_CLASSPATH_CONFIGURATION
-import io.spine.compiler.gradle.ProtocPluginArtifact
-import io.spine.compiler.gradle.compilerWorkingDir
-import io.spine.compiler.gradle.generatedDir
+import io.spine.compiler.gradle.api.Artifacts
+import io.spine.compiler.gradle.api.SpineCompilerCleanTask
+import io.spine.compiler.gradle.api.CodegenSettings
+import io.spine.compiler.gradle.api.CompilerTask
+import io.spine.compiler.gradle.api.Names.COMPILER_RAW_ARTIFACT
+import io.spine.compiler.gradle.api.Names.EXTENSION_NAME
+import io.spine.compiler.gradle.api.Names.PROTOBUF_GRADLE_PLUGIN_ID
+import io.spine.compiler.gradle.api.Names.SPINE_COMPILER_PROTOC_PLUGIN
+import io.spine.compiler.gradle.api.Names.USER_CLASSPATH_CONFIGURATION
+import io.spine.compiler.gradle.api.ProtocPluginArtifact
+import io.spine.compiler.gradle.api.compilerWorkingDir
+import io.spine.compiler.gradle.api.generatedDir
 import io.spine.compiler.gradle.plugin.GeneratedSubdir.GRPC
 import io.spine.compiler.gradle.plugin.GeneratedSubdir.JAVA
 import io.spine.compiler.gradle.plugin.GeneratedSubdir.KOTLIN
@@ -166,7 +166,7 @@ private fun Project.createConfigurations(protoDataVersion: String) {
 }
 
 /**
- * Creates the [CleanProtoDataTask] and [LaunchSpineCompiler] tasks for all source sets
+ * Creates the [SpineCompilerCleanTask] and [LaunchSpineCompiler] tasks for all source sets
  * in this project available by the time of the call.
  *
  * There may be cases of source sets added by other plugins after this function is invoked.
@@ -203,7 +203,7 @@ private fun Project.createLaunchTask(
  */
 private fun Project.createCleanTask(sourceSet: SourceSet) {
     val project = this
-    val cleanSourceSet = CleanProtoDataTask.nameFor(sourceSet)
+    val cleanSourceSet = SpineCompilerCleanTask.nameFor(sourceSet)
     tasks.register<Delete>(cleanSourceSet) {
         delete(extension.outputDirs(sourceSet))
 
@@ -431,7 +431,7 @@ private fun GenerateProtoTask.createDescriptorReferenceFile(dir: Path) {
  *
  * If the [LaunchSpineCompiler] task does not exist (which may be the case for custom source sets
  * created by other plugins), arranges the task creation on [Project.afterEvaluate].
- * In this case the [CleanProtoDataTask] is also created with appropriate dependencies.
+ * In this case the [SpineCompilerCleanTask] is also created with appropriate dependencies.
  */
 private fun Project.handleLaunchTaskDependency(generateProto: GenerateProtoTask) {
     val sourceSet = generateProto.sourceSet

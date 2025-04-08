@@ -24,30 +24,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.compiler.gradle
+package io.spine.compiler.gradle.api
 
-import io.spine.tools.code.SourceSetName
-import io.spine.tools.gradle.task.TaskWithSourceSetName
-import io.spine.compiler.gradle.Names.TASK_PREFIX
-import io.spine.compiler.gradle.Names.TASK_SUFFIX
+import org.gradle.api.Project
+import io.spine.compiler.params.Directories.PROTODATA_WORKING_DIR
+import java.io.File
+import java.nio.file.Path
+import org.gradle.api.file.Directory
 import org.gradle.api.tasks.SourceSet
 
 /**
- * Utilities for working with `launchProtoData` tasks in a Gradle project.
+ * Obtains the directory where ProtoData stores its temporary files.
  */
-public object CompilerTask : TaskLocator() {
-
-    /**
-     * Obtains a name of the task for the given source set.
-     */
-    override fun nameFor(sourceSet: SourceSet): String {
-        val ssn = SourceSetName(sourceSet.name)
-        return CompilerTaskName(ssn).value()
-    }
-}
+public val Project.compilerWorkingDir: Directory
+    get() = layout.buildDirectory.dir(PROTODATA_WORKING_DIR).get()
 
 /**
- * The name of the `LaunchProtoData` task for the given source set.
+ * Obtains the instance of [CodegenSettings] extension of this project.
  */
-public class CompilerTaskName(ssn: SourceSetName) :
-    TaskWithSourceSetName("$TASK_PREFIX${ssn.toInfix()}$TASK_SUFFIX", ssn)
+public val Project.codegenSettings: CodegenSettings
+    get() = extensions.findByType(CodegenSettings::class.java)!!
+
+/**
+ * Obtains the path of the directory with the generated code as configured by
+ * the [CodegenSettings.outputBaseDir] property of the ProtoData extension of this Gradle project.
+ */
+public val Project.generatedDir: Path
+    get() = codegenSettings.outputBaseDir.get().asFile.toPath()
+
+/**
+ * Obtains the `generated` directory for the given [sourceSet] and a language.
+ *
+ * If the language is not given, the returned directory is the root directory for the source set.
+ */
+public fun Project.generatedDir(sourceSet: SourceSet, language: String = ""): File {
+    val path = generatedDir.resolve("${sourceSet.name}/$language")
+    return path.toFile()
+}

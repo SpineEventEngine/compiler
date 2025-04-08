@@ -24,20 +24,51 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.compiler.gradle
+package io.spine.compiler.gradle.api
 
+import org.gradle.api.logging.Logger
 import org.gradle.api.tasks.SourceSet
 
+import io.spine.compiler.Constants.LOGGING_PREFIX
+
 /**
- * Performs cleaning of generated files.
+ * Obtains the name of this source set with the first letter capitalized.
  */
-public object CleanProtoDataTask : TaskLocator() {
+internal val SourceSet.capitalizedName: String
+    get() = name.replaceFirstChar { it.uppercase() }
 
-    @Suppress("ConstPropertyName") // https://bit.ly/kotlin-prop-names
-    private const val prefix = "cleanProtoData"
-
-    /**
-     * Obtains a name of the task for the given source set.
-     */
-    override fun nameFor(sourceSet: SourceSet): String = "$prefix${sourceSet.capitalizedName}"
+/**
+ * Logs the given message if the `DEBUG` level is enabled.
+ *
+ * The message will get the [LOGGING_PREFIX].
+ */
+public fun Logger.debug(message: () -> String) {
+    if (isDebugEnabled) {
+        debug(message().withPrefix())
+    }
 }
+
+/**
+ * Logs the given message if the `ERROR` level is enabled.
+ *
+ * The message will get the [LOGGING_PREFIX].
+ */
+public fun Logger.error(message: () -> String) {
+    if (isErrorEnabled) {
+        error(message().withPrefix())
+    }
+}
+
+/**
+ * Logs the given message if the `INFO` level is enabled.
+ *
+ * The message will get the [LOGGING_PREFIX].
+ */
+public fun Logger.info(message: () -> String) {
+    if (isInfoEnabled) {
+        info(message().withPrefix())
+    }
+}
+
+private fun String.withPrefix(): String = "$LOGGING_PREFIX$this"
+

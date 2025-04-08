@@ -24,20 +24,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.compiler.gradle
+package io.spine.compiler.gradle.api
 
-import io.spine.tools.gradle.task.findKotlinDirectorySet
-import org.gradle.api.file.SourceDirectorySet
+import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.api.tasks.SourceSet
 
 /**
- * Obtains a source directory set with the Kotlin source code, if it exists in this source set.
+ * Abstract base for utilities finding tasks of a certain type by
+ * the [provided name pattern][nameFor].
  */
-@Deprecated(
-    message = "Please use `findKotlinDirectorySet()` instead.",
-    replaceWith = ReplaceWith(
-        "this.findKotlinDirectorySet()",
-        imports = arrayOf("io.spine.tools.gradle.task.findKotlinDirectorySet")
-    )
-)
-public fun SourceSet.kotlinDirectorySet(): SourceDirectorySet? = findKotlinDirectorySet()
+public abstract class TaskLocator {
+
+    /**
+     * Obtains a name for the task for the given source set.
+     */
+    public abstract fun nameFor(sourceSet: SourceSet): String
+
+    /**
+     * Obtains an instance of the task in the given project for the specified source set.
+     */
+    public fun get(project: Project, sourceSet: SourceSet): Task {
+        val name = CompilerTask.nameFor(sourceSet)
+        return project.tasks.getByName(name)
+    }
+
+    /**
+     * Obtains an instance of the task in the given project for the specified source set.
+     *
+     * @return the task or `null` if there is no task created for this source set
+     */
+    public fun find(project: Project, sourceSet: SourceSet): Task? {
+        val name = CompilerTask.nameFor(sourceSet)
+        return project.tasks.findByName(name)
+    }
+}

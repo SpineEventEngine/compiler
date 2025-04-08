@@ -29,7 +29,7 @@
 import io.spine.dependency.lib.JavaX
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.Spine
-import io.spine.compiler.gradle.CodegenSettings
+import io.spine.compiler.gradle.api.CodegenSettings
 
 buildscript {
     standardSpineSdkRepositories()

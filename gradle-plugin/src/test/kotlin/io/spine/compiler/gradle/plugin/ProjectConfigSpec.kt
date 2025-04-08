@@ -29,8 +29,8 @@ package io.spine.compiler.gradle.plugin
 import com.google.common.truth.Correspondence
 import com.google.common.truth.Truth.assertThat
 import com.google.protobuf.gradle.ProtobufPlugin
-import io.spine.compiler.gradle.CompilerTaskName
-import io.spine.compiler.gradle.Names.EXTENSION_NAME
+import io.spine.compiler.gradle.api.CompilerTaskName
+import io.spine.compiler.gradle.api.Names.EXTENSION_NAME
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.gradle.project.sourceSets
 import java.io.File

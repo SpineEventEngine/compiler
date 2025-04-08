@@ -29,7 +29,7 @@ package io.spine.compiler.gradle.plugin
 import com.google.common.truth.Truth.assertThat
 import com.google.protobuf.gradle.ProtobufPlugin
 import io.kotest.matchers.shouldBe
-import io.spine.compiler.gradle.CodegenSettings
+import io.spine.compiler.gradle.api.CodegenSettings
 import io.spine.tools.gradle.project.sourceSets
 import java.io.File
 import kotlin.io.path.div

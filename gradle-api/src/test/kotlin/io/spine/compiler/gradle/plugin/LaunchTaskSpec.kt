@@ -28,15 +28,15 @@ package io.spine.compiler.gradle.plugin
 
 import groovy.lang.Closure
 import io.kotest.matchers.shouldBe
-import io.spine.compiler.gradle.CompilerTask
+import io.spine.compiler.gradle.api.CompilerTask
 import org.gradle.api.Action
 import org.gradle.api.file.FileCollection
 import org.gradle.api.file.SourceDirectorySet
 import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.SourceSetOutput
-import io.spine.compiler.gradle.Names.TASK_PREFIX
-import io.spine.compiler.gradle.Names.TASK_SUFFIX
+import io.spine.compiler.gradle.api.Names.TASK_PREFIX
+import io.spine.compiler.gradle.api.Names.TASK_SUFFIX
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 

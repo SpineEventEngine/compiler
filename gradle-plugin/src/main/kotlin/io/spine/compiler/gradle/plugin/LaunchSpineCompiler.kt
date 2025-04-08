@@ -31,11 +31,11 @@ import com.intellij.openapi.util.io.FileUtil
 import io.spine.compiler.Constants.CLI_APP_CLASS
 import io.spine.compiler.ast.toAbsoluteFile
 import io.spine.compiler.ast.toDirectory
-import io.spine.compiler.gradle.Names.COMPILER_RAW_ARTIFACT
-import io.spine.compiler.gradle.Names.USER_CLASSPATH_CONFIGURATION
-import io.spine.compiler.gradle.error
-import io.spine.compiler.gradle.info
-import io.spine.compiler.gradle.compilerWorkingDir
+import io.spine.compiler.gradle.api.Names.COMPILER_RAW_ARTIFACT
+import io.spine.compiler.gradle.api.Names.USER_CLASSPATH_CONFIGURATION
+import io.spine.compiler.gradle.api.error
+import io.spine.compiler.gradle.api.info
+import io.spine.compiler.gradle.api.compilerWorkingDir
 import io.spine.compiler.params.ParametersFileParam
 import io.spine.compiler.params.WorkingDirectory
 import io.spine.compiler.params.pipelineParameters

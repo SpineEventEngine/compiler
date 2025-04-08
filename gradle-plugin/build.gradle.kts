@@ -30,6 +30,8 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.JUnit
 import io.spine.gradle.isSnapshot
+import io.spine.gradle.publish.PublishingRepos
+import io.spine.gradle.publish.PublishingRepos.cloudArtifactRegistry
 
 plugins {
     module
@@ -100,9 +102,34 @@ java {
     withJavadocJar()
 }
 
-publishing.publications.withType<MavenPublication>().all {
-    groupId = "io.spine"
-    artifactId = "compiler"
+val compilerVersion: String by extra
+val isSnapshot = compilerVersion.isSnapshot()
+
+val publishPlugins: Task by tasks.getting
+
+val publish: Task by tasks.getting {
+    dependsOn(publishPlugins)
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+        if (!isSnapshot) {
+            gradlePluginPortal()
+        }
+        val gitHub = PublishingRepos.gitHub("compiler")
+        if (isSnapshot) {
+            cloudArtifactRegistry.snapshots
+            gitHub.snapshots
+        } else {
+            cloudArtifactRegistry.releases
+            gitHub.releases
+        }
+    }
+    publications.withType<MavenPublication>().all {
+        groupId = "io.spine"
+        artifactId = "compiler"
+    }
 }
 
 gradlePlugin {
@@ -114,7 +141,7 @@ gradlePlugin {
             implementationClass = "io.spine.compiler.gradle.plugin.Plugin"
             displayName = "Spine Compiler Gradle Plugin"
             description = "Sets up the Spine Compiler to be used in your project."
-            tags.set(listOf("spine", "protobuf", "compiler", "code generation", "codegen"))
+            tags.set(listOf("spine", "ddd", "protobuf", "compiler", "code-generation", "codegen"))
         }
     }
     val functionalTest by sourceSets.getting
@@ -123,15 +150,6 @@ gradlePlugin {
     )
 }
 
-val compilerVersion: String by extra
-
-val publishPlugins: Task by tasks.getting {
-    enabled = !compilerVersion.isSnapshot()
-}
-
-val publish: Task by tasks.getting {
-    dependsOn(publishPlugins)
-}
 
 tasks {
     check {

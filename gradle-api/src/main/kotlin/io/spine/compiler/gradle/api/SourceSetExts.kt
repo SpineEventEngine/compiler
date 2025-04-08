@@ -24,51 +24,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.compiler.gradle
+package io.spine.compiler.gradle.api
 
-import org.gradle.api.logging.Logger
+import io.spine.tools.gradle.task.findKotlinDirectorySet
+import org.gradle.api.file.SourceDirectorySet
 import org.gradle.api.tasks.SourceSet
 
-import io.spine.compiler.Constants.LOGGING_PREFIX
-
 /**
- * Obtains the name of this source set with the first letter capitalized.
+ * Obtains a source directory set with the Kotlin source code, if it exists in this source set.
  */
-internal val SourceSet.capitalizedName: String
-    get() = name.replaceFirstChar { it.uppercase() }
-
-/**
- * Logs the given message if the `DEBUG` level is enabled.
- *
- * The message will get the [LOGGING_PREFIX].
- */
-public fun Logger.debug(message: () -> String) {
-    if (isDebugEnabled) {
-        debug(message().withPrefix())
-    }
-}
-
-/**
- * Logs the given message if the `ERROR` level is enabled.
- *
- * The message will get the [LOGGING_PREFIX].
- */
-public fun Logger.error(message: () -> String) {
-    if (isErrorEnabled) {
-        error(message().withPrefix())
-    }
-}
-
-/**
- * Logs the given message if the `INFO` level is enabled.
- *
- * The message will get the [LOGGING_PREFIX].
- */
-public fun Logger.info(message: () -> String) {
-    if (isInfoEnabled) {
-        info(message().withPrefix())
-    }
-}
-
-private fun String.withPrefix(): String = "$LOGGING_PREFIX$this"
-
+@Deprecated(
+    message = "Please use `findKotlinDirectorySet()` instead.",
+    replaceWith = ReplaceWith(
+        "this.findKotlinDirectorySet()",
+        imports = arrayOf("io.spine.tools.gradle.task.findKotlinDirectorySet")
+    )
+)
+public fun SourceSet.kotlinDirectorySet(): SourceDirectorySet? = findKotlinDirectorySet()
