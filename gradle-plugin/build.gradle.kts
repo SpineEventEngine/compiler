@@ -147,7 +147,12 @@ tasks {
 }
 
 /**
- * Do it here because the call in `subprojects` does not have effect on the dependency
- * of the `publishPluginJar` on `createVersionFile`.
+ * Configure task dependencies here because the call in `subprojects` does not
+ * have the effect on the dependency of the `publishPluginJar` on `createVersionFile`.
+ *
+ * We do we on `afterEvaluate` to avoid earlier than needed task creation
+ * when `findByName()` is called.
  */
-configureTaskDependencies()
+afterEvaluate {
+    configureTaskDependencies()
+}
