@@ -2,7 +2,6 @@
 
 [![Build on Ubuntu](https://github.com/SpineEventEngine/ProtoData/actions/workflows/build-on-ubuntu.yml/badge.svg)][ubuntu-build]
 [![Build on Windows](https://github.com/SpineEventEngine/ProtoData/actions/workflows/build-on-windows.yml/badge.svg)][windows-build]
-[![Installation on Ubuntu](https://github.com/SpineEventEngine/ProtoData/actions/workflows/installation.yml/badge.svg)][ubuntu-install]
 [![codecov.io](https://codecov.io/github/SpineEventEngine/ProtoData/coverage.svg?branch=master)][codecov-report]
 
 [![license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)][apache-license]
@@ -12,60 +11,7 @@ domain models from Protobuf definitions.
 
 The project is under development right now. Proceed with caution.
 
-## Installation
-
-### Gradle
-
-If you use Java and Gradle, you can install and launch ProtoData easily.
-See the [Gradle plugin](gradle-plugin/README.md) doc for more info.
-
-### *nix
-
-To install Spine Compiler on a *nix system:
-
- 1. [Download](https://github.com/SpineEventEngine/ProtoData/packages/710696) 
-    the `compiler-setup-<version>.jar` archive.
-
- 2. Unzip the archive:
- ```
- unzip -d ./target/dir path/to/compiler.jar
- ```
-
- 3. Run the installer script:
- ```
- ./target/dir/install.sh
- ```
- By default, the tool is installed into `$HOME/Library/` dir. To change the installation dir,
- pass it as a parameter to the `install.sh` script:
- ```
- ./target/dir/install.sh $HOME/custom/installation/dir
- ```
-
- 4. If you use either `bash` or `zsh` shell, you will be asked to run a `source` command to update
- the `PATH` environmental variable. If you use another shell, you will have to update the `PATH`
- variable manually.
-
-Now Spine Compiler CLI should be accessible. To check the correctness of the installation, run:
-```
-compiler -h
-```
-
-### Windows
-
-There is currently no installation script for Windows.
-
-Start using the app:
-
- 1. [Download](https://github.com/SpineEventEngine/ProtoData/packages/710696) and extract 
-    the `compiler-setup-<version>.jar` archive.
-
- 2. To launch the app, launch the `bin/compiler.bat` script.
-
-Note that it is necessary to keep the structure of the archive intact: the scripts in `bin` rely
-on the relative path to other files in the archive.
-
 [ubuntu-build]: https://github.com/SpineEventEngine/ProtoData/actions/workflows/build-on-ubuntu.yml
 [windows-build]: https://github.com/SpineEventEngine/ProtoData/actions/workflows/build-on-windows.yml
-[ubuntu-install]: https://github.com/SpineEventEngine/ProtoData/actions/workflows/installation.yml
 [codecov-report]: https://codecov.io/github/SpineEventEngine/ProtoData?branch=master
 [apache-license]: https://www.apache.org/licenses/LICENSE-2.0
