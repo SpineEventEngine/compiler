@@ -117,14 +117,8 @@ publishing {
         if (!isSnapshot) {
             gradlePluginPortal()
         }
-        val gitHub = PublishingRepos.gitHub("compiler")
-        if (isSnapshot) {
-            cloudArtifactRegistry.snapshots
-            gitHub.snapshots
-        } else {
-            cloudArtifactRegistry.releases
-            gitHub.releases
-        }
+        cloudArtifactRegistry
+        PublishingRepos.gitHub("compiler")
     }
     publications.withType<MavenPublication>().all {
         groupId = "io.spine"
