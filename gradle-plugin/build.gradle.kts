@@ -32,6 +32,7 @@ import io.spine.dependency.test.JUnit
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.PublishingRepos
 import io.spine.gradle.publish.PublishingRepos.cloudArtifactRegistry
+import io.spine.gradle.publish.spinePublishing
 
 plugins {
     module
@@ -102,14 +103,22 @@ java {
     withJavadocJar()
 }
 
-val compilerVersion: String by extra
-val isSnapshot = compilerVersion.isSnapshot()
-
 val publishPlugins: Task by tasks.getting
 
 val publish: Task by tasks.getting {
     dependsOn(publishPlugins)
 }
+
+spinePublishing {
+    customPublishing = true
+    destinations = setOf(
+        cloudArtifactRegistry,
+        PublishingRepos.gitHub("compiler")
+    )
+}
+
+val compilerVersion: String by extra
+val isSnapshot = compilerVersion.isSnapshot()
 
 publishing {
     repositories {
@@ -117,12 +126,11 @@ publishing {
         if (!isSnapshot) {
             gradlePluginPortal()
         }
-        cloudArtifactRegistry
-        PublishingRepos.gitHub("compiler")
     }
     publications.withType<MavenPublication>().all {
         groupId = "io.spine"
         artifactId = "compiler"
+        version = compilerVersion
     }
 }
 
