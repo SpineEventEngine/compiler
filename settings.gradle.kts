@@ -26,6 +26,24 @@
 
 rootProject.name = "spine-compiler"
 
+pluginManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        maven("https://europe-maven.pkg.dev/spine-event-engine/releases")
+        maven("https://europe-maven.pkg.dev/spine-event-engine/snapshots")
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 include(
     "api",
     "api-tests",
@@ -39,19 +57,3 @@ include(
     "gradle-api",
     "gradle-plugin"
 )
-
-dependencyResolutionManagement {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-
-pluginManagement {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
