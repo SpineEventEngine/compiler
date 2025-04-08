@@ -109,13 +109,6 @@ val publish: Task by tasks.getting {
     dependsOn(publishPlugins)
 }
 
-spinePublishing {
-    destinations = setOf(
-        cloudArtifactRegistry,
-        PublishingRepos.gitHub("compiler")
-    )
-}
-
 val compilerVersion: String by extra
 val isSnapshot = compilerVersion.isSnapshot()
 
