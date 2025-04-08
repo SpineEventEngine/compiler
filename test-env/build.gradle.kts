@@ -28,8 +28,9 @@ import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.Grpc
 
 plugins {
-    `build-proto-model`
+    module
     prototap
+    `build-proto-model`
 }
 
 dependencies {

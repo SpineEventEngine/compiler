@@ -33,6 +33,7 @@ import io.spine.gradle.publish.IncrementGuard
 import io.spine.gradle.publish.PublishingRepos
 
 plugins {
+    module
     `java-test-fixtures`
     `build-proto-model`
     prototap

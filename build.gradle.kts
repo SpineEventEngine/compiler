@@ -26,7 +26,6 @@
 
 @file:Suppress("RemoveRedundantQualifierName")
 
-import io.spine.dependency.build.Dokka
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJava
@@ -60,7 +59,7 @@ buildscript {
 }
 
 plugins {
-    idea
+    dokka
     jacoco
     `gradle-doctor`
     `project-report`
@@ -89,7 +88,6 @@ spinePublishing {
 }
 
 allprojects {
-    apply(plugin = Dokka.GradlePlugin.id)
     apply(from = "$rootDir/version.gradle.kts")
     group = "io.spine.compiler"
     version = extra["compilerVersion"]!!
@@ -106,12 +104,6 @@ allprojects {
                 CoreJava.server
             )
         }
-    }
-}
-
-subprojects {
-    apply {
-        plugin("module")
     }
 }
 

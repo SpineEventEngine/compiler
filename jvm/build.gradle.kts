@@ -32,6 +32,7 @@ import io.spine.dependency.local.ToolBase
 import org.gradle.api.file.DuplicatesStrategy.INCLUDE
 
 plugins {
+    module
     `build-proto-model`
 }
 

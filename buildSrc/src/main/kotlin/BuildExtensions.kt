@@ -26,6 +26,7 @@
 
 @file:Suppress("UnusedReceiverParameter", "unused", "TopLevelPropertyNaming", "ObjectPropertyName")
 
+import io.spine.dependency.build.Dokka
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.build.GradleDoctor
 import io.spine.dependency.build.Ksp
@@ -126,6 +127,9 @@ val PluginDependenciesSpec.protoData: ProtoData
  * ```
  */
 private const val ABOUT_PLUGIN_ACCESSORS = ""
+
+val PluginDependenciesSpec.dokka: PluginDependencySpec
+    get() = id(Dokka.GradlePlugin.id)
 
 val PluginDependenciesSpec.errorprone: PluginDependencySpec
     get() = id(ErrorProne.GradlePlugin.id)

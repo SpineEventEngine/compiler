@@ -25,6 +25,7 @@
  */
 
 plugins {
+    module
     `build-proto-model`
 }
 

@@ -32,6 +32,7 @@ import io.spine.gradle.publish.SpinePublishing
 import io.spine.gradle.publish.handleMergingServiceFiles
 
 plugins {
+    module
     application
     `version-to-resources`
     `write-manifest`

@@ -35,6 +35,7 @@ import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 
 plugins {
+    module
     `java-test-fixtures`
     `build-proto-model`
 }
@@ -73,4 +74,7 @@ dependencies {
 
 forceSpineBase()
 
-protoDataRemoteDebug(enabled = false)
+afterEvaluate {
+    protoDataRemoteDebug(enabled = false)
+}
+

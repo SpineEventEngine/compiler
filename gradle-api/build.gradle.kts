@@ -26,6 +26,10 @@
 
 import io.spine.dependency.local.ToolBase
 
+plugins {
+    module
+}
+
 dependencies {
     compileOnly(gradleApi())
 

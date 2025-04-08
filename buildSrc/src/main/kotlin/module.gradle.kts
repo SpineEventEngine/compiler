@@ -24,7 +24,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.build.Dokka
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
@@ -51,11 +50,6 @@ plugins {
     id("dokka-for-java")
     id("dokka-for-kotlin")
     jacoco
-    idea
-}
-
-apply {
-    plugin(Dokka.GradlePlugin.id)
 }
 
 apply<IncrementGuard>()
@@ -76,8 +70,9 @@ project.run {
     setupTests()
     configureDocTasks()
 
-    applyGeneratedDirectories()
-    configureTaskDependencies()
+    afterEvaluate {
+        configureTaskDependencies()
+    }
 }
 
 fun Module.setDependencies() {
@@ -117,47 +112,6 @@ fun Module.setupTests() {
     }
 }
 
-/**
- * Adds directories with the generated source code to source sets of the project and
- * to IntelliJ IDEA module settings.
- */
-fun Module.applyGeneratedDirectories() {
-
-    /* The name of the root directory with the generated code. */
-    val generatedDir = "${projectDir}/generated"
-
-    val generatedMain = "$generatedDir/main"
-    val generatedJava = "$generatedMain/java"
-    val generatedKotlin = "$generatedMain/kotlin"
-    val generatedGrpc = "$generatedMain/grpc"
-    val generatedSpine = "$generatedMain/spine"
-
-    val generatedTest = "$generatedDir/test"
-    val generatedTestJava = "$generatedTest/java"
-    val generatedTestKotlin = "$generatedTest/kotlin"
-    val generatedTestGrpc = "$generatedTest/grpc"
-    val generatedTestSpine = "$generatedTest/spine"
-
-    idea {
-        module {
-            generatedSourceDirs.addAll(files(
-                generatedJava,
-                generatedKotlin,
-                generatedGrpc,
-                generatedSpine,
-            ))
-            testSources.from(
-                generatedTestJava,
-                generatedTestKotlin,
-                generatedTestGrpc,
-                generatedTestSpine,
-            )
-            isDownloadJavadoc = true
-            isDownloadSources = true
-        }
-    }
-}
-
 fun Module.configureJava() {
     java {
         toolchain.languageVersion.set(BuildSettings.javaVersion)
@@ -186,7 +140,7 @@ fun Module.configureKotlin() {
 }
 
 fun Module.configureDocTasks() {
-    val dokkaJavadoc by tasks.getting(DokkaTask::class)
+    val dokkaJavadoc by tasks.withType(DokkaTask::class)
     tasks.register("javadocJar", Jar::class) {
         from(dokkaJavadoc.outputDirectory)
         archiveClassifier.set("javadoc")

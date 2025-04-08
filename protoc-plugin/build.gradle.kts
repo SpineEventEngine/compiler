@@ -28,6 +28,10 @@ import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
 import org.gradle.api.file.DuplicatesStrategy.INCLUDE
 
+plugins {
+    module
+}
+
 dependencies {
     implementation(Protobuf.javaLib)
     implementation(Base.lib)?.because("`MessageOrBuilder.toJson()` is needed.")

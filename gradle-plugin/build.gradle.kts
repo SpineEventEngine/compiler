@@ -32,6 +32,7 @@ import io.spine.dependency.test.JUnit
 import io.spine.gradle.isSnapshot
 
 plugins {
+    module
     `java-gradle-plugin`
     `maven-publish`
     id("com.gradle.plugin-publish").version("1.2.1")
@@ -135,10 +136,6 @@ val publish: Task by tasks.getting {
 tasks {
     check {
         dependsOn(testing.suites.named("functionalTest"))
-    }
-
-    ideaModule {
-        notCompatibleWithConfigurationCache("https://github.com/gradle/gradle/issues/13480")
     }
 
     publishPlugins {

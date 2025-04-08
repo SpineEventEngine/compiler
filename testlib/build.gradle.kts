@@ -31,10 +31,10 @@ import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.TestLib
 
 plugins {
+    module
     `java-test-fixtures`
-    protobuf
+    `build-proto-model`
     prototap
-    id("io.spine.mc-java")
 }
 
 dependencies {
