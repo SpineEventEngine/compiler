@@ -110,7 +110,6 @@ val publish: Task by tasks.getting {
 }
 
 spinePublishing {
-    customPublishing = true
     destinations = setOf(
         cloudArtifactRegistry,
         PublishingRepos.gitHub("compiler")
