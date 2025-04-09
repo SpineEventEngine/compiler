@@ -121,8 +121,8 @@ publishing {
         }
     }
     publications.withType<MavenPublication>().all {
-        groupId = "io.spine"
-        artifactId = "compiler"
+        groupId = "io.spine.compiler"
+        artifactId = "gradle-plugin"
         version = compilerVersion
     }
 }
@@ -135,7 +135,8 @@ gradlePlugin {
             id = "io.spine.compiler"
             implementationClass = "io.spine.compiler.gradle.plugin.Plugin"
             displayName = "Spine Compiler Gradle Plugin"
-            description = "Sets up the Spine Compiler to be used in your project."
+            description =
+                "Sets up the Spine Compiler (former ProtoData) to be used in your project."
             tags.set(listOf("spine", "ddd", "protobuf", "compiler", "code-generation", "codegen"))
         }
     }
