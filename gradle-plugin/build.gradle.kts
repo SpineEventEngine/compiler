@@ -35,7 +35,7 @@ plugins {
     module
     `java-gradle-plugin`
     `maven-publish`
-    id("com.gradle.plugin-publish").version("1.2.1")
+    id("com.gradle.plugin-publish").version("1.3.1")
     `version-to-resources`
     `write-manifest`
 }
@@ -100,20 +100,24 @@ java {
     withJavadocJar()
 }
 
-val publishPlugins: Task by tasks.getting
-
-val publish: Task by tasks.getting {
-    dependsOn(publishPlugins)
-}
-
 val compilerVersion: String by extra
 val isSnapshot = compilerVersion.isSnapshot()
+
+val publishPlugins: Task by tasks.getting {
+    enabled = !isSnapshot
+}
+
+val publish: Task by tasks.getting {
+    if (!isSnapshot) {
+        dependsOn(publishPlugins)
+    }
+}
 
 publishing {
     repositories {
         mavenLocal()
-        if (!isSnapshot) {
-            gradlePluginPortal()
+        if (isSnapshot) {
+            remove(gradlePluginPortal())
         }
     }
     publications.withType<MavenPublication>().all {
