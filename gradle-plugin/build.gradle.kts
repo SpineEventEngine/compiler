@@ -30,9 +30,6 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.JUnit
 import io.spine.gradle.isSnapshot
-import io.spine.gradle.publish.PublishingRepos
-import io.spine.gradle.publish.PublishingRepos.cloudArtifactRegistry
-import io.spine.gradle.publish.spinePublishing
 
 plugins {
     module
