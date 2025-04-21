@@ -26,6 +26,7 @@
 
 import io.spine.dependency.test.JUnit
 import io.spine.dependency.lib.Jackson
+import io.spine.dependency.lib.Jackson.DataFormat
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.ToolBase
 import io.spine.gradle.publish.CheckVersionIncrement
@@ -47,13 +48,13 @@ dependencies {
 
     with(Jackson) {
         api(databind)
-        implementation(dataformatYaml)
+        implementation(DataFormat.yaml)
         runtimeOnly(moduleKotlin)
     }
 
     testImplementation(project(":testlib"))
     testImplementation(project(":test-env"))
-    testImplementation(JUnit.params)
+    testImplementation(JUnit.Jupiter.params)
 }
 
 apply<IncrementGuard>()

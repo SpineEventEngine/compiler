@@ -68,7 +68,6 @@ project.run {
     configureKotlin()
 
     setupTests()
-    configureDocTasks()
 
     afterEvaluate {
         configureTaskDependencies()
@@ -136,18 +135,5 @@ fun Module.configureKotlin() {
             jvmTarget.set(BuildSettings.jvmTarget)
             setFreeCompilerArgs()
         }
-    }
-}
-
-fun Module.configureDocTasks() {
-    val dokkaJavadoc by tasks.withType(DokkaTask::class)
-    tasks.register("javadocJar", Jar::class) {
-        from(dokkaJavadoc.outputDirectory)
-        archiveClassifier.set("javadoc")
-        dependsOn(dokkaJavadoc)
-    }
-
-    tasks.withType<DokkaTaskPartial>().configureEach {
-        configureForKotlin()
     }
 }

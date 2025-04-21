@@ -56,9 +56,11 @@ dependencies {
     implementation(Reflect.lib)
     implementation(Aedile.lib)
 
+    implementation(enforcedPlatform(Jackson.bom))
+
     with(Jackson) {
         implementation(databind)
-        implementation(dataformatYaml)
+        implementation(Jackson.DataFormat.yaml)
         runtimeOnly(moduleKotlin)
     }
 

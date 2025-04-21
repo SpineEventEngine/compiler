@@ -135,7 +135,7 @@ subprojects {
 
     dependencies {
         Protobuf.libs.forEach { implementation(it) }
-
+        implementation(enforcedPlatform(Jackson.bom))
         JUnit.api.forEach { testImplementation(it) }
         Truth.libs.forEach { testImplementation(it) }
         testImplementation(Kotest.assertions)

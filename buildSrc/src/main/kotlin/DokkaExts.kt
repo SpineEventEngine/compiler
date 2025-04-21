@@ -151,7 +151,6 @@ fun DokkaExtension.configureForKotlin(project: Project, sourceLinkRemoteUrl: Str
 /**
  * Configures this [DokkaTask] to accept only Java files.
  */
-@Suppress("unused")
 fun DokkaExtension.configureForJava(project: Project, sourceLinkRemoteUrl: String) {
     configureFor(project, "java", sourceLinkRemoteUrl)
 }
@@ -195,13 +194,10 @@ fun Project.dokkaKotlinJar(): TaskProvider<Jar> = tasks.getOrCreate("dokkaKotlin
 }
 
 /**
- * Tells if this task belongs to the execution graph which contains
- * the `publish` and `dokkaGenerate` tasks.
+ * Tells if this task belongs to the execution graph which contains publishing tasks.
  *
- * This predicate could be useful for disabling publishing tasks
- * when doing, e.g., `publishToMavenLocal` for the purpose of the
- * integration tests that (of course) do not test the documentation
- * generation proces and its resuults.
+ * The task `"publishToMavenLocal"` is excluded from the check because it is a part of
+ * the local testing workflow.
  */
 fun AbstractDokkaTask.isInPublishingGraph(): Boolean =
     project.gradle.taskGraph.allTasks.any {

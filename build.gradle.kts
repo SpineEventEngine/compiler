@@ -154,6 +154,36 @@ val integrationTest by tasks.registering(RunBuild::class) {
  */
 tasks["check"].dependsOn(integrationTest)
 
-val dokkaHtmlMultiModule by tasks.getting(DokkaMultiModuleTask::class) {
-    configureStyle()
+/**
+ * The below block avoids the version conflict with the `spine-base` used
+ * by our Dokka plugin and the module of this project.
+ *
+ * Here's the error:
+ *
+ * ```
+ * Execution failed for task ':dokkaGeneratePublicationHtml'.
+ * > Could not resolve all dependencies for configuration ':dokkaHtmlGeneratorRuntimeResolver~internal'.
+ *    > Conflict found for the following module:
+ *        - io.spine:spine-base between versions 2.0.0-SNAPSHOT.308 and 2.0.0-SNAPSHOT.309
+ * ```
+ * The problem is not fixed by forcing the version of [Base.lib] in the block above.
+ * It requires the code executed on `afterEvaluate`.
+ */
+afterEvaluate {
+    configurations.named("dokkaHtmlGeneratorRuntimeResolver~internal") {
+        resolutionStrategy.preferProjectModules()
+    }
+}
+
+dependencies {
+    productionModules.forEach {
+        dokka(it)
+    }
+}
+
+@Suppress("unused")
+val dokkaGeneratePublicationHtml by tasks.getting {
+//    productionModules.forEach {
+//        dependsOn(it.tasks.named("jar"))
+//    }
 }
