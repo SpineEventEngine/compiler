@@ -45,7 +45,7 @@ public final class PrintMessageClass extends InsertionPointPrinter {
         super(Java.lang());
     }
 
-    @NotNull
+    @NonNull
     @Override
     protected Set<InsertionPoint> supportedInsertionPoints() {
         return Set.of(new MessageClass());

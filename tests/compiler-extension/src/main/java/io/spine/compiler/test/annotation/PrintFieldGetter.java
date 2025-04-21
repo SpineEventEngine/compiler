@@ -46,7 +46,7 @@ public final class PrintFieldGetter extends InsertionPointPrinter {
         super(Java.lang());
     }
 
-    @NotNull
+    @NonNull
     @Override
     protected Set<InsertionPoint> supportedInsertionPoints() {
         Set<Annotated> fields = select(Annotated.class).all();
