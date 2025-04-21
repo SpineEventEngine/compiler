@@ -36,7 +36,7 @@ import io.spine.compiler.plugin.ViewRepository;
 import io.spine.compiler.test.Annotated;
 import io.spine.compiler.test.FieldId;
 import io.spine.server.route.EventRouting;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import static io.spine.protobuf.AnyPacker.unpack;
 import static io.spine.server.route.EventRoute.withId;
