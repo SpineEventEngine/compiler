@@ -30,7 +30,7 @@ import io.spine.compiler.render.InsertionPoint;
 import io.spine.compiler.render.InsertionPointPrinter;
 import io.spine.compiler.test.Annotated;
 import io.spine.tools.code.Java;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Set;
 
@@ -46,7 +46,7 @@ public final class PrintFieldGetter extends InsertionPointPrinter {
         super(Java.lang());
     }
 
-    @NonNull
+    @NotNull
     @Override
     protected Set<InsertionPoint> supportedInsertionPoints() {
         Set<Annotated> fields = select(Annotated.class).all();
