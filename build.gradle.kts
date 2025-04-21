@@ -69,15 +69,15 @@ plugins {
  * Publish all the modules, but `gradle-plugin`, which is published separately by its own.
  */
 spinePublishing {
-    modules = productionModules
-        .map { project -> project.name }
-        .toSet()
+    modules = productionModuleNames
         .minus("gradle-plugin") // because of custom publishing.
+        .toSet()
 
-    destinations = setOf(
-        PublishingRepos.gitHub("compiler"),
-        PublishingRepos.cloudArtifactRegistry
-    )
+    destinations = PublishingRepos.run { setOf(
+        cloudArtifactRegistry,
+        gitHub("compiler")
+    )}
+
     // Do not use the artifact prefix (like `compiler-` or `spine-compiler`) because
     //   1. We have the group called `io.spine.compiler`.
     //   2. Most of the JAR are not going to be in the end user's code.

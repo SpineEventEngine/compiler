@@ -30,7 +30,7 @@ package io.spine.dependency.lib
 @Suppress("unused", "ConstPropertyName")
 object Grpc {
     @Suppress("MemberVisibilityCanBePrivate")
-    const val version        = "1.59.0"
+    const val version        = "1.71.0"
     const val group          = "io.grpc"
     const val api            = "$group:grpc-api:$version"
     const val auth           = "$group:grpc-auth:$version"
@@ -46,6 +46,11 @@ object Grpc {
 
     object ProtocPlugin {
         const val id = "grpc"
+        const val kotlinPluginVersion = "1.4.1"
         const val artifact = "$group:protoc-gen-grpc-java:$version"
+
+        // https://github.com/grpc/grpc-kotlin
+        // https://repo.maven.apache.org/maven2/io/grpc/protoc-gen-grpc-kotlin/
+        const val artifactKotlin = "$group:protoc-gen-grpc-kotlin:$$kotlinPluginVersion"
     }
 }

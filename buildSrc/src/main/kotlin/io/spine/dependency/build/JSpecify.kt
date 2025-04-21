@@ -24,21 +24,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.lib
+package io.spine.dependency.build
 
 /**
- * gRPC-Kotlin/JVM.
+ * An artifact of well-specified annotations to power static analysis
+ * checks and JVM language interop. Developed by consensus of the partner
+ * organizations listed at [the project site](https://jspecify.org).
  *
- * @see <a href="https://github.com/grpc/grpc-kotlin">GitHub project</a>
+ * @see <a href="https://github.com/jspecify/jspecify">JSpecify at GitHub</a>
  */
-@Suppress("unused")
-object GrpcKotlin {
-    const val version = "1.4.1"
-    const val stub = "io.grpc:grpc-kotlin-stub:$version"
-
-    object ProtocPlugin {
-        const val id = "grpckt"
-        // https://central.sonatype.com/artifact/io.grpc/protoc-gen-grpc-kotlin
-        const val artifact = "io.grpc:protoc-gen-grpc-kotlin:$version:jdk8@jar"
-    }
+@Suppress("ConstPropertyName")
+object JSpecify {
+    const val version = "1.0.0"
+    const val annotations = "org.jspecify:jspecify:$version"
 }

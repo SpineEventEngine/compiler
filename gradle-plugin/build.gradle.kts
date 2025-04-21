@@ -41,7 +41,8 @@ plugins {
 }
 
 @Suppress(
-    "UnstableApiUsage" /* testing suites feature */
+    "UnstableApiUsage" /* testing suites feature */,
+    "unused" /* suite variable names obtained via `by` calls. */
 )
 testing {
     suites {

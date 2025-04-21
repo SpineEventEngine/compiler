@@ -26,10 +26,10 @@
 
 @file:Suppress("UnusedReceiverParameter", "unused", "TopLevelPropertyNaming", "ObjectPropertyName")
 
-import io.spine.dependency.build.Dokka
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.build.GradleDoctor
 import io.spine.dependency.build.Ksp
+import io.spine.dependency.build.PluginPublishPlugin
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.McJava
 import io.spine.dependency.local.ProtoData
@@ -128,9 +128,6 @@ val PluginDependenciesSpec.protoData: ProtoData
  */
 private const val ABOUT_PLUGIN_ACCESSORS = ""
 
-val PluginDependenciesSpec.dokka: PluginDependencySpec
-    get() = id(Dokka.GradlePlugin.id)
-
 val PluginDependenciesSpec.errorprone: PluginDependencySpec
     get() = id(ErrorProne.GradlePlugin.id)
 
@@ -153,6 +150,9 @@ val PluginDependenciesSpec.kover: PluginDependencySpec
 
 val PluginDependenciesSpec.ksp: PluginDependencySpec
     get() = id(Ksp.id).version(Ksp.version)
+
+val PluginDependenciesSpec.`plugin-publish`: PluginDependencySpec
+    get() = id(PluginPublishPlugin.id).version(PluginPublishPlugin.version)
 
 /**
  * Configures the dependencies between third-party Gradle tasks
@@ -231,6 +231,22 @@ fun Project.configureTaskDependencies() {
  */
 val Project.productionModules: Iterable<Project>
     get() = rootProject.subprojects.filter { !it.name.contains("-tests") }
+
+/**
+ * Obtains the names of the [productionModules].
+ *
+ * The extension could be useful for excluding modules from standard publishing:
+ * ```kotlin
+ * spinePublishing {
+ *     val customModule = "my-custom-module"
+ *     modules = productionModuleNames.toSet().minus(customModule)
+ *     modulesWithCustomPublishing = setOf(customModule)
+ *     //...
+ * }
+ * ```
+ */
+val Project.productionModuleNames: List<String>
+    get() = productionModules.map { it.name }
 
 /**
  * Sets the remote debug option for this [JavaExec] task.

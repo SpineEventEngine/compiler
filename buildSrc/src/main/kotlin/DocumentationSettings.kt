@@ -24,21 +24,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.lib
-
 /**
- * gRPC-Kotlin/JVM.
+ * The documentation settings specific to this project.
  *
- * @see <a href="https://github.com/grpc/grpc-kotlin">GitHub project</a>
+ * @see <a href="https://kotlinlang.org/docs/dokka-gradle.html#source-link-configuration">
+ *     Dokka source link configuration</a>
  */
-@Suppress("unused")
-object GrpcKotlin {
-    const val version = "1.4.1"
-    const val stub = "io.grpc:grpc-kotlin-stub:$version"
+@Suppress("ConstPropertyName")
+object DocumentationSettings {
 
-    object ProtocPlugin {
-        const val id = "grpckt"
-        // https://central.sonatype.com/artifact/io.grpc/protoc-gen-grpc-kotlin
-        const val artifact = "io.grpc:protoc-gen-grpc-kotlin:$version:jdk8@jar"
+    /**
+     * Settings passed to Dokka for
+     * [sourceLink][[org.jetbrains.dokka.gradle.engine.parameters.DokkaSourceLinkSpec]
+     */
+    object SourceLink {
+
+        /**
+         * The URL of the remote source code
+         * [location][org.jetbrains.dokka.gradle.engine.parameters.DokkaSourceLinkSpec.remoteUrl].
+         */
+        const val url: String = "https://github.com/SpineEventEngine/base/tree/master/src"
+
+        /**
+         * The suffix used to append the source code line number to the URL.
+         *
+         * The suffix depends on the online code repository.
+         *
+         * @see <a href="https://kotlinlang.org/docs/dokka-gradle.html#fwor0d_534">
+         *     remoteLineSuffix</a>
+         */
+        const val lineSuffix: String = "#L"
     }
 }
