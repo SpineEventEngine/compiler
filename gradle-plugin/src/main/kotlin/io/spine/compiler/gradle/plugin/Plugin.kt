@@ -207,10 +207,10 @@ private fun Project.createCleanTask(sourceSet: SourceSet) {
     tasks.register<Delete>(cleanSourceSet) {
         delete(extension.outputDirs(sourceSet))
 
-        val cleanProtoDataTask = this
-        tasks.getByName("clean").dependsOn(cleanProtoDataTask)
+        val spineCompilerCleanTask = this
+        tasks.getByName("clean").dependsOn(spineCompilerCleanTask)
         val compilation = CompilerTask.get(project, sourceSet)
-        compilation.mustRunAfter(cleanProtoDataTask)
+        compilation.mustRunAfter(spineCompilerCleanTask)
     }
 }
 
@@ -267,13 +267,13 @@ private fun Project.configureProtoTask(task: GenerateProtoTask) {
     if (hasJavaOrKotlin()) {
         task.builtins.maybeCreate("kotlin")
     }
-    task.addProtoDataProtocPlugin()
+    task.addProtocPlugin()
     task.configureSourceSetDirs()
     task.setupDescriptorSetFileCreation()
     handleLaunchTaskDependency(task)
 }
 
-private fun GenerateProtoTask.addProtoDataProtocPlugin() {
+private fun GenerateProtoTask.addProtocPlugin() {
     plugins.apply {
         create(SPINE_COMPILER_PROTOC_PLUGIN) {
             val requestFile = WorkingDirectory(project.compilerWorkingDir.asFile.toPath())
