@@ -32,7 +32,6 @@ import io.spine.compiler.render.Renderer
 import io.spine.compiler.render.SourceFileSet
 import io.spine.compiler.type.TypeSystem
 import io.spine.server.BoundedContextBuilder
-import io.spine.server.entity.Entity
 import kotlin.reflect.KClass
 
 /**
@@ -166,19 +165,4 @@ private fun Plugin.checkNoViewRepoDuplication(repos: MutableList<ViewRepository<
  */
 public fun MutableSet<Class<out View<*,  *, *>>>.add(view: KClass<out View<*, *, *>>) {
     add(view.java)
-}
-
-/**
- * Adds specified entity class to this `BoundedContextBuilder`.
- *
- * A default repository instance will be created for this class.
- * This instance will be added to the repository registration list for
- * the bounded context being built.
- *
- * @param I The type of entity identifiers.
- * @param E The type of entities.
- */
-public inline fun <reified I, reified E : Entity<I, *>>
-        BoundedContextBuilder.add(entity: KClass<out E>) {
-    add(entity.java)
 }

@@ -43,7 +43,7 @@ import "spine/compiler/file.proto";
 // Describes parameters passed to a component of the code generation process.
 // The user may then obtain those parameters by finding the instance of this view.
 //
-// @see io.spine.compiler.settings.LoadsSettings
+// @see io.spine.protodata.settings.LoadsSettings
 //
 message Settings {
     option (entity).kind = VIEW;
@@ -52,7 +52,7 @@ message Settings {
     string consumer = 1;
 
     oneof kind {
-        option (is_required) = true;
+        option (choice).required = true;
 
         // No settings are supplied.
         google.protobuf.Empty empty = 2;

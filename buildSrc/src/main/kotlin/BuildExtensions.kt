@@ -37,7 +37,7 @@ import io.spine.dependency.local.ProtoData
 import io.spine.dependency.local.ProtoTap
 import io.spine.dependency.test.Kotest
 import io.spine.dependency.test.Kover
-import io.spine.gradle.standardToSpineSdk
+import io.spine.gradle.repo.standardToSpineSdk
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.JavaExec
@@ -68,7 +68,7 @@ import org.gradle.plugin.use.PluginDependencySpec
 private const val ABOUT_DEPENDENCY_EXTENSIONS = ""
 
 /**
- * Applies [standard][standardToSpineSdk] repositories to this `buildscript`.
+ * Applies [standard][io.spine.gradle.repo.standardToSpineSdk] repositories to this `buildscript`.
  */
 fun ScriptHandlerScope.standardSpineSdkRepositories() {
     repositories.standardToSpineSdk()
@@ -76,6 +76,12 @@ fun ScriptHandlerScope.standardSpineSdkRepositories() {
 
 val PluginDependenciesSpec.dokka: PluginDependencySpec
     get() = id(Dokka.GradlePlugin.id)
+
+/**
+ * Shortcut to [Protobuf] dependency object for using under `buildScript`.
+ */
+val ScriptHandlerScope.protobuf: Protobuf
+    get() = Protobuf
 
 /**
  * Shortcut to [McJava] dependency object for using under `buildScript`.
@@ -234,7 +240,13 @@ fun Project.configureTaskDependencies() {
  * By convention, such modules are for integration tests and should be treated differently.
  */
 val Project.productionModules: Iterable<Project>
-    get() = rootProject.subprojects.filter { !it.name.contains("-tests") }
+    get() = rootProject.subprojects.filterNot { subproject ->
+        subproject.name.run {
+            contains("-tests")
+                    || contains("test-fixtures")
+                    || contains("integration-tests")
+        }
+    }
 
 /**
  * Obtains the names of the [productionModules].

@@ -24,17 +24,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.gradle.javadoc
-
-import org.gradle.api.tasks.TaskContainer
-import org.gradle.api.tasks.javadoc.Javadoc
+package io.spine.gradle.repo
 
 /**
- * Finds a [Javadoc] Gradle task by the passed name.
+ * Password credentials for a Maven repository.
  */
-fun TaskContainer.javadocTask(named: String) = this.getByName(named) as Javadoc
-
-/**
- * Finds a default [Javadoc] Gradle task.
- */
-fun TaskContainer.javadocTask() = this.getByName("javadoc") as Javadoc
+data class Credentials(
+    val username: String?,
+    val password: String?
+)

@@ -56,8 +56,7 @@ dependencies {
     implementation(Reflect.lib)
     implementation(Aedile.lib)
 
-    implementation(enforcedPlatform(Jackson.bom))
-
+    implementation(platform(Jackson.bom))
     with(Jackson) {
         implementation(databind)
         implementation(Jackson.DataFormat.yaml)

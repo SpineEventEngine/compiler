@@ -42,6 +42,7 @@ import io.kotest.matchers.maps.shouldContainKey
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
+import io.spine.collect.theOnly
 import io.spine.compiler.ast.PrimitiveType.TYPE_BOOL
 import io.spine.compiler.ast.ProtobufSourceFile
 import io.spine.compiler.ast.doc
@@ -61,7 +62,6 @@ import io.spine.protobuf.AnyPacker
 import io.spine.testing.server.blackbox.BlackBox
 import io.spine.testing.server.blackbox.assertEntity
 import io.spine.time.TimeProto
-import io.spine.util.theOnly
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach

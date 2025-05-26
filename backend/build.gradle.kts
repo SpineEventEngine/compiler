@@ -46,6 +46,7 @@ dependencies {
     api(project(":api"))
     implementation(project(":params"))?.because("We need the `PipelineParameters` type.")
 
+    api(platform(Jackson.bom))
     with(Jackson) {
         api(databind)
         implementation(DataFormat.yaml)
