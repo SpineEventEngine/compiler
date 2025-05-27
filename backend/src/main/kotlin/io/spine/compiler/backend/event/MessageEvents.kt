@@ -45,7 +45,7 @@ import io.spine.compiler.ast.event.oneofOptionDiscovered
 import io.spine.compiler.ast.event.typeDiscovered
 import io.spine.compiler.ast.event.typeEntered
 import io.spine.compiler.ast.event.typeExited
-import io.spine.compiler.ast.event.typeOptionDiscovered
+import io.spine.compiler.ast.event.messageOptionDiscovered
 import io.spine.compiler.ast.oneofGroup
 import io.spine.compiler.ast.produceOptionEvents
 import io.spine.compiler.ast.withAbsoluteFile
@@ -89,9 +89,9 @@ internal class MessageEvents(header: ProtoFileHeader) : DeclarationEvents<Descri
             }
         )
         produceOptionEvents(desc.options, desc) {
-            typeOptionDiscovered {
+            messageOptionDiscovered {
                 file = path
-                type = typeName
+                subject = messageType
                 option = it
             }
         }
