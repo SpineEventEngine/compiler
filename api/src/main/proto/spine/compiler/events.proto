@@ -94,7 +94,7 @@ option (every_is).java_type = "FileAwareEvent";
 
  // Deprecated: please use `MessageOptionDiscovered` instead.
  message TypeOptionDiscovered {
-     option (is).java_type = "io.spine.protodata.ast.OptionAware";
+     option (is).java_type = "OptionAwareEvent";
      option deprecated = true;
 
      // The file in which the type is defined.
