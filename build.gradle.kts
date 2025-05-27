@@ -35,17 +35,17 @@ import io.spine.gradle.RunBuild
 import io.spine.gradle.publish.PublishingRepos
 import io.spine.gradle.publish.SpinePublishing
 import io.spine.gradle.publish.spinePublishing
+import io.spine.gradle.repo.standardToSpineSdk
 import io.spine.gradle.report.coverage.JacocoConfig
 import io.spine.gradle.report.license.LicenseReporter
 import io.spine.gradle.report.pom.PomGenerator
-import io.spine.gradle.repo.standardToSpineSdk
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
 buildscript {
     standardSpineSdkRepositories()
     val baseForBuildScript = io.spine.dependency.local.Base.libForBuildScript
     dependencies {
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib)
+        classpath(io.spine.dependency.build.Ksp.run { artifact(gradlePlugin) })
         classpath(baseForBuildScript)
         classpath(mcJava.pluginLib) {
             excludeSpineBase()
