@@ -51,14 +51,16 @@ internal class CompilationSpec {
         val lineNumber = 100
         val columnNumber = 500
         val errorMessage = "Some error."
-        val exception = assertThrows<Compilation.Error> {
-            Compilation.error(file, lineNumber, columnNumber, errorMessage)
-        }
-        exception.message.let {
-            it shouldContain EMPTY_HOSTNAME_PREFIX
-            it shouldContain file.uriRef()
-            it shouldContain "$lineNumber:$columnNumber"
-            it shouldContain errorMessage
+        tapConsole {
+            val exception = assertThrows<Compilation.Error> {
+                Compilation.error(file, lineNumber, columnNumber, errorMessage)
+            }
+            exception.message.let {
+                it shouldContain EMPTY_HOSTNAME_PREFIX
+                it shouldContain file.uriRef()
+                it shouldContain "$lineNumber:$columnNumber"
+                it shouldContain errorMessage
+            }
         }
     }
 
