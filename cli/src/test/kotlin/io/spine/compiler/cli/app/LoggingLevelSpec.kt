@@ -44,6 +44,7 @@ import io.spine.compiler.testing.googleProtobufProtos
 import io.spine.compiler.testing.spineOptionProtos
 import io.spine.logging.Level
 import io.spine.logging.WithLogging
+import io.spine.logging.testing.tapConsole
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.prototap.CompiledProtosFile
 import java.io.File
@@ -129,7 +130,9 @@ class LoggingLevelSpec {
 
     @Test
     fun `set 'DEBUG' logging level`() {
-        launchWithLoggingParams("--debug")
+        tapConsole {
+            launchWithLoggingParams("--debug")
+        }
 
         LoggingLevelAsserter.infoEnabled shouldBe true
         LoggingLevelAsserter.debugEnabled shouldBe true
