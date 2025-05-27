@@ -31,7 +31,7 @@ import io.spine.compiler.ast.MessageType;
 import io.spine.compiler.context.CodegenContext;
 import io.spine.compiler.render.SourceFile;
 import io.spine.tools.code.Java;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NonNull;
 
 /**
  * A stub rendering action implemented in Java which accepts {@link StringValue} as the parameter.

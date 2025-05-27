@@ -30,6 +30,7 @@ import com.google.common.annotations.VisibleForTesting
 import given.annotation.NoTypeTargetAnnotation
 import given.annotation.Schedule
 import io.kotest.matchers.shouldBe
+import io.spine.logging.testing.tapConsole
 import io.spine.compiler.jvm.ClassName
 import io.spine.compiler.render.SourceFile
 import io.spine.tools.code.Java
@@ -115,8 +116,10 @@ internal class TypeAnnotationSpec {
 
     @Test
     fun `reject files without 'BeforePrimaryDeclaration' insertion point`() {
-        val annotation = StubAnnotation(repeatableAnnotationClass)
-        annotation.shouldAnnotate(fileWithoutInsertionPoint) shouldBe false
+        tapConsole {
+            val annotation = StubAnnotation(repeatableAnnotationClass)
+            annotation.shouldAnnotate(fileWithoutInsertionPoint) shouldBe false
+        }
     }
 
     @Test

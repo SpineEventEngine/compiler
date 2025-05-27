@@ -29,7 +29,7 @@ package io.spine.compiler.test.annotation;
 import io.spine.compiler.render.InsertionPoint;
 import io.spine.compiler.render.InsertionPointPrinter;
 import io.spine.tools.code.Java;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Set;
 

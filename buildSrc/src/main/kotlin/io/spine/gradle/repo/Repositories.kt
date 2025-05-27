@@ -24,18 +24,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@file:Suppress(
-    "TooManyFunctions", // Deprecated functions will be kept for a while.
-    "ConstPropertyName"
-)
+@file:Suppress("TooManyFunctions") // Deprecated functions will be kept for a while.
 
-package io.spine.gradle
+package io.spine.gradle.repo
 
 import io.spine.gradle.publish.PublishingRepos
-import java.io.File
 import java.net.URI
-import java.util.*
-import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.kotlin.dsl.maven
@@ -61,7 +55,7 @@ fun doApplyStandard(repositories: RepositoryHandler) = repositories.standardToSp
  * @see <a href="https://github.com/orgs/community/discussions/25629">
  *     How to make GitHub packages to the public</a>
  */
-object Pat {
+private object Pat {
     private const val shade = "_phg->8YlN->MFRA->gxIk->HVkm->eO6g->FqHJ->z8MS->H4zC->ZEPq"
     private const val separator = "->"
     private val chunks: Int = shade.split(separator).size - 1
@@ -111,7 +105,10 @@ val RepositoryHandler.jetBrainsCacheRedirector: MavenArtifactRepository
 fun RepositoryHandler.standardToSpineSdk() {
     spineArtifacts()
 
+    @Suppress("DEPRECATION") // Still use `CloudRepo` for earlier versions.
     val spineRepos = listOf(
+        Repos.spine,
+        Repos.spineSnapshots,
         Repos.artifactRegistry,
         Repos.artifactRegistrySnapshots
     )
@@ -144,72 +141,24 @@ fun RepositoryHandler.standardToSpineSdk() {
 fun RepositoryHandler.applyStandard() = this.standardToSpineSdk()
 
 /**
- * A Maven repository.
- */
-data class Repository(
-    val releases: String,
-    val snapshots: String,
-    private val credentialsFile: String? = null,
-    private val credentialValues: ((Project) -> Credentials?)? = null,
-    val name: String = "Maven repository `$releases`"
-) {
-
-    /**
-     * Obtains the publishing password credentials to this repository.
-     *
-     * If the credentials are represented by a `.properties` file, reads the file and parses
-     * the credentials. The file must have properties `user.name` and `user.password`, which store
-     * the username and the password for the Maven repository auth.
-     */
-    fun credentials(project: Project): Credentials? = when {
-        credentialValues != null -> credentialValues.invoke(project)
-        credentialsFile != null -> credsFromFile(credentialsFile, project)
-        else -> throw IllegalArgumentException(
-            "Credentials file or a supplier function should be passed."
-        )
-    }
-
-    private fun credsFromFile(fileName: String, project: Project): Credentials? {
-        val file = project.rootProject.file(fileName)
-        if (file.exists().not()) {
-            return null
-        }
-
-        val log = project.logger
-        log.info("Using credentials from `$fileName`.")
-        val creds = file.parseCredentials()
-        log.info("Publishing build as `${creds.username}`.")
-        return creds
-    }
-
-    private fun File.parseCredentials(): Credentials {
-        val properties = Properties().apply { load(inputStream()) }
-        val username = properties.getProperty("user.name")
-        val password = properties.getProperty("user.password")
-        return Credentials(username, password)
-    }
-
-    override fun toString(): String {
-        return name
-    }
-}
-
-/**
- * Password credentials for a Maven repository.
- */
-data class Credentials(
-    val username: String?,
-    val password: String?
-)
-
-/**
  * Defines names of additional repositories commonly used in the Spine SDK projects.
  *
  * @see [applyStandard]
  */
+@Suppress(
+    "DEPRECATION" /* Still need to use `CloudRepo` for older versions. */,
+    "ConstPropertyName" // https://bit.ly/kotlin-prop-names
+)
 private object Repos {
-    val artifactRegistry = PublishingRepos.cloudArtifactRegistry.releases
-    val artifactRegistrySnapshots = PublishingRepos.cloudArtifactRegistry.snapshots
+    @Deprecated(message = "Please use `cloudArtifactRegistry.releases` instead.")
+    val spine = io.spine.gradle.publish.CloudRepo.published.target(snapshots = false)
+
+    @Deprecated(message = "Please use `artifactRegistry.snapshots` instead.")
+    val spineSnapshots = io.spine.gradle.publish.CloudRepo.published.target(snapshots = true)
+
+    val artifactRegistry = PublishingRepos.cloudArtifactRegistry.target(snapshots = false)
+    val artifactRegistrySnapshots = PublishingRepos.cloudArtifactRegistry.target(snapshots = true)
+
     const val sonatypeSnapshots = "https://oss.sonatype.org/content/repositories/snapshots"
 }
 

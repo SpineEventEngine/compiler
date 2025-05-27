@@ -24,17 +24,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.gradle.javadoc
+package io.spine.compiler.ast.event;
 
-import org.gradle.api.tasks.TaskContainer
-import org.gradle.api.tasks.javadoc.Javadoc
-
-/**
- * Finds a [Javadoc] Gradle task by the passed name.
- */
-fun TaskContainer.javadocTask(named: String) = this.getByName(named) as Javadoc
+import io.spine.annotation.GeneratedMixin;
+import io.spine.base.EventMessage;
+import io.spine.compiler.ast.FileAware;
 
 /**
- * Finds a default [Javadoc] Gradle task.
+ * The base interface for the Compiler events that are related to Protobuf files.
  */
-fun TaskContainer.javadocTask() = this.getByName("javadoc") as Javadoc
+@GeneratedMixin
+public interface FileAwareEvent extends EventMessage, FileAware {
+}

@@ -30,7 +30,7 @@ import io.spine.text.TextCoordinates;
 import io.spine.compiler.render.NonRepeatingInsertionPoint;
 import io.spine.compiler.test.FieldId;
 import io.spine.text.Text;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.regex.Pattern;

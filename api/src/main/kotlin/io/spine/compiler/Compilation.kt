@@ -33,10 +33,13 @@ import io.spine.compiler.Compilation.ERROR_EXIT_CODE
 import io.spine.compiler.Compilation.error
 import io.spine.compiler.ast.Span
 import io.spine.compiler.ast.toJava
+import io.spine.string.Indent
+import io.spine.string.Separator
+import io.spine.string.indent
 import java.io.File
+import java.io.Serial
 import kotlin.system.exitProcess
 import io.spine.compiler.ast.File as PFile
-
 
 /**
  * Provides functions to report compilation errors and warnings.
@@ -140,7 +143,7 @@ public object Compilation {
 
     @VisibleForTesting
     internal fun errorMessage(file: File, line: Int, column: Int, message: String) =
-        "$ERROR_PREFIX ${file.maybeUri()}:$line:$column: $message"
+        indentedMessage(ERROR_PREFIX, file, line, column, message)
 
     /**
      * Prints the warning diagnostics to [System.out].
@@ -191,13 +194,60 @@ public object Compilation {
 
     @VisibleForTesting
     internal fun warningMessage(file: File, line: Int, column: Int, message: String) =
-        "$WARNING_PREFIX ${file.maybeUri()}:$line:$column: $message"
+        indentedMessage(WARNING_PREFIX, file, line, column, message)
+
+    /**
+     * Constructs a formatted compilation message with indentation
+     * for multi-line user messages.
+     *
+     * The returned string consists of:
+     *
+     * 1. The specified [prefix] followed by the file URI or path, line, and column.
+     * 2. The first line of the [message] appended directly to the header.
+     * 3. Any subsequent lines of the [message], each indented under the header
+     *    by the length of the [prefix] plus one space.
+     *
+     * @throws IllegalArgumentException if [prefix] is blank.
+     */
+    @VisibleForTesting
+    internal fun indentedMessage(
+        prefix: String,
+        file: File,
+        line: Int,
+        column: Int,
+        message: String
+    ): String {
+        require(prefix.isNotBlank()) {
+            "The compilation message must have a non-empty prefix specified."
+        }
+
+        val messageLines = message.lines()
+        val messageHeader = messageLines.first()
+
+        // "+1" counts whitespace between a prefix and the file path.
+        val indent = Indent(prefix.length + 1)
+
+        // The first line is appended to the location, each consequent line is
+        // prepended with indentation.
+        val indentedBody = messageLines.drop(1)
+            .indent(indent, level = 1)
+
+        // The method uses OS-specific line breaks.
+        return buildString {
+            append("$prefix ${file.maybeUri()}:$line:$column: $messageHeader")
+            if (indentedBody.isNotEmpty()) {
+                append(Separator.nl())
+                append(indentedBody)
+            }
+        }
+    }
 
     /**
      * The exception thrown by [Compilation.error] when the testing mode is on.
      */
     public class Error(message: String) : Mistake(message) {
         public companion object {
+            @Serial
             private const val serialVersionUID: Long = 0L
         }
     }

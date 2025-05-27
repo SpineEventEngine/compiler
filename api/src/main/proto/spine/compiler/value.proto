@@ -60,7 +60,7 @@ import "spine/compiler/ast.proto";
 message Value {
     // The kind of the value.
     oneof kind {
-        option (is_required) = true;
+        option (choice).required = true;
 
         // The `null` value.
         NullValue null_value = 1;
@@ -139,7 +139,7 @@ message EnumValue {
     //
     // Same as the `Value.type.enumeration`.
     //
-    compiler.TypeName type = 2 [(required) = true];
+    TypeName type = 2 [(required) = true];
 }
 
 // `ListValue` is a wrapper around a repeated field of values.

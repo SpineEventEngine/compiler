@@ -24,7 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.build.ErrorProne
+import io.spine.dependency.build.Ksp
+import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJava
@@ -34,6 +37,7 @@ import io.spine.dependency.test.JUnit
 import io.spine.dependency.test.Truth
 import io.spine.gradle.javac.configureErrorProne
 import io.spine.gradle.javac.configureJavac
+import io.spine.gradle.javadoc.JavadocConfig
 import io.spine.gradle.kotlin.setFreeCompilerArgs
 import io.spine.gradle.publish.IncrementGuard
 import io.spine.gradle.report.license.LicenseReporter
@@ -45,14 +49,16 @@ import org.jetbrains.dokka.gradle.DokkaTaskPartial
 plugins {
     `java-library`
     kotlin("jvm")
+    id("module-testing")
     id("net.ltgt.errorprone")
     id("detekt-code-analysis")
     id("dokka-for-java")
     id("dokka-for-kotlin")
     jacoco
 }
-
+apply<BomsPlugin>()
 apply<IncrementGuard>()
+JavadocConfig.applyTo(project)
 LicenseReporter.generateReportIn(project)
 
 /**
@@ -68,7 +74,6 @@ project.run {
     configureKotlin()
 
     setupTests()
-    configureDocTasks()
 
     afterEvaluate {
         configureTaskDependencies()
@@ -82,14 +87,14 @@ fun Module.setDependencies() {
         }
         testImplementation(CoreJava.testUtilServer)
         testImplementation(kotlin("test-junit5"))
-        Truth.libs.forEach { testImplementation(it) }
-        testRuntimeOnly(JUnit.runner)
     }
 }
 
 fun Module.forceConfigurations() {
     configurations.all {
         resolutionStrategy {
+            Ksp.forceArtifacts(project, this@all, this@resolutionStrategy)
+            Jackson.forceArtifacts(project, this@all, this@resolutionStrategy)
             force(
                 Protobuf.compiler,
                 Base.lib,
@@ -136,18 +141,5 @@ fun Module.configureKotlin() {
             jvmTarget.set(BuildSettings.jvmTarget)
             setFreeCompilerArgs()
         }
-    }
-}
-
-fun Module.configureDocTasks() {
-    val dokkaJavadoc by tasks.withType(DokkaTask::class)
-    tasks.register("javadocJar", Jar::class) {
-        from(dokkaJavadoc.outputDirectory)
-        archiveClassifier.set("javadoc")
-        dependsOn(dokkaJavadoc)
-    }
-
-    tasks.withType<DokkaTaskPartial>().configureEach {
-        configureForKotlin()
     }
 }

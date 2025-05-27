@@ -28,25 +28,21 @@ package io.spine.compiler.value
 
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import io.kotest.matchers.string.shouldContain
 import io.spine.base.fieldPath
-import io.spine.option.MaxOption
-import io.spine.option.MinOption
 import io.spine.compiler.ast.find
 import io.spine.compiler.given.value.DiceRoll
 import io.spine.compiler.given.value.FieldOptionSamplesProto
 import io.spine.compiler.given.value.KelvinTemperature
-import io.spine.compiler.given.value.Misreferences
 import io.spine.compiler.given.value.NumberGenerated
 import io.spine.compiler.given.value.Range
 import io.spine.compiler.protobuf.ProtoFileList
 import io.spine.compiler.protobuf.toField
 import io.spine.compiler.protobuf.toPbSourceFile
 import io.spine.compiler.type.TypeSystem
+import io.spine.option.MaxOption
+import io.spine.option.MinOption
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
 @DisplayName("Extensions for option types should")
 internal class OptionsSpec {
@@ -129,51 +125,6 @@ internal class OptionsSpec {
                     fieldName.add("max_value")
                 }
             }
-        }
-    }
-
-    @Nested inner class
-    `prohibit missing references` {
-
-        @Test
-        fun `of top level fields`() {
-            val field = Misreferences.getDescriptor().fields[0].toField()
-            val option = field.optionList.find<MinOption>()
-            field.name.value shouldBe "wrong_direct"
-
-            assertThrows<IllegalStateException> {
-                option!!.parse(field, typeSystem)
-            }
-        }
-
-        @Test
-        fun `of top nested fields`() {
-            val field = Misreferences.getDescriptor().fields[1].toField()
-            val option = field.optionList.find<MaxOption>()
-            field.name.value shouldBe "wrong_indirect"
-
-            assertThrows<IllegalStateException> {
-                option!!.parse(field, typeSystem)
-            }
-        }
-    }
-
-    @Test
-    fun `require same field type for reference`() {
-        val field = Misreferences.getDescriptor().fields[2].toField()
-        field.name.value shouldBe "wrong_type"
-
-        val option = field.optionList.find<MaxOption>()
-
-        val e = assertThrows<IllegalStateException> {
-            option!!.parse(field, typeSystem)
-        }
-        e.message.let {
-            it shouldContain "(max).value"
-            it shouldContain field.name.value
-            it shouldContain "range.max_value"
-            it shouldContain "int64"
-            it shouldContain "int32"
         }
     }
 

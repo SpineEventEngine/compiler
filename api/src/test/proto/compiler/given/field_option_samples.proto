@@ -42,12 +42,12 @@ message DiceRoll {
 
 // The message type which uses `(min)` option with the floating point value.
 message KelvinTemperature {
-     double value = 1 [(min) = {
-         value: "0.0",
-         exclusive: true,
-         error_msg: "Temperature cannot reach {other}K, but provided {value}."
-     }];
- }
+    double value = 1 [(min) = {
+        value: "0.0",
+        exclusive: true,
+        error_msg: "Temperature cannot reach {other}K, but provided {value}."
+    }];
+}
 
 // A range of integer values.
 //
@@ -66,27 +66,6 @@ message Range {
 message NumberGenerated {
     int32 number = 1 [(min).value = "range.min_value", (max).value = "range.max_value"];
     Range range = 2 [(required) = true];
-}
-
-//
-// Types with negative cases
-//
-
-// The cases of wrong field references.
-message Misreferences {
-
-    // Here the option references the field which is not declared in this message type.
-    int32 wrong_direct = 1 [(min).value = "missing"];
-
-    // Here the option references the missing nested field.
-    int32 wrong_indirect = 2 [(max).value = "range.top"];
-
-    // Even though the type of this field is wider than that of the referenced,
-    // this field should generate the error because we require same types.
-    int64 wrong_type = 3 [(max).value = "range.max_value"];
-
-    // The field for checking nested paths.
-    Range range = 10 [(required) = true];
 }
 
 // The message with a boolean option.

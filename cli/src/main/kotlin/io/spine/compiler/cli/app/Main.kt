@@ -44,6 +44,7 @@ import io.spine.logging.WithLogging
 import io.spine.logging.context.LogLevelMap
 import io.spine.logging.context.ScopedLoggingContext
 import io.spine.string.Separator
+import io.spine.string.qualifiedClassName
 import io.spine.tools.code.manifest.Version
 import java.io.File
 import kotlin.system.exitProcess
@@ -66,7 +67,9 @@ public fun main(args: Array<String>) {
         exitProcess(0)
     } catch (e: Throwable) {
         System.err.run {
-            println("Exception caught in ProtoData `main()`:")
+            println("`${e.qualifiedClassName}` caught in Spine Compiler `main()`:")
+            println("Message: ${e.message}")
+            println("Stacktrace:")
             println("```")
             e.printStackTrace(this)
             println("```")

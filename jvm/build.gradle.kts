@@ -25,8 +25,7 @@
  */
 
 import io.spine.dependency.lib.JavaPoet
-import io.spine.dependency.lib.JavaX
-import io.spine.dependency.local.Base
+import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import org.gradle.api.file.DuplicatesStrategy.INCLUDE
@@ -41,19 +40,10 @@ dependencies {
     api(JavaPoet.lib)
     api(ToolBase.psiJava)
 
-    testImplementation(JavaX.annotations)
     testImplementation(Time.testLib)
+    testImplementation(Logging.testLib)
     testImplementation(project(":testlib"))
     testImplementation(project(":test-env"))
-}
-
-// Temporarily force the previous version of Base so that tests for `IsOption` could pass.
-configurations.all {
-    if(name in arrayOf("testCompileClasspath", "testRuntimeClasspath")) {
-        resolutionStrategy.force(
-            Base.libForBuildScript
-        )
-    }
 }
 
 // Allows test suites to fetch generated Java files as resources.

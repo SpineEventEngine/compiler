@@ -28,12 +28,8 @@ package io.spine.compiler.testing
 
 import com.google.common.annotations.VisibleForTesting
 import com.google.protobuf.compiler.PluginProtos.CodeGeneratorRequest
-import io.spine.code.proto.parse
-import io.spine.io.Resource
-import io.spine.io.ResourceDirectory
-import io.spine.io.replaceExtension
-import io.spine.compiler.ast.toPath
 import io.spine.compiler.ast.toAbsoluteFile
+import io.spine.compiler.ast.toPath
 import io.spine.compiler.backend.CodeGenerationContext
 import io.spine.compiler.backend.DescriptorFilter
 import io.spine.compiler.backend.Pipeline
@@ -44,6 +40,9 @@ import io.spine.compiler.settings.SettingsDirectory
 import io.spine.compiler.testing.PipelineSetup.Companion.byResources
 import io.spine.compiler.util.Format.PROTO_JSON
 import io.spine.compiler.util.extensions
+import io.spine.io.Resource
+import io.spine.io.ResourceDirectory
+import io.spine.io.replaceExtension
 import io.spine.reflect.CallerFinder.findCallerOf
 import io.spine.testing.server.blackbox.BlackBox
 import io.spine.tools.code.Java
@@ -55,6 +54,7 @@ import io.spine.tools.prototap.CompiledProtosFile
 import io.spine.tools.prototap.Names.PROTOC_PLUGIN_NAME
 import io.spine.tools.prototap.Paths.CODE_GENERATOR_REQUEST_FILE
 import io.spine.tools.prototap.Paths.COMPILED_PROTOS_FILE
+import io.spine.type.parse
 import io.spine.type.toJson
 import io.spine.validate.NonValidated
 import java.nio.file.Path
@@ -347,7 +347,7 @@ public class PipelineSetup(
         private fun listCompiledProtoFiles(
             params: @NonValidated PipelineParameters,
             classLoader: ClassLoader
-        ): @NonValidated PipelineParameters {
+        ): @NonValidated PipelineParameters{
             return if (params.compiledProtoList.isEmpty()) {
                 val files = CompiledProtosFile(classLoader)
                     .listFiles { Path(it).toAbsoluteFile() }

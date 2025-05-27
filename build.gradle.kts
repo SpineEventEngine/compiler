@@ -35,17 +35,17 @@ import io.spine.gradle.RunBuild
 import io.spine.gradle.publish.PublishingRepos
 import io.spine.gradle.publish.SpinePublishing
 import io.spine.gradle.publish.spinePublishing
+import io.spine.gradle.repo.standardToSpineSdk
 import io.spine.gradle.report.coverage.JacocoConfig
 import io.spine.gradle.report.license.LicenseReporter
 import io.spine.gradle.report.pom.PomGenerator
-import io.spine.gradle.standardToSpineSdk
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
 buildscript {
     standardSpineSdkRepositories()
     val baseForBuildScript = io.spine.dependency.local.Base.libForBuildScript
     dependencies {
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib)
+        classpath(io.spine.dependency.build.Ksp.run { artifact(gradlePlugin) })
         classpath(baseForBuildScript)
         classpath(mcJava.pluginLib) {
             excludeSpineBase()
@@ -69,15 +69,15 @@ plugins {
  * Publish all the modules, but `gradle-plugin`, which is published separately by its own.
  */
 spinePublishing {
-    modules = productionModules
-        .map { project -> project.name }
-        .toSet()
+    modules = productionModuleNames
         .minus("gradle-plugin") // because of custom publishing.
+        .toSet()
 
-    destinations = setOf(
-        PublishingRepos.gitHub("compiler"),
-        PublishingRepos.cloudArtifactRegistry
-    )
+    destinations = PublishingRepos.run { setOf(
+        cloudArtifactRegistry,
+        gitHub("compiler")
+    )}
+
     // Do not use the artifact prefix (like `compiler-` or `spine-compiler`) because
     //   1. We have the group called `io.spine.compiler`.
     //   2. Most of the JAR are not going to be in the end user's code.
@@ -154,6 +154,36 @@ val integrationTest by tasks.registering(RunBuild::class) {
  */
 tasks["check"].dependsOn(integrationTest)
 
-val dokkaHtmlMultiModule by tasks.getting(DokkaMultiModuleTask::class) {
-    configureStyle()
+/**
+ * The below block avoids the version conflict with the `spine-base` used
+ * by our Dokka plugin and the module of this project.
+ *
+ * Here's the error:
+ *
+ * ```
+ * Execution failed for task ':dokkaGeneratePublicationHtml'.
+ * > Could not resolve all dependencies for configuration ':dokkaHtmlGeneratorRuntimeResolver~internal'.
+ *    > Conflict found for the following module:
+ *        - io.spine:spine-base between versions 2.0.0-SNAPSHOT.308 and 2.0.0-SNAPSHOT.309
+ * ```
+ * The problem is not fixed by forcing the version of [Base.lib] in the block above.
+ * It requires the code executed on `afterEvaluate`.
+ */
+afterEvaluate {
+    configurations.named("dokkaHtmlGeneratorRuntimeResolver~internal") {
+        resolutionStrategy.preferProjectModules()
+    }
+}
+
+dependencies {
+    productionModules.forEach {
+        dokka(it)
+    }
+}
+
+@Suppress("unused")
+val dokkaGeneratePublicationHtml by tasks.getting {
+//    productionModules.forEach {
+//        dependsOn(it.tasks.named("jar"))
+//    }
 }

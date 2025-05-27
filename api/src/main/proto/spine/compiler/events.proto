@@ -39,373 +39,400 @@ import "spine/compiler/file.proto";
 import "spine/compiler/ast.proto";
 import "spine/compiler/source.proto";
 
-option (every_is).java_type = "io.spine.compiler.ast.FileAware";
+option (every_is).java_type = "FileAwareEvent";
 
-// Emitted when processing of a file begins.
-message FileEntered {
+ // Emitted when processing of a file begins.
+ message FileEntered {
 
-    // The file processing of which is started.
-    File file = 1 [(required) = true];
+     // The file processing of which is started.
+     File file = 1 [(required) = true];
 
-    // The header of the file.
-    //
-    // The `file` field of the header must be equal to the `file` field of this event.
-    //
-    ProtoFileHeader header = 2 [(required) = true];
-}
+     // The header of the file.
+     //
+     // The `file` field of the header must be equal to the `file` field of this event.
+     //
+     ProtoFileHeader header = 2 [(required) = true];
+ }
 
-// Emitted when a file-level option is found.
-message FileOptionDiscovered {
-    option (is).java_type = "io.spine.compiler.ast.OptionAware";
+ // Emitted when a file-level option is found.
+ message FileOptionDiscovered {
+     option (is).java_type = "OptionAwareEvent";
 
-    // The file, option of which was found.
-    File file = 1 [(required) = true];
+     // The file in which the option is discovered.
+     File file = 1 [(required) = true];
 
-    // The discovered option.
-    Option option = 2 [(required) = true];
-}
+     // The discovered option.
+     Option option = 2 [(required) = true];
+ }
 
-// Emitted when a file is completely discovered, including all the types, etc.
-message FileExited {
+ // Emitted when a file is completely discovered, including all the types, etc.
+ message FileExited {
 
-    // The file processing of which is finished.
-    File file = 1 [(required) = true];
-}
+     // The file processing of which is finished.
+     File file = 1 [(required) = true];
+ }
 
-// Emitted when processing discovers a message type.
-message TypeDiscovered {
+ // Emitted when processing discovers a message type.
+ message TypeDiscovered {
 
-    // The file in which the type is defined.
-    File file = 1 [(required) = true];
+     // The file in which the type is defined.
+     File file = 1 [(required) = true];
 
-    // The discovered message type.
-    MessageType type = 2 [(required) = true];
-}
+     // The discovered message type.
+     MessageType type = 2 [(required) = true];
+ }
 
-// Emitted when processing reaches a message type.
-message TypeEntered {
+ // Emitted when processing reaches a message type.
+ message TypeEntered {
 
-    // The file in which the type is defined.
-    File file = 1 [(required) = true];
+     // The file in which the type is defined.
+     File file = 1 [(required) = true];
 
-    // The type processing of which is started.
-    TypeName type = 2 [(required) = true];
-}
+     // The type processing of which is started.
+     TypeName type = 2 [(required) = true];
+ }
 
-// Emitted when a message-level option is found.
-message TypeOptionDiscovered {
-    option (is).java_type = "io.spine.compiler.ast.OptionAware";
+ // Deprecated: please use `MessageOptionDiscovered` instead.
+ message TypeOptionDiscovered {
+     option (is).java_type = "OptionAwareEvent";
+     option deprecated = true;
 
-    // The file in which the type is defined.
-    File file = 1 [(required) = true];
+     // The file in which the type is defined.
+     File file = 1 [(required) = true];
 
-    // The type in which the option is discovered.
-    TypeName type = 2 [(required) = true];
+     // Deprecated: please use `subject` instead.
+     TypeName type = 2 [deprecated = true];
 
-    // The discovered option.
-    Option option = 3 [(required) = true];
-}
+     // The discovered option.
+     Option option = 3 [(required) = true];
 
-// Emitted when a message type is completely discovered, including all the fields, etc.
-message TypeExited {
+     // The message type in which the option is discovered.
+     MessageType subject = 4 [(required) = true];
+ }
 
-    // The file in which the type is defined.
-    File file = 1 [(required) = true];
+ // Emitted when a message-level option is found.
+ message MessageOptionDiscovered {
+     option (is).java_type = "OptionAwareEvent";
 
-    // The type processing of which is finished.
-    TypeName type = 2 [(required) = true];
-}
+     // The file in which the type is defined.
+     File file = 1 [(required) = true];
 
-// Emitted when processing reaches a `oneof` group.
-message OneofGroupEntered {
+     // Deprecated: please use `subject` instead.
+     TypeName type = 2 [deprecated = true];
 
-    // The file in which the `oneof` group is defined.
-    File file = 1 [(required) = true];
+     // The discovered option.
+     Option option = 3 [(required) = true];
 
-    // The type in which the `oneof` group is defined.
-    TypeName type = 2 [(required) = true];
+     // The message type in which the option is discovered.
+     MessageType subject = 4 [(required) = true];
+ }
 
-    // The `oneof` group processing of which is started.
-    OneofGroup group = 3 [(required) = true];
-}
+ // Emitted when a message type is completely discovered, including all the fields, etc.
+ message TypeExited {
 
-// Emitted when a `oneof`-level option is found.
-message OneofOptionDiscovered {
-    option (is).java_type = "io.spine.compiler.ast.OptionAware";
+     // The file in which the type is defined.
+     File file = 1 [(required) = true];
 
-    // The file in which the `oneof` group is defined.
-    File file = 1 [(required) = true];
+     // The type processing of which is finished.
+     TypeName type = 2 [(required) = true];
+ }
 
-    // Deprecated: use `subject` instead.
-    TypeName type = 2 [deprecated = true];
+ // Emitted when processing reaches a `oneof` group.
+ message OneofGroupEntered {
 
-    // Deprecated: please use `subject` instead.
-    OneofName group = 3 [deprecated = true];
+     // The file in which the `oneof` group is defined.
+     File file = 1 [(required) = true];
 
-    // The `oneof` group in which the option is discovered.
-    OneofGroup subject = 5 [(required) = true];
+     // The type in which the `oneof` group is defined.
+     TypeName type = 2 [(required) = true];
 
-    // The discovered option.
-    Option option = 4 [(required) = true];
-}
+     // The `oneof` group processing of which is started.
+     OneofGroup group = 3 [(required) = true];
+ }
 
-// Emitted when a `oneof`-group is completely discovered, including all the options and fields.
-message OneofGroupExited {
+ // Emitted when a `oneof`-level option is found.
+ message OneofOptionDiscovered {
+     option (is).java_type = "OptionAwareEvent";
 
-    // The file in which the `oneof` group is defined.
-    File file = 1 [(required) = true];
+     // The file in which the `oneof` group is defined.
+     File file = 1 [(required) = true];
 
-    // The type in which the `oneof` group is defined.
-    TypeName type = 2 [(required) = true];
+     // Deprecated: use `subject` instead.
+     TypeName type = 2 [deprecated = true];
 
-    // The `oneof` group processing of which is finished.
-    OneofName group = 3 [(required) = true];
-}
+     // Deprecated: please use `subject` instead.
+     OneofName group = 3 [deprecated = true];
 
-// Emitted when processing reaches a field.
-message FieldEntered {
+     // The `oneof` group in which the option is discovered.
+     OneofGroup subject = 5 [(required) = true];
 
-    // The file in which the field is defined.
-    File file = 1 [(required) = true];
+     // The discovered option.
+     Option option = 4 [(required) = true];
+ }
 
-    // The type in which the field is defined.
-    TypeName type = 2 [(required) = true];
+ // Emitted when a `oneof`-group is completely discovered, including all the options and fields.
+ message OneofGroupExited {
 
-    // The field processing of which is started.
-    Field field = 3 [(required) = true];
-}
+     // The file in which the `oneof` group is defined.
+     File file = 1 [(required) = true];
 
-// Emitted when a field-level option is found.
-message FieldOptionDiscovered {
-    option (is).java_type = "io.spine.compiler.ast.OptionAware";
+     // The type in which the `oneof` group is defined.
+     TypeName type = 2 [(required) = true];
 
-    // The file in which the field is defined.
-    File file = 1 [(required) = true];
+     // The `oneof` group processing of which is finished.
+     OneofName group = 3 [(required) = true];
+ }
 
-    // The type in which the field is defined.
-    //
-    // Deprecated: please use `subject` instead.
-    //
-    TypeName type = 2 [deprecated = true];
+ // Emitted when processing reaches a field.
+ message FieldEntered {
 
-    // The field in which the option is discovered.
-    //
-    // Deprecated: please use `subject` instead.
-    //
-    FieldName field = 3 [deprecated = true];
+     // The file in which the field is defined.
+     File file = 1 [(required) = true];
 
-    // The field in which the option is discovered.
-    Field subject = 6 [(required) = true];
+     // The type in which the field is defined.
+     TypeName type = 2 [(required) = true];
 
-    // The option discovered.
-    Option option = 5 [(required) = true];
-}
+     // The field processing of which is started.
+     Field field = 3 [(required) = true];
+ }
 
-// Emitted when a field is completely discovered including the options.
-message FieldExited {
+ // Emitted when a field-level option is found.
+ message FieldOptionDiscovered {
+     option (is).java_type = "OptionAwareEvent";
 
-    // The file in which the field is defined.
-    File file = 1 [(required) = true];
+     // The file in which the field is defined.
+     File file = 1 [(required) = true];
 
-    // The type in which the field is defined.
-    TypeName type = 2 [(required) = true];
+     // Deprecated: please use `subject` instead.
+     TypeName type = 2 [deprecated = true];
 
-    // The processed field.
-    FieldName field = 3 [(required) = true];
-}
+     // Deprecated: please use `subject` instead.
+     FieldName field = 3 [deprecated = true];
+
+     // The field in which the option is discovered.
+     Field subject = 6 [(required) = true];
+
+     // The option discovered.
+     Option option = 5 [(required) = true];
+ }
+
+ // Emitted when a field is completely discovered including the options.
+ message FieldExited {
+
+     // The file in which the field is defined.
+     File file = 1 [(required) = true];
+
+     // The type in which the field is defined.
+     TypeName type = 2 [(required) = true];
+
+     // The processed field.
+     FieldName field = 3 [(required) = true];
+ }
 
  // Emitted when an enum type is discovered in a proto file.
-message EnumDiscovered {
+ message EnumDiscovered {
 
-    // The file in which the enum is defined.
-    File file = 1 [(required) = true];
+     // The file in which the enum is defined.
+     File file = 1 [(required) = true];
 
-    // The type of the enum.
-    EnumType type = 2 [(required) = true];
-}
+     // The type of the enum.
+     EnumType type = 2 [(required) = true];
+ }
 
-// Emitted when processing reaches an enum type.
-message EnumEntered {
+ // Emitted when processing reaches an enum type.
+ message EnumEntered {
 
-    // The file in which the enum is defined.
-    File file = 1 [(required) = true];
+     // The file in which the enum is defined.
+     File file = 1 [(required) = true];
 
-    // The enum type processing of which is started.
-    TypeName type = 2 [(required) = true];
-}
+     // The enum type processing of which is started.
+     TypeName type = 2 [(required) = true];
+ }
 
-// Emitted when an enum-level option is found.
-message EnumOptionDiscovered {
-    option (is).java_type = "io.spine.compiler.ast.OptionAware";
+ // Emitted when an enum-level option is found.
+ message EnumOptionDiscovered {
+     option (is).java_type = "OptionAwareEvent";
 
-    // The file in which the enum is defined.
-    File file = 1 [(required) = true];
+     // The file in which the enum is defined.
+     File file = 1 [(required) = true];
 
-    // The type name of the enum.
-    TypeName type = 2 [(required) = true];
+     // Deprecated: please use `subject` instead.
+     TypeName type = 2 [deprecated = true];
 
-    // The discovered option.
-    Option option = 3 [(required) = true];
-}
+     // The discovered option.
+     Option option = 3 [(required) = true];
 
-// Emitted when processing reaches an enum constant a.k.a. enum value.
-message EnumConstantEntered {
+     // The enum in which the option is discovered.
+     EnumType subject = 4 [(required) = true];
+ }
 
-    // The file in which the enum is defined.
-    File file = 1 [(required) = true];
+ // Emitted when processing reaches an enum constant a.k.a. enum value.
+ message EnumConstantEntered {
 
-    // The type name of the enum.
-    TypeName type = 2 [(required) = true];
+     // The file in which the enum is defined.
+     File file = 1 [(required) = true];
 
-    // The enum constant processing of which is started.
-    EnumConstant constant = 3 [(required) = true];
-}
+     // The type name of the enum.
+     TypeName type = 2 [(required) = true];
 
-// Emitted when an enum constant-level option is found.
-message EnumConstantOptionDiscovered {
-    option (is).java_type = "io.spine.compiler.ast.OptionAware";
+     // The enum constant processing of which is started.
+     EnumConstant constant = 3 [(required) = true];
+ }
 
-    // The file in which the enum is defined.
-    File file = 1 [(required) = true];
+ // Emitted when an enum constant-level option is found.
+ message EnumConstantOptionDiscovered {
+     option (is).java_type = "OptionAwareEvent";
 
-    // The type name of the enum.
-    TypeName type = 2 [(required) = true];
+     // The file in which the enum is defined.
+     File file = 1 [(required) = true];
 
-    // The enum constant in which the option is discovered.
-    ConstantName constant = 3 [(required) = true];
+     // Deprecated: please use `subject` instead.
+     TypeName type = 2 [deprecated = true];
 
-    // The discovered option.
-    Option option = 4 [(required) = true];
-}
+     // Deprecated: please use `subject` instead.
+     ConstantName constant = 3 [deprecated = true];
 
-// Emitted when an enum constant is completely discovered.
-message EnumConstantExited {
+     // The discovered option.
+     Option option = 4 [(required) = true];
 
-    // The file in which the enum is defined.
-    File file = 1 [(required) = true];
+     // The enum constant in which the option is discovered.
+     EnumConstant subject = 5 [(required) = true];
+ }
 
-    // The type name of the enum.
-    TypeName type = 2 [(required) = true];
+ // Emitted when an enum constant is completely discovered.
+ message EnumConstantExited {
 
-    // The enum constant processing of which is finished.
-    ConstantName constant = 3 [(required) = true];
-}
+     // The file in which the enum is defined.
+     File file = 1 [(required) = true];
 
-// Emitted when an enum type is completely discovered, including all the constants, etc.
-message EnumExited {
+     // The type name of the enum.
+     TypeName type = 2 [(required) = true];
 
-    // The file in which the enum is defined.
-    File file = 1 [(required) = true];
+     // The enum constant processing of which is finished.
+     ConstantName constant = 3 [(required) = true];
+ }
 
-    // The type of the enum.
-    TypeName type = 2 [(required) = true];
-}
+ // Emitted when an enum type is completely discovered, including all the constants, etc.
+ message EnumExited {
+
+     // The file in which the enum is defined.
+     File file = 1 [(required) = true];
+
+     // The type of the enum.
+     TypeName type = 2 [(required) = true];
+ }
 
  // Emitted when a service definition is discovered in a proto file.
-message ServiceDiscovered {
+ message ServiceDiscovered {
 
-    // The file in which the service is defined.
-    File file = 1 [(required) = true];
+     // The file in which the service is defined.
+     File file = 1 [(required) = true];
 
-    // The service processing of which is started.
-    Service service = 2 [(required) = true];
-}
+     // The service processing of which is started.
+     Service service = 2 [(required) = true];
+ }
 
-// Emitted when the processing reaches a service.
-message ServiceEntered {
+ // Emitted when the processing reaches a service.
+ message ServiceEntered {
 
-    // The file in which the service is defined.
-    File file = 1 [(required) = true];
+     // The file in which the service is defined.
+     File file = 1 [(required) = true];
 
-    // The service processing of which is started.
-    ServiceName service = 2 [(required) = true];
-}
+     // The service processing of which is started.
+     ServiceName service = 2 [(required) = true];
+ }
 
-// Emitted when an service-level option is found.
-message ServiceOptionDiscovered {
-    option (is).java_type = "io.spine.compiler.ast.OptionAware";
+ // Emitted when an service-level option is found.
+ message ServiceOptionDiscovered {
+     option (is).java_type = "OptionAwareEvent";
 
-    // The file in which the service is defined.
-    File file = 1 [(required) = true];
+     // The file in which the service is defined.
+     File file = 1 [(required) = true];
 
-    // The name of the service in which the option is discovered.
-    ServiceName service = 2 [(required) = true];
+     // Deprecated: please use `subject` instead.
+     ServiceName service = 2 [deprecated = true];
 
-    // The discovered option.
-    Option option = 3 [(required) = true];
-}
+     // The discovered option.
+     Option option = 3 [(required) = true];
 
-// Emitted when a service is completely discovered, including all the option and RPCs.
-message ServiceExited {
+     // The service in which the option is discovered.
+     Service subject = 4 [(required) = true];
+ }
 
-    // The file in which the service is defined.
-    File file = 1 [(required) = true];
+ // Emitted when a service is completely discovered, including all the option and RPCs.
+ message ServiceExited {
 
-    // The name of the service processing of which is finished.
-    ServiceName service = 2 [(required) = true];
-}
+     // The file in which the service is defined.
+     File file = 1 [(required) = true];
 
-// Emitted when the processing reaches a remote procedure call.
-message RpcEntered {
+     // The name of the service processing of which is finished.
+     ServiceName service = 2 [(required) = true];
+ }
 
-    // The file in which the RPC is defined.
-    File file = 1 [(required) = true];
+ // Emitted when the processing reaches a remote procedure call.
+ message RpcEntered {
 
-    // The name of the service in which the RPC is defined.
-    ServiceName service = 2 [(required) = true];
+     // The file in which the RPC is defined.
+     File file = 1 [(required) = true];
 
-    // The RPC processing of which is started.
-    Rpc rpc = 3 [(required) = true];
-}
+     // The name of the service in which the RPC is defined.
+     ServiceName service = 2 [(required) = true];
 
-// Emitted when an RPC-level option is found.
-message RpcOptionDiscovered {
-    option (is).java_type = "io.spine.compiler.ast.OptionAware";
+     // The RPC processing of which is started.
+     Rpc rpc = 3 [(required) = true];
+ }
 
-    // The file in which the RPC is defined.
-    File file = 1 [(required) = true];
+ // Emitted when an RPC-level option is found.
+ message RpcOptionDiscovered {
+     option (is).java_type = "io.spine.compiler.ast.OptionAware";
 
-    // The name of the service in which the RPC is defined.
-    ServiceName service = 2 [(required) = true];
+     // The file in which the RPC is defined.
+     File file = 1 [(required) = true];
 
-    // The RPC in which the option is discovered.
-    RpcName rpc = 3 [(required) = true];
+     // Deprecated: please use `subject` instead.
+     ServiceName service = 2 [deprecated = true];
 
-    // The discovered option.
-    Option option = 4 [(required) = true];
-}
+     // Deprecated: please use `subject` instead.
+     RpcName rpc = 3 [deprecated = true];
 
-// Emitted when an RPC is completely discovered.
-message RpcExited {
+     // The discovered option.
+     Option option = 4 [(required) = true];
 
-    // The file in which the RPC is defined.
-    File file = 1 [(required) = true];
+     // The RPC in which the option is discovered.
+     Rpc subject = 5 [(required) = true];
+ }
 
-    // The name of the service in which the RPC is defined.
-    ServiceName service = 2 [(required) = true];
+ // Emitted when an RPC is completely discovered.
+ message RpcExited {
 
-    // The RPC processing of which is finished.
-    RpcName rpc = 3 [(required) = true];
-}
+     // The file in which the RPC is defined.
+     File file = 1 [(required) = true];
 
-// Emitted when the Protobuf compiler discovers a dependency file.
-//
-// The order of files reported by events of this type is unspecified.
-// Users should not rely on any particular order.
-//
-// Each dependency file is only reported by one event.
-//
-// `DependencyDiscovered` events always precede all other Protobuf compiler events, i.e.
-// the first `FileEntered` will always be emitted after the last `DependencyDiscovered`.
-//
-// Normally, no code should be generated for dependencies.
-// However, they can be used for additional info when generating code for the module's own types.
-//
-message DependencyDiscovered {
+     // The name of the service in which the RPC is defined.
+     ServiceName service = 2 [(required) = true];
 
-    // The file of the dependency.
-    File file = 1 [(required) = true];
+     // The RPC processing of which is finished.
+     RpcName rpc = 3 [(required) = true];
+ }
 
-    // The source file of the dependency.
-    ProtobufSourceFile source = 2 [(required) = true];
-}
+ // Emitted when the Protobuf compiler discovers a dependency file.
+ //
+ // The order of files reported by events of this type is unspecified.
+ // Users should not rely on any particular order.
+ //
+ // Each dependency file is only reported by one event.
+ //
+ // `DependencyDiscovered` events always precede all other Protobuf compiler events, i.e.
+ // the first `FileEntered` will always be emitted after the last `DependencyDiscovered`.
+ //
+ // Normally, no code should be generated for dependencies.
+ // However, they can be used for additional info when generating code for the module's own types.
+ //
+ message DependencyDiscovered {
+
+     // The file of the dependency.
+     File file = 1 [(required) = true];
+
+     // The source file of the dependency.
+     ProtobufSourceFile source = 2 [(required) = true];
+ }
