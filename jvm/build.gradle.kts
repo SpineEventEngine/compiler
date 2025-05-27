@@ -42,7 +42,6 @@ dependencies {
     api(JavaPoet.lib)
     api(ToolBase.psiJava)
 
-    testImplementation(JavaX.annotations)
     testImplementation(Time.testLib)
     testImplementation(Logging.testLib)
     testImplementation(project(":testlib"))
