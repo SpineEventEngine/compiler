@@ -35,6 +35,8 @@ import io.spine.compiler.Compilation.WARNING_PREFIX
 import io.spine.compiler.ast.Span
 import io.spine.compiler.ast.toAbsoluteFile
 import io.spine.logging.testing.tapConsole
+import io.spine.string.ti
+import io.spine.string.tm
 import io.spine.testing.TestValues
 import java.io.File
 import java.nio.file.Paths
@@ -165,7 +167,7 @@ internal class CompilationSpec {
     }
 
     @Nested inner class
-    `when appending indent` {
+    `when indenting a user message` {
 
         private val file = File("with_error.proto")
         private val prefix = "m:"
@@ -173,19 +175,19 @@ internal class CompilationSpec {
         private val column = 1
 
         @Test
-        fun `use the prefix length for indentation`() {
+        fun `use the prefix length as a number of spaces`() {
             val message = """
                 The file contains one or more mistakes.
                 Mistake #1: illegal beginning.
                 Mistake #2: illegal ending.
-            """.trimIndent()
+            """.ti()
 
             val result = Compilation.indentedMessage(prefix, file, line, column, message)
             val expected = """
                 m: with_error.proto:1:1: The file contains one or more mistakes.
                    Mistake #1: illegal beginning.
                    Mistake #2: illegal ending.
-            """.trimIndent()
+            """.ti()
 
             result shouldBe expected
         }
@@ -210,7 +212,6 @@ internal class CompilationSpec {
             result shouldBe "m: with_error.proto:1:1: "
         }
 
-
         @Test
         fun `preserve original blank lines and whitespaces`() {
             val message = """
@@ -218,7 +219,7 @@ internal class CompilationSpec {
 
                 Third line after blank.
                   Fourth line with its own whitespaces.
-            """.trimIndent()
+            """.ti()
 
             val result = Compilation.indentedMessage(prefix, file, line, column, message)
             val expected = """
@@ -226,7 +227,7 @@ internal class CompilationSpec {
                 |   
                 |   Third line after blank.
                 |     Fourth line with its own whitespaces.
-            """.trimMargin()
+            """.tm()
 
             result shouldBe expected
         }
