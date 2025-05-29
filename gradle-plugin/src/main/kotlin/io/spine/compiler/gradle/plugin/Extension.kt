@@ -27,7 +27,7 @@
 package io.spine.compiler.gradle.plugin
 
 import com.google.common.annotations.VisibleForTesting
-import io.spine.compiler.gradle.api.CodegenSettings
+import io.spine.compiler.gradle.api.CompilerSettings
 import io.spine.tools.fs.DirectoryName.generated
 import io.spine.tools.gradle.protobuf.generatedSourceProtoDir
 import org.gradle.api.Project
@@ -41,7 +41,7 @@ import org.gradle.kotlin.dsl.listProperty
 /**
  * The `compiler { }` Gradle project extension.
  */
-public class Extension(private val project: Project): CodegenSettings {
+public class Extension(private val project: Project): CompilerSettings {
 
     private val factory = project.objects
 

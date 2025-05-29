@@ -36,7 +36,7 @@ import com.google.protobuf.gradle.GenerateProtoTask
 import io.spine.code.proto.DescriptorReference
 import io.spine.compiler.gradle.api.Artifacts
 import io.spine.compiler.gradle.api.SpineCompilerCleanTask
-import io.spine.compiler.gradle.api.CodegenSettings
+import io.spine.compiler.gradle.api.CompilerSettings
 import io.spine.compiler.gradle.api.CompilerTask
 import io.spine.compiler.gradle.api.Names.COMPILER_RAW_ARTIFACT
 import io.spine.compiler.gradle.api.Names.EXTENSION_NAME
@@ -134,18 +134,18 @@ public class Plugin : GradlePlugin<Project> {
  * Or, if the extension is not yet added, creates it and returns.
  */
 internal val Project.extension: Extension
-    get() = extensions.findByType(CodegenSettings::class)?.run { this as Extension }
+    get() = extensions.findByType(CompilerSettings::class)?.run { this as Extension }
         ?: createExtension()
 
 /**
  * Creates [Extension] associated with [Plugin] in this project.
  *
- * The extension is exposed by the type of [CodegenSettings] it implements to hide
+ * The extension is exposed by the type of [CompilerSettings] it implements to hide
  * the implementation details from the end-user projects.
  */
 private fun Project.createExtension(): Extension {
     val extension = Extension(this)
-    extensions.add(CodegenSettings::class.java, EXTENSION_NAME, extension)
+    extensions.add(CompilerSettings::class.java, EXTENSION_NAME, extension)
     return extension
 }
 

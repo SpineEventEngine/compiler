@@ -33,24 +33,26 @@ import java.nio.file.Path
 import org.gradle.api.file.Directory
 import org.gradle.api.tasks.SourceSet
 
+//TODO:2025-05-29:alexander.yevsyukov: Nest it under the working directory of the `RootPlugin`.
 /**
  * Obtains the directory where ProtoData stores its temporary files.
  */
 public val Project.compilerWorkingDir: Directory
     get() = layout.buildDirectory.dir(PROTODATA_WORKING_DIR).get()
 
+//TODO:2025-05-29:alexander.yevsyukov: Nest it under the root extension.
 /**
- * Obtains the instance of [CodegenSettings] extension of this project.
+ * Obtains the instance of [CompilerSettings] extension of this project.
  */
-public val Project.codegenSettings: CodegenSettings
-    get() = extensions.findByType(CodegenSettings::class.java)!!
+public val Project.compilerSettings: CompilerSettings
+    get() = extensions.findByType(CompilerSettings::class.java)!!
 
 /**
  * Obtains the path of the directory with the generated code as configured by
- * the [CodegenSettings.outputBaseDir] property of the ProtoData extension of this Gradle project.
+ * the [CompilerSettings.outputBaseDir] property of the ProtoData extension of this Gradle project.
  */
 public val Project.generatedDir: Path
-    get() = codegenSettings.outputBaseDir.get().asFile.toPath()
+    get() = compilerSettings.outputBaseDir.get().asFile.toPath()
 
 /**
  * Obtains the `generated` directory for the given [sourceSet] and a language.
