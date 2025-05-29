@@ -29,7 +29,7 @@
 import io.spine.dependency.lib.JavaX
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.Spine
-import io.spine.compiler.gradle.api.CodegenSettings
+import io.spine.compiler.gradle.api.CompilerSettings
 
 buildscript {
     standardSpineSdkRepositories()
@@ -50,7 +50,7 @@ dependencies {
     testImplementation(Base.lib)?.because("tests use packing and unpacking extension functions.")
 }
 
-extensions.getByType<CodegenSettings>().apply {
+extensions.getByType<CompilerSettings>().apply {
     plugins(
         "io.spine.compiler.test.uuid.UuidPlugin",
         "io.spine.compiler.test.annotation.AnnotationPlugin"
