@@ -27,25 +27,34 @@
 package io.spine.compiler.gradle.api
 
 import org.gradle.api.Project
-import io.spine.compiler.params.Directories.PROTODATA_WORKING_DIR
+import io.spine.compiler.params.Directories.COMPILER_WORKING_DIR
+import io.spine.tools.gradle.root.rootExtension
 import java.io.File
 import java.nio.file.Path
 import org.gradle.api.file.Directory
 import org.gradle.api.tasks.SourceSet
+import io.spine.tools.gradle.root.rootWorkingDir
 
-//TODO:2025-05-29:alexander.yevsyukov: Nest it under the working directory of the `RootPlugin`.
 /**
  * Obtains the directory where ProtoData stores its temporary files.
  */
 public val Project.compilerWorkingDir: Directory
-    get() = layout.buildDirectory.dir(PROTODATA_WORKING_DIR).get()
+    get() = rootWorkingDir.dir(COMPILER_WORKING_DIR)
 
-//TODO:2025-05-29:alexander.yevsyukov: Nest it under the root extension.
 /**
  * Obtains the instance of [CompilerSettings] extension of this project.
  */
 public val Project.compilerSettings: CompilerSettings
-    get() = extensions.findByType(CompilerSettings::class.java)!!
+    get() {
+        // Compatibility mode for the migration phase.
+        val type = CompilerSettings::class.java
+        val underProject = extensions.findByType(type)
+        underProject?.let { return it }
+
+        // The new DSL: `spine { compiler { ... } }`
+        val underRootExt = rootExtension.extensions.findByType(type)
+        return underRootExt!!
+    }
 
 /**
  * Obtains the path of the directory with the generated code as configured by

@@ -38,6 +38,8 @@ object ToolBase {
 
     const val lib = "$group:spine-tool-base:$version"
     const val pluginBase = "$group:spine-plugin-base:$version"
+    const val gradleRootPlugin = "$group:spine-gradle-root-plugin:$version"
+    const val gradlePluginApi = "$group:spine-gradle-plugin-api:$version"
     const val pluginTestlib = "$group:spine-plugin-testlib:$version"
 
     const val intellijPlatformJava = "$group:intellij-platform-java:$version"
