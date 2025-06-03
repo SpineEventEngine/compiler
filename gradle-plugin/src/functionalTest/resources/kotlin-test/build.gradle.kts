@@ -43,11 +43,13 @@ repositories {
     standardToSpineSdk()
 }
 
-compiler {
-    plugins(
-        "io.spine.compiler.test.NoOpRendererPlugin",
-        "io.spine.compiler.test.TestPlugin"
-    )
+spine {
+    compiler {
+        plugins(
+            "io.spine.compiler.test.NoOpRendererPlugin",
+            "io.spine.compiler.test.TestPlugin"
+        )
+    }
 }
 
 dependencies {
