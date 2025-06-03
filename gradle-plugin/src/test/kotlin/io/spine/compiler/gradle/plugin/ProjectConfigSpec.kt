@@ -50,7 +50,6 @@ import org.junit.jupiter.api.io.TempDir
 @DisplayName("Plugin configuration should")
 class ProjectConfigSpec {
 
-    @Suppress("HasPlatformType")
     companion object {
 
         val mainCompilerTask = CompilerTaskName(SourceSetName.main).value()

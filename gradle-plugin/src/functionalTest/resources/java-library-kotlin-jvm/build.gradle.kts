@@ -36,7 +36,7 @@ plugins {
     `java-library`
     kotlin("jvm")
     id("com.google.protobuf")
-    id("@PROTODATA_PLUGIN_ID@") version "@PROTODATA_VERSION@"
+    id("@COMPILER_PLUGIN_ID@") version "@COMPILER_VERSION@"
 }
 
 repositories {

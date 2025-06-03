@@ -34,7 +34,7 @@ buildscript {
 plugins {
     id("com.android.library") version "7.3.0" // Protobuf needs it to run.
     id("com.google.protobuf")
-    id("@PROTODATA_PLUGIN_ID@") version "@PROTODATA_VERSION@"
+    id("@COMPILER_PLUGIN_ID@") version "@COMPILER_VERSION@"
 }
 
 repositories {
