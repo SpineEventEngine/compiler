@@ -29,13 +29,13 @@ package io.spine.compiler.gradle.api
 import org.gradle.api.file.DirectoryProperty
 
 /**
- * Configures the code generation process performed by ProtoData.
+ * Configures the code generation process performed by the Compiler.
  */
-public interface CodegenSettings {
+public interface CompilerSettings {
 
     /**
-     * Passes given names of Java classes to ProtoData as
-     * the `io.spine.compiler.plugin.Plugin` classes.
+     * Passes given names of Java classes to the Compiler as classes
+     * extending the `io.spine.compiler.plugin.Plugin` class.
      */
     public fun plugins(vararg classNames: String)
 

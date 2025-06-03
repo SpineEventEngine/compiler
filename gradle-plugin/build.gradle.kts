@@ -72,12 +72,13 @@ testing {
 }
 
 dependencies {
-    api(project(":gradle-api"))
-
     compileOnly(gradleApi())
     compileOnly(gradleKotlinDsl())
     compileOnly(Protobuf.GradlePlugin.lib)
     compileOnly(Kotlin.GradlePlugin.api)
+
+    api(project(":gradle-api"))
+    api(ToolBase.gradlePluginApi)
 
     implementation(project(":api"))
     implementation(project(":params"))
@@ -89,6 +90,7 @@ dependencies {
  * Make functional tests depend on publishing all the submodules to Maven Local so that
  * the Gradle plugin can get all the dependencies when it's applied to the test projects.
  */
+@Suppress("unused")
 val functionalTest: Task by tasks.getting {
     val task = this
     productionModules.forEach { subproject ->
@@ -108,6 +110,7 @@ val publishPlugins: Task by tasks.getting {
     enabled = !isSnapshot
 }
 
+@Suppress("unused")
 val publish: Task by tasks.getting {
     if (!isSnapshot) {
         dependsOn(publishPlugins)

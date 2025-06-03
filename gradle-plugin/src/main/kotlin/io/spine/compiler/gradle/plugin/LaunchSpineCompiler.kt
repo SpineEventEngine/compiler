@@ -172,7 +172,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
 internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
     sourceSetName.set(sourceSet.name)
     val project = project
-    val ext = project.extension
+    val ext = project.compilerSettings
     plugins = ext.plugins
     compilerConfiguration = project.compilerRawArtifact
     userClasspathConfiguration = project.userClasspath

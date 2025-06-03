@@ -35,15 +35,14 @@ import com.google.errorprone.annotations.CanIgnoreReturnValue
 import com.google.protobuf.gradle.GenerateProtoTask
 import io.spine.code.proto.DescriptorReference
 import io.spine.compiler.gradle.api.Artifacts
-import io.spine.compiler.gradle.api.SpineCompilerCleanTask
-import io.spine.compiler.gradle.api.CodegenSettings
+import io.spine.compiler.gradle.api.CompilerSettings
 import io.spine.compiler.gradle.api.CompilerTask
 import io.spine.compiler.gradle.api.Names.COMPILER_RAW_ARTIFACT
-import io.spine.compiler.gradle.api.Names.EXTENSION_NAME
 import io.spine.compiler.gradle.api.Names.PROTOBUF_GRADLE_PLUGIN_ID
 import io.spine.compiler.gradle.api.Names.SPINE_COMPILER_PROTOC_PLUGIN
 import io.spine.compiler.gradle.api.Names.USER_CLASSPATH_CONFIGURATION
 import io.spine.compiler.gradle.api.ProtocPluginArtifact
+import io.spine.compiler.gradle.api.SpineCompilerCleanTask
 import io.spine.compiler.gradle.api.compilerWorkingDir
 import io.spine.compiler.gradle.api.generatedDir
 import io.spine.compiler.gradle.plugin.GeneratedSubdir.GRPC
@@ -53,6 +52,8 @@ import io.spine.compiler.params.WorkingDirectory
 import io.spine.string.toBase64Encoded
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.code.manifest.Version
+import io.spine.tools.gradle.lib.LibraryPlugin
+import io.spine.tools.gradle.lib.spineExtension
 import io.spine.tools.gradle.project.hasJava
 import io.spine.tools.gradle.project.hasJavaOrKotlin
 import io.spine.tools.gradle.project.hasKotlin
@@ -70,43 +71,54 @@ import org.gradle.api.tasks.Delete
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.exclude
-import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.register
-import org.gradle.api.Plugin as GradlePlugin
 
 /**
- * The ProtoData Gradle plugin.
+ * The Gradle plugin of the Spine Compiler.
  *
- * Adds the `launchProtoData` task which runs the executable with the arguments assembled from
- * the configuration of this plugin.
+ * Adds the `launchSpineCompiler` tasks which runs the executable with the arguments
+ * assembled from settings of this plugin.
  *
  * The users can submit configuration parameters, such as renderer and plugin class names, etc. via
- * the `protoData { }` extension.
+ * the `compiler { }` extension.
  *
- * The users can submit the user classpath to the ProtoData by declaring dependencies using
- * the `protoData` configuration.
+ * The users can submit the user classpath to the Compiler by declaring dependencies using
+ * the `spineCompiler` configuration.
  *
  * Example:
  * ```
- * protoData {
- *     renderers("com.acme.MyRenderer")
- *     plugins("com.acme.MyPlugin")
+ * spine {
+ *     compiler {
+ *         plugins("com.acme.MyPlugin")
+ *     }
  * }
  *
  * dependencies {
- *     protoData(project(":my-plugin"))
+ *     spineCompiler(project(":my-plugin"))
  * }
  * ```
  */
-public class Plugin : GradlePlugin<Project> {
+public class Plugin : LibraryPlugin<CompilerSettings>(
+    CompilerDslSpec()
+) {
 
+    init {
+        // Inject the access to the project so that `CompilerDslSpec` can
+        // create an instance of `Extension`.
+        (dslSpec as CompilerDslSpec).project = { this.project }
+    }
+
+    /**
+     * The version of the plugin.
+     */
     private val version: String by lazy {
         readVersion()
     }
 
     override fun apply(project: Project) {
+        super.apply(project)
+        createExtension()
         with(project) {
-            createExtension()
             createConfigurations(this@Plugin.version)
             createTasks()
             configureWithProtobufPlugin(this@Plugin.version)
@@ -133,21 +145,8 @@ public class Plugin : GradlePlugin<Project> {
  *
  * Or, if the extension is not yet added, creates it and returns.
  */
-internal val Project.extension: Extension
-    get() = extensions.findByType(CodegenSettings::class)?.run { this as Extension }
-        ?: createExtension()
-
-/**
- * Creates [Extension] associated with [Plugin] in this project.
- *
- * The extension is exposed by the type of [CodegenSettings] it implements to hide
- * the implementation details from the end-user projects.
- */
-private fun Project.createExtension(): Extension {
-    val extension = Extension(this)
-    extensions.add(CodegenSettings::class.java, EXTENSION_NAME, extension)
-    return extension
-}
+internal val Project.compilerSettings: Extension
+    get() = spineExtension<CompilerSettings>() as Extension
 
 /**
  * Creates configurations for `protoDataRawArtifact` and user-defined classpath,
@@ -205,7 +204,7 @@ private fun Project.createCleanTask(sourceSet: SourceSet) {
     val project = this
     val cleanSourceSet = SpineCompilerCleanTask.nameFor(sourceSet)
     tasks.register<Delete>(cleanSourceSet) {
-        delete(extension.outputDirs(sourceSet))
+        delete(compilerSettings.outputDirs(sourceSet))
 
         val spineCompilerCleanTask = this
         tasks.getByName("clean").dependsOn(spineCompilerCleanTask)

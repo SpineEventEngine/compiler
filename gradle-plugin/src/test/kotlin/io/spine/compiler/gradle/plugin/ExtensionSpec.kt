@@ -29,7 +29,6 @@ package io.spine.compiler.gradle.plugin
 import com.google.common.truth.Truth.assertThat
 import com.google.protobuf.gradle.ProtobufPlugin
 import io.kotest.matchers.shouldBe
-import io.spine.compiler.gradle.api.CodegenSettings
 import io.spine.tools.gradle.project.sourceSets
 import java.io.File
 import kotlin.io.path.div
@@ -37,7 +36,6 @@ import org.gradle.api.Project
 import org.gradle.api.file.Directory
 import org.gradle.api.tasks.SourceSet.MAIN_SOURCE_SET_NAME
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.getByType
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -62,7 +60,7 @@ class ExtensionSpec {
             apply<ProtobufPlugin>()
             apply<Plugin>()
 
-            this@ExtensionSpec.extension = extensions.getByType<CodegenSettings>() as Extension
+            this@ExtensionSpec.extension = project.compilerSettings
         }
     }
 

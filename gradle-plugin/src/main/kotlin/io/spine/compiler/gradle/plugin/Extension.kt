@@ -27,12 +27,15 @@
 package io.spine.compiler.gradle.plugin
 
 import com.google.common.annotations.VisibleForTesting
-import io.spine.compiler.gradle.api.CodegenSettings
+import io.spine.compiler.gradle.api.CompilerSettings
+import io.spine.compiler.gradle.api.Names.EXTENSION_NAME
 import io.spine.tools.fs.DirectoryName.generated
+import io.spine.tools.gradle.DslSpec
 import io.spine.tools.gradle.protobuf.generatedSourceProtoDir
 import org.gradle.api.Project
 import org.gradle.api.file.Directory
 import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.SourceSet
@@ -41,7 +44,7 @@ import org.gradle.kotlin.dsl.listProperty
 /**
  * The `compiler { }` Gradle project extension.
  */
-public class Extension(private val project: Project): CodegenSettings {
+public class Extension(private val project: Project): CompilerSettings {
 
     private val factory = project.objects
 
@@ -143,5 +146,25 @@ public class Extension(private val project: Project): CodegenSettings {
             "js",
             "dart",
         )
+    }
+}
+
+/**
+ * Overrides [DslSpec] for customizing creation of the [Extension].
+ */
+internal class CompilerDslSpec :
+    DslSpec<CompilerSettings>(EXTENSION_NAME, CompilerSettings::class) {
+
+    /**
+     * The function for obtaining a project to which the [Plugin] is applied.
+     *
+     * This property is injected at the [Plugin] constructor.
+     */
+    internal lateinit var project: () -> Project
+
+    override fun createIn(container: ExtensionContainer): CompilerSettings {
+        val extension = Extension(project())
+        container.add(extensionClass.java, name, extension)
+        return extension
     }
 }

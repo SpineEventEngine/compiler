@@ -76,6 +76,49 @@ class PluginSpec {
         generatedKotlinDir  = generatedMainDir.resolve("kotlin")
     }
 
+    private fun createProject(resourceDir: String) {
+        val version = Plugin.readVersion()
+        val builder = GradleProject.setupAt(projectDir)
+            .fromResources(resourceDir)
+            .withSharedTestKitDirectory()
+            .replace("@COMPILER_PLUGIN_ID@", GRADLE_PLUGIN_ID)
+            .replace("@COMPILER_VERSION@", version)
+            .withLoggingLevel(LogLevel.INFO)
+            /* Uncomment the following if you need to debug the build process.
+               Please note that:
+                 1) Test will run much slower.
+                 2) Under Windows it may cause this issue to occur:
+                    https://github.com/gradle/native-platform/issues/274
+               After finishing the debug, please comment out this call again. */
+            //.enableRunnerDebug()
+            .copyBuildSrc()
+        project = builder.create()
+        (project.runner as DefaultGradleRunner).withJvmArguments(
+            "-Xmx8g",
+            "-XX:MaxMetaspaceSize=1512m",
+            "-XX:+UseParallelGC",
+            "-XX:+HeapDumpOnOutOfMemoryError"
+        )
+    }
+
+    private fun createEmptyProject() {
+        createProject("empty-test")
+    }
+
+    private fun createLaunchTestProject() {
+        createProject("launch-test")
+    }
+
+    private fun launchAndExpectResult(expected: TaskOutcome) {
+        val result = launch()
+
+        val outcome = result[launchSpineCompiler]
+        outcome shouldBe expected
+    }
+
+    private fun launch(): BuildResult =
+        project.executeTask(launchSpineCompiler)
+
     /**
      * Since there are no `proto` files in this project, the request file is
      * not created, resulting in the [SKIPPED] status of the [launchSpineCompiler] task.
@@ -87,7 +130,7 @@ class PluginSpec {
     }
 
     @Test
-    fun `launch ProtoData`() {
+    fun `launch the compiler task`() {
         createLaunchTestProject()
         launchAndExpectResult(SUCCESS)
     }
@@ -167,49 +210,6 @@ class PluginSpec {
         val generatedGrpcDir = generatedMainDir.resolve("grpc")
         assertExists(generatedGrpcDir)
         assertExists(generatedGrpcDir.resolve(serviceClass))
-    }
-
-    private fun createEmptyProject() {
-        createProject("empty-test")
-    }
-
-    private fun createLaunchTestProject() {
-        createProject("launch-test")
-    }
-
-    private fun launchAndExpectResult(expected: TaskOutcome) {
-        val result = launch()
-
-        val outcome = result[launchSpineCompiler]
-        outcome shouldBe expected
-    }
-
-    private fun launch(): BuildResult =
-        project.executeTask(launchSpineCompiler)
-
-    private fun createProject(resourceDir: String) {
-        val version = Plugin.readVersion()
-        val builder = GradleProject.setupAt(projectDir)
-            .fromResources(resourceDir)
-            .withSharedTestKitDirectory()
-            .replace("@PROTODATA_PLUGIN_ID@", GRADLE_PLUGIN_ID)
-            .replace("@PROTODATA_VERSION@", version)
-            .withLoggingLevel(LogLevel.INFO)
-            /* Uncomment the following if you need to debug the build process.
-               Please note that:
-                 1) Test will run much slower.
-                 2) Under Windows it may cause this issue to occur:
-                    https://github.com/gradle/native-platform/issues/274
-               After finishing the debug, please comment out this call again. */    
-            //.enableRunnerDebug()
-            .copyBuildSrc()
-        project = builder.create()
-        (project.runner as DefaultGradleRunner).withJvmArguments(
-            "-Xmx8g",
-            "-XX:MaxMetaspaceSize=1512m",
-            "-XX:+UseParallelGC",
-            "-XX:+HeapDumpOnOutOfMemoryError"
-        )
     }
 }
 

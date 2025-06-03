@@ -26,7 +26,7 @@
 
 package io.spine.compiler.params
 
-import io.spine.compiler.params.Directories.PROTODATA_WORKING_DIR
+import io.spine.compiler.params.Directories.COMPILER_WORKING_DIR
 import io.spine.compiler.params.Directories.REQUESTS_SUBDIR
 import io.spine.tools.code.SourceSetName
 
@@ -40,7 +40,7 @@ public object CodeGeneratorRequestFile {
      * request files are placed.
      */
     @Suppress("ConstPropertyName") // https://bit.ly/kotlin-prop-names
-    public const val defaultDirectory: String = "$PROTODATA_WORKING_DIR/$REQUESTS_SUBDIR"
+    public const val defaultDirectory: String = "$COMPILER_WORKING_DIR/$REQUESTS_SUBDIR"
 
     /**
      * Obtains the name of the file with the code generation request for the given source set.

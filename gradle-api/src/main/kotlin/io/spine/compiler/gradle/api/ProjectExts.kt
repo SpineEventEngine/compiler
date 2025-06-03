@@ -26,10 +26,12 @@
 
 package io.spine.compiler.gradle.api
 
-import org.gradle.api.Project
-import io.spine.compiler.params.Directories.PROTODATA_WORKING_DIR
+import io.spine.compiler.params.Directories.COMPILER_WORKING_DIR
+import io.spine.tools.gradle.lib.spineExtension
+import io.spine.tools.gradle.root.rootWorkingDir
 import java.io.File
 import java.nio.file.Path
+import org.gradle.api.Project
 import org.gradle.api.file.Directory
 import org.gradle.api.tasks.SourceSet
 
@@ -37,20 +39,20 @@ import org.gradle.api.tasks.SourceSet
  * Obtains the directory where ProtoData stores its temporary files.
  */
 public val Project.compilerWorkingDir: Directory
-    get() = layout.buildDirectory.dir(PROTODATA_WORKING_DIR).get()
+    get() = rootWorkingDir.dir(COMPILER_WORKING_DIR)
 
 /**
- * Obtains the instance of [CodegenSettings] extension of this project.
+ * Obtains the instance of [CompilerSettings] extension of this project.
  */
-public val Project.codegenSettings: CodegenSettings
-    get() = extensions.findByType(CodegenSettings::class.java)!!
+public val Project.compilerSettings: CompilerSettings
+    get() = spineExtension<CompilerSettings>()
 
 /**
  * Obtains the path of the directory with the generated code as configured by
- * the [CodegenSettings.outputBaseDir] property of the ProtoData extension of this Gradle project.
+ * the [CompilerSettings.outputBaseDir] property of the ProtoData extension of this Gradle project.
  */
 public val Project.generatedDir: Path
-    get() = codegenSettings.outputBaseDir.get().asFile.toPath()
+    get() = compilerSettings.outputBaseDir.get().asFile.toPath()
 
 /**
  * Obtains the `generated` directory for the given [sourceSet] and a language.

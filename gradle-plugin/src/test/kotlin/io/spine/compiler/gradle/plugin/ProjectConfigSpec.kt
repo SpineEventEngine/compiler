@@ -29,8 +29,9 @@ package io.spine.compiler.gradle.plugin
 import com.google.common.truth.Correspondence
 import com.google.common.truth.Truth.assertThat
 import com.google.protobuf.gradle.ProtobufPlugin
+import io.kotest.matchers.shouldNotBe
 import io.spine.compiler.gradle.api.CompilerTaskName
-import io.spine.compiler.gradle.api.Names.EXTENSION_NAME
+import io.spine.compiler.gradle.api.compilerSettings
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.gradle.project.sourceSets
 import java.io.File
@@ -43,12 +44,12 @@ import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.io.TempDir
 
 @DisplayName("Plugin configuration should")
 class ProjectConfigSpec {
 
-    @Suppress("HasPlatformType")
     companion object {
 
         val mainCompilerTask = CompilerTaskName(SourceSetName.main).value()
@@ -89,15 +90,14 @@ class ProjectConfigSpec {
 
     @Test
     fun `add extension`() {
-        val assertExtension = assertThat(project.extensions.getByName(EXTENSION_NAME))
-        assertExtension
-            .isNotNull()
-        assertExtension
-            .isInstanceOf(Extension::class.java)
+        assertDoesNotThrow {
+            project.compilerSettings
+        }
+        project.compilerSettings shouldNotBe null
     }
 
     @Test
-    fun `bind 'launchProtoData' to Java compilation`() {
+    fun `bind 'launchSpineCompiler' to Java compilation`() {
         val task = project.tasks.getByName("compileJava")
         assertThat(task.dependsOn)
             .comparingElementsUsing(taskNames)

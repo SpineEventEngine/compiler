@@ -46,9 +46,11 @@ dependencies {
 
 val protobufDir = "$projectDir/proto-gen/"
 
-compiler {
-    plugins(
-        "io.spine.compiler.test.uuid.UuidPlugin"
-    )
-    outputBaseDir.set(project.layout.projectDirectory.dir(protobufDir))
+spine {
+    compiler {
+        plugins(
+            "io.spine.compiler.test.uuid.UuidPlugin"
+        )
+        outputBaseDir.set(project.layout.projectDirectory.dir(protobufDir))
+    }
 }

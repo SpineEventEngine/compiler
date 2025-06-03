@@ -32,25 +32,25 @@ package io.spine.compiler.params
 public object Directories {
 
     /**
-     * The name of the ProtoData working directory which is conventionally
-     * placed under the `build` directory.
+     * The name of the Compiler working directory which is conventionally
+     * placed under the `build/spine` directory.
      */
-    public const val PROTODATA_WORKING_DIR: String = "protodata"
+    public const val COMPILER_WORKING_DIR: String = "compiler"
 
     /**
-     * The name of the subdirectory under [PROTODATA_WORKING_DIR] for storing
+     * The name of the subdirectory under [COMPILER_WORKING_DIR] for storing
      * files passed as parameters to pipelines.
      */
     public const val PARAMETERS_SUBDIR: String = "parameters"
 
     /**
-     * The name of the subdirectory under [PROTODATA_WORKING_DIR] where
+     * The name of the subdirectory under [COMPILER_WORKING_DIR] where
      * the ProtoData settings files are stored.
      */
     public const val SETTINGS_SUBDIR: String = "settings"
 
     /**
-     * The name of the subdirectory under [PROTODATA_WORKING_DIR] where
+     * The name of the subdirectory under [COMPILER_WORKING_DIR] where
      * [code generation requests files][CodeGeneratorRequestFile] are stored.
      */
     public const val REQUESTS_SUBDIR: String = "requests"

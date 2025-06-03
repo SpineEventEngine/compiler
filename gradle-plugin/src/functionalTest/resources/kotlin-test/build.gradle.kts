@@ -35,7 +35,7 @@ buildscript {
 plugins {
     kotlin("jvm")
     id("com.google.protobuf")
-    id("@PROTODATA_PLUGIN_ID@") version "@PROTODATA_VERSION@"
+    id("@COMPILER_PLUGIN_ID@") version "@COMPILER_VERSION@"
 }
 
 repositories {
@@ -43,11 +43,13 @@ repositories {
     standardToSpineSdk()
 }
 
-compiler {
-    plugins(
-        "io.spine.compiler.test.NoOpRendererPlugin",
-        "io.spine.compiler.test.TestPlugin"
-    )
+spine {
+    compiler {
+        plugins(
+            "io.spine.compiler.test.NoOpRendererPlugin",
+            "io.spine.compiler.test.TestPlugin"
+        )
+    }
 }
 
 dependencies {

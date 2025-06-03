@@ -27,7 +27,7 @@
 package io.spine.compiler.gradle.api
 
 /**
- * The name of various objects in ProtoData Gradle API.
+ * The name of various objects in Spine Compiler Gradle API.
  */
 public object Names {
 
