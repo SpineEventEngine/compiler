@@ -31,7 +31,7 @@ package spine.compiler;
 import "spine/options.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.compiler.ast.event";
+option java_package = "io.spine.tools.compiler.ast.event";
 option java_outer_classname = "EventsProto";
 option java_multiple_files = true;
 
@@ -384,7 +384,7 @@ option (every_is).java_type = "FileAwareEvent";
 
  // Emitted when an RPC-level option is found.
  message RpcOptionDiscovered {
-     option (is).java_type = "io.spine.compiler.ast.OptionAware";
+     option (is).java_type = "OptionAwareEvent";
 
      // The file in which the RPC is defined.
      File file = 1 [(required) = true];

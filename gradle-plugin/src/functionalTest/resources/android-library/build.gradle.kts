@@ -45,14 +45,14 @@ repositories {
 spine {
     compiler {
         plugins(
-            "io.spine.compiler.test.UnderscorePrefixRendererPlugin",
-            "io.spine.compiler.test.TestPlugin"
+            "io.spine.tools.compiler.test.UnderscorePrefixRendererPlugin",
+            "io.spine.tools.compiler.test.TestPlugin"
         )
     }
 }
 
 dependencies {
-    spineCompiler("io.spine.compiler:test-env:+")
+    spineCompiler("io.spine.tools:compiler-test-env:+")
 }
 
 protobuf {

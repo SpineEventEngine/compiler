@@ -7,7 +7,7 @@ import "spine/time_options.proto";
 import "spine/compiler/cli/test/options.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.compiler.cli.test";
+option java_package = "io.spine.tools.compiler.cli.test";
 option java_outer_classname = "TestProto";
 option java_multiple_files = true;
 

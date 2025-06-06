@@ -31,7 +31,7 @@ package spine.compiler;
 import "spine/options.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.compiler.render.event";
+option java_package = "io.spine.tools.compiler.render.event";
 option java_outer_classname = "RenderEventsProto";
 option java_multiple_files = true;
 

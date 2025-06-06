@@ -31,7 +31,7 @@ package spine.compiler.given;
 import "spine/options.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.compiler.given.value";
+option java_package = "io.spine.tools.compiler.given.value";
 option java_outer_classname = "FieldOptionSamplesProto";
 option java_multiple_files = true;
 
