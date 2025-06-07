@@ -48,9 +48,13 @@ extend google.protobuf.EnumValueOptions {
 
 // The format of a Protobuf message stored in a file.
 //
-// Files with settings for ProtoData and its plugins should be stored in one of these formats.
+// Files with settings for the Compiler and its plugins should be stored in one of these formats.
+//
+// DEPRECATED: Please use `io.spine.format.Format` instead.
 //
 enum Format {
+
+    option deprecated = true;
 
     RCF_UNKNOWN = 0;
 
