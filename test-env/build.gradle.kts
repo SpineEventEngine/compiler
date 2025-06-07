@@ -24,6 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.Grpc
 
@@ -32,6 +33,7 @@ plugins {
     prototap
     `build-proto-model`
 }
+apply<BomsPlugin>()
 
 dependencies {
     annotationProcessor(AutoService.processor)
