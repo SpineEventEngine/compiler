@@ -39,7 +39,7 @@ import java.util.List;
 /**
  * A plugin which exposes the {@code Annotated} view.
  */
-@SuppressWarnings("unused") // Accessed reflectively by ProtoData.
+@SuppressWarnings("unused") // Accessed reflectively by the Compiler.
 public final class AnnotationPlugin extends Plugin {
 
     public AnnotationPlugin() {

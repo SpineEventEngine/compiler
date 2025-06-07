@@ -39,7 +39,7 @@ import static java.util.stream.Collectors.toSet;
 /**
  * An {@link InsertionPointPrinter} for the {@link FieldGetter} insertion points.
  */
-@SuppressWarnings("unused") // Accessed reflectively by ProtoData.
+@SuppressWarnings("unused") // Accessed reflectively by the Compiler.
 public final class PrintFieldGetter extends InsertionPointPrinter {
 
     public PrintFieldGetter() {

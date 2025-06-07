@@ -25,7 +25,7 @@
  */
 
 /**
- * ProtoData components for generating annotations in the generated code.
+ * The Compiler components for generating annotations in the generated code.
  */
 @CheckReturnValue
 @NullMarked

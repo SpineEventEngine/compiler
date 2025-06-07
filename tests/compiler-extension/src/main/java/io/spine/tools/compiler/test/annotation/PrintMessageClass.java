@@ -38,7 +38,7 @@ import static java.util.stream.Collectors.toSet;
 /**
  * An {@code InsertionPointPrinter} for the {@link MessageClass} insertion point.
  */
-@SuppressWarnings("unused") // Accessed reflectively by ProtoData.
+@SuppressWarnings("unused") // Accessed reflectively by the Compiler.
 public final class PrintMessageClass extends InsertionPointPrinter {
 
     public PrintMessageClass() {

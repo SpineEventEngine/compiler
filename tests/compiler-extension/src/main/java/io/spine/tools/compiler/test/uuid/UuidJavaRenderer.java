@@ -45,7 +45,7 @@ import java.util.UUID;
  * <p>A UUID type is a message which only has one field — a {@code string} field
  * called {@code uuid}.
  */
-@SuppressWarnings("unused") // Accessed by ProtoData via refection.
+@SuppressWarnings("unused") // Accessed by the Compiler via refection.
 public final class UuidJavaRenderer extends JavaRenderer {
 
     /**

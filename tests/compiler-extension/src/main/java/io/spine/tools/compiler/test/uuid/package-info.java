@@ -25,7 +25,7 @@
  */
 
 /**
- * ProtoData components for generating convenience API for UUID types.
+ * The Compiler components for generating convenience API for UUID types.
  */
 @CheckReturnValue
 @NullMarked

@@ -35,7 +35,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * Marks a field getter.
  *
- * <p>This annotation is added to a Protobuf field getter via ProtoData.
+ * <p>This annotation is added to a Protobuf field getter via the Compiler.
  */
 @Retention(RUNTIME)
 @Target(METHOD)
