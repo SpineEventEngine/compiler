@@ -48,7 +48,7 @@ message InsertionPointPrinted {
 
     // The insertion point label.
     //
-    // This is a unique text that allows ProtoData to find insertion points in the text later.
+    // This is a unique text that allows the Compiler to find insertion points in the text later.
     //
     string label = 2 [(required) = true];
 

@@ -38,17 +38,17 @@ option java_multiple_files = true;
 import "google/protobuf/empty.proto";
 import "spine/compiler/file.proto";
 
-// A view on the ProtoData user configuration.
+// A view on the Compiler user configuration.
 //
 // Describes parameters passed to a component of the code generation process.
 // The user may then obtain those parameters by finding the instance of this view.
 //
-// @see io.spine.protodata.settings.LoadsSettings
+// @see io.spine.tools.compiler.settings.LoadsSettings
 //
 message Settings {
     option (entity).kind = VIEW;
 
-    // A name of a ProtoData component which is going to consume the settings.
+    // A name of a component which is going to consume the settings.
     string consumer = 1;
 
     oneof kind {

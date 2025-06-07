@@ -48,11 +48,11 @@ import "google/protobuf/any.proto";
 //     of the interface as the parameter.
 //  2) Create Protobuf type for settings that would match a file pattern with the action and
 //     the corresponding parameter with the name of the interface.
-//  3) Create a ProtoData plugin with a renderer which would load the settings and
+//  3) Create a Compiler plugin with a renderer which would load the settings and
 //     run corresponding actions.
 //
 // This type addresses the need #2 above, for having parameterised rendering actions in settings
-// passed to ProtoData plugins.
+// passed to Compiler plugins.
 //
 // Code generation actions listed in this collection serve the same programming language and
 // are applied to Protobuf declarations of the same kind. For example, we may have actions
