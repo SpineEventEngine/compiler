@@ -34,7 +34,7 @@ import io.spine.tools.compiler.util.ensureExistingDirectory
 import java.nio.file.Path
 
 /**
- * A directory which stores files passed to ProtoData command-line application.
+ * A directory which stores files passed to the Compiler command-line application.
  *
  * @param path The path to the existing directory.
  */

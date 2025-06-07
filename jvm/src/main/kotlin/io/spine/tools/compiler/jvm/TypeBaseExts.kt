@@ -38,7 +38,7 @@ import io.spine.type.shortDebugString
  * Obtains a fully qualified name of this type in the context of the given [TypeSystem].
  *
  * If this type [isPrimitive][TypeBase.isPrimitive], its name does not depend on [TypeSystem] and
- * the result of [toPrimitiveName][io.spine.compiler.ast.PrimitiveType.toPrimitiveName]
+ * the result of [toPrimitiveName][io.spine.tools.compiler.ast.PrimitiveType.toPrimitiveName]
  * is returned.
  *
  * @param typeSystem The type system to use for resolving the Java type.

@@ -27,7 +27,7 @@
 package io.spine.tools.compiler.settings
 
 /**
- * A ProtoData plugin component which can [load][loadSettings] its settings.
+ * A Compiler plugin component which can [load][loadSettings] its settings.
  *
  * It is the API user's responsibility to know the format of the settings and provide
  * an appropriate class passed as the argument to the [loadSettings] method.

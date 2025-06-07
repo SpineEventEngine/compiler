@@ -36,7 +36,7 @@ import org.gradle.api.file.Directory
 import org.gradle.api.tasks.SourceSet
 
 /**
- * Obtains the directory where ProtoData stores its temporary files.
+ * Obtains the directory where the Compiler stores its temporary files.
  */
 public val Project.compilerWorkingDir: Directory
     get() = rootWorkingDir.dir(COMPILER_WORKING_DIR)
@@ -49,7 +49,8 @@ public val Project.compilerSettings: CompilerSettings
 
 /**
  * Obtains the path of the directory with the generated code as configured by
- * the [CompilerSettings.outputBaseDir] property of the ProtoData extension of this Gradle project.
+ * the [CompilerSettings.outputBaseDir] property of the the Compiler extension
+ * of this Gradle project.
  */
 public val Project.generatedDir: Path
     get() = compilerSettings.outputBaseDir.get().asFile.toPath()

@@ -30,7 +30,7 @@ import io.spine.tools.compiler.plugin.Plugin
 import io.spine.tools.compiler.render.Renderer
 
 /**
- * A test fixture for passing renderers to a [Pipeline][io.spine.compiler.backend.Pipeline].
+ * A test fixture for passing renderers to a [Pipeline][io.spine.tools.compiler.backend.Pipeline].
  */
 public class TestPlugin(renderers: List<Renderer<*>>): Plugin(
     renderers = renderers,

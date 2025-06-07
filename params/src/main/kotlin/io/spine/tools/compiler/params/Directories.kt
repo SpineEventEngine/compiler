@@ -27,7 +27,7 @@
 package io.spine.tools.compiler.params
 
 /**
- * Constants for directory names used by ProtoData.
+ * Constants for directory names used by the Compiler.
  */
 public object Directories {
 
@@ -45,7 +45,7 @@ public object Directories {
 
     /**
      * The name of the subdirectory under [COMPILER_WORKING_DIR] where
-     * the ProtoData settings files are stored.
+     * the Compiler settings files are stored.
      */
     public const val SETTINGS_SUBDIR: String = "settings"
 

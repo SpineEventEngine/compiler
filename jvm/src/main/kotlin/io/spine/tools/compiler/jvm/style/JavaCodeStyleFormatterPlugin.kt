@@ -29,15 +29,16 @@ package io.spine.tools.compiler.jvm.style
 import io.spine.tools.compiler.plugin.Plugin
 
 /**
- * A ProtoData plugin which adds [JavaCodeStyleFormatter] to the processing pipeline.
+ * A Compiler plugin which adds [JavaCodeStyleFormatter] to the processing pipeline.
  *
- * The plugin is useful when <em>several</em> ProtoData plugins generate the code which
- * is later need to be brought to the same style. In such a case, it is recommended to put
- * `JavaCodeStyleFormatterPlugin` plugin at the end of the list when passed to ProtoData.
+ * The plugin is useful when <em>several</em> Compiler plugins generate
+ * the code which is later needed to be brought to the same style.
+ * In such a case, it is recommended to put `JavaCodeStyleFormatterPlugin` plugin at
+ * the end of the list when passed to the Compiler.
  *
- * Java code style settings to be used by the plugin should be passed as a settings file
- * with an instance of [JavaCodeStyle] with the value of [JavaCodeStyleFormatter.settingsId] as
- * the ID.
+ * Java code style settings to be used by the plugin should be passed as
+ * a settings file with an instance of [JavaCodeStyle] with the value of
+ * [JavaCodeStyleFormatter.settingsId] as the ID.
  */
 public class JavaCodeStyleFormatterPlugin : Plugin(
     listOf(JavaCodeStyleFormatter())

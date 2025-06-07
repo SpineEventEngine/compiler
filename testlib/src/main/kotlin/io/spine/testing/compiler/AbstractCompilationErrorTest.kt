@@ -43,13 +43,13 @@ import org.junit.jupiter.api.io.TempDir
  * Note that there is no `assertCompilationPasses()` counterpart in this class
  * because we avoid creation of [PipelineSetup] for positive assertions.
  * Initialization and running of a pipeline is time-consuming. We do it here
- * for each assertion just because ProtoData is expected to fail anyway.
+ * for each assertion just because the Compiler is expected to fail anyway.
  *
  * For tests, where compilation is expected to pass, a single run of a pipeline
  * should be used for all sources. Positive tests usually have way more assertions.
  *
  * Another alternative is to create a standalone module just for tests, where all
- * messages-under-test are compiled at once by `launchTestProtoData` task without
+ * messages-under-test are compiled at once by `launchTestSpineCompiler` task without
  * a pipeline at all. Though, assertion of the generated source code is impossible
  * with this approach.
  */
@@ -69,7 +69,7 @@ public abstract class AbstractCompilationErrorTest {
     protected open val protoSources: SourceSetName = SourceSetName("testFixtures")
 
     /**
-     * List of ProtoData plugins to use in the compilation.
+     * List of Compiler plugins to use in the compilation.
      */
     protected abstract fun plugins(): List<Plugin>
 

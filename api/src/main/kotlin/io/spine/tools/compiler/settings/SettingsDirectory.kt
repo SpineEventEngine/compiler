@@ -39,7 +39,7 @@ import kotlin.io.path.exists
 import kotlin.io.path.listDirectoryEntries
 
 /**
- * A directory containing settings files for ProtoData plugins or their parts.
+ * A directory containing settings files for the Compiler plugins or their parts.
  *
  * Only the files with the [recognized extensions][Format] are considered settings files.
  *
@@ -47,13 +47,13 @@ import kotlin.io.path.listDirectoryEntries
  * no subdirectories are traversed.
  *
  * This class works in combination with the view which manages the [Settings] state class
- * on the ProtoData backend. The view is subscribed to the [SettingsFileDiscovered] event for
+ * on the Compiler backend. The view is subscribed to the [SettingsFileDiscovered] event for
  * storing the name of the discovered settings file.
  *
  * The method [emitEvents] of this class traverses all the files stored in the settings directory
  * emitting the [SettingsFileDiscovered] event for each file with the recognized format.
  *
- * In order to load settings, ProtoData plugins or their parts should implement
+ * In order to load settings, Compiler plugins or their parts should implement
  * the [LoadsSettings] interface, which provides the discovery and loading methods based
  * on querying instances of the [Settings] class on the backend.
  *

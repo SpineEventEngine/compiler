@@ -36,7 +36,7 @@ import io.spine.server.query.Querying
 import io.spine.server.query.select
 
 /**
- * A ProtoData plugin component which accesses its settings via the [Settings] view.
+ * A Compiler plugin component which accesses its settings via the [Settings] view.
  */
 public interface LoadsSettings : Querying, WithSettings {
 

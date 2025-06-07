@@ -33,7 +33,7 @@ import io.spine.tools.code.Java
 /**
  * Suppresses warnings in the generated code.
  *
- * If no configuration is provided to ProtoData, suppresses all the warnings with `"ALL"`.
+ * If no configuration is provided to the Compiler, suppresses all the warnings with `"ALL"`.
  * Otherwise, parses the config as a [SuppressionSettings] and suppresses only
  * the specified warnings.
  *
@@ -41,7 +41,7 @@ import io.spine.tools.code.Java
  * fixed without changing the code generation logic.
  * That's why we recommend suppressing them.
  *
- * @see io.spine.compiler.jvm.annotation.TypeAnnotation
+ * @see io.spine.tools.compiler.jvm.annotation.TypeAnnotation
  */
 public class SuppressWarningsAnnotation :
     TypeAnnotation<SuppressWarnings>(SuppressWarnings::class.java) {
@@ -64,7 +64,7 @@ public class SuppressWarningsAnnotation :
      * **NOTE**: [ALL_WARNINGS] are assumed to avoid the case of working with
      * a default instance of [SuppressionSettings] (e.g., when it was loaded from a file).
      * We assume that the user did not intend to suppress an empty list of warnings,
-     * if [SuppressionSettings] instance was added to ProtoData settings
+     * if [SuppressionSettings] instance was added to the Compiler settings
      * but no specific warnings were specified.
      */
     private fun warningList(): String {

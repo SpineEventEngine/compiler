@@ -68,16 +68,17 @@ import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder
 
 /**
- * Creates a [Pipeline] for testing given ProtoData [plugins].
+ * Creates a [Pipeline] for testing given Compiler [plugins].
  *
  * This class simulates the first step of the code generation process
  * performed by `protoc` compiler. Since `protoc` is a stable and predictable piece of
  * software, we do not need to go through the "vanilla" code generation process when we
- * test ProtoData plugins.
+ * test the Compiler plugins.
  *
- * Instead of running the whole code generation process in a Gradle build with ProtoData Gradle
- * Plugin applied over and over again, we can generate the code and related binary data like
- * [CodeGeneratorRequest] or [FileDescriptorSet][com.google.protobuf.DescriptorProtos.FileDescriptorSet]
+ * Instead of running the whole code generation process in a Gradle build with
+ * the Compiler Gradle Plugin applied over and over again, we can generate
+ * the code and related binary data like [CodeGeneratorRequest] or
+ * [FileDescriptorSet][com.google.protobuf.DescriptorProtos.FileDescriptorSet]
  * using `protoc` and then use its output in tests.
  *
  * A convenient way of capturing the generated "vanilla" code and associated files is
@@ -115,7 +116,7 @@ import org.gradle.testfixtures.ProjectBuilder
  *
  * ### 4. Add a test method with two `@TempDir` parameters
  * This step applies if you're using JUnit. We will need two directories: one is for storing
- * settings for the ProtoData plugins we're going to test, and another is for the output of
+ * settings for the Compiler plugins we're going to test, and another is for the output of
  * the code generation process:
  *
  * ```kotlin
@@ -168,7 +169,7 @@ import org.gradle.testfixtures.ProjectBuilder
  *
  * @see [byResources]
  * @see [SettingsDirectory]
- * @see [io.spine.compiler.settings.LoadsSettings.consumerId]
+ * @see [io.spine.tools.compiler.settings.LoadsSettings.consumerId]
  * @see DescriptorFilter
  */
 @Suppress("LongParameterList") // OK, assuming the default value.
@@ -444,7 +445,7 @@ internal fun Language.protocOutputDir(): String {
     return when(this) {
         Java, Kotlin -> name.lowercase()
         TypeScript -> "ts"
-        // It's not likely we have proto files in the output of `protoc` or ProtoData anytime soon.
+        // It's not likely we have proto files in the output of `protoc` or the Compiler anytime soon.
         // But let's cover this case of the meta-codegen tools that produce Protobuf code.
         Protobuf -> "proto"
         else -> name

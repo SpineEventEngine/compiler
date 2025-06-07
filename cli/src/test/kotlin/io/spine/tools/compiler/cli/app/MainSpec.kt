@@ -86,7 +86,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
-@DisplayName("ProtoData command-line application should")
+@DisplayName("The Compiler command-line application should")
 class MainSpec {
 
     private lateinit var workingDir: WorkingDirectory

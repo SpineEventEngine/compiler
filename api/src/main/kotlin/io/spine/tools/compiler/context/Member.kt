@@ -121,11 +121,11 @@ protected constructor(
      * The reference to the context is necessary to query the state of entities.
      *
      * This method is `public` because it is inherited from the [ContextAware] interface.
-     * But it is essentially `internal` to ProtoData SDK, and is not supposed to be called
+     * But it is essentially `internal` to the Compiler SDK, and is not supposed to be called
      * by authors of plugins directly.
      *
      * @see [select]
-     * @see [io.spine.compiler.backend.Pipeline]
+     * @see [io.spine.tools.compiler.backend.Pipeline]
      *
      * @suppress This function is not supposed to be used by plugin authors code.
      */
@@ -193,7 +193,7 @@ public fun Member<*>.findAllFiles(): Collection<ProtobufSourceFile> =
  * Message types that are dependencies of the compilation process are not included.
  *
  * @see ProtobufSourceFile
- * @see io.spine.compiler.ast.ProtobufDependency
+ * @see io.spine.tools.compiler.ast.ProtobufDependency
  */
 public fun Member<*>.findMessageTypes(): Set<MessageInFile> =
     findAllFiles()
@@ -207,7 +207,7 @@ public fun Member<*>.findMessageTypes(): Set<MessageInFile> =
  * Enum types that are dependencies of the compilation process are not included.
  *
  * @see ProtobufSourceFile
- * @see io.spine.compiler.ast.ProtobufDependency
+ * @see io.spine.tools.compiler.ast.ProtobufDependency
  */
 public fun Member<*>.findEnumTypes(): Set<EnumInFile> =
     findAllFiles()
@@ -221,7 +221,7 @@ public fun Member<*>.findEnumTypes(): Set<EnumInFile> =
  * Services that are dependencies of the compilation process are not included.
  *
  * @see ProtobufSourceFile
- * @see io.spine.compiler.ast.ProtobufDependency
+ * @see io.spine.tools.compiler.ast.ProtobufDependency
  */
 public fun Member<*>.findServices(): Set<ServiceInFile> =
     findAllFiles()

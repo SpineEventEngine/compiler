@@ -45,9 +45,9 @@ import io.spine.tools.code.Language
  *
  * @param L The type of the programming language served by this action.
  * @param D The type of the Protobuf declaration, such as
- *   [MessageType][io.spine.compiler.ast.MessageType],
- *   [EnumType][io.spine.compiler.ast.EnumType] or
- *   [Service][io.spine.compiler.ast.Service], for which this action generates the code.
+ *   [MessageType][io.spine.tools.compiler.ast.MessageType],
+ *   [EnumType][io.spine.tools.compiler.ast.EnumType] or
+ *   [Service][io.spine.tools.compiler.ast.Service], for which this action generates the code.
  * @param P The type of the parameter passed to the action.
  *   If the action does not have a parameter, please use [com.google.protobuf.Empty].
  *
@@ -84,13 +84,13 @@ public abstract class RenderAction<L : Language, D : ProtoDeclaration, P : Messa
 
 /**
  * A render action performed for a Protobuf type,
- * such as [MessageType][io.spine.compiler.ast.MessageType] or
- * [EnumType][io.spine.compiler.ast.EnumType].
+ * such as [MessageType][io.spine.tools.compiler.ast.MessageType] or
+ * [EnumType][io.spine.tools.compiler.ast.EnumType].
  *
  * @param L The type of the programming language served by this action.
  * @param T The type of the Protobuf type declaration, such as
- *   [MessageType][io.spine.compiler.ast.MessageType] or
- *   [EnumType][io.spine.compiler.ast.EnumType],
+ *   [MessageType][io.spine.tools.compiler.ast.MessageType] or
+ *   [EnumType][io.spine.tools.compiler.ast.EnumType],
  *   for which this action generates the code.
  * @param P The type of the parameter passed to the action.
  *   If the action does not have a parameter, please use [com.google.protobuf.Empty].
@@ -116,7 +116,7 @@ protected constructor(
 ) : RenderAction<L, T, P>(language, type, file, parameter, context)
 
 /**
- * A render action performed for a [MessageType][io.spine.compiler.ast.MessageType].
+ * A render action performed for a [MessageType][io.spine.tools.compiler.ast.MessageType].
  *
  * @param L The type of the programming language served by this action.
  * @param P The type of the parameter passed to the action.
@@ -140,7 +140,7 @@ public abstract class MessageAction<L : Language, P : Message>(
 ) : TypeAction<L, MessageType, P>(language, type, file, parameter, context)
 
 /**
- * A render action performed for an [EnumType][io.spine.compiler.ast.EnumType].
+ * A render action performed for an [EnumType][io.spine.tools.compiler.ast.EnumType].
  *
  * @param L the programming language supported by this action.
  * @param P the type of the parameter passed to the action.
@@ -164,7 +164,7 @@ public abstract class EnumAction<L : Language, P : Message>(
 ) : TypeAction<L, EnumType, P>(language, type, file, parameter, context)
 
 /**
- * A render action performed for a [Service][io.spine.compiler.ast.Service].
+ * A render action performed for a [Service][io.spine.tools.compiler.ast.Service].
  *
  * @param L the programming language supported by this action.
  *

@@ -44,7 +44,7 @@ import io.spine.time.validation.TimeOption
  *
  * The options are defined in Spine-default `options.proto` and `time_options.proto`.
  * The corresponding test case in `CliTest` checks that these Proto options are provided
- * to ProtoData by default.
+ * to the Compiler by default.
  */
 class DefaultOptionsCounterView
     : View<TypeName, DefaultOptionsCounter, DefaultOptionsCounter.Builder>() {

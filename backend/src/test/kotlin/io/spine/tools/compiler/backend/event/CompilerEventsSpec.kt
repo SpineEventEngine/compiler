@@ -78,7 +78,7 @@ import org.junit.jupiter.api.Test
 /**
  * Tests for the [CompilerEvents] class basing on the `doctor.proto`.
  *
- * See the file at `test-env/src/main/proto/spine/protodata/test/doctor.proto`.
+ * See the file at `test-env/src/main/proto/spine/compiler/test/doctor.proto`.
  */
 @DisplayName("`CompilerEvents` should")
 class CompilerEventsSpec {

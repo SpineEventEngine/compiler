@@ -141,7 +141,7 @@ public class Plugin : LibraryPlugin<CompilerSettings>(
 }
 
 /**
- * Obtains an instance of the project [Extension] added by ProtoData Gradle Plugin.
+ * Obtains an instance of the project [Extension] added by the Compiler Gradle Plugin.
  *
  * Or, if the extension is not yet added, creates it and returns.
  */
@@ -149,18 +149,18 @@ internal val Project.compilerSettings: Extension
     get() = spineExtension<CompilerSettings>() as Extension
 
 /**
- * Creates configurations for `protoDataRawArtifact` and user-defined classpath,
- * and adds dependency on [Artifacts.fatCli].
+ * Creates configurations for [`spineCompilerRawArtifact`][COMPILER_RAW_ARTIFACT] and
+ * user-defined classpath, and adds dependency on [Artifacts.fatCli].
  */
-private fun Project.createConfigurations(protoDataVersion: String) {
+private fun Project.createConfigurations(compilerVersion: String) {
     val artifactConfig = configurations.create(COMPILER_RAW_ARTIFACT) {
         it.isVisible = false
     }
-    val cliDependency = Artifacts.fatCli(protoDataVersion)
+    val cliDependency = Artifacts.fatCli(compilerVersion)
     dependencies.add(artifactConfig.name, cliDependency)
 
     configurations.create(USER_CLASSPATH_CONFIGURATION) {
-        it.exclude(group = Artifacts.group, module = Artifacts.compiler)
+        it.exclude(group = Artifacts.group, module = Artifacts.compilerBackend)
     }
 }
 
@@ -198,7 +198,7 @@ private fun Project.createLaunchTask(
  * Creates a task which deletes the files generated for the given [sourceSet].
  *
  * Makes a `clean` task depend on the created task.
- * Also, makes the task which launches ProtoData CLI depend on the created task.
+ * Also, makes the task which launches the Compiler CLI depend on the created task.
  */
 private fun Project.createCleanTask(sourceSet: SourceSet) {
     val project = this
@@ -213,8 +213,8 @@ private fun Project.createCleanTask(sourceSet: SourceSet) {
     }
 }
 
-private fun Project.configureWithProtobufPlugin(protoDataVersion: String) {
-    val protocPlugin = ProtocPluginArtifact(protoDataVersion)
+private fun Project.configureWithProtobufPlugin(compilerVersion: String) {
+    val protocPlugin = ProtocPluginArtifact(compilerVersion)
     pluginManager.withPlugin(PROTOBUF_GRADLE_PLUGIN_ID) {
         setProtocPluginArtifact(protocPlugin)
         configureGenerateProtoTasks()
@@ -222,7 +222,8 @@ private fun Project.configureWithProtobufPlugin(protoDataVersion: String) {
 }
 
 /**
- * Configures the Protobuf Gradle Plugin by adding ProtoData plugin to the list of `protoc` plugins.
+ * Configures the Protobuf Gradle Plugin by adding the Compiler plugin
+ * to the list of `protoc` plugins.
  */
 private fun Project.setProtocPluginArtifact(protocPlugin: ProtocPluginArtifact) {
     protobufExtension?.apply {
@@ -255,7 +256,7 @@ private fun Project.configureGenerateProtoTasks() {
 
 /**
  * Configures the given [task] by enabling Kotlin code generation and adding and
- * configuring ProtoData `protoc` plugin for the task.
+ * configuring the Compiler `protoc` plugin for the task.
  *
  * The function also handles the exclusion of duplicated source code and task dependencies.
  *
@@ -292,7 +293,7 @@ private fun GenerateProtoTask.addProtocPlugin() {
 }
 
 /**
- * The names of the subdirectories where ProtoData places generated files.
+ * The names of the subdirectories where the Compiler places generated files.
  */
 private object GeneratedSubdir {
     const val JAVA = "java"

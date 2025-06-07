@@ -60,7 +60,7 @@ import io.spine.server.tuple.EitherOf2
  *
  * Please note that when reacting on Protobuf Compiler events, one should mark them as
  * [@External][io.spine.core.External]. See the whole list of Protobuf compiler events
- * in `spine/protodata/events.proto`.
+ * in `spine/compiler/events.proto`.
  *
  * One policy only accepts one kind of events. Declaring multiple methods with
  * the [@React][io.spine.server.event.React] annotation causes a runtime error.
@@ -73,8 +73,8 @@ import io.spine.server.tuple.EitherOf2
  * If there can be a few alternative events, see the descendants of
  * [Either][io.spine.server.tuple.Either].
  *
- * In case if one of the options doing nothing at all, use [io.spine.server.model.Nothing] as one
- * of the event types.
+ * In case if one of the options does nothing at all, please use [io.spine.server.event.NoReaction]
+ * as one of the event types.
  *
  * Finally, if there are multiple events of the same type, use a typed list,
  * e.g. `List<SomethingHappened>`.
@@ -96,7 +96,7 @@ public abstract class Policy<E : EventMessage> : Policy<E>(), LoadsSettings {
      * The type system for resolving type information for generating events.
      *
      * A non-null value is available in
-     * a [rendering pipeline][io.spine.compiler.backend.Pipeline.invoke].
+     * a [rendering pipeline][io.spine.tools.compiler.backend.Pipeline.invoke].
      */
     protected open val typeSystem: TypeSystem by lazy {
         check(::_typeSystem.isInitialized) {

@@ -489,7 +489,7 @@ internal class PipelineSpec {
 
             // We do not expose the type behind the `codegenContext` property for additional
             // safety of the usage. Knowing of the underlying type is used by the testing utility
-            // `io.spine.compiler.testing.PipelineSetup.createPipelineAndBlackbox()`.
+            // `io.spine.tools.compiler.testing.PipelineSetup.createPipelineAndBlackbox()`.
             // Please see the `testlib` module for details.
             (codegenContext is CodeGenerationContext) shouldBe true
         } finally {

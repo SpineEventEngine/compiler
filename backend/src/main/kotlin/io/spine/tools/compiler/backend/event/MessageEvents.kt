@@ -62,11 +62,11 @@ internal class MessageEvents(header: ProtoFileHeader) : DeclarationEvents<Descri
     /**
      * Yields events for the given message type.
      *
-     * Starts with [TypeDiscovered][io.spine.compiler.ast.event.TypeDiscovered] and
-     * [io.spine.compiler.ast.event.TypeEntered] events.
+     * Starts with [TypeDiscovered][io.spine.tools.compiler.ast.event.TypeDiscovered] and
+     * [io.spine.tools.compiler.ast.event.TypeEntered] events.
      * Then the events regarding the type metadata come.
      * Then go the events regarding the fields.
-     * At last, closes with an [TypeExited][io.spine.compiler.ast.event.TypeExited] event.
+     * At last, closes with an [TypeExited][io.spine.tools.compiler.ast.event.TypeExited] event.
      *
      * @param desc The descriptor of the message type.
      */

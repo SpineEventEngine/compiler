@@ -29,7 +29,7 @@ package io.spine.tools.compiler.params
 import java.io.File.pathSeparator
 
 /**
- * A parameter passed to the ProtoData command-line application.
+ * A parameter passed to the Compiler command-line application.
  */
 public sealed class Parameter(
 

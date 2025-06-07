@@ -31,7 +31,7 @@ import org.checkerframework.checker.signature.qual.FqBinaryName
 
 /**
  * Thrown when [ActionFactory] cannot instantiate
- * a [RenderAction][io.spine.compiler.render.RenderAction].
+ * a [RenderAction][io.spine.tools.compiler.render.RenderAction].
  */
 public class ActionFactoryException private constructor(message: String, cause: Throwable?)
     : ReflectiveOperationException(message, cause) {

@@ -27,7 +27,7 @@
 package io.spine.tools.compiler.plugin
 
 /**
- * An error in configuring ProtoData.
+ * An error in configuring the Compiler.
  */
 @Suppress("serial") // This error is not meant to be serializable.
 public class ConfigurationError(msg: String) : Error(msg)

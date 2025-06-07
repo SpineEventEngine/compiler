@@ -37,7 +37,7 @@ import kotlin.reflect.KClass
 /**
  * A plugin into the code generation process.
  *
- * ProtoData uses the reactive approach to handling Protobuf source info.
+ * The Compiler uses the reactive approach to handling Protobuf source info.
  * We handle events which describe a Protobuf source
  * set via a set of [views][View] and [policies][Policy].
  *
@@ -47,7 +47,7 @@ import kotlin.reflect.KClass
  * [Plugin.viewRepositories], [Plugin.views], and [Plugin.policies] properties.
  *
  * Implementing classes must provide a parameterless constructor so that
- * ProtoData can instantiate a plugin via its fully qualified class name.
+ * the Compiler can instantiate a plugin via its fully qualified class name.
  *
  * @property renderers The [renderers][Renderer] added by this plugin.
  *   The renderers are guaranteed to be called in the order of their declaration in the plugin.

@@ -45,7 +45,7 @@ import io.spine.reflect.argumentIn
  * @param V The type of the view state which the renderer uses for code generation.
  * @param S The type of the settings used by the renderer. Use [Empty] if settings are not used.
  *
- * @see io.spine.compiler.settings.LoadsSettings
+ * @see io.spine.tools.compiler.settings.LoadsSettings
  */
 public abstract class AbstractRenderer<V : EntityState<*>, S : Message> : JavaRenderer() {
 

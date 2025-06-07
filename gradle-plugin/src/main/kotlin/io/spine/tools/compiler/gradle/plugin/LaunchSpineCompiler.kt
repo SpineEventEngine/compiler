@@ -63,7 +63,7 @@ import org.gradle.api.tasks.SourceSet
 /**
  * A task which executes a single Spine Compiler command.
  *
- * This class is public to allow users to find ProtoData tasks by their type.
+ * This class is public to allow users to find the Compiler tasks by their type.
  * This is useful to configure task dependencies, enable and disable individual tasks,
  * add conditions via `onlyIf { }`, etc.
  *
@@ -98,7 +98,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
     internal lateinit var compilerConfiguration: Configuration
 
     /**
-     * The paths to the directories where the source code processed by ProtoData should go.
+     * The paths to the directories where the source code processed by the Compiler should go.
      */
     @get:OutputDirectories
     internal lateinit var targets: Provider<List<Directory>>
@@ -135,7 +135,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
     }
 
     /**
-     * Cleans the target directory to prepare it for ProtoData.
+     * Cleans the target directory to prepare it for the Compiler.
      */
     private inner class CleanTargetDirs : Action<Task> {
 
@@ -208,7 +208,7 @@ private fun LaunchSpineCompiler.setDependencies(sourceSet: SourceSet) {
  *
  * The function obtains the list of compiled proto files by querying an instance
  * of [GenerateProtoTask] on which the receiver task depends on (as set by the
- * [Plugin.handleLaunchTaskDependency][io.spine.compiler.gradle.plugin.handleLaunchTaskDependency]
+ * [Plugin.handleLaunchTaskDependency][io.spine.tools.compiler.gradle.plugin.handleLaunchTaskDependency]
  * function).
  */
 private fun LaunchSpineCompiler.createParametersFile() {

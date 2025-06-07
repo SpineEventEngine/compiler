@@ -27,20 +27,20 @@
 package io.spine.tools.compiler.gradle.api
 
 /**
- * Constants for locating ProtoData in Maven repositories.
+ * Constants for locating the Compiler artifacts in Maven repositories.
  */
 @Suppress("ConstPropertyName") // https://bit.ly/kotlin-prop-names
 public object Artifacts {
 
     /**
-     * The Maven group of the ProtoData artifacts.
+     * The Maven group of the Compiler artifacts.
      */
     public const val group: String = "io.spine.tools"
 
     /**
-     * The name of the Spine Compiler artifact.
+     * The name of the Compiler Backend artifact.
      */
-    public const val compiler: String = "compiler"
+    public const val compilerBackend: String = "compiler-backend"
 
     /**
      * Obtains Maven coordinates of the `fat-cli` variant of command-line application.
@@ -55,25 +55,25 @@ public object Artifacts {
     public fun fatCli(version: String): String = "$group:compiler-cli-all:$version"
 
     /**
-     * Obtains Maven coordinates for ProtoData command-line application.
+     * Obtains Maven coordinates for Compiler command-line application.
      */
     public fun cli(version: String): String = "$group:compiler-cli:$version"
 
     /**
-     * Obtains Maven coordinates for the ProtoData plugin to Google Protobuf Compiler (`protoc`).
+     * Obtains Maven coordinates for the Compiler plugin to Google Protobuf Compiler (`protoc`).
      */
     public fun protocPlugin(version: String): ProtocPluginArtifact = ProtocPluginArtifact(version)
 }
 
 /**
- * Holds Maven references to `protoc` plugin artifact of ProtoData.
+ * Holds Maven references to `protoc` plugin artifact of the Compiler.
  *
  * Provided to treat this important dependency in a type-safe way.
  */
 public data class ProtocPluginArtifact(val version: String) {
 
     /**
-     * The Maven cooridates of the Spine Compiler plugin for `protoc`.
+     * The Maven coordinates of the Compiler plugin for `protoc`.
      */
     public val coordinates: String =
         "${Artifacts.group}:compiler-protoc-plugin:$version:exe@jar"

@@ -82,15 +82,15 @@ public fun main(args: Array<String>) {
 private fun readVersion(): String = Version.fromManifestOf(Run::class.java).value
 
 /**
- * The main CLI command which performs the ProtoData code generation tasks.
+ * The main CLI command which performs the Compiler code generation tasks.
  */
 @Suppress("TooManyFunctions") // It is OK for the `main` entry point.
 internal class Run(version: String) : CliktCommand(
-    name = "protodata",
-    help = "ProtoData tool helps build better multi-platform code generation." +
+    name = "spine",
+    help = "The Spine Compiler helps build better multi-platform code generation." +
             Separator.nl() +
             "Version $version.",
-    epilog = "https://github.com/SpineEventEngine/ProtoData/",
+    epilog = "https://github.com/SpineEventEngine/compiler/",
     printHelpOnEmptyArgs = true
 ), WithLogging {
 

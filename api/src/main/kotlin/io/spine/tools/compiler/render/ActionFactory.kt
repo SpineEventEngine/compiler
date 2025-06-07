@@ -40,7 +40,7 @@ import com.google.protobuf.Any as ProtoAny
  * Creates instances of [RenderAction] specified in the given [actions].
  *
  * The main use case for this is to create rendering actions for
- * a [io.spine.compiler.render.Renderer] which obtains the instance of [Actions]
+ * a [io.spine.tools.compiler.render.Renderer] which obtains the instance of [Actions]
  * from code generation settings.
  *
  * The classes names of which are specified in the given [actions] must satisfy
@@ -55,7 +55,7 @@ import com.google.protobuf.Any as ProtoAny
  *  2. `SourceFile<L>` — the file to be handled by the action.
  *  3. [Message][com.google.protobuf.Message] or a derived class which corresponds to the
  *   [packed parameter][com.google.protobuf.Any]
- *   [associated][io.spine.compiler.render.ActionsKt.Dsl.action] with the class name.
+ *   [associated][io.spine.tools.compiler.render.ActionsKt.Dsl.action] with the class name.
  *  4. [CodegenContext].
  *
  * For action classes that do not accept parameters, the `public` constructor must
@@ -69,7 +69,7 @@ import com.google.protobuf.Any as ProtoAny
  * @param classLoader The class loader to obtain action classes.
  *
  * @see Actions
- * @see io.spine.compiler.render.add
+ * @see io.spine.tools.compiler.render.add
  */
 public class ActionFactory<L : Language, D : ProtoDeclaration>(
     private val language: L,

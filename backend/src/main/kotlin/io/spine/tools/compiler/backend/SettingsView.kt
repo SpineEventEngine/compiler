@@ -36,11 +36,11 @@ import io.spine.server.entity.alter
 import io.spine.server.route.Route
 
 /**
- * A view on the ProtoData user configuration.
+ * A view on the Compiler user configuration.
  *
  * Can contain either a configuration file path or a string value of the configuration.
  *
- * @see io.spine.compiler.settings.WithSettings for fetching the value of the user configuration.
+ * @see io.spine.tools.compiler.settings.WithSettings for fetching the value of the user configuration.
  */
 internal class SettingsView : View<String, Settings, Settings.Builder>() {
 

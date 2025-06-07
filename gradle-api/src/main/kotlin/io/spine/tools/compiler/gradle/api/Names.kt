@@ -37,28 +37,28 @@ public object Names {
     public const val PROTOBUF_GRADLE_PLUGIN_ID: String = "com.google.protobuf"
 
     /**
-     * The name of the `protoc` plugin exposed by Spine Compiler.
+     * The name of the `protoc` plugin exposed by the Compiler.
      */
     public const val SPINE_COMPILER_PROTOC_PLUGIN: String = "spine"
 
     /**
-     * The ID of the ProtoData Gradle plugin.
+     * The ID of the Compiler Gradle plugin.
      */
     public const val GRADLE_PLUGIN_ID: String = "io.spine.compiler"
 
     /**
-     * The name of the Gradle extension added by Spine Compiler Gradle plugin.
+     * The name of the Gradle extension added by the Compiler Gradle plugin.
      */
     public const val EXTENSION_NAME: String = "compiler"
 
     /**
-     * The name of the Gradle Configuration created by Spine Compiler Gradle plugin
+     * The name of the Gradle Configuration created by Compiler Gradle plugin
      * for holding user-defined classpath.
      */
     public const val USER_CLASSPATH_CONFIGURATION: String = "spineCompiler"
 
     /**
-     * The name of the configuration containing ProtoData `fat-cli` artifact.
+     * The name of the configuration containing the Compiler `fat-cli` artifact.
      */
     public const val COMPILER_RAW_ARTIFACT: String = "spineCompilerRawArtifact"
 

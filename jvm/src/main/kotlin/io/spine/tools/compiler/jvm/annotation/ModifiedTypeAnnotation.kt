@@ -78,7 +78,7 @@ public open class ModifiedTypeAnnotation(
 ) : TypeAnnotation<Modified>(Modified::class.java) {
 
     /**
-     * No-arg constructor as required by ProtoData.
+     * No-arg constructor as required by the Compiler.
      *
      * Does the same as the primary constructor if called with all default arguments.
      */

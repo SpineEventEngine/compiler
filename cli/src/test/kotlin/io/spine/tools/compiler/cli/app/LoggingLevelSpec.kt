@@ -61,7 +61,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.io.TempDir
 
-@DisplayName("ProtoData CLI logging levels should")
+@DisplayName("The Compiler CLI logging levels should")
 class LoggingLevelSpec {
 
     private lateinit var parametersFile: File

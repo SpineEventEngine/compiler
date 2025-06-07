@@ -45,7 +45,7 @@ import kotlin.reflect.jvm.jvmName
 /**
  * The `Code Generation` context is responsible for "hosting" custom views, repositories,
  * and other components of a `BoundedContext` that a user-defined plugin can
- * [add][io.spine.compiler.plugin.Plugin.extend] to a code generation [Pipeline].
+ * [add][io.spine.tools.compiler.plugin.Plugin.extend] to a code generation [Pipeline].
  *
  * Views that are available in this context by default are:
  *  * [ProtoSourceFileView] — the view on the source files of the Protobuf model.
@@ -185,7 +185,7 @@ internal class ProtobufCompilerContext(pipelineId: String) :
     ExternalContext(pipelineId, "Protobuf Compiler")
 
 /**
- * The `ProtoData Configuration` third-party bounded context.
+ * The `Compiler Configuration` third-party bounded context.
  */
 internal class ConfigurationContext(pipelineId: String) :
-    ExternalContext(pipelineId, "ProtoData Configuration")
+    ExternalContext(pipelineId, "Compiler Configuration")

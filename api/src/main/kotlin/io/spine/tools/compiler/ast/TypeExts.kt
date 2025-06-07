@@ -63,7 +63,7 @@ public fun Type.toFieldType(): FieldType = fieldType {
 }
 
 /**
- * A collection of types used by ProtoData.
+ * A collection of types used by the Compiler.
  */
 public object TypeInstances {
 

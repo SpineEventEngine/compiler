@@ -104,6 +104,6 @@ public class PlainStringRendererPlugin : Plugin(
 )
 
 /**
- * A wrapper type for a ProtoData configuration.
+ * A wrapper type for a Compiler configuration.
  */
 public data class Name(public val value: String)

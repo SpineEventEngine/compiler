@@ -92,8 +92,8 @@ public fun parametersWithSettingsDir(dir: Path): @NonValidated PipelineParameter
         .buildPartial()
 
 /**
- * Creates a partial instance of [PipelineParameters] populating it according to the given
- * ProtoData working directory.
+ * Creates a partial instance of [PipelineParameters] populating it according to
+ * the given Compiler working directory.
  *
  * Populated properties are:
  *  * The [request file][PipelineParameters.getRequest] name is given for

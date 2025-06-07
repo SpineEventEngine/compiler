@@ -46,16 +46,16 @@ import kotlin.reflect.KClass
  * the view. Example:
  * ```protobuf
  * import "spine/options.proto";
- * import "spine/protodata/ast.proto";
+ * import "spine/compiler/ast.proto";
  *
  * // ...
  *
  * message ShortFieldName {
  *     option (entity).kind = PROJECTION; // Shows that this is a view state.
  *
- *     spine.protodata.FieldName name = 1; // Also, the ID of the view.
+ *     spine.compiler.FieldName name = 1; // Also, the ID of the view.
  *
- *     spine.protodata.TypeName where_declared = 2;
+ *     spine.compiler.TypeName where_declared = 2;
  * }
  * ```
  *
@@ -75,7 +75,7 @@ import kotlin.reflect.KClass
  *
  * Events from the Protobuf compiler should be marked as [@External][io.spine.core.External], while
  * events from policies should not. See the whole list of Protobuf compiler events
- * in `spine/protodata/events.proto`.
+ * in `spine/compiler/events.proto`.
  *
  * Example:
  * ```

@@ -32,7 +32,7 @@ import io.spine.tools.compiler.render.Renderer
 /**
  * An adapter plugin for gathering renderers that do not belong to a semantically defined plugin.
  *
- * This plugin is useful for testing ProtoData and renderers in particular.
+ * This plugin is useful for testing the Compiler and renderers in particular.
  * It is not meant to be used for production.
  */
 public class RenderingTestbed(renderers: List<Renderer<*>>) : Plugin(renderers) {

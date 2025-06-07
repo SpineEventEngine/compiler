@@ -33,7 +33,7 @@ import io.spine.tools.compiler.gradle.api.Names.TASK_SUFFIX
 import org.gradle.api.tasks.SourceSet
 
 /**
- * Utilities for working with `launchProtoData` tasks in a Gradle project.
+ * Utilities for working with `launchSpineCompiler` tasks in a Gradle project.
  */
 public object CompilerTask : TaskLocator() {
 
@@ -47,7 +47,7 @@ public object CompilerTask : TaskLocator() {
 }
 
 /**
- * The name of the `LaunchProtoData` task for the given source set.
+ * The name of the `LaunchSpineCompiler` task for the given source set.
  */
 public class CompilerTaskName(ssn: SourceSetName) :
     TaskWithSourceSetName("$TASK_PREFIX${ssn.toInfix()}$TASK_SUFFIX", ssn)

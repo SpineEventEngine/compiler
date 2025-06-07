@@ -115,10 +115,10 @@ private class ProtoFileEvents(
     /**
      * Yields compiler events for the given file.
      *
-     * Opens with an [FileEntered][io.spine.compiler.ast.event.FileEntered] event.
+     * Opens with an [FileEntered][io.spine.tools.compiler.ast.event.FileEntered] event.
      * Then go the events regarding the file metadata.
      * Then go the events regarding the file contents.
-     * At last, closes with an [FileExited][io.spine.compiler.ast.event.FileExited] event.
+     * At last, closes with an [FileExited][io.spine.tools.compiler.ast.event.FileExited] event.
      */
     suspend fun SequenceScope<EventMessage>.produceEvents() {
         yield(

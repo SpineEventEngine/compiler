@@ -33,7 +33,7 @@ import io.spine.tools.compiler.backend.DescriptorFilter
 /**
  * Creates a predicate accepting only the given [descriptor] of
  * a Protobuf declaration and the descriptor of the file in
- * which declaration was made, so that a [Pipeline][io.spine.compiler.backend.Pipeline]
+ * which declaration was made, so that a [Pipeline][io.spine.tools.compiler.backend.Pipeline]
  * can get down to the [descriptor] of interest.
  *
  * If the given [descriptor] is [FileDescriptor] the predicate accepts

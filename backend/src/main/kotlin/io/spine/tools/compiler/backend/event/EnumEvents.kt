@@ -52,10 +52,10 @@ internal class EnumEvents(header: ProtoFileHeader) : DeclarationEvents<EnumDescr
     /**
      * Yields events for the given enum type.
      *
-     * Opens with an [EnumEntered][io.spine.compiler.ast.event.EnumEntered] event.
+     * Opens with an [EnumEntered][io.spine.tools.compiler.ast.event.EnumEntered] event.
      * Then the events regarding the type metadata go.
      * Then go the events regarding the enum constants.
-     * At last, closes with an [EnumExited][io.spine.compiler.ast.event.EnumExited] event.
+     * At last, closes with an [EnumExited][io.spine.tools.compiler.ast.event.EnumExited] event.
      */
     override suspend fun SequenceScope<EventMessage>.produceEvents(desc: EnumDescriptor) {
         val path = header.file
@@ -94,10 +94,10 @@ internal class EnumEvents(header: ProtoFileHeader) : DeclarationEvents<EnumDescr
     /**
      * Yields compiler events for the given enum constant.
      *
-     * Opens with an [EnumConstantEntered][io.spine.compiler.ast.event.EnumConstantEntered] event.
+     * Opens with an [EnumConstantEntered][io.spine.tools.compiler.ast.event.EnumConstantEntered] event.
      * Then go the events regarding the constant options.
      * At last, closes with an
-     * [EnumConstantExited][io.spine.compiler.ast.event.EnumConstantExited] event.
+     * [EnumConstantExited][io.spine.tools.compiler.ast.event.EnumConstantExited] event.
      */
     private suspend fun SequenceScope<EventMessage>.produceConstantEvents(
         desc: EnumValueDescriptor

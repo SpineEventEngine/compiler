@@ -49,13 +49,13 @@ public class Extension(private val project: Project): CompilerSettings {
     private val factory = project.objects
 
     /**
-     * Adds the class names of the plugins to the list of those passed to ProtoData.
+     * Adds the class names of the plugins to the list of those passed to the Compiler.
      */
     public override fun plugins(vararg classNames: String): Unit =
         plugins.addAll(classNames.toList())
 
     /**
-     * Contains the class names of the plugins passed to ProtoData.
+     * Contains the class names of the plugins passed to the Compiler.
      */
     @VisibleForTesting
     public val plugins: ListProperty<String> =
@@ -135,7 +135,7 @@ public class Extension(private val project: Project): CompilerSettings {
     public companion object {
 
         /**
-         * Default subdirectories expected by ProtoData under a generated source set.
+         * Default subdirectories expected by the Compiler under a generated source set.
          *
          * @see subDirs
          */
