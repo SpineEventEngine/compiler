@@ -34,7 +34,7 @@ import "spine/options.proto";
 option (type_url_prefix) = "type.spine.io";
 
 // The preferred package name is "given" to separate stub types from production or test code.
-option java_package = "io.spine.compiler.ast.given";
+option java_package = "io.spine.tools.compiler.ast.given";
 
 // Explicitly set the outer class name.
 option java_outer_classname = "OptionExtsSpecProto";

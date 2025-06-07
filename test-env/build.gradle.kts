@@ -38,6 +38,7 @@ dependencies {
     compileOnly(AutoService.annotations)
 
     implementation(project(":backend"))
+    implementation(platform(Grpc.bom))
     implementation(Grpc.stub)
     implementation(Grpc.protobuf)
 }

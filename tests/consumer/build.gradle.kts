@@ -29,7 +29,7 @@
 import io.spine.dependency.lib.JavaX
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.Spine
-import io.spine.compiler.gradle.api.CompilerSettings
+import io.spine.tools.compiler.gradle.api.CompilerSettings
 import io.spine.tools.gradle.root.rootExtension
 
 buildscript {
@@ -37,7 +37,7 @@ buildscript {
     apply(from = "$rootDir/../version.gradle.kts")
     val compilerVersion: String by extra
     dependencies {
-        classpath("io.spine.compiler:gradle-plugin:$compilerVersion")
+        classpath("io.spine.tools:compiler-gradle-plugin:$compilerVersion")
     }
 }
 
@@ -47,13 +47,14 @@ dependencies {
     val extensionSubproject = project(":compiler-extension")
     "spineCompiler"(extensionSubproject)
     implementation(extensionSubproject)
-    implementation(JavaX.annotations)
+    implementation(Base.lib)?.because("`io.spine.annotation.Generated` is used.")
+    implementation(JavaX.annotations)?.because("`@javax.annotation.Generated` is used too.")
     testImplementation(Base.lib)?.because("tests use packing and unpacking extension functions.")
 }
 
 rootExtension.extensions.getByType<CompilerSettings>().apply {
     plugins(
-        "io.spine.compiler.test.uuid.UuidPlugin",
-        "io.spine.compiler.test.annotation.AnnotationPlugin"
+        "io.spine.tools.compiler.test.uuid.UuidPlugin",
+        "io.spine.tools.compiler.test.annotation.AnnotationPlugin"
     )
 }

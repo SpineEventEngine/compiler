@@ -25,7 +25,7 @@ package given.domain;
 // This is a "vanilla" Protobuf file, which does not use Spine-specific features like
 // custom options such as `type_url_prefix` or validation constraints.
 // We also use "pure" Protobuf Java `protoc` plugin to process these files so that
-// we recreate conditions we have before ProtoData gets into play after `protoc`
+// we recreate conditions we have before the Compiler gets into play after `protoc`
 // finishes its work.
 //
 

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package compiler.test;
 
-option java_package = "io.spine.compiler.test";
+option java_package = "io.spine.tools.compiler.test";
 option java_outer_classname = "UserProto";
 option java_multiple_files = true;
 

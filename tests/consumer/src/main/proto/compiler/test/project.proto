@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package compiler.test;
 
-option java_package = "io.spine.compiler.test";
+option java_package = "io.spine.tools.compiler.test";
 option java_outer_classname = "ProjectProto";
 option java_multiple_files = true;
 
@@ -12,7 +12,7 @@ message ProjectId {
 
     string uuid = 1 [
         (spine.compiler.test.java_annotation) =
-            "io.spine.compiler.test.annotation.GeneratedBySpineCompiler"
+            "io.spine.tools.compiler.test.annotation.GeneratedBySpineCompiler"
     ];
 
     ProjectStatus status = 2;

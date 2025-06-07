@@ -41,7 +41,7 @@ description = "The Spine Compiler plugin for `protoc`."
 
 tasks.jar {
     manifest {
-        attributes(mapOf("Main-Class" to "io.spine.compiler.protoc.Plugin"))
+        attributes(mapOf("Main-Class" to "io.spine.tools.compiler.protoc.Plugin"))
     }
     // Assemble the "Fat-JAR" artifact containing all the dependencies.
     from(configurations.runtimeClasspath.get().map {
