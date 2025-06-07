@@ -27,6 +27,7 @@
 import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.build.Ksp
+import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
@@ -95,6 +96,7 @@ fun Module.forceConfigurations() {
         resolutionStrategy {
             Ksp.forceArtifacts(project, this@all, this@resolutionStrategy)
             Jackson.forceArtifacts(project, this@all, this@resolutionStrategy)
+            Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
             force(
                 Protobuf.compiler,
                 Base.lib,
