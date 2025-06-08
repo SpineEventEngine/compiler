@@ -33,7 +33,7 @@ import java.util.UUID
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-@DisplayName("ProtoData Gradle Plugin should")
+@DisplayName("The Compiler Gradle Plugin should")
 internal class DescriptorSetFileITest {
 
     /**
