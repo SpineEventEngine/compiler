@@ -27,6 +27,7 @@
 package io.spine.tools.compiler.jvm.annotation
 
 import io.kotest.matchers.string.shouldContain
+import io.spine.format.Format
 import io.spine.tools.compiler.backend.Pipeline
 import io.spine.tools.compiler.jvm.JAVA_FILE
 import io.spine.tools.compiler.jvm.WithSourceFileSet
@@ -35,7 +36,6 @@ import io.spine.tools.compiler.settings.defaultConsumerId
 import io.spine.testing.compiler.pipelineParams
 import io.spine.testing.compiler.withRoots
 import io.spine.testing.compiler.withSettingsDir
-import io.spine.tools.compiler.util.Format.PROTO_JSON
 import io.spine.string.ti
 import java.nio.file.Path
 import kotlin.io.path.Path
@@ -73,7 +73,7 @@ internal class SuppressWarningsAnnotationSpec : WithSourceFileSet() {
         fun `if settings contain an empty list of suppressions`(@TempDir dir: Path) {
             val settings = WorkingDirectory(dir).settingsDirectory
             settings.write(SuppressWarningsAnnotation::class.java.defaultConsumerId,
-                PROTO_JSON, """
+                Format.ProtoJson, """
                     {"warnings": {"value": []}} 
                 """.ti()
             )
@@ -102,7 +102,7 @@ internal class SuppressWarningsAnnotationSpec : WithSourceFileSet() {
         val deprecation = "deprecation"
         val stringEqualsEmptyString = "StringEqualsEmptyString"
         settings.write(SuppressWarningsAnnotation::class.java.defaultConsumerId,
-            PROTO_JSON, """
+            Format.ProtoJson, """
                 {"warnings": {"value": ["$deprecation", "$stringEqualsEmptyString"]}} 
             """.ti()
         )

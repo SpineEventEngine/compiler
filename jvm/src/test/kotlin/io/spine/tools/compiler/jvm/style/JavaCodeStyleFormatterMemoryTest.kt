@@ -36,7 +36,7 @@ import io.spine.testing.compiler.parametersWithSettingsDir
 import io.spine.testing.compiler.pipelineParams
 import io.spine.testing.compiler.withRoots
 import io.spine.testing.compiler.withSettingsDir
-import io.spine.tools.compiler.util.Format
+import io.spine.format.Format
 import io.spine.type.toJson
 import java.nio.file.Files.readString
 import java.nio.file.Path
@@ -111,7 +111,7 @@ internal class JavaCodeStyleFormatterMemoryTest {
 
             settings.write(
                 JavaCodeStyleFormatter.settingsId,
-                Format.PROTO_JSON,
+                Format.ProtoJson,
                 javaStyle.toJson()
             )
         }

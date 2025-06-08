@@ -38,8 +38,7 @@ import io.spine.tools.compiler.plugin.Plugin
 import io.spine.tools.compiler.render.SourceFileSet
 import io.spine.tools.compiler.settings.SettingsDirectory
 import io.spine.testing.compiler.PipelineSetup.Companion.byResources
-import io.spine.tools.compiler.util.Format.PROTO_JSON
-import io.spine.tools.compiler.util.extensions
+import io.spine.format.Format
 import io.spine.io.Resource
 import io.spine.io.ResourceDirectory
 import io.spine.io.replaceExtension
@@ -334,7 +333,7 @@ public class PipelineSetup(
             val requestFile = params.request.toPath()
             requestFile.parent.toFile().mkdirs()
             requestFile.writeBytes(request.toByteArray(), CREATE, TRUNCATE_EXISTING)
-            val jsonFile = requestFile.replaceExtension(PROTO_JSON.extensions[0])
+            val jsonFile = requestFile.replaceExtension(Format.ProtoJson.extensions[0])
             val json = request.toJson()
             jsonFile.writeText(json, options = arrayOf(CREATE, TRUNCATE_EXISTING))
         }

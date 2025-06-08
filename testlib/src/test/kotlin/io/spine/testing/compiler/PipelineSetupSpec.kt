@@ -31,6 +31,7 @@ import com.google.protobuf.compiler.PluginProtos.CodeGeneratorRequest
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import io.spine.format.Format
 import io.spine.io.Resource
 import io.spine.io.ResourceDirectory
 import io.spine.testing.compiler.PipelineSetup.Companion.byResources
@@ -42,7 +43,6 @@ import io.spine.tools.compiler.backend.CodeGenerationContext
 import io.spine.tools.compiler.params.PipelineParameters
 import io.spine.tools.compiler.plugin.Plugin
 import io.spine.tools.compiler.settings.SettingsDirectory
-import io.spine.tools.compiler.util.Format.PROTO_JSON
 import io.spine.tools.prototap.Names.PROTOC_PLUGIN_NAME
 import io.spine.tools.prototap.Paths.CODE_GENERATOR_REQUEST_JSON_FILE
 import io.spine.validate.NonValidated
@@ -87,7 +87,7 @@ internal class PipelineSetupSpec {
         @TempDir output: Path,
     ) {
         val setup = setup(workingDir, input, output) {
-            it.write("foo_bar", PROTO_JSON, Empty.getDefaultInstance().toByteArray())
+            it.write("foo_bar", Format.ProtoJson, Empty.getDefaultInstance().toByteArray())
         }
         val settingsDir = setup.settings.path
         settingsDir.fileCount() shouldBe 0

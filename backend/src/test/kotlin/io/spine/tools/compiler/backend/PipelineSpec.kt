@@ -71,7 +71,7 @@ import io.spine.tools.compiler.test.PrependingRenderer
 import io.spine.tools.compiler.test.TestPlugin
 import io.spine.tools.compiler.test.UnderscorePrefixRenderer
 import io.spine.tools.compiler.type.TypeSystem
-import io.spine.tools.compiler.util.Format
+import io.spine.format.Format
 import java.nio.file.Path
 import kotlin.io.path.createFile
 import kotlin.io.path.div
@@ -390,7 +390,7 @@ internal class PipelineSpec {
             val expectedContent = "123456789"
             val settings = SettingsDirectory(settingsDir)
             settings.write(PlainStringRenderer::class.java.defaultConsumerId,
-                Format.PLAIN,
+                Format.Json,
                 expectedContent
             )
             val params = pipelineParams {

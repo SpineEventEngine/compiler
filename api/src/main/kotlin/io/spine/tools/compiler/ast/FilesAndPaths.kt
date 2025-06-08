@@ -28,8 +28,7 @@
 
 package io.spine.tools.compiler.ast
 
-import io.spine.tools.compiler.util.Format
-import io.spine.tools.compiler.util.extensions
+import io.spine.format.Format
 import java.nio.file.Path
 import kotlin.io.path.Path
 import kotlin.io.path.absolutePathString
@@ -100,7 +99,9 @@ public fun Directory.toPath(): Path = Path(path)
 /**
  * The suffix of `pb.json` files including the leading dot.
  */
-private val PB_JSON_SUFFIX = ".${Format.PROTO_JSON.extensions[0]}"
+private val PB_JSON_SUFFIX: String by lazy {
+    ".${Format.ProtoJson.extensions[0]}"
+}
 
 /**
  * Returns the name of this file without an extension.

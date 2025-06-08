@@ -38,7 +38,7 @@ import io.spine.tools.compiler.params.DebugLoggingParam
 import io.spine.tools.compiler.params.InfoLoggingParam
 import io.spine.tools.compiler.params.Parameter
 import io.spine.tools.compiler.params.ParametersFileParam
-import io.spine.tools.compiler.util.parseFile
+import io.spine.format.parse
 import io.spine.logging.Level
 import io.spine.logging.WithLogging
 import io.spine.logging.context.LogLevelMap
@@ -135,7 +135,7 @@ internal class Run(version: String) : CliktCommand(
     }
 
     private fun doRun() {
-        val params = parseFile(paramsFile, PipelineParameters::class.java)
+        val params = parse<PipelineParameters>(paramsFile)
         val pipeline = Pipeline(params = params)
         pipeline()
     }
