@@ -46,14 +46,14 @@ buildscript {
     dependencies {
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib)
         classpath(io.spine.dependency.build.Ksp.run { artifact(gradlePlugin) })
-        classpath(baseForBuildScript)
-        classpath(mcJava.pluginLib) {
-            excludeSpineBase()
-        }
+        classpath(mcJava.pluginLib)
     }
     configurations.all {
         resolutionStrategy {
-            force(baseForBuildScript)
+            force(
+                io.spine.dependency.lib.Protobuf.javaLib,
+                baseForBuildScript
+            )
         }
     }
 }
