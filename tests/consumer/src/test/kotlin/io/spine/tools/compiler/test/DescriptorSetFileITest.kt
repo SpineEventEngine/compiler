@@ -28,7 +28,7 @@ package io.spine.tools.compiler.test
 
 import io.kotest.matchers.shouldBe
 import io.spine.protobuf.pack
-import io.spine.protobuf.unpackGuessingType
+import io.spine.protobuf.unpackKnownType
 import java.util.UUID
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -38,7 +38,7 @@ internal class DescriptorSetFileITest {
 
     /**
      * This test verifies that it is possible to unpack an instance of [com.google.protobuf.Any]
-     * using the extension function [unpackGuessingType].
+     * using the extension function [unpackKnownType].
      *
      * The extension indirectly calls [io.spine.type.KnownTypes] created using descriptor set files loaded
      * from the classpath. If the unpacking works, it means we have descriptor set files produced for in this module.
@@ -47,7 +47,7 @@ internal class DescriptorSetFileITest {
     fun `enable creation of descriptor set files`() {
         val taskId = taskId { uuid = UUID.randomUUID().toString() }
         val packed = taskId.pack()
-        val unpacked = packed.unpackGuessingType()
+        val unpacked = packed.unpackKnownType()
         unpacked shouldBe taskId
     }
 }
