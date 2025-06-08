@@ -87,7 +87,7 @@ val appName = SpinePublishing.DEFAULT_PREFIX + modulePrefix.replace("-", "")
 val modules: Set<String> = spinePublishing.modules
 
 application {
-    mainClass.set("io.spine.compiler.cli.app.MainKt")
+    mainClass.set("io.spine.tools.compiler.cli.app.MainKt")
     applicationName = appName
 }
 
@@ -104,7 +104,7 @@ publishing {
     publications {
         create<MavenPublication>("cliFatJar") {
             groupId = pGroup
-            artifactId = "cli-all"
+            artifactId = "compiler-cli-all"
             version = pVersion
 
             artifact(tasks.shadowJar) {

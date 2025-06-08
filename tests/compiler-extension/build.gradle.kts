@@ -37,7 +37,9 @@ apply {
     plugin("io.spine.mc-java")
 }
 
+val compilerVersion: String by extra
+
 dependencies {
-    compileOnly("io.spine.compiler:backend")
-    implementation("io.spine.compiler:jvm")
+    compileOnly("io.spine.tools:compiler-backend:$compilerVersion")
+    implementation("io.spine.tools:compiler-jvm:$compilerVersion")
 }

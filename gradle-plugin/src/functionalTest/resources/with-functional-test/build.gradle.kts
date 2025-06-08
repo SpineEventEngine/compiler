@@ -48,14 +48,14 @@ repositories {
 spine {
     compiler {
         plugins(
-            "io.spine.compiler.test.NoOpRendererPlugin",
-            "io.spine.compiler.test.TestPlugin"
+            "io.spine.tools.compiler.test.NoOpRendererPlugin",
+            "io.spine.tools.compiler.test.TestPlugin"
         )
     }
 }
 
 dependencies {
-    spineCompiler("io.spine.compiler:test-env:+")
+    spineCompiler("io.spine.tools:compiler-test-env:+")
     Protobuf.libs.forEach { implementation(it) }
 }
 

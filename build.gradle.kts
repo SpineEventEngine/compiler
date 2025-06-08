@@ -78,18 +78,12 @@ spinePublishing {
         gitHub("compiler")
     )}
 
-    // Do not use the artifact prefix (like `compiler-` or `spine-compiler`) because
-    //   1. We have the group called `io.spine.compiler`.
-    //   2. Most of the JAR are not going to be in the end user's code.
-    //      So there is no need to distinguish them from 3rd party JARs.
-    //   3. We will use a prefix where needed when turning per-module custom publications.
-    //
-    artifactPrefix = ""
+    artifactPrefix = "compiler-"
 }
 
 allprojects {
     apply(from = "$rootDir/version.gradle.kts")
-    group = "io.spine.compiler"
+    group = "io.spine.tools"
     version = extra["compilerVersion"]!!
 
     repositories.standardToSpineSdk()
