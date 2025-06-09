@@ -26,10 +26,9 @@
 
 package io.spine.tools.compiler.params
 
-import io.spine.tools.compiler.util.Format
-import io.spine.tools.compiler.util.extensions
-import io.spine.tools.compiler.util.ensureExistingDirectory
+import io.spine.format.Format
 import io.spine.tools.code.SourceSetName
+import io.spine.tools.compiler.util.ensureExistingDirectory
 import io.spine.type.toJson
 import java.io.File
 import java.nio.file.Path
@@ -62,6 +61,6 @@ public class ParametersDirectory(
     }
 
     private companion object {
-        val DEFAULT_FORMAT = Format.PROTO_JSON
+        val DEFAULT_FORMAT = Format.ProtoJson
     }
 }

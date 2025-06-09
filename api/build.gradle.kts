@@ -43,6 +43,7 @@ plugins {
 dependencies {
     listOf(
         Base.lib,
+        Base.formatLib,
         Text.lib,
         CoreJava.server,
         ToolBase.lib,

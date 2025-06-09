@@ -41,7 +41,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.spine.base.EventMessage
 import io.spine.option.OptionsProto
-import io.spine.protobuf.unpackGuessingType
+import io.spine.protobuf.unpackKnownType
 import io.spine.testing.Correspondences
 import io.spine.tools.compiler.ast.event.EnumConstantEntered
 import io.spine.tools.compiler.ast.event.EnumConstantExited
@@ -243,7 +243,7 @@ class CompilerEventsSpec {
         val event = emitted<RpcOptionDiscovered>()
 
         event.option.name shouldBe "idempotency_level"
-        event.option.value.unpackGuessingType() shouldBe enumValue {
+        event.option.value.unpackKnownType() shouldBe enumValue {
             name = NO_SIDE_EFFECTS.name
             number = NO_SIDE_EFFECTS_VALUE
         }

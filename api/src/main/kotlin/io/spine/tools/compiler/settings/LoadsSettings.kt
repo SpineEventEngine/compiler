@@ -26,12 +26,11 @@
 
 package io.spine.tools.compiler.settings
 
-import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.toPath
 import io.spine.tools.compiler.settings.Settings.KindCase.EMPTY
 import io.spine.tools.compiler.settings.Settings.KindCase.FILE
 import io.spine.tools.compiler.settings.Settings.KindCase.KIND_NOT_SET
-import io.spine.tools.compiler.util.parseFile
+import io.spine.format.parse
 import io.spine.server.query.Querying
 import io.spine.server.query.select
 
@@ -90,13 +89,9 @@ public val Class<*>.defaultConsumerId: String
  */
 private fun <T : Any> Settings.parse(cls: Class<T>): T =
     when (kindCase!!) {
-        FILE -> parseFile(file, cls)
+        FILE -> parse(file.toPath().toFile(), cls)
         EMPTY, KIND_NOT_SET -> unknownCase(cls)
     }
 
-private fun <T : Any> parseFile(file: File, cls: Class<T>): T =
-    parseFile(file.toPath().toFile(), cls)
-
-private fun Settings.unknownCase(cls: Class<*>): Nothing {
+private fun Settings.unknownCase(cls: Class<*>): Nothing =
     error("Unable to parse settings as `${cls.canonicalName}`. `kindCase` is `$kindCase`.")
-}
