@@ -33,7 +33,6 @@ import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Logging
-import io.spine.dependency.local.ProtoData
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
@@ -101,11 +100,7 @@ subprojects {
                     Logging.libJvm,
                     Logging.middleware,
                     Reflect.lib,
-                    ProtoData.api,
-                    ProtoData.backend,
-                    ProtoData.params,
                     CoreJava.server,
-                    ProtoData.java,
                 )
             }
         }
