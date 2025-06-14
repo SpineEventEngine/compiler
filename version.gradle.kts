@@ -32,4 +32,4 @@
  *
  * For dependencies on Spine SDK module please see [io.spine.dependency.local.Spine].
  */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.010")
+val compilerVersion: String by extra("2.0.0-SNAPSHOT.011")

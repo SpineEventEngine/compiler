@@ -34,6 +34,8 @@ import io.spine.tools.compiler.test.FieldId;
 import java.nio.file.Path;
 import java.util.Set;
 
+import static io.spine.tools.compiler.jvm.file.SourceFileSets.hasJavaRoot;
+
 /**
  * Renders Java annotations on field getters for fields marked with
  * the {@code (java_annotation)} option.
@@ -45,23 +47,23 @@ public final class AnnotationRenderer extends JavaRenderer {
 
     @Override
     protected void render(SourceFileSet sources) {
-        // Don't do anything if this source file set is for a language
-        // other than Java. For the root cause of this please see this issue:
-        // https://github.com/SpineEventEngine/ProtoData/issues/90
-         if (!sources.inputRoot().endsWith("java")) {
-             return;
-         }
+        // Don't do anything if this source file set is for a language other than Java.
+        if (!hasJavaRoot(sources)) {
+            return;
+        }
         var annotatedFields = select(Annotated.class).all();
         annotatedFields.forEach(field -> renderFor(field, sources));
 
+        var nl = System.lineSeparator();
         sources.forEach(file -> {
            file.at(new MessageClass())
                .withExtraIndentation(2)
                // Use the deprecated annotation because `io.spine.annotation.Generated`
-               // is used by default.
-               .add("@javax.annotation.Generated(" + System.lineSeparator() +
-                    "    \"by Spine Compiler tests\"" + System.lineSeparator() +
-                    ")");
+               // is used by default, and it is not repeated.
+               .add("@javax.annotation.Generated(" + nl +
+                    "    \"by Spine Compiler tests\"" + nl +
+                    ")"
+               );
         });
     }
 

@@ -24,15 +24,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@file:JvmName("SourceFiles")
+@file:JvmName("SourceFileSets")
 
 package io.spine.tools.compiler.jvm.file
 
-import io.spine.tools.compiler.render.SourceFile
-import kotlin.io.path.extension
+import io.spine.tools.compiler.render.SourceFileSet
 
 /**
- * Tells if this is a Java source file.
+ * Tells if this source file set produces files that reside under the `java` directory.
+ *
+ * @see hasGrpcRoot
  */
-public val SourceFile<*>.isJava: Boolean
-    get() = relativePath.extension == "java"
+@get:JvmName("hasJavaRoot")
+public val SourceFileSet.hasJavaRoot: Boolean
+    get() = outputRoot.endsWith("java")
+
+/**
+ * Tells if this source file set produces files that reside under the `grpc` directory.
+ *
+ * @see hasJavaRoot
+ */
+@get:JvmName("hasGrpcRoot")
+public val SourceFileSet.hasGrpcRoot: Boolean
+    get() = outputRoot.endsWith("grpc")
+
+/**
+ * Tells if this source file set has at least one Java file.
+ */
+@get:JvmName("hasJavaFiles")
+public val SourceFileSet.hasJavaFiles: Boolean
+    get() = any { it.isJava }
