@@ -34,7 +34,6 @@ dependencies {
     compileOnly(gradleApi())
 
     implementation(ToolBase.pluginBase)
-    implementation(ToolBase.gradlePluginApi)
     implementation(project(":api"))
     implementation(project(":params"))
 
