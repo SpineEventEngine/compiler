@@ -78,7 +78,6 @@ dependencies {
     compileOnly(Kotlin.GradlePlugin.api)
 
     api(project(":gradle-api"))
-    api(ToolBase.gradlePluginApi)
 
     implementation(project(":api"))
     implementation(project(":params"))
