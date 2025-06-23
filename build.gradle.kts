@@ -59,7 +59,7 @@ buildscript {
 }
 
 plugins {
-    dokka
+    id("org.jetbrains.dokka")
     jacoco
     `gradle-doctor`
     `project-report`
