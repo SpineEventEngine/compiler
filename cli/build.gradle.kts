@@ -39,7 +39,7 @@ plugins {
     `build-proto-model`
     `maven-publish`
     prototap
-    id("com.github.johnrengelman.shadow")
+    id("com.gradleup.shadow")
 }
 
 dependencies {
