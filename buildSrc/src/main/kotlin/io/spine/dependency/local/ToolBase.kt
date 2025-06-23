@@ -34,13 +34,16 @@ package io.spine.dependency.local
 @Suppress("ConstPropertyName", "unused")
 object ToolBase {
     const val group = Spine.toolsGroup
-    const val version = "2.0.0-SNAPSHOT.335"
+    const val version = "2.0.0-SNAPSHOT.340"
 
     const val lib = "$group:spine-tool-base:$version"
     const val pluginBase = "$group:spine-plugin-base:$version"
     const val gradleRootPlugin = "$group:spine-gradle-root-plugin:$version"
     const val gradlePluginApi = "$group:spine-gradle-plugin-api:$version"
     const val pluginTestlib = "$group:spine-plugin-testlib:$version"
+
+    const val jvmUtil = "$group:jvm-util:$version"
+    const val jvmUtilPlugin = "$group:jvm-util-plugin:$version"
 
     const val intellijPlatformJava = "$group:intellij-platform-java:$version"
 
