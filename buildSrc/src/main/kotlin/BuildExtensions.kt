@@ -26,6 +26,7 @@
 
 @file:Suppress("UnusedReceiverParameter", "unused", "TopLevelPropertyNaming", "ObjectPropertyName")
 
+import io.spine.dependency.build.Dokka
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.build.GradleDoctor
 import io.spine.dependency.build.Ksp
@@ -72,6 +73,9 @@ private const val ABOUT_DEPENDENCY_EXTENSIONS = ""
 fun ScriptHandlerScope.standardSpineSdkRepositories() {
     repositories.standardToSpineSdk()
 }
+
+val PluginDependenciesSpec.dokka: PluginDependencySpec
+    get() = id(Dokka.GradlePlugin.id)
 
 /**
  * Shortcut to [Protobuf] dependency object for using under `buildScript`.
