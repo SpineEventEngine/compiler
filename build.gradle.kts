@@ -53,6 +53,9 @@ buildscript {
         resolutionStrategy {
             force(
                 io.spine.dependency.lib.Protobuf.javaLib,
+                io.spine.dependency.local.Logging.grpcContext,
+                io.spine.dependency.local.ToolBase.intellijPlatform,
+                io.spine.dependency.local.ToolBase.intellijPlatformJava,
                 baseForBuildScript
             )
         }
@@ -92,6 +95,9 @@ allprojects {
     configurations.all {
         resolutionStrategy {
             force(
+                io.spine.dependency.local.Logging.grpcContext,
+                io.spine.dependency.local.ToolBase.intellijPlatform,
+                io.spine.dependency.local.ToolBase.intellijPlatformJava,
                 Grpc.ProtocPlugin.artifact,
                 Reflect.lib,
                 Base.lib,
