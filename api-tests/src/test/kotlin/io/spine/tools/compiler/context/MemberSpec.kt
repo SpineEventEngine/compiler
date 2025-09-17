@@ -28,6 +28,12 @@ package io.spine.tools.compiler.context
 
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldEndWith
+import io.spine.testing.compiler.PipelineSetup
+import io.spine.testing.compiler.RenderingTestbed
+import io.spine.testing.compiler.pipelineParams
+import io.spine.testing.compiler.withRequestFile
+import io.spine.tools.code.Java
+import io.spine.tools.code.SourceSetName
 import io.spine.tools.compiler.ast.EnumInFile
 import io.spine.tools.compiler.ast.MessageInFile
 import io.spine.tools.compiler.ast.ProtoFileHeader
@@ -37,12 +43,6 @@ import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.compiler.protobuf.toMessageType
 import io.spine.tools.compiler.render.Renderer
 import io.spine.tools.compiler.render.SourceFileSet
-import io.spine.testing.compiler.PipelineSetup
-import io.spine.testing.compiler.RenderingTestbed
-import io.spine.testing.compiler.pipelineParams
-import io.spine.testing.compiler.withRequestFile
-import io.spine.tools.code.Java
-import io.spine.tools.code.SourceSetName
 import java.nio.file.Path
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
@@ -75,7 +75,7 @@ internal class MemberSpec {
         @JvmStatic
         fun setup(@TempDir workingDir: Path, @TempDir outputDir: Path) {
             val requestFile = WorkingDirectory(workingDir).parametersDirectory
-                .file(SourceSetName("testFixtures"))
+                .file(SourceSetName("testFixtures")/*, Format.ProtoBinary*/)
             val params = pipelineParams { withRequestFile(requestFile) }
             val setup = PipelineSetup.byResources(
                 language = Java,

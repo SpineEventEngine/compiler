@@ -60,6 +60,15 @@ public class ParametersDirectory(
         return path.resolve(fileName).toFile()
     }
 
+    /**
+     * Obtains the file for passing parameters for compilation of
+     * the specified source set in the given [format].
+     */
+    public fun file(sourceSet: SourceSetName, format: Format<*>): File {
+        val fileName = "${sourceSet.value}.${format.extension}"
+        return path.resolve(fileName).toFile()
+    }
+
     private companion object {
         val DEFAULT_FORMAT = Format.ProtoJson
     }
