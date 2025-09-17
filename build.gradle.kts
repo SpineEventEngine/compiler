@@ -63,10 +63,11 @@ buildscript {
 }
 
 plugins {
-    dokka
+    kotlin
     jacoco
     `gradle-doctor`
     `project-report`
+    `dokka-for-kotlin`
 }
 
 /**
