@@ -127,8 +127,10 @@ internal class Run(version: String) : CliktCommand(
             doRun()
         } else {
             val logLevelMap = LogLevelMap.create(mapOf(), loggingLevel)
-            val context = ScopedLoggingContext.newContext().withLogLevelMap(logLevelMap)
-            context.execute {
+            val context = ScopedLoggingContext.getInstance()
+                .newContext()
+                .withLogLevelMap(logLevelMap)
+            context.call {
                 doRun()
             }
         }
