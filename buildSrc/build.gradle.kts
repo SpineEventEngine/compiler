@@ -24,8 +24,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 /**
  * This script uses two declarations of the constant [licenseReportVersion] because
  * currently there is no way to define a constant _before_ a build script of `buildSrc`.
@@ -128,6 +126,11 @@ val detektVersion = "1.23.8"
 val kotestJvmPluginVersion = "0.4.10"
 
 /**
+ * @see [io.spine.dependency.test.Kotest.MultiplatformGradlePlugin]
+ */
+val kotestMultiplatformPluginVersion = "5.9.1"
+
+/**
  * @see [io.spine.dependency.test.Kover]
  */
 val koverVersion = "0.9.1"
@@ -155,12 +158,6 @@ configurations.all {
     }
 }
 
-kotlin {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_17)
-    }
-}
-
 dependencies {
     api("com.github.jk1:gradle-license-report:$licenseReportVersion")
     api(platform("org.jetbrains.kotlin:kotlin-bom:$kotlinEmbeddedVersion"))
@@ -175,12 +172,13 @@ dependencies {
         "com.gradleup.shadow:shadow-gradle-plugin:$shadowVersion",
         "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion",
         "io.kotest:kotest-gradle-plugin:$kotestJvmPluginVersion",
+        "io.kotest:kotest-framework-multiplatform-plugin-gradle:$kotestMultiplatformPluginVersion",
         // https://github.com/srikanth-lingala/zip4j
         "net.lingala.zip4j:zip4j:2.10.0",
         "net.ltgt.gradle:gradle-errorprone-plugin:$errorPronePluginVersion",
         "org.ajoberstar.grgit:grgit-core:$grGitVersion",
         "org.jetbrains.dokka:dokka-base:$dokkaVersion",
-        "org.jetbrains.dokka:dokka-gradle-plugin:${dokkaVersion}",
+        "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion",
         "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinEmbeddedVersion",
         "org.jetbrains.kotlin:kotlin-reflect:$kotlinEmbeddedVersion",
         "org.jetbrains.kotlinx:kover-gradle-plugin:$koverVersion"
