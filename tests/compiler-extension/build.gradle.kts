@@ -25,9 +25,17 @@
  */
 
 import io.spine.dependency.lib.AutoService
+import io.spine.dependency.local.ToolBase
 
 buildscript {
     standardSpineSdkRepositories()
+    configurations.all {
+        resolutionStrategy {
+            force(
+                io.spine.dependency.local.Logging.grpcContext,
+            )
+        }
+    }
     dependencies {
         classpath(io.spine.dependency.local.McJava.pluginLib)
     }
@@ -35,6 +43,20 @@ buildscript {
 
 apply {
     plugin("io.spine.mc-java")
+}
+
+configurations.all {
+    resolutionStrategy {
+        // Substitute the legacy artifact coordinates with the new `ToolBase.lib` alias.
+        dependencySubstitution {
+            substitute(module("io.spine.tools:spine-tool-base")).using(module(ToolBase.lib))
+        }
+        force(
+            io.spine.dependency.local.ToolBase.lib,
+            io.spine.dependency.local.ToolBase.intellijPlatform,
+            io.spine.dependency.local.ToolBase.intellijPlatformJava,
+        )
+    }
 }
 
 val compilerVersion: String by extra
