@@ -28,6 +28,7 @@ package io.spine.tools.compiler.context
 
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldEndWith
+import io.spine.format.Format
 import io.spine.testing.compiler.PipelineSetup
 import io.spine.testing.compiler.RenderingTestbed
 import io.spine.testing.compiler.pipelineParams
@@ -73,10 +74,11 @@ internal class MemberSpec {
          */
         @BeforeAll
         @JvmStatic
-        fun setup(@TempDir workingDir: Path, @TempDir outputDir: Path) {
+        fun setup(@TempDir workingDir: Path) {
             val requestFile = WorkingDirectory(workingDir).parametersDirectory
-                .file(SourceSetName("testFixtures")/*, Format.ProtoBinary*/)
+                .file(SourceSetName("testFixtures"), Format.ProtoBinary)
             val params = pipelineParams { withRequestFile(requestFile) }
+            val outputDir = workingDir.resolve("output")
             val setup = PipelineSetup.byResources(
                 language = Java,
                 params = params,
