@@ -43,7 +43,7 @@ plugins {
 dependencies {
     listOf(
         Base.lib,
-        Base.formatLib,
+        Base.format,
         Text.lib,
         CoreJava.server,
         ToolBase.lib,
@@ -79,4 +79,3 @@ forceSpineBase()
 afterEvaluate {
     protoDataRemoteDebug(enabled = false)
 }
-

@@ -28,6 +28,7 @@ import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.AutoServiceKsp
 import io.spine.dependency.lib.Clikt
 import io.spine.dependency.local.Logging
+import io.spine.dependency.local.ToolBase
 import io.spine.gradle.publish.SpinePublishing
 import io.spine.gradle.publish.handleMergingServiceFiles
 
@@ -39,13 +40,14 @@ plugins {
     `build-proto-model`
     `maven-publish`
     prototap
-    id("com.github.johnrengelman.shadow")
+    id("com.gradleup.shadow")
 }
 
 dependencies {
     listOf(
         kotlin("reflect"),
         Clikt.lib,
+        ToolBase.jvmTools,
         Logging.lib,
         Logging.libJvm,
     ).forEach { implementation(it) }
@@ -54,7 +56,7 @@ dependencies {
         ":api",
         ":params",
         ":backend",
-        ":jvm"
+        ":jvm",
     ).forEach { implementation(project(it)) }
 
     testAnnotationProcessor(AutoService.processor)?.because(

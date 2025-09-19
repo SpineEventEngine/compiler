@@ -33,6 +33,7 @@ import io.spine.gradle.isSnapshot
 
 plugins {
     module
+    id("io.spine.artifact-meta")
     `java-gradle-plugin`
     `maven-publish`
     id("com.gradle.plugin-publish").version("1.3.1")
@@ -83,6 +84,7 @@ dependencies {
     implementation(project(":api"))
     implementation(project(":params"))
     implementation(ToolBase.lib)
+    implementation(ToolBase.jvmTools)
     implementation(ToolBase.pluginBase)
 }
 

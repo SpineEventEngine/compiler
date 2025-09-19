@@ -114,8 +114,10 @@ fun Module.setupTests() {
 
 fun Module.configureJava() {
     java {
-        toolchain.languageVersion.set(BuildSettings.javaVersion)
+        sourceCompatibility = BuildSettings.javaVersionCompat
+        targetCompatibility = BuildSettings.javaVersionCompat
     }
+    
     tasks {
         withType<JavaCompile>().configureEach {
             configureJavac()

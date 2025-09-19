@@ -97,8 +97,8 @@ subprojects {
                     ToolBase.psiJava,
                     Validation.runtime,
                     Logging.lib,
+                    Logging.grpcContext,
                     Logging.libJvm,
-                    Logging.middleware,
                     Reflect.lib,
                     CoreJava.server,
                 )

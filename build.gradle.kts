@@ -47,11 +47,15 @@ buildscript {
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib)
         classpath(io.spine.dependency.build.Ksp.run { artifact(gradlePlugin) })
         classpath(mcJava.pluginLib)
+        classpath(io.spine.dependency.local.ToolBase.jvmToolPlugins)
     }
     configurations.all {
         resolutionStrategy {
             force(
                 io.spine.dependency.lib.Protobuf.javaLib,
+                io.spine.dependency.local.Logging.grpcContext,
+                io.spine.dependency.local.ToolBase.intellijPlatform,
+                io.spine.dependency.local.ToolBase.intellijPlatformJava,
                 baseForBuildScript
             )
         }
@@ -59,10 +63,11 @@ buildscript {
 }
 
 plugins {
-    dokka
+    kotlin
     jacoco
     `gradle-doctor`
     `project-report`
+    `dokka-for-kotlin`
 }
 
 /**
@@ -91,6 +96,9 @@ allprojects {
     configurations.all {
         resolutionStrategy {
             force(
+                io.spine.dependency.local.Logging.grpcContext,
+                io.spine.dependency.local.ToolBase.intellijPlatform,
+                io.spine.dependency.local.ToolBase.intellijPlatformJava,
                 Grpc.ProtocPlugin.artifact,
                 Reflect.lib,
                 Base.lib,

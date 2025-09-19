@@ -51,7 +51,6 @@ import io.spine.tools.compiler.gradle.plugin.GeneratedSubdir.KOTLIN
 import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.string.toBase64Encoded
 import io.spine.tools.code.SourceSetName
-import io.spine.tools.code.manifest.Version
 import io.spine.tools.gradle.lib.LibraryPlugin
 import io.spine.tools.gradle.lib.spineExtension
 import io.spine.tools.gradle.project.hasJava
@@ -62,6 +61,8 @@ import io.spine.tools.gradle.protobuf.protobufExtension
 import io.spine.tools.gradle.task.JavaTaskName
 import io.spine.tools.gradle.task.descriptorSetFile
 import io.spine.tools.gradle.task.findKotlinDirectorySet
+import io.spine.tools.meta.ArtifactMeta
+import io.spine.tools.meta.Module
 import java.io.File
 import java.io.IOException
 import java.nio.file.Path
@@ -134,8 +135,11 @@ public class Plugin : LibraryPlugin<CompilerSettings>(
         @JvmStatic
         @VisibleForTesting
         public fun readVersion(): String {
-            val version = Version.fromManifestOf(Plugin::class.java).value
-            return version
+            val artifact = ArtifactMeta.loadFromResource(
+                Module("io.spine.tools", "gradle-plugin"),
+                this::class.java
+            )
+            return artifact.version
         }
     }
 }

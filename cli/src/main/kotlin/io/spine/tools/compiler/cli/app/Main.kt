@@ -45,7 +45,7 @@ import io.spine.logging.context.LogLevelMap
 import io.spine.logging.context.ScopedLoggingContext
 import io.spine.string.Separator
 import io.spine.string.qualifiedClassName
-import io.spine.tools.code.manifest.Version
+import io.spine.tools.version.Version
 import io.spine.tools.compiler.params.PipelineParameters
 import java.io.File
 import kotlin.system.exitProcess
@@ -127,8 +127,10 @@ internal class Run(version: String) : CliktCommand(
             doRun()
         } else {
             val logLevelMap = LogLevelMap.create(mapOf(), loggingLevel)
-            val context = ScopedLoggingContext.newContext().withLogLevelMap(logLevelMap)
-            context.execute {
+            val context = ScopedLoggingContext.getInstance()
+                .newContext()
+                .withLogLevelMap(logLevelMap)
+            context.call {
                 doRun()
             }
         }
