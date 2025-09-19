@@ -41,6 +41,21 @@ plugins {
     `write-manifest`
 }
 
+artifactMeta {
+    excludeConfigurations {
+        containing(
+            "errorprone",
+            "detekt",
+            "jacoco",
+            "pmd",
+            "checkstyle",
+            "ksp",
+            "dokka",
+            "jvm-tools",
+        )
+    }
+}
+
 @Suppress(
     "UnstableApiUsage" /* testing suites feature */,
     "unused" /* suite variable names obtained via `by` calls. */
