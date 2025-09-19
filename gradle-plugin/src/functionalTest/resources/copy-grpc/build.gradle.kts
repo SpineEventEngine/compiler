@@ -44,6 +44,15 @@ repositories {
     standardToSpineSdk()
 }
 
+
+configurations.all {
+    resolutionStrategy {
+        force(
+            io.spine.dependency.local.Base.lib,
+        )
+    }
+}
+
 val grpcVersion = "1.50.2"
 
 dependencies {
