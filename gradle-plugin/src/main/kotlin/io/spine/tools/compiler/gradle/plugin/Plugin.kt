@@ -62,6 +62,7 @@ import io.spine.tools.gradle.task.JavaTaskName
 import io.spine.tools.gradle.task.descriptorSetFile
 import io.spine.tools.gradle.task.findKotlinDirectorySet
 import io.spine.tools.meta.ArtifactMeta
+import io.spine.tools.meta.MavenArtifact
 import io.spine.tools.meta.Module
 import java.io.File
 import java.io.IOException
@@ -121,6 +122,7 @@ public class Plugin : LibraryPlugin<CompilerSettings>(
         createExtension()
         with(project) {
             createConfigurations(this@Plugin.version)
+            setProtocArtifact()
             createTasks()
             configureWithProtobufPlugin(this@Plugin.version)
             configureIdea()
@@ -214,6 +216,23 @@ private fun Project.createCleanTask(sourceSet: SourceSet) {
         tasks.getByName("clean").dependsOn(spineCompilerCleanTask)
         val compilation = CompilerTask.get(project, sourceSet)
         compilation.mustRunAfter(spineCompilerCleanTask)
+    }
+}
+
+private fun Project.setProtocArtifact() {
+    val artifactMeta = ArtifactMeta.loadFromResource(
+        //TODO:2025-09-20:alexander.yevsyukov: It should be `compiler-gradle-plugin`.
+        Module("io.spine.tools", "gradle-plugin"),
+        Plugin::class.java.classLoader
+    )
+    val protocArtifact = artifactMeta.dependencies.find(
+        Module("com.google.protobuf", "protoc")
+    ) as MavenArtifact?
+    checkNotNull(protocArtifact) {
+        "Unable to load `protoc` dependency of ${Plugin::class.qualifiedName}"
+    }
+    protobufExtension!!.protoc { locator ->
+        locator.artifact = protocArtifact.coordinates
     }
 }
 
