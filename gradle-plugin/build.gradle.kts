@@ -42,6 +42,9 @@ plugins {
 }
 
 artifactMeta {
+    // Add `protoc` as an explicit dependency as we pass it on to
+    // `protobuf/protoc/artifact` when configuring a project.
+    addDependencies(Protobuf.compiler)
     excludeConfigurations {
         containing(
             "errorprone",
