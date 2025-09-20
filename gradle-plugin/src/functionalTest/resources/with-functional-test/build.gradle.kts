@@ -54,15 +54,17 @@ spine {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force(
+            io.spine.dependency.local.Base.lib,
+        )
+    }
+}
+
 dependencies {
     spineCompiler("io.spine.tools:compiler-test-env:+")
     Protobuf.libs.forEach { implementation(it) }
-}
-
-protobuf {
-    protoc {
-        artifact = io.spine.dependency.lib.Protobuf.compiler
-    }
 }
 
 @Suppress("UNUSED_VARIABLE") /* `test` and `functionalTest` variables are really used by their

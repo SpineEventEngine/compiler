@@ -25,6 +25,11 @@
  */
 
 import com.google.protobuf.gradle.protobuf
+import io.spine.dependency.lib.Grpc
+import io.spine.dependency.local.Base
+import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.Reflect
+import io.spine.dependency.local.TestLib
 import io.spine.gradle.repo.standardToSpineSdk
 
 buildscript {
@@ -55,12 +60,14 @@ dependencies {
     spineCompiler("io.spine.tools:compiler-test-env:+")
 }
 
-protobuf {
-    protoc {
-        artifact = io.spine.dependency.lib.Protobuf.compiler
-    }
-}
-
 android {
     compileSdkVersion = "android-31"
+}
+
+configurations.all {
+    resolutionStrategy {
+        force(
+            io.spine.dependency.local.Base.lib,
+        )
+    }
 }

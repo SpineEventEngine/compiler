@@ -43,14 +43,16 @@ repositories {
     standardToSpineSdk()
 }
 
-dependencies {
-    spineCompiler("io.spine.tools:compiler-test-env:+")
+configurations.all {
+    resolutionStrategy {
+        force(
+            io.spine.dependency.local.Base.lib,
+        )
+    }
 }
 
-protobuf {
-    protoc {
-        artifact = io.spine.dependency.lib.Protobuf.compiler
-    }
+dependencies {
+    spineCompiler("io.spine.tools:compiler-test-env:+")
 }
 
 spine {

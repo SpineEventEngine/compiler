@@ -34,7 +34,12 @@ import com.google.common.collect.ImmutableList
 import com.google.errorprone.annotations.CanIgnoreReturnValue
 import com.google.protobuf.gradle.GenerateProtoTask
 import io.spine.code.proto.DescriptorReference
+import io.spine.string.toBase64Encoded
+import io.spine.tools.code.SourceSetName
 import io.spine.tools.compiler.gradle.api.Artifacts
+import io.spine.tools.compiler.gradle.api.Artifacts.compilerBackend
+import io.spine.tools.compiler.gradle.api.Artifacts.compilerGradlePlugin
+import io.spine.tools.compiler.gradle.api.Artifacts.protobufProtocArtifact
 import io.spine.tools.compiler.gradle.api.CompilerSettings
 import io.spine.tools.compiler.gradle.api.CompilerTask
 import io.spine.tools.compiler.gradle.api.Names.COMPILER_RAW_ARTIFACT
@@ -49,8 +54,6 @@ import io.spine.tools.compiler.gradle.plugin.GeneratedSubdir.GRPC
 import io.spine.tools.compiler.gradle.plugin.GeneratedSubdir.JAVA
 import io.spine.tools.compiler.gradle.plugin.GeneratedSubdir.KOTLIN
 import io.spine.tools.compiler.params.WorkingDirectory
-import io.spine.string.toBase64Encoded
-import io.spine.tools.code.SourceSetName
 import io.spine.tools.gradle.lib.LibraryPlugin
 import io.spine.tools.gradle.lib.spineExtension
 import io.spine.tools.gradle.project.hasJava
@@ -62,7 +65,7 @@ import io.spine.tools.gradle.task.JavaTaskName
 import io.spine.tools.gradle.task.descriptorSetFile
 import io.spine.tools.gradle.task.findKotlinDirectorySet
 import io.spine.tools.meta.ArtifactMeta
-import io.spine.tools.meta.Module
+import io.spine.tools.meta.MavenArtifact
 import java.io.File
 import java.io.IOException
 import java.nio.file.Path
@@ -80,14 +83,15 @@ import org.gradle.kotlin.dsl.register
  * Adds the `launchSpineCompiler` tasks which runs the executable with the arguments
  * assembled from settings of this plugin.
  *
- * The users can submit configuration parameters, such as renderer and plugin class names, etc. via
- * the `compiler { }` extension.
+ * The users can submit configuration parameters, such as renderer and plugin class
+ * names, etc. via the `compiler { }` extension.
  *
- * The users can submit the user classpath to the Compiler by declaring dependencies using
- * the `spineCompiler` configuration.
+ * The user classpath to the Compiler can be passed by declaring dependencies
+ * using the `spineCompiler` configuration.
  *
- * Example:
- * ```
+ * Example (`build.gradle.kts`):
+ *
+ * ```kotlin
  * spine {
  *     compiler {
  *         plugins("com.acme.MyPlugin")
@@ -121,6 +125,7 @@ public class Plugin : LibraryPlugin<CompilerSettings>(
         createExtension()
         with(project) {
             createConfigurations(this@Plugin.version)
+            setProtocArtifact()
             createTasks()
             configureWithProtobufPlugin(this@Plugin.version)
             configureIdea()
@@ -135,10 +140,7 @@ public class Plugin : LibraryPlugin<CompilerSettings>(
         @JvmStatic
         @VisibleForTesting
         public fun readVersion(): String {
-            val artifact = ArtifactMeta.loadFromResource(
-                Module("io.spine.tools", "gradle-plugin"),
-                this::class.java
-            )
+            val artifact = ArtifactMeta.loadFromResource(compilerGradlePlugin, this::class.java)
             return artifact.version
         }
     }
@@ -164,7 +166,7 @@ private fun Project.createConfigurations(compilerVersion: String) {
     dependencies.add(artifactConfig.name, cliDependency)
 
     configurations.create(USER_CLASSPATH_CONFIGURATION) {
-        it.exclude(group = Artifacts.group, module = Artifacts.compilerBackend)
+        it.exclude(group = compilerBackend.group, module = compilerBackend.name)
     }
 }
 
@@ -214,6 +216,20 @@ private fun Project.createCleanTask(sourceSet: SourceSet) {
         tasks.getByName("clean").dependsOn(spineCompilerCleanTask)
         val compilation = CompilerTask.get(project, sourceSet)
         compilation.mustRunAfter(spineCompilerCleanTask)
+    }
+}
+
+private fun Project.setProtocArtifact() {
+    val artifactMeta = ArtifactMeta.loadFromResource(
+        compilerGradlePlugin,
+        Plugin::class.java.classLoader
+    )
+    val protocArtifact = artifactMeta.dependencies.find(protobufProtocArtifact) as? MavenArtifact
+    checkNotNull(protocArtifact) {
+        "Unable to load `protoc` dependency of `${Plugin::class.qualifiedName}`."
+    }
+    protobufExtension!!.protoc { locator ->
+        locator.artifact = protocArtifact.coordinates
     }
 }
 

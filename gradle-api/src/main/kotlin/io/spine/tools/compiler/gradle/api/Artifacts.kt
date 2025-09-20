@@ -26,6 +26,8 @@
 
 package io.spine.tools.compiler.gradle.api
 
+import io.spine.tools.meta.Module
+
 /**
  * Constants for locating the Compiler artifacts in Maven repositories.
  */
@@ -40,10 +42,20 @@ public object Artifacts {
     /**
      * The name of the Compiler Backend artifact.
      */
-    public const val compilerBackend: String = "compiler-backend"
+    public val compilerBackend: Module = Module(group, "compiler-backend")
 
     /**
-     * Obtains Maven coordinates of the `fat-cli` variant of command-line application.
+     * The module of the Compiler Gradle Plugin artifact.
+     */
+    public val compilerGradlePlugin: Module = Module(group, "compiler-gradle-plugin")
+
+    /**
+     * The module of the `protoc` artifact of Google Protobuf.
+     */
+    public val protobufProtocArtifact: Module = Module("com.google.protobuf", "protoc")
+
+    /**
+     * Obtains Maven coordinates of the `fat-cli` variant of the command-line application.
      *
      * "fat-cli" is an all-in-one distribution of the Compiler, published somewhat in the past.
      * Ironically, we need it in the Compiler development.
