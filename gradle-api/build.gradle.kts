@@ -33,6 +33,7 @@ plugins {
 dependencies {
     compileOnly(gradleApi())
 
+    implementation(ToolBase.jvmTools)
     implementation(ToolBase.pluginBase)
     implementation(ToolBase.gradlePluginApi)
     implementation(project(":api"))

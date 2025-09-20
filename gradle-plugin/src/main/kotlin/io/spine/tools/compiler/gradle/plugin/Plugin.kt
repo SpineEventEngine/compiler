@@ -51,6 +51,8 @@ import io.spine.tools.compiler.gradle.plugin.GeneratedSubdir.KOTLIN
 import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.string.toBase64Encoded
 import io.spine.tools.code.SourceSetName
+import io.spine.tools.compiler.gradle.api.Artifacts.compilerBackend
+import io.spine.tools.compiler.gradle.api.Artifacts.protobufProtocArtifact
 import io.spine.tools.gradle.lib.LibraryPlugin
 import io.spine.tools.gradle.lib.spineExtension
 import io.spine.tools.gradle.project.hasJava
@@ -166,7 +168,7 @@ private fun Project.createConfigurations(compilerVersion: String) {
     dependencies.add(artifactConfig.name, cliDependency)
 
     configurations.create(USER_CLASSPATH_CONFIGURATION) {
-        it.exclude(group = Artifacts.group, module = Artifacts.compilerBackend)
+        it.exclude(group = compilerBackend.group, module = compilerBackend.name)
     }
 }
 
@@ -221,17 +223,10 @@ private fun Project.createCleanTask(sourceSet: SourceSet) {
 
 private fun Project.setProtocArtifact() {
     val artifactMeta = ArtifactMeta.loadFromResource(
-        //TODO:2025-09-20:alexander.yevsyukov: It should be `compiler-gradle-plugin`.
-        // We are missing the prefix here which is added by `spinePublishing`.
-        // This should be handled either as a property of `artifactMeta` or
-        // Handling of `artifactMeta` should smell the present of `spinePublishing and
-        // act accordingly.
-        Module("io.spine.tools", "gradle-plugin"),
+        Artifacts.compilerGradlePlugin,
         Plugin::class.java.classLoader
     )
-    val protocArtifact = artifactMeta.dependencies.find(
-        Module("com.google.protobuf", "protoc")
-    ) as MavenArtifact?
+    val protocArtifact = artifactMeta.dependencies.find(protobufProtocArtifact) as MavenArtifact?
     checkNotNull(protocArtifact) {
         "Unable to load `protoc` dependency of `${Plugin::class.qualifiedName}`."
     }

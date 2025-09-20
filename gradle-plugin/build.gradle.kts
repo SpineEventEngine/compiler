@@ -41,7 +41,13 @@ plugins {
     `write-manifest`
 }
 
+/**
+ * The ID used for publishing this module.
+ */
+val moduleArtifactId = "compiler-gradle-plugin"
+
 artifactMeta {
+    artifactId.set(moduleArtifactId)
     // Add `protoc` as an explicit dependency as we pass it on to
     // `protobuf/protoc/artifact` when configuring a project.
     addDependencies(Protobuf.compiler)
@@ -146,7 +152,7 @@ publishing {
     }
     publications.withType<MavenPublication>().all {
         groupId = "io.spine.tools"
-        artifactId = "compiler-gradle-plugin"
+        artifactId = moduleArtifactId
         version = compilerVersion
     }
 }
