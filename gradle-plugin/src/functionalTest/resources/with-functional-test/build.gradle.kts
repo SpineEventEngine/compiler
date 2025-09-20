@@ -67,12 +67,6 @@ dependencies {
     Protobuf.libs.forEach { implementation(it) }
 }
 
-protobuf {
-    protoc {
-        artifact = io.spine.dependency.lib.Protobuf.compiler
-    }
-}
-
 @Suppress("UNUSED_VARIABLE") /* `test` and `functionalTest` variables are really used by their
   names and types for obtaining or creating corresponding suite instances via `by` calls. */
 testing {

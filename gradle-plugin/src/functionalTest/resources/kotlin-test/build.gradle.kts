@@ -64,9 +64,3 @@ dependencies {
     spineCompiler("io.spine.tools:compiler-test-env:+")
     Protobuf.libs.forEach { implementation(it) }
 }
-
-protobuf {
-    protoc {
-        artifact = io.spine.dependency.lib.Protobuf.compiler
-    }
-}

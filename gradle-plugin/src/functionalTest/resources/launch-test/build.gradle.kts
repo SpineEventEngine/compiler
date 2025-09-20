@@ -55,12 +55,6 @@ dependencies {
     spineCompiler("io.spine.tools:compiler-test-env:+")
 }
 
-protobuf {
-    protoc {
-        artifact = io.spine.dependency.lib.Protobuf.compiler
-    }
-}
-
 spine {
     compiler {
         plugins(
