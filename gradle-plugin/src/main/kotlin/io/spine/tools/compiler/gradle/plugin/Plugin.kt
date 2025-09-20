@@ -222,6 +222,10 @@ private fun Project.createCleanTask(sourceSet: SourceSet) {
 private fun Project.setProtocArtifact() {
     val artifactMeta = ArtifactMeta.loadFromResource(
         //TODO:2025-09-20:alexander.yevsyukov: It should be `compiler-gradle-plugin`.
+        // We are missing the prefix here which is added by `spinePublishing`.
+        // This should be handled either as a property of `artifactMeta` or
+        // Handling of `artifactMeta` should smell the present of `spinePublishing and
+        // act accordingly.
         Module("io.spine.tools", "gradle-plugin"),
         Plugin::class.java.classLoader
     )
