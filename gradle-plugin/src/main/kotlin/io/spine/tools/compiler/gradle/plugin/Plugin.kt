@@ -224,7 +224,7 @@ private fun Project.setProtocArtifact() {
         compilerGradlePlugin,
         Plugin::class.java.classLoader
     )
-    val protocArtifact = artifactMeta.dependencies.find(protobufProtocArtifact) as MavenArtifact?
+    val protocArtifact = artifactMeta.dependencies.find(protobufProtocArtifact) as? MavenArtifact
     checkNotNull(protocArtifact) {
         "Unable to load `protoc` dependency of `${Plugin::class.qualifiedName}`."
     }
