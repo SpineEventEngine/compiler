@@ -229,7 +229,7 @@ private fun Project.setProtocArtifact() {
         Module("com.google.protobuf", "protoc")
     ) as MavenArtifact?
     checkNotNull(protocArtifact) {
-        "Unable to load `protoc` dependency of ${Plugin::class.qualifiedName}"
+        "Unable to load `protoc` dependency of `${Plugin::class.qualifiedName}`."
     }
     protobufExtension!!.protoc { locator ->
         locator.artifact = protocArtifact.coordinates
