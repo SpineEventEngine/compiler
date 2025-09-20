@@ -45,12 +45,12 @@ public object Artifacts {
     public val compilerBackend: Module = Module(group, "compiler-backend")
 
     /**
-     * The name of the Compiler Gradle Plugin artifact.
+     * The module of the Compiler Gradle Plugin artifact.
      */
     public val compilerGradlePlugin: Module = Module(group, "compiler-gradle-plugin")
 
     /**
-     * The `protoc` artifact of Google Protobuf.
+     * The module of the `protoc` artifact of Google Protobuf.
      */
     public val protobufProtocArtifact: Module = Module("com.google.protobuf", "protoc")
 
