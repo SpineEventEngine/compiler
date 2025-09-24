@@ -25,11 +25,15 @@
  */
 
 /**
- * The version of the Spine Compiler to publish.
+ * The version of the Spine Compiler to be built by this project.
  *
- * This version also used by integration test projects.
+ * This version is also used by integration test projects.
  * E.g. see `tests/consumer/build.gradle.kts`.
- *
- * For dependencies on Spine SDK module please see [io.spine.dependency.local.Spine].
  */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.013")
+val compilerVersion: String by extra("2.0.0-SNAPSHOT.014")
+
+/**
+ * The version, same as [compilerVersion], which is used for publishing
+ * the Compiler Maven artifacts.
+ */
+val versionToPublish by extra(compilerVersion)
