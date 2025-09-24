@@ -30,6 +30,8 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.JUnit
 import io.spine.gradle.isSnapshot
+import io.spine.gradle.publish.PublishingRepos.cloudArtifactRegistry
+import io.spine.gradle.publish.PublishingRepos.gitHub
 
 plugins {
     module
@@ -146,6 +148,8 @@ val publish: Task by tasks.getting {
 publishing {
     repositories {
         mavenLocal()
+        gitHub("compiler")
+        cloudArtifactRegistry
         if (isSnapshot) {
             remove(gradlePluginPortal())
         }
@@ -165,8 +169,7 @@ gradlePlugin {
             id = "io.spine.compiler"
             implementationClass = "io.spine.tools.compiler.gradle.plugin.Plugin"
             displayName = "Spine Compiler Gradle Plugin"
-            description =
-                "Sets up the Spine Compiler to be used in your project."
+            description = "Sets up the Spine Compiler to be used in your project."
             tags.set(listOf("spine", "ddd", "protobuf", "compiler", "code-generation", "codegen"))
         }
     }
