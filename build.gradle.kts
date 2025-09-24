@@ -74,9 +74,13 @@ plugins {
  * Publish all the modules, but `gradle-plugin`, which is published separately by its own.
  */
 spinePublishing {
-    modules = productionModuleNames
-        .minus("gradle-plugin") // because of custom publishing.
-        .toSet()
+    val customPublishing = arrayOf(
+        "gradle-plugin"
+    )
+    modules = productionModuleNames.toSet()
+        .minus(customPublishing)
+
+    modulesWithCustomPublishing = customPublishing.toSet()
 
     destinations = PublishingRepos.run { setOf(
         cloudArtifactRegistry,
