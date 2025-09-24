@@ -25,7 +25,7 @@
  */
 
 /**
- * The version of the Spine Compiler to built by this project.
+ * The version of the Spine Compiler to be built by this project.
  *
  * This version is also used by integration test projects.
  * E.g. see `tests/consumer/build.gradle.kts`.
