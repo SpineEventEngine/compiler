@@ -143,6 +143,7 @@ java {
     targetCompatibility = BuildSettings.javaVersionCompat
 }
 
+
 /**
  * Performs the standard task's configuration.
  *

@@ -37,12 +37,12 @@ buildscript {
         }
     }
     dependencies {
-        classpath(io.spine.dependency.local.McJava.pluginLib)
+        classpath(io.spine.dependency.local.CoreJvmCompiler.pluginLib)
     }
 }
 
 apply {
-    plugin("io.spine.mc-java")
+    plugin("io.spine.core-jvm")
 }
 
 configurations.all {

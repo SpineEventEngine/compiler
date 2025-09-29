@@ -31,7 +31,7 @@ import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.ToolBase
@@ -95,12 +95,15 @@ subprojects {
                     Base.lib,
                     ToolBase.lib,
                     ToolBase.psiJava,
+                    ToolBase.jvmTools,
+                    ToolBase.pluginBase,
+                    ToolBase.gradlePluginApi,
                     Validation.runtime,
                     Logging.lib,
                     Logging.grpcContext,
                     Logging.libJvm,
                     Reflect.lib,
-                    CoreJava.server,
+                    CoreJvm.server,
                 )
             }
         }

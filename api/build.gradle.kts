@@ -77,5 +77,5 @@ dependencies {
 forceSpineBase()
 
 afterEvaluate {
-    protoDataRemoteDebug(enabled = false)
+    spineCompilerRemoteDebug(enabled = false)
 }
