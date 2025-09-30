@@ -125,7 +125,6 @@ protected constructor(
      * by authors of plugins directly.
      *
      * @see [select]
-     * @see [io.spine.tools.compiler.backend.Pipeline]
      *
      * @suppress This function is not supposed to be used by plugin authors code.
      */
