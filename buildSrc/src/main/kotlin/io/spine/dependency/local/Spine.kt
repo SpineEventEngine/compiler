@@ -27,10 +27,18 @@
 package io.spine.dependency.local
 
 /**
- * Dependencies on smaller Spine modules.
+ * Provides general information about the dependencies of the Spine SDK artifacts.
  */
 @Suppress("unused", "ConstPropertyName")
 object Spine {
+
+    /**
+     * The group of the libraries provided by the Spine SDK.
+     */
     const val group = "io.spine"
+
+    /**
+     * The group to which the tools of the Spine SDK belong.
+     */
     const val toolsGroup = "io.spine.tools"
 }
