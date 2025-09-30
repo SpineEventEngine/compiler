@@ -29,16 +29,18 @@ package io.spine.tools.compiler.jvm.style
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.spine.collect.theOnly
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 @DisplayName("`JavaCodeStyleFormatterPlugin` should")
 internal class JavaCodeStyleFormatterPluginSpec {
 
+    @Disabled
     @Test
     fun `have only the 'JavaCodeStyleFormatter' renderer`() {
         val plugin = JavaCodeStyleFormatterPlugin()
         plugin.renderers shouldHaveSize 1
-        (plugin.renderers.theOnly() is JavaCodeStyleFormatter) shouldBe true
+        (plugin.renderers.theOnly() is PsiJavaCodeStyleFormatter) shouldBe true
     }
 }

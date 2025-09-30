@@ -10,7 +10,7 @@ all modules and does not describe the project structure per-subproject.
  -->
 <groupId>io.spine.tools</groupId>
 <artifactId>spine-compiler</artifactId>
-<version>2.0.0-SNAPSHOT.017</version>
+<version>2.0.0-SNAPSHOT.018</version>
 
 <inceptionYear>2015</inceptionYear>
 
@@ -26,13 +26,13 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>com.fasterxml.jackson</groupId>
     <artifactId>jackson-bom</artifactId>
-    <version>2.18.3</version>
+    <version>2.20.0</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
-    <version>2.18.3</version>
+    <version>2.20.0</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -63,6 +63,12 @@ all modules and does not describe the project structure per-subproject.
     <groupId>com.google.protobuf</groupId>
     <artifactId>protobuf-kotlin</artifactId>
     <version>4.31.1</version>
+    <scope>compile</scope>
+  </dependency>
+  <dependency>
+    <groupId>com.palantir.javaformat</groupId>
+    <artifactId>palantir-java-format</artifactId>
+    <version>2.75.0</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -206,7 +212,7 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>com.fasterxml.jackson.module</groupId>
     <artifactId>jackson-module-kotlin</artifactId>
-    <version>2.18.3</version>
+    <version>2.20.0</version>
     <scope>runtime</scope>
   </dependency>
   <dependency>
