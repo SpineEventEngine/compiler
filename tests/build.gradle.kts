@@ -96,9 +96,13 @@ subprojects {
 
             resolutionStrategy {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
+                Jackson.forceArtifacts(project, this@all, this@resolutionStrategy)
+                Jackson.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
+                Jackson.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
                 @Suppress("DEPRECATION") // To force `Kotlin.stdLibJdk7`.
                 force(
                     Jackson.bom,
+                    Jackson.annotations,
                     Kotlin.bom,
                     KotlinPoet.lib,
                     Caffeine.lib,

@@ -59,10 +59,14 @@ object Jackson : DependencyWithBom() {
     // https://github.com/FasterXML/jackson-module-kotlin/releases
     val moduleKotlin = "$moduleGroup:jackson-module-kotlin"
 
+    // https://github.com/FasterXML/jackson-modules-java8
+    val moduleParameterNames = "$moduleGroup:jackson-module-parameter-names"
+
     override val modules = listOf(
         core,
         databind,
-        moduleKotlin
+        moduleKotlin,
+        moduleParameterNames
     )
 
     object DataFormat : Dependency() {
