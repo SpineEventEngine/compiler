@@ -51,7 +51,7 @@ import io.spine.tools.psi.java.execute
  * 
  * @see javaCodeStyleDefaults
  */
-public class JavaCodeStyleFormatter : JavaRenderer() {
+public class PsiJavaCodeStyleFormatter : JavaRenderer() {
 
     override val consumerId: String = settingsId
 
@@ -105,7 +105,7 @@ public class JavaCodeStyleFormatter : JavaRenderer() {
     public companion object {
 
         /**
-         * The ID to be used when passing settings to [JavaCodeStyleFormatter].
+         * The ID to be used when passing settings to [PsiJavaCodeStyleFormatter].
          */
         public val settingsId: String = JavaCodeStyle::class.java.defaultConsumerId
     }

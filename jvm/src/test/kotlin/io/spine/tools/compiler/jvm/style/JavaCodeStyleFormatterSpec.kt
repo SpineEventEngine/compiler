@@ -92,7 +92,7 @@ internal class JavaCodeStyleFormatterSpec {
             Pipeline(
                 params = params,
                 plugin = RenderingTestbed(
-                    JavaCodeStyleFormatter()
+                    PsiJavaCodeStyleFormatter()
                 )
             )()
 
@@ -107,7 +107,7 @@ internal class JavaCodeStyleFormatterSpec {
             }
 
             settings.write(
-                JavaCodeStyleFormatter.settingsId,
+                PsiJavaCodeStyleFormatter.settingsId,
                 Format.ProtoJson,
                 javaStyle.toJson()
             )

@@ -24,18 +24,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.compiler.jvm.style
+package io.spine.dependency.lib
 
-import io.spine.tools.compiler.plugin.Plugin
+import io.spine.dependency.Dependency
 
 /**
- * A Compiler plugin which adds formats the Java code in the processing pipeline.
+ * Palantir Java Format.
  *
- * The plugin is useful when <em>several</em> Compiler plugins generate
- * the code which is later needed to be brought to the same style.
- * In such a case, it is recommended to put `JavaCodeStyleFormatterPlugin` plugin at
- * the end of the list when passed to the Compiler.
+ * @see <a href="https://github.com/palantir/palantir-java-format">GitHub Repo</a>
  */
-public class JavaCodeStyleFormatterPlugin : Plugin(
-    listOf(PalantirJavaFormatter())
-)
+object PalantirJavaFormat : Dependency() {
+
+    override val group = "com.palantir.javaformat"
+    override val version = "2.75.0"
+    override val modules: List<String> = listOf("$group:palantir-java-format")
+
+    val lib = artifact(modules[0])
+}

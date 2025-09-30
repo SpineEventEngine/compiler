@@ -26,16 +26,35 @@
 
 package io.spine.tools.compiler.jvm.style
 
-import io.spine.tools.compiler.plugin.Plugin
+import com.palantir.javaformat.java.Formatter
+import com.palantir.javaformat.java.JavaFormatterOptions
+import com.palantir.javaformat.java.JavaFormatterOptions.Style
+import io.spine.tools.code.Java
+import io.spine.tools.compiler.jvm.render.JavaRenderer
+import io.spine.tools.compiler.render.SourceFile
+import io.spine.tools.compiler.render.SourceFileSet
+import io.spine.tools.compiler.render.forEachOfLanguage
 
 /**
- * A Compiler plugin which adds formats the Java code in the processing pipeline.
- *
- * The plugin is useful when <em>several</em> Compiler plugins generate
- * the code which is later needed to be brought to the same style.
- * In such a case, it is recommended to put `JavaCodeStyleFormatterPlugin` plugin at
- * the end of the list when passed to the Compiler.
+ * Java style formatter based on Palantir Java Format library.
  */
-public class JavaCodeStyleFormatterPlugin : Plugin(
-    listOf(PalantirJavaFormatter())
-)
+internal class PalantirJavaFormatter : JavaRenderer() {
+
+    private val formatter by lazy {
+        Formatter.createFormatter(
+            JavaFormatterOptions.builder().style(Style.PALANTIR).build()
+        )
+    }
+
+    override fun render(sources: SourceFileSet) {
+        sources.forEachOfLanguage<Java> {
+            reformat(it)
+        }
+    }
+
+    private fun reformat(file: SourceFile<Java>) {
+        val code = file.code()
+        val formatted = formatter.formatSource(code)
+        file.overwrite(formatted)
+    }
+}

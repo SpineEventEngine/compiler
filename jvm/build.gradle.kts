@@ -25,6 +25,7 @@
  */
 
 import io.spine.dependency.lib.JavaPoet
+import io.spine.dependency.lib.PalantirJavaFormat
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
@@ -39,6 +40,7 @@ dependencies {
     api(project(":backend"))
     api(JavaPoet.lib)
     api(ToolBase.psiJava)
+    implementation(PalantirJavaFormat.lib)
 
     testImplementation(Time.testLib)
     testImplementation(Logging.testLib)
@@ -55,5 +57,17 @@ protobuf {
                 duplicatesStrategy = INCLUDE
             }
         }
+    }
+}
+
+if (JavaVersion.current() >= JavaVersion.VERSION_16) {
+    tasks.withType<Test>().configureEach {
+        jvmArgs(
+            // Open access for Palantir Java Formatter.
+            "--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
+            "--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED",
+            "--add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED",
+            "--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
+        )
     }
 }

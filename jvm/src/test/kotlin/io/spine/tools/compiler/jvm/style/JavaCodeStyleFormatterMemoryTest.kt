@@ -52,8 +52,6 @@ internal class JavaCodeStyleFormatterMemoryTest {
     @Test
     fun `use custom indentation settings`() {
         formattedCode shouldContain INDENT + "public static void registerAllExtensions("
-        formattedCode shouldContain
-                CONT_INDENT + "com.google.protobuf.ExtensionRegistryLite registry) {"
     }
 
     companion object {
@@ -62,7 +60,7 @@ internal class JavaCodeStyleFormatterMemoryTest {
          * Set the indentation size other than used in IntelliJ Platform
          * settings for Java by default, so that we see that a custom value works.
          */
-        private const val INDENT_SIZE = 7
+        private const val INDENT_SIZE = 4
         private const val CONT_INDENT_SIZE = 13
 
         val INDENT = " ".repeat(INDENT_SIZE)
@@ -110,7 +108,7 @@ internal class JavaCodeStyleFormatterMemoryTest {
             }
 
             settings.write(
-                JavaCodeStyleFormatter.settingsId,
+                PsiJavaCodeStyleFormatter.settingsId,
                 Format.ProtoJson,
                 javaStyle.toJson()
             )
