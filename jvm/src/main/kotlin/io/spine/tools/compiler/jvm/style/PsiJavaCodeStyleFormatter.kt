@@ -50,6 +50,7 @@ import io.spine.tools.psi.java.execute
  * If no settings are passed, default Java code style settings used in Spine SDK are applied.
  * 
  * @see javaCodeStyleDefaults
+ * @see PalantirJavaFormatter
  */
 public class PsiJavaCodeStyleFormatter : JavaRenderer() {
 

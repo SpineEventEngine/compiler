@@ -37,12 +37,25 @@ import io.spine.tools.compiler.render.forEachOfLanguage
 
 /**
  * Java style formatter based on Palantir Java Format library.
+ *
+ * This formatter is currently used instead of [PsiJavaCodeStyleFormatter] which
+ * was used before.
+ *
+ * The reason for migrating to Palantir Java Format is that it is faster.
+ * The downside of this switch is that [JavaCodeStyle] options are not applicable.
+ * The Palantir formatter, being based on Google Java Code Style formatter, does not
+ * allow much of customization apart from the minimal style options passed
+ * as an argument to [Formatter.createFormatter] factory function.
+ *
+ * @see PsiJavaCodeStyleFormatter
  */
 internal class PalantirJavaFormatter : JavaRenderer() {
 
     private val formatter by lazy {
         Formatter.createFormatter(
-            JavaFormatterOptions.builder().style(Style.PALANTIR).build()
+            JavaFormatterOptions.builder()
+                .style(Style.AOSP)
+                .build()
         )
     }
 
