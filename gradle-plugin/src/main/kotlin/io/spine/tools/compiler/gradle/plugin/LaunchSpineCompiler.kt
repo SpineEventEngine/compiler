@@ -110,21 +110,6 @@ public abstract class LaunchSpineCompiler : JavaExec() {
         WorkingDirectory(dir.toPath())
     }
 
-    init {
-        // Allow turning off attaching a remote debugger or profiler to
-        // the Compiler CLI app via a Gradle property.
-        val trueStr = "true"
-        val allowAttach = project.providers
-            .gradleProperty(ALLOW_ATTACHING_GRADLE_PROPERTY)
-            .orElse(trueStr)
-
-        // Allow attaching to the JVM process for debugging and profiling.
-        systemProperty(
-            JDK_ATTACH_SYS_PROP,
-            trueStr.equals(allowAttach.get(), ignoreCase = true)
-        )
-    }
-
     /**
      * Configures the CLI command for this task.
      *
@@ -177,20 +162,6 @@ public abstract class LaunchSpineCompiler : JavaExec() {
                     project.delete(it)
                 }
         }
-    }
-
-    private companion object {
-
-        /**
-         * The name of the Gradle property which turns the [JDK_ATTACH_SYS_PROP] for the CLI app.
-         */
-        private const val ALLOW_ATTACHING_GRADLE_PROPERTY = "allowAttaching"
-
-        /**
-         * The name of the system property to allow attaching remote debugger or profiler
-         * to the Compiler CLI app (`-Djdk.attach.allowAttachSelf=true`).
-         */
-        private const val JDK_ATTACH_SYS_PROP = "jdk.attach.allowAttachSelf"
     }
 }
 
