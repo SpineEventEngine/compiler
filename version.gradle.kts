@@ -30,7 +30,7 @@
  * This version is also used by integration test projects.
  * E.g. see `tests/consumer/build.gradle.kts`.
  */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.017")
+val compilerVersion: String by extra("2.0.0-SNAPSHOT.018")
 
 /**
  * The version, same as [compilerVersion], which is used for publishing
