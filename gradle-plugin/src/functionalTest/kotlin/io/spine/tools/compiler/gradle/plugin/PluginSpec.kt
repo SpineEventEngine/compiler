@@ -76,8 +76,31 @@ class PluginSpec {
         generatedKotlinDir  = generatedMainDir.resolve("kotlin")
     }
 
+    /**
+     * This function reads the version from resource of the [Plugin] class.
+     *
+     * We experience [java.util.zip.ZipException] recently when running these tests.
+     * This function attempts to repeat the tries with the hope that the original cause
+     * of the error is concurrency in reading/writing operations for the production code JAR.
+     */
+    private fun readVersionWithRetry(): String {
+        var lastException: Exception? = null
+        val retries = 5
+        repeat(retries) { attempt ->
+            try {
+                return Plugin.readVersion()
+            } catch (e: Exception) {
+                lastException = e
+                if (attempt < retries - 1) {
+                    Thread.sleep(1000)
+                }
+            }
+        }
+        throw lastException!!
+    }
+
     private fun createProject(resourceDir: String) {
-        val version = Plugin.readVersion()
+        val version = readVersionWithRetry()
         val builder = GradleProject.setupAt(projectDir)
             .fromResources(resourceDir)
             .withSharedTestKitDirectory()
