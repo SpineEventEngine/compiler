@@ -29,10 +29,10 @@
 
 package io.spine.tools.compiler.gradle.plugin
 
-import com.google.common.annotations.VisibleForTesting
 import com.google.common.collect.ImmutableList
 import com.google.errorprone.annotations.CanIgnoreReturnValue
 import com.google.protobuf.gradle.GenerateProtoTask
+import io.spine.annotation.VisibleForTesting
 import io.spine.code.proto.DescriptorReference
 import io.spine.string.toBase64Encoded
 import io.spine.tools.code.SourceSetName
@@ -113,21 +113,15 @@ public class Plugin : LibraryPlugin<CompilerSettings>(
         (dslSpec as CompilerDslSpec).project = { this.project }
     }
 
-    /**
-     * The version of the plugin.
-     */
-    private val version: String by lazy {
-        readVersion()
-    }
-
     override fun apply(project: Project) {
         super.apply(project)
         createExtension()
-        with(project) {
-            createConfigurations(this@Plugin.version)
+        val pluginVersion = version
+        project.run {
+            createConfigurations(pluginVersion)
             setProtocArtifact()
             createTasks()
-            configureWithProtobufPlugin(this@Plugin.version)
+            configureWithProtobufPlugin(pluginVersion)
             configureIdea()
         }
     }
@@ -135,13 +129,27 @@ public class Plugin : LibraryPlugin<CompilerSettings>(
     public companion object {
 
         /**
+         * The meta-data of the [Plugin] loaded from resources.
+         */
+        private val meta by lazy {
+            ArtifactMeta.loadFromResource(compilerGradlePlugin, this::class.java)
+        }
+
+        /**
+         * The version of the [Plugin] loaded from resources.
+         */
+        @VisibleForTesting
+        public val version: String by lazy {
+            meta.version
+        }
+
+        /**
          * Reads the version of the plugin from the resources.
          */
         @JvmStatic
         @VisibleForTesting
         public fun readVersion(): String {
-            val artifact = ArtifactMeta.loadFromResource(compilerGradlePlugin, this::class.java)
-            return artifact.version
+            return meta.version
         }
     }
 }
