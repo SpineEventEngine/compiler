@@ -30,7 +30,7 @@ import io.spine.dependency.Dependency
 
 /**
  * Palantir Java Format is a fork of Google Java Format that
- * we use `JavaCodeStyleFormatterPlugin`.
+ * we use in `JavaCodeStyleFormatterPlugin`.
  *
  * @see <a href="https://github.com/palantir/palantir-java-format">GitHub Repo</a>
  */
