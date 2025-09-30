@@ -27,6 +27,7 @@
 import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.lib.Caffeine
 import io.spine.dependency.lib.Grpc
+import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
@@ -97,6 +98,7 @@ subprojects {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 @Suppress("DEPRECATION") // To force `Kotlin.stdLibJdk7`.
                 force(
+                    Jackson.bom,
                     Kotlin.bom,
                     KotlinPoet.lib,
                     Caffeine.lib,

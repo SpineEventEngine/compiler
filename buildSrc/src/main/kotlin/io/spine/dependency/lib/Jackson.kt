@@ -33,7 +33,10 @@ import io.spine.dependency.DependencyWithBom
 @Suppress("unused")
 object Jackson : DependencyWithBom() {
     override val group = "com.fasterxml.jackson"
-    override val version = "2.18.3"
+    override val version = "2.20.0"
+
+    // https://github.com/FasterXML/jackson-annotations?tab=readme-ov-file#release-notes
+    const val annotationsVersion = "2.20"
 
     // https://github.com/FasterXML/jackson-bom
     override val bom = "$group:jackson-bom:$version"
@@ -51,7 +54,7 @@ object Jackson : DependencyWithBom() {
     val databind = "$coreGroup:jackson-databind"
 
     // https://github.com/FasterXML/jackson-annotations
-    val annotations = "$coreGroup:jackson-annotations"
+    val annotations = "$coreGroup:jackson-annotations:$annotationsVersion"
 
     // https://github.com/FasterXML/jackson-module-kotlin/releases
     val moduleKotlin = "$moduleGroup:jackson-module-kotlin"
@@ -59,7 +62,6 @@ object Jackson : DependencyWithBom() {
     override val modules = listOf(
         core,
         databind,
-        annotations,
         moduleKotlin
     )
 
