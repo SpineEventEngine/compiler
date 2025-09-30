@@ -27,6 +27,7 @@
 package io.spine.tools.compiler.jvm.annotation
 
 import com.google.common.annotations.VisibleForTesting
+import com.google.errorprone.annotations.CanIgnoreReturnValue
 import given.annotation.NoTypeTargetAnnotation
 import given.annotation.Schedule
 import io.kotest.matchers.shouldBe
@@ -56,7 +57,7 @@ internal class TypeAnnotationSpec {
     fun `reject simultaneously 'subject' and 'file' arguments`() {
         assertThrows<IllegalArgumentException> {
             @Suppress("UNCHECKED_CAST") // Ensured by the file extension.
-            StubAnnotation(SuppressWarnings::class.java,
+            StubAnnotation(CanIgnoreReturnValue::class.java,
                 ClassName("foo", "bar"),
                 SourceFile.fromCode(Paths.get("stub", "Source.java"), """
                     class Source { }    
@@ -69,7 +70,7 @@ internal class TypeAnnotationSpec {
     @Test
     fun `accept annotation class with 'TYPE' target`() {
         assertDoesNotThrow {
-            StubAnnotation(SuppressWarnings::class.java)
+            StubAnnotation(CanIgnoreReturnValue::class.java)
         }
     }
 
@@ -143,6 +144,7 @@ private class StubAnnotation<T : Annotation>(
      * Opens access for tests.
      */
     @VisibleForTesting
+    @Suppress("RedundantVisibilityModifier")
     public override fun shouldAnnotate(file: SourceFile<Java>): Boolean = super.shouldAnnotate(file)
 }
 
@@ -156,7 +158,7 @@ private val path = Paths.get("given", "java", "code", "TheClassToAnnotate.java")
 
 private const val PACKAGE_NAME = "given.java.code"
 
-private val annotationClass = SuppressWarnings::class.java
+private val annotationClass = CanIgnoreReturnValue::class.java
 
 private val repeatableAnnotationClass = Schedule::class.java
 

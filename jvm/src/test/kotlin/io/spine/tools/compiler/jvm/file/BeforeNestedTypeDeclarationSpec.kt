@@ -29,6 +29,8 @@ package io.spine.tools.compiler.jvm.file
 import io.kotest.matchers.ints.shouldBeGreaterThan
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldContain
+import io.spine.annotation.Internal
+import io.spine.string.qualifiedClassName
 import io.spine.tools.compiler.backend.Pipeline
 import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.jvm.EnumName
@@ -112,9 +114,9 @@ class BeforeNestedTypeDeclarationSpec {
             Pipeline(
                 params = pipelineParams { withRoots(input, output) },
                 plugin = RenderingTestbed(
-                    SuppressWarningsAnnotation(deeplyNestedClassName),
-                    SuppressWarningsAnnotation(nestedEnum),
-                    SuppressWarningsAnnotation(nestedInterface),
+                    StubInternalAnnotation(deeplyNestedClassName),
+                    StubInternalAnnotation(nestedEnum),
+                    StubInternalAnnotation(nestedInterface),
                 ),
             )()
 
@@ -126,7 +128,7 @@ class BeforeNestedTypeDeclarationSpec {
     `serve insertion for nested` {
 
         private val generatedCode = javaFile.readText().lines()
-        private val expectedAnnotation = "@${SuppressWarnings::class.java.simpleName}"
+        private val expectedAnnotation = "@${Internal::class.java.name}"
 
         private fun lineBefore(declaration: String): String {
             val declarationLine = generatedCode.indexOfFirst { it.contains(declaration) }
@@ -201,10 +203,10 @@ private val sourceCode = """
     """.ti() // We deliberately use OS-specific line endings here to simulate loading from disk.
 
 /**
- * Stub renderer which adds the [SuppressWarnings] annotation to the given type.
+ * Stub renderer which adds the [Internal] annotation to the given type.
  */
-private class SuppressWarningsAnnotation(subject: ClassName) :
-    TypeAnnotation<SuppressWarnings>(SuppressWarnings::class.java, subject) {
+private class StubInternalAnnotation(subject: ClassName) :
+    TypeAnnotation<Internal>(Internal::class.java, subject) {
 
     override fun renderAnnotationArguments(file: SourceFile<Java>): String = ""
 }
