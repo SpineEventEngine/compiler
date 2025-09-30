@@ -36,12 +36,9 @@ import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
-import io.spine.dependency.test.JUnit
-import io.spine.dependency.test.Kotest
-import io.spine.dependency.test.Truth
 import io.spine.gradle.kotlin.setFreeCompilerArgs
 import io.spine.gradle.repo.standardToSpineSdk
-import io.spine.gradle.testing.configureLogging
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 @Suppress("RemoveRedundantQualifierName")
 buildscript {
@@ -76,6 +73,17 @@ subprojects {
     val compilerVersion: String by extra
     group = "io.spine.compiler.tests"
     version = compilerVersion
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
 
     repositories.standardToSpineSdk()
 
@@ -127,6 +135,12 @@ subprojects {
     val generatedFiles = "$projectDir/generated"
     tasks.getByName<Delete>("clean") {
         delete.add(generatedFiles)
+    }
+
+    tasks.withType<JavaExec>().configureEach {
+        if (name.contains("SpineCompiler")) {
+            systemProperty("jdk.attach.allowAttachSelf", "true")
+        }
     }
 
     dependencies {
