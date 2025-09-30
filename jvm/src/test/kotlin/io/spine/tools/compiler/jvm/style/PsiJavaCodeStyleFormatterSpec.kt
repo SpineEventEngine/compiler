@@ -47,8 +47,8 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
-@DisplayName("`JavaCodeStyleFormatter` should")
-internal class JavaCodeStyleFormatterSpec {
+@DisplayName("`PsiJavaCodeStyleFormatter` should")
+internal class PsiJavaCodeStyleFormatterSpec {
 
     @Test
     fun `use custom indentation settings`() {
