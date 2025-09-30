@@ -29,7 +29,7 @@ package io.spine.tools.compiler.jvm.style
 import io.spine.tools.compiler.plugin.Plugin
 
 /**
- * A Compiler plugin which adds formats the Java code in the processing pipeline.
+ * A Compiler plugin which formats the Java code in the processing pipeline.
  *
  * The plugin is useful when <em>several</em> Compiler plugins generate
  * the code which is later needed to be brought to the same style.
