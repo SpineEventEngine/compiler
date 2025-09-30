@@ -28,16 +28,11 @@ package io.spine.tools.compiler.jvm.style
 
 import copyResource
 import io.kotest.matchers.string.shouldContain
-import io.spine.tools.compiler.backend.Pipeline
-import io.spine.tools.compiler.params.WorkingDirectory
-import io.spine.tools.compiler.settings.SettingsDirectory
-import io.spine.tools.compiler.style.indentOptions
 import io.spine.testing.compiler.parametersWithSettingsDir
 import io.spine.testing.compiler.pipelineParams
 import io.spine.testing.compiler.withRoots
-import io.spine.testing.compiler.withSettingsDir
-import io.spine.format.Format
-import io.spine.type.toJson
+import io.spine.tools.compiler.backend.Pipeline
+import io.spine.tools.compiler.params.WorkingDirectory
 import java.nio.file.Files.readString
 import java.nio.file.Path
 import org.junit.jupiter.api.BeforeAll
@@ -56,15 +51,8 @@ internal class JavaCodeStyleFormatterMemoryTest {
 
     companion object {
 
-        /**
-         * Set the indentation size other than used in IntelliJ Platform
-         * settings for Java by default, so that we see that a custom value works.
-         */
         private const val INDENT_SIZE = 4
-        private const val CONT_INDENT_SIZE = 13
-
         val INDENT = " ".repeat(INDENT_SIZE)
-        val CONT_INDENT = " ".repeat(CONT_INDENT_SIZE)
 
         /**
          * The name of the resource file with the source code for testing the formatting.
@@ -83,10 +71,8 @@ internal class JavaCodeStyleFormatterMemoryTest {
         ) {
             this.outputDir = outputDir
             val settingsDir = WorkingDirectory(sandbox).settingsDirectory
-            writeSettings(settingsDir)
             val params = pipelineParams {
                 withRoots(inputDir, outputDir)
-                withSettingsDir(settingsDir.path)
             }
                 parametersWithSettingsDir(settingsDir.path)
             copyResource(fileName, inputDir)
@@ -97,21 +83,6 @@ internal class JavaCodeStyleFormatterMemoryTest {
             )()
 
             formattedCode = readString(outputDir.resolve(fileName))
-        }
-
-        private fun writeSettings(settings: SettingsDirectory) {
-            val javaStyle = javaCodeStyleDefaults().toBuilder().apply {
-                indentOptions = indentOptions {
-                    indentSize = INDENT_SIZE
-                    continuationIndentSize = CONT_INDENT_SIZE
-                }
-            }
-
-            settings.write(
-                PsiJavaCodeStyleFormatter.settingsId,
-                Format.ProtoJson,
-                javaStyle.toJson()
-            )
         }
     }
 }
