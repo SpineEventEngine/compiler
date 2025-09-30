@@ -39,7 +39,7 @@ dependencies {
     ).forEach {
         testFixturesImplementation(it)?.because(
             """
-            We do not apply McJava Gradle plugin which adds the `implementation` dependency on
+            We do not apply CoreJvm Compiler Gradle plugin which adds the `implementation` dependency on
             Validation runtime automatically (see `Project.configureValidation()` function in 
             `ProtoDataConfigPlugin.kt`).
             

@@ -28,7 +28,7 @@
 
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.McJava
+import io.spine.dependency.local.CoreJvmCompiler
 
 /**
  * The dependency onto Spine Validation causes the circular dependency in this Gradle project.
@@ -38,7 +38,7 @@ System.setProperty("spine.internal.validation.disabled", "true")
 
 apply {
     plugin(Protobuf.GradlePlugin.id)
-    plugin(McJava.pluginId)
+    plugin(CoreJvmCompiler.pluginId)
 }
 
 dependencies {

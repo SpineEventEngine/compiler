@@ -161,6 +161,6 @@ tasks.shadowDistZip.get().enabled = false
 // on missing explicit dependency.
 project.afterEvaluate {
     val kspTestKotlin by tasks.getting
-    val launchTestProtoData by tasks.getting
-    kspTestKotlin.dependsOn(launchTestProtoData)
+    val launchTestSpineCompiler by tasks.getting
+    kspTestKotlin.dependsOn(launchTestSpineCompiler)
 }

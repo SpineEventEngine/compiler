@@ -23,6 +23,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package io.spine.tools.compiler.jvm.annotation
 
 import io.spine.tools.compiler.jvm.ClassName
@@ -44,35 +45,22 @@ import org.jetbrains.annotations.VisibleForTesting
  * A [JavaRenderer] which annotates a Java type using the given [annotation][annotationClass].
  *
  * @param T the type of the annotation.
+ *
+ * @property annotationClass The class of the annotation to apply.
+ * @property subject The class or enum class name to be annotated.
+ *   Cannot be used together with [file].
+ *   If both [subject] and [file] are specified, `IllegalArgumentException` will be thrown.
+ *   If both [subject] and [file] are `null`, the annotation is applied to all the classes
+ *   passed to this annotation.
+ *   If not `null`, the annotation is applied only to the types specified by this field.
+ * @property file The source file top class of that should be annotated.
+ *   Cannot be used together with [subject].
+ *   If both [file] and [subject] are specified, `IllegalArgumentException` will be thrown.
+ *   If not `null`, the annotation is applied only to the top class of the specified file.
  */
 public abstract class TypeAnnotation<T : Annotation>(
-
-    /**
-     * The class of the annotation to apply.
-     */
     protected val annotationClass: Class<T>,
-
-    /**
-     * The class or enum class name to be annotated.
-     *
-     * Cannot be used together with [file].
-     * If both [subject] and [file] are specified, `IllegalArgumentException` will be thrown.
-     *
-     * If both [subject] and [file] are `null`, the annotation is applied to all the classes
-     * passed to this annotation.
-     *
-     * If not `null`, the annotation is applied only to the types specified by this field.
-     */
     protected val subject: ClassName? = null,
-
-    /**
-     * The source file top class of which should be annotated.
-     *
-     * Cannot be used together with [subject].
-     * If both [file] and [subject] are specified, `IllegalArgumentException` will be thrown.
-     *
-     * If not `null`, the annotation is applied only to the top class of the specified file.
-     */
     protected val file: SourceFile<Java>? = null
 ) : JavaRenderer() {
 

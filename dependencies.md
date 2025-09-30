@@ -1,6 +1,6 @@
 
 
-# Dependencies of `io.spine.tools:compiler-api:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-api:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.18.3.
@@ -467,15 +467,15 @@
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -1098,14 +1098,14 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:22 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:compiler-api-tests:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-api-tests:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 13.0.
@@ -1916,14 +1916,14 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:22 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:compiler-backend:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-backend:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.18.3.
@@ -2390,15 +2390,15 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -3021,14 +3021,14 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:22 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:compiler-cli:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-cli:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.18.3.
@@ -3519,15 +3519,15 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -4150,14 +4150,14 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:22 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:compiler-gradle-api:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-gradle-api:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.18.3.
@@ -5190,14 +5190,14 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:22 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:compiler-gradle-plugin:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-gradle-plugin:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.18.3.
@@ -6278,14 +6278,14 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:22 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:compiler-jvm:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-jvm:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.18.3.
@@ -6752,15 +6752,15 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -7383,14 +7383,14 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:22 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:compiler-params:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-params:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.18.3.
@@ -7857,15 +7857,15 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -8480,14 +8480,14 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:22 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:compiler-protoc-plugin:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-protoc-plugin:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -9296,14 +9296,14 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:22 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:compiler-test-env:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-test-env:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.18.3.
@@ -9774,15 +9774,15 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -10397,14 +10397,14 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:22 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:compiler-testlib:2.0.0-SNAPSHOT.016`
+# Dependencies of `io.spine.tools:compiler-testlib:2.0.0-SNAPSHOT.017`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.18.3.
@@ -10974,15 +10974,15 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-jvm. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.0.0.
+1.  **Group** : com.squareup. **Name** : kotlinpoet-ksp. **Version** : 2.2.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -11605,6 +11605,6 @@ This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Wed Sep 24 17:38:04 WEST 2025** using 
+This report was generated on **Tue Sep 30 19:08:23 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
