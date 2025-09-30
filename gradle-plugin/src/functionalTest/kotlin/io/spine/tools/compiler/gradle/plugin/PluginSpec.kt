@@ -85,7 +85,7 @@ class PluginSpec {
      */
     private fun readVersionWithRetry(): String {
         var lastException: Exception? = null
-        val retries = 5
+        val retries = 10
         repeat(retries) { attempt ->
             try {
                 return Plugin.readVersion()
