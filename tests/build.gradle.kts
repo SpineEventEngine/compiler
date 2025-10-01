@@ -33,6 +33,7 @@ import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJvm
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.ToolBase
@@ -112,6 +113,9 @@ subprojects {
                     ToolBase.jvmTools,
                     ToolBase.pluginBase,
                     ToolBase.gradlePluginApi,
+                    Compiler.api,
+                    Compiler.params,
+                    Compiler.gradleApi,
                     Validation.runtime,
                     Logging.lib,
                     Logging.grpcContext,
