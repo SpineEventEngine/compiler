@@ -36,6 +36,9 @@ buildscript {
     standardSpineSdkRepositories()
 }
 
+group = "io.spine.tools.test"
+version = "1.0.0-SNAPSHOT"
+
 plugins {
     id("com.android.library") version "7.3.0" // Protobuf needs it to run.
     id("com.google.protobuf")
