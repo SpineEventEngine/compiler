@@ -32,6 +32,9 @@ buildscript {
     standardSpineSdkRepositories()
 }
 
+group = "io.spine.tools.test"
+version = "1.0.0-SNAPSHOT"
+
 plugins {
     kotlin("jvm")
     id("com.google.protobuf")
