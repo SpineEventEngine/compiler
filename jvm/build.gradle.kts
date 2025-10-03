@@ -38,7 +38,7 @@ plugins {
 
 dependencies {
     api(project(":backend"))
-    api(JavaPoet.lib)
+//    api(JavaPoet.lib)
     api(ToolBase.psiJava)
     implementation(PalantirJavaFormat.lib)
 
