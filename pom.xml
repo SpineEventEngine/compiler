@@ -78,12 +78,6 @@ all modules and does not describe the project structure per-subproject.
     <scope>compile</scope>
   </dependency>
   <dependency>
-    <groupId>com.squareup</groupId>
-    <artifactId>javapoet</artifactId>
-    <version>1.13.0</version>
-    <scope>compile</scope>
-  </dependency>
-  <dependency>
     <groupId>io.grpc</groupId>
     <artifactId>grpc-bom</artifactId>
     <version>1.72.0</version>

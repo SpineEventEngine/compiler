@@ -1095,7 +1095,7 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -1901,7 +1901,7 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -3003,7 +3003,7 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -3132,10 +3132,6 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : io.grpc. **Name** : grpc-api. **Version** : 1.72.0.
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
@@ -4150,7 +4146,7 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -5166,7 +5162,7 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -6230,7 +6226,7 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -6351,10 +6347,6 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : io.grpc. **Name** : grpc-api. **Version** : 1.72.0.
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
@@ -7353,7 +7345,7 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -8447,7 +8439,7 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -9263,7 +9255,7 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -10361,7 +10353,7 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -11566,6 +11558,6 @@ This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 03 17:36:23 WEST 2025** using 
+This report was generated on **Fri Oct 03 18:15:06 WEST 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
