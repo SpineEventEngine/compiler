@@ -27,24 +27,24 @@
 package io.spine.tools.compiler.gradle.plugin
 
 import com.google.protobuf.gradle.GenerateProtoTask
-import com.intellij.openapi.util.io.FileUtil
+import io.spine.tools.code.SourceSetName
 import io.spine.tools.compiler.Constants.CLI_APP_CLASS
 import io.spine.tools.compiler.ast.toAbsoluteFile
 import io.spine.tools.compiler.ast.toDirectory
 import io.spine.tools.compiler.gradle.api.Names.COMPILER_RAW_ARTIFACT
 import io.spine.tools.compiler.gradle.api.Names.USER_CLASSPATH_CONFIGURATION
+import io.spine.tools.compiler.gradle.api.compilerWorkingDir
 import io.spine.tools.compiler.gradle.api.error
 import io.spine.tools.compiler.gradle.api.info
-import io.spine.tools.compiler.gradle.api.compilerWorkingDir
 import io.spine.tools.compiler.params.ParametersFileParam
 import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.compiler.params.pipelineParameters
-import io.spine.tools.code.SourceSetName
 import io.spine.tools.gradle.project.findJavaCompileFor
 import io.spine.tools.gradle.project.findKotlinCompileFor
 import io.spine.tools.gradle.protobuf.containsProtoFiles
 import java.io.File
 import java.io.File.pathSeparator
+import java.nio.file.Files
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -163,7 +163,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
                     // Do not clean directories if we are overwriting files in
                     // the directories created by `protoc`.
                     // Such a mode is deprecated currently, but we may revisit this later.
-                    !FileUtil.filesEqual(s, t) /* Honor case-sensitivity under macOS. */
+                    !(s.exists() && t.exists() && Files.isSameFile(s.toPath(), t.toPath()))
                 }
                 .map { it.second }
                 .filter { it.exists() && it.list()?.isNotEmpty() ?: false }

@@ -26,6 +26,7 @@
 
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.local.Spine
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.JUnit
@@ -107,7 +108,9 @@ dependencies {
     api(project(":gradle-api"))
     api(ToolBase.gradlePluginApi)
 
-    implementation(project(":api"))
+    implementation(project(":api")) {
+        exclude(group = Spine.toolsGroup, module = ToolBase.psiJavaArtifactName)
+    }
     implementation(project(":params"))
     implementation(ToolBase.lib)
     implementation(ToolBase.jvmTools)
