@@ -163,7 +163,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
                     // Do not clean directories if we are overwriting files in
                     // the directories created by `protoc`.
                     // Such a mode is deprecated currently, but we may revisit this later.
-                    !Files.isSameFile(s.toPath(), t.toPath())
+                    !(s.exists() && t.exists() && Files.isSameFile(s.toPath(), t.toPath()))
                 }
                 .map { it.second }
                 .filter { it.exists() && it.list()?.isNotEmpty() ?: false }
