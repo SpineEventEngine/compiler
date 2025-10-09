@@ -68,7 +68,7 @@ public object TextFactory {
     /**
      * Creates a new instance of text with lines separated by [line separator][newLine].
      *
-     * @throws IllegalArgumentException if one of the lines contains a line separator.
+     * @throws IllegalArgumentException if any of the lines contains a line separator.
      */
     @JvmStatic
     public fun text(lines: Iterable<String>): Text {
