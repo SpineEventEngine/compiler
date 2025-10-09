@@ -68,8 +68,7 @@ public object TextFactory {
     /**
      * Creates a new instance of text with lines separated by [line separator][newLine].
      *
-     * @throws IllegalArgumentException
-     * if one of the lines
+     * @throws IllegalArgumentException if one of the lines contains a line separator.
      */
     @JvmStatic
     public fun text(lines: Iterable<String>): Text {
@@ -81,8 +80,8 @@ public object TextFactory {
     /**
      * Creates a new multi-line text with the given lines.
      *
-     * @throws IllegalArgumentException if any of the lines contains a
-     *  [line separator][containsLineSeparators]
+     * @throws IllegalArgumentException if any of the lines contains
+     *   a [line separator][containsLineSeparators].
      */
     @JvmStatic
     @VisibleForTesting
@@ -101,7 +100,7 @@ public object TextFactory {
     }
 
     /**
-     * Ensures that the charter sequence does not contain a
+     * Ensures that the character sequence does not contain a
      * [line separator][containsLineSeparators].
      *
      * @throws IllegalArgumentException if the sequence contains a
