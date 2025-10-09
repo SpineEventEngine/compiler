@@ -49,14 +49,22 @@ import java.util.regex.Pattern
  */
 public object TextFactory {
 
-    private val newLinePattern: Pattern = Pattern.compile("\n|(\r\n)|\r")
-    private val SPLITTER = Splitter.on(newLinePattern)
+    private val newLinePattern by lazy {
+        Pattern.compile("\n|(\r\n)|\r")
+    }
+
+    internal val SPLITTER by lazy {
+        Splitter.on(newLinePattern)
+    }
+
     private val NL: String = Separator.nl()
+
     private val JOINER = Joiner.on(NL)
 
     /**
      * Creates a new instance with the given value.
      */
+    @JvmStatic
     public fun text(value: String): Text = text {
         this.value = value
     }
@@ -67,6 +75,7 @@ public object TextFactory {
      * @throws IllegalArgumentException
      * if one of the lines
      */
+    @JvmStatic
     public fun text(lines: Iterable<String>): Text {
         checkNoSeparators(lines)
         val joined = JOINER.join(lines)
@@ -79,10 +88,10 @@ public object TextFactory {
      * @throws IllegalArgumentException if any of the lines contains a
      *  [line separator][containsLineSeparators]
      */
+    @JvmStatic
     @VisibleForTesting
-    public fun createText(vararg lines: String): Text {
-        return text(lines.asList())
-    }
+    public fun createText(vararg lines: String): Text =
+        text(lines.asList())
 
     /**
      * Ensures that lines do not contain
@@ -102,6 +111,7 @@ public object TextFactory {
      * @throws IllegalArgumentException if the sequence contains a
      *   [line separator][containsLineSeparators]
      */
+    @JvmStatic
     public fun checkNoSeparator(line: CharSequence) {
         require(!line.containsLineSeparators()) {
             "Unexpected line separators found in the string: `${line.escapeLineSeparators()}`."
@@ -109,19 +119,10 @@ public object TextFactory {
     }
 
     /**
-     * Obtains the instance of the joiner on [line separator][newLine].
-     */
-    public fun lineJoiner(): Joiner = JOINER
-
-    /**
-     * Obtains the splitter that breaks the text on lines at [line separators][newLine].
-     */
-    public fun lineSplitter(): Splitter = SPLITTER
-
-    /**
      * Obtains line separator used in the operating system.
      *
      * Use this method for brevity of code related to working with lines.
      */
+    @JvmStatic
     public fun newLine(): String = NL
 }

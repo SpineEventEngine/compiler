@@ -124,11 +124,6 @@ internal class TextFactorySpec : UtilityClassTest<TextFactory>(TextFactory::clas
     }
 
     @Test
-    fun `expose line joiner for outside use`() {
-        TextFactory.lineJoiner() shouldNotBe null
-    }
-
-    @Test
     fun `provide shortcut method for obtaining system line separator`() {
         newLine() shouldBe System.lineSeparator()
     }

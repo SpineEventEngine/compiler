@@ -68,9 +68,4 @@ class TextFactoryTest: UtilityClassTest<TextFactory>(
     fun `provide 'newLine()' shortcut method`() {
         TextFactory.newLine() shouldBeSameInstanceAs nl
     }
-
-    @Test
-    fun `expose line joiner for outside use`() {
-        TextFactory.lineJoiner() shouldNotBe null
-    }
 }
