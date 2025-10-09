@@ -47,7 +47,7 @@ import java.util.regex.Pattern
  */
 public object TextFactory {
 
-    private val NL: String = Separator.Companion.nl()
+    private val NL: String = Separator.nl()
 
     private val newLinePattern by lazy {
         Pattern.compile("\n|(\r\n)|\r")
