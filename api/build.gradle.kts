@@ -44,7 +44,6 @@ dependencies {
     listOf(
         Base.lib,
         Base.format,
-        Text.lib,
         CoreJava.server,
         ToolBase.lib,
         ToolBase.psiJava
