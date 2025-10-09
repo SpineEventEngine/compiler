@@ -24,47 +24,47 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.compiler.render;
+package io.spine.tools.compiler.render
 
-import io.spine.annotation.GeneratedMixin;
-
-import java.util.List;
-
-import static io.spine.tools.compiler.render.TextFactory.lineSplitter;
-import static io.spine.tools.compiler.render.TextFactory.checkNoSeparator;
+import io.spine.annotation.GeneratedMixin
 
 /**
- * Mixin interface for the {@code Text} data type.
+ * Mixin interface for the `Text` data type.
  */
 @GeneratedMixin
-public interface TextMixin extends TextOrBuilder {
+public interface TextMixin : TextOrBuilder {
 
     /**
      * Obtains a read-only list of lines of this text.
      */
-    default List<String> lines() {
-        return lineSplitter().splitToList(getValue());
+    public fun lines(): MutableList<String> {
+        return TextFactory.lineSplitter().splitToList(getValue())
     }
 
     /**
      * Tells if this text is empty.
      */
-    default boolean isEmpty() {
-        return getValue().isEmpty();
-    }
+    public val isEmpty: Boolean
+        get() = getValue().isEmpty()
 
     /**
      * Obtains the size of the text in characters, including line separators.
      */
-    default int size() {
-        return getValue().length();
+    public val size: Int
+        get() = size()
+
+    /**
+     * Obtains the size of the text in characters, including line separators.
+     */
+    public fun size(): Int {
+        return getValue().length
     }
 
     /**
      * Tells if this text contains the given sequence.
      */
-    default boolean contains(CharSequence sequence) {
-        checkNoSeparator(sequence);
-        return getValue().contains(sequence);
+    public fun contains(sequence: CharSequence): Boolean {
+        TextFactory.checkNoSeparator(sequence)
+        return getValue().contains(sequence)
     }
 }

@@ -41,10 +41,10 @@ import static io.spine.string.CharSequences.escapeLineSeparators;
 import static io.spine.util.Exceptions.newIllegalArgumentException;
 
 /**
- * Static factories and precondition checks for creating instances of {@link io.spine.tools.compiler.render.Text}.
+ * Static factories and precondition checks for creating instances of {@link Text}.
  *
  * @apiNote A recommended way for using this class is using its methods statically
- *         imported, so that the creation of {@link io.spine.tools.compiler.render.Text} objects looks compact:
+ *         imported, so that the creation of {@link Text} objects looks compact:
  *         <pre>{@code
  *         import io.spine.tools.compiler.render.TextFactory.text
  *         ...
@@ -68,9 +68,9 @@ public final class TextFactory {
     /**
      * Creates a new instance with the given value.
      */
-    public static io.spine.tools.compiler.render.Text text(String value) {
+    public static Text text(String value) {
         checkNotNull(value);
-        return io.spine.tools.compiler.render.Text.newBuilder()
+        return Text.newBuilder()
                 .setValue(value)
                 .build();
     }
@@ -82,7 +82,7 @@ public final class TextFactory {
      * @throws IllegalArgumentException
      *         if one of the lines
      */
-    public static io.spine.tools.compiler.render.Text text(Iterable<String> lines) {
+    public static Text text(Iterable<String> lines) {
         checkNotNull(lines);
         checkNoSeparators(lines);
         var joined = JOINER.join(lines);
