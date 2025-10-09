@@ -55,7 +55,7 @@ message Cursor {
     // A zero-based position inside the [line].
     //
     // If we add text inside the line, the value of this field means
-    // "add text _after_ this colum".
+    // "add text _after_ this column".
     //
     int32 column = 2 [(min).value = "0"];
 }
