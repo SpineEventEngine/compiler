@@ -30,7 +30,6 @@ import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Reflect
-import io.spine.dependency.local.Text
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 
