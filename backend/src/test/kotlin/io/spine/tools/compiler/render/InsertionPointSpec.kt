@@ -47,7 +47,6 @@ import io.spine.tools.compiler.test.VariousKtInsertionPointsPrinter
 import io.spine.testing.compiler.RenderingTestbed
 import io.spine.testing.compiler.pipelineParams
 import io.spine.testing.compiler.withRoots
-import io.spine.text.TextCoordinates
 import java.lang.System.lineSeparator
 import java.nio.file.Path
 import kotlin.io.path.createFile

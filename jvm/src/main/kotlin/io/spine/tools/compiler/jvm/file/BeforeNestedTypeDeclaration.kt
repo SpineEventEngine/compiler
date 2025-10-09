@@ -30,8 +30,8 @@ import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.render.CoordinatesFactory.Companion.nowhere
 import io.spine.tools.compiler.render.NonRepeatingInsertionPoint
 import io.spine.string.ti
-import io.spine.text.TextCoordinates
-import io.spine.text.TextFactory.text
+import io.spine.tools.compiler.render.TextCoordinates
+import io.spine.tools.compiler.render.TextFactory.text
 import io.spine.tools.psi.java.lineNumber
 
 /**

@@ -27,10 +27,10 @@
 package io.spine.tools.compiler.test.uuid;
 
 import com.google.common.base.Objects;
-import io.spine.text.TextCoordinates;
 import io.spine.tools.compiler.ast.TypeName;
 import io.spine.tools.compiler.render.NonRepeatingInsertionPoint;
-import io.spine.text.Text;
+import io.spine.tools.compiler.render.TextCoordinates;
+import io.spine.tools.compiler.render.Text;
 
 import java.util.List;
 

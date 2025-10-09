@@ -30,10 +30,9 @@ import io.spine.tools.compiler.ast.toProto
 import io.spine.tools.compiler.render.CoordinatesFactory.Companion.endOfFile
 import io.spine.tools.compiler.render.event.insertionPointPrinted
 import io.spine.core.userId
-import io.spine.text.TextCoordinates
-import io.spine.text.TextCoordinates.KindCase.END_OF_TEXT
-import io.spine.text.TextCoordinates.KindCase.INLINE
-import io.spine.text.TextCoordinates.KindCase.WHOLE_LINE
+import io.spine.tools.compiler.render.TextCoordinates.KindCase.END_OF_TEXT
+import io.spine.tools.compiler.render.TextCoordinates.KindCase.INLINE
+import io.spine.tools.compiler.render.TextCoordinates.KindCase.WHOLE_LINE
 import io.spine.tools.code.Language
 
 /**

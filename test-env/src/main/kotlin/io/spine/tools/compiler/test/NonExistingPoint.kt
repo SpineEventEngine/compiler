@@ -27,7 +27,7 @@
 package io.spine.tools.compiler.test
 
 import io.spine.tools.compiler.render.InsertionPoint
-import io.spine.text.TextCoordinates
+import io.spine.tools.compiler.render.TextCoordinates
 
 /**
  * An insertion point that can never be added to a file.

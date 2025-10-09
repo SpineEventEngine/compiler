@@ -1,11 +1,11 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.text;
+package io.spine.tools.compiler.render;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Joiner;
@@ -41,12 +41,12 @@ import static io.spine.string.CharSequences.escapeLineSeparators;
 import static io.spine.util.Exceptions.newIllegalArgumentException;
 
 /**
- * Static factories and precondition checks for creating instances of {@link Text}.
+ * Static factories and precondition checks for creating instances of {@link io.spine.tools.compiler.render.Text}.
  *
  * @apiNote A recommended way for using this class is using its methods statically
- *         imported, so that the creation of {@link Text} objects looks compact:
+ *         imported, so that the creation of {@link io.spine.tools.compiler.render.Text} objects looks compact:
  *         <pre>{@code
- *         import io.spine.text.TextFactory.text
+ *         import io.spine.tools.compiler.render.TextFactory.text
  *         ...
  *         var twoLines = text("one", "two");
  *         }</pre>
@@ -68,9 +68,9 @@ public final class TextFactory {
     /**
      * Creates a new instance with the given value.
      */
-    public static Text text(String value) {
+    public static io.spine.tools.compiler.render.Text text(String value) {
         checkNotNull(value);
-        return Text.newBuilder()
+        return io.spine.tools.compiler.render.Text.newBuilder()
                 .setValue(value)
                 .build();
     }
@@ -82,7 +82,7 @@ public final class TextFactory {
      * @throws IllegalArgumentException
      *         if one of the lines
      */
-    public static Text text(Iterable<String> lines) {
+    public static io.spine.tools.compiler.render.Text text(Iterable<String> lines) {
         checkNotNull(lines);
         checkNoSeparators(lines);
         var joined = JOINER.join(lines);

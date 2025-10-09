@@ -1,11 +1,11 @@
 /*
- * Copyright 2022, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,47 +24,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.text;
-
-import io.spine.annotation.GeneratedMixin;
-
-import java.util.List;
-
-import static io.spine.text.TextFactory.lineSplitter;
-import static io.spine.text.TextFactory.checkNoSeparator;
-
 /**
- * Mixin interface for the {@code Text} data type.
+ * This package provides data types and utilities for working with multi-line texts.
  */
-@GeneratedMixin
-public interface TextMixin extends TextOrBuilder {
+@CheckReturnValue
+@NullMarked
+package io.spine.tools.compiler.render;
 
-    /**
-     * Obtains a read-only list of lines of this text.
-     */
-    default List<String> lines() {
-        return lineSplitter().splitToList(getValue());
-    }
+import com.google.errorprone.annotations.CheckReturnValue;
 
-    /**
-     * Tells if this text is empty.
-     */
-    default boolean isEmpty() {
-        return getValue().isEmpty();
-    }
-
-    /**
-     * Obtains the size of the text in characters, including line separators.
-     */
-    default int size() {
-        return getValue().length();
-    }
-
-    /**
-     * Tells if this text contains the given sequence.
-     */
-    default boolean contains(CharSequence sequence) {
-        checkNoSeparator(sequence);
-        return getValue().contains(sequence);
-    }
-}
+import org.jspecify.annotations.NullMarked;

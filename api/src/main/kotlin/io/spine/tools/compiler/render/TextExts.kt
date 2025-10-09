@@ -1,11 +1,11 @@
 /*
- * Copyright 2023, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -26,7 +26,7 @@
 
 @file:JvmName("Texts")
 
-package io.spine.text
+package io.spine.tools.compiler.render
 
 import io.spine.string.Indent
 import io.spine.string.Indent.Companion.DEFAULT_JAVA_INDENT_SIZE
@@ -34,6 +34,7 @@ import io.spine.string.Separator
 import io.spine.string.containsNonSystemLineSeparator
 import io.spine.string.pi
 import io.spine.string.ti
+import io.spine.tools.compiler.render.Text
 
 /**
  * Trims indentation in this text, preserving system line separators.

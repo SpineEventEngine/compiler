@@ -28,9 +28,6 @@ package io.spine.tools.compiler.render
 
 import com.google.protobuf.Empty
 import io.spine.annotation.Internal
-import io.spine.text.TextCoordinates
-import io.spine.text.cursor
-import io.spine.text.textCoordinates
 
 /**
  * A factory of [TextCoordinates] instances.

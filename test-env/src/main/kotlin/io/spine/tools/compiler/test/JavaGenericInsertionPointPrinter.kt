@@ -31,7 +31,7 @@ import io.spine.tools.compiler.render.CoordinatesFactory.Companion.nowhere
 import io.spine.tools.compiler.render.CoordinatesFactory.Companion.startOfFile
 import io.spine.tools.compiler.render.InsertionPointPrinter
 import io.spine.tools.compiler.render.NonRepeatingInsertionPoint
-import io.spine.text.TextCoordinates
+import io.spine.tools.compiler.render.TextCoordinates
 import io.spine.tools.code.Java
 
 public class JavaGenericInsertionPointPrinter :

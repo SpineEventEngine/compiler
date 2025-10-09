@@ -27,7 +27,6 @@
 package io.spine.tools.compiler.render
 
 import io.spine.collect.interlaced
-import io.spine.text.TextFactory
 
 /**
  * A fluent builder for inserting code into pre-prepared inline insertion points.

@@ -35,8 +35,7 @@ import io.spine.tools.compiler.ast.toProto
 import io.spine.tools.compiler.render.SourceFile.Companion.fromCode
 import io.spine.tools.compiler.util.Cache
 import io.spine.server.query.select
-import io.spine.text.Text
-import io.spine.text.TextFactory.text
+import io.spine.tools.compiler.render.TextFactory.text
 import io.spine.tools.code.Language
 import io.spine.tools.psi.convertLineSeparators
 import io.spine.tools.psi.java.Environment
