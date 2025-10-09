@@ -29,7 +29,6 @@ package io.spine.tools.compiler.gradle.plugin
 import io.spine.annotation.VisibleForTesting
 import io.spine.tools.compiler.gradle.api.CompilerSettings
 import io.spine.tools.compiler.gradle.api.Names.EXTENSION_NAME
-import io.spine.tools.compiler.gradle.plugin.Extension.Companion.defaultSubdirectories
 import io.spine.tools.fs.DirectoryName.generated
 import io.spine.tools.gradle.DslSpec
 import io.spine.tools.gradle.protobuf.generatedSourceProtoDir
