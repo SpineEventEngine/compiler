@@ -38,7 +38,7 @@ public interface TextMixin : TextOrBuilder {
      * Obtains a read-only list of lines of this text.
      */
     public fun lines(): List<String> {
-        return TextFactory.SPLITTER.splitToList(getValue())
+        return TextFactory.splitter.splitToList(getValue())
     }
 
     /**

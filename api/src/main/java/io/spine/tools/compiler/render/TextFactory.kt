@@ -49,17 +49,17 @@ import java.util.regex.Pattern
  */
 public object TextFactory {
 
+    private val NL: String = Separator.nl()
+
     private val newLinePattern by lazy {
         Pattern.compile("\n|(\r\n)|\r")
     }
 
-    internal val SPLITTER by lazy {
+    internal val splitter by lazy {
         Splitter.on(newLinePattern)
     }
 
-    private val NL: String = Separator.nl()
-
-    private val JOINER = Joiner.on(NL)
+    private val joiner = Joiner.on(NL)
 
     /**
      * Creates a new instance with the given value.
@@ -78,7 +78,7 @@ public object TextFactory {
     @JvmStatic
     public fun text(lines: Iterable<String>): Text {
         checkNoSeparators(lines)
-        val joined = JOINER.join(lines)
+        val joined = joiner.join(lines)
         return text(joined)
     }
 
