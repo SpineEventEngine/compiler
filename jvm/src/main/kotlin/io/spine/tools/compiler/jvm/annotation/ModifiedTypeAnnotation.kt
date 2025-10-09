@@ -26,17 +26,17 @@
 
 package io.spine.tools.compiler.jvm.annotation
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.Modified
+import io.spine.annotation.VisibleForTesting
 import io.spine.base.Time
 import io.spine.base.Time.currentTime
 import io.spine.base.Time.currentTimeZone
-import io.spine.tools.compiler.Constants.CLI_APP_CLASS
-import io.spine.tools.compiler.render.SourceFile
 import io.spine.string.Separator
 import io.spine.time.toInstant
 import io.spine.tools.code.Java
+import io.spine.tools.compiler.Constants.CLI_APP_CLASS
+import io.spine.tools.compiler.render.SourceFile
 import java.time.OffsetDateTime
-import io.spine.annotation.Modified
 
 /**
  * Adds the [io.spine.annotation.Modified] annotation to the top-level

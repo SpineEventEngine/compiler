@@ -26,20 +26,20 @@
 
 package io.spine.tools.compiler.backend
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import io.spine.base.EntityState
 import io.spine.base.EventMessage
 import io.spine.core.userId
-import io.spine.tools.compiler.context.CodegenContext
-import io.spine.tools.compiler.plugin.add
-import io.spine.tools.compiler.protobuf.ProtoFileList
-import io.spine.tools.compiler.type.TypeSystem
 import io.spine.server.BoundedContext
 import io.spine.server.BoundedContext.singleTenant
 import io.spine.server.BoundedContextBuilder
 import io.spine.server.entity.Entity
 import io.spine.server.integration.ThirdPartyContext
 import io.spine.server.query.QueryingClient
+import io.spine.tools.compiler.context.CodegenContext
+import io.spine.tools.compiler.plugin.add
+import io.spine.tools.compiler.protobuf.ProtoFileList
+import io.spine.tools.compiler.type.TypeSystem
 import kotlin.reflect.jvm.jvmName
 
 /**

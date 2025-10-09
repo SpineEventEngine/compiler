@@ -26,15 +26,15 @@
 
 package io.spine.tools.compiler.jvm.annotation
 
-import com.google.common.annotations.VisibleForTesting
 import com.google.errorprone.annotations.CanIgnoreReturnValue
 import given.annotation.NoTypeTargetAnnotation
 import given.annotation.Schedule
 import io.kotest.matchers.shouldBe
+import io.spine.annotation.VisibleForTesting
 import io.spine.logging.testing.tapConsole
+import io.spine.tools.code.Java
 import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.render.SourceFile
-import io.spine.tools.code.Java
 import io.spine.tools.java.reference
 import java.nio.file.Paths
 import org.junit.jupiter.api.DisplayName

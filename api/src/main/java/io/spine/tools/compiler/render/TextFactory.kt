@@ -26,9 +26,8 @@
 
 package io.spine.tools.compiler.render
 
-import com.google.common.annotations.VisibleForTesting
-import com.google.common.base.Joiner
 import com.google.common.base.Splitter
+import io.spine.annotation.VisibleForTesting
 import io.spine.string.Separator
 import io.spine.string.containsLineSeparators
 import io.spine.string.escapeLineSeparators
@@ -59,8 +58,6 @@ public object TextFactory {
         Splitter.on(newLinePattern)
     }
 
-    private val joiner = Joiner.on(NL)
-
     /**
      * Creates a new instance with the given value.
      */
@@ -78,7 +75,7 @@ public object TextFactory {
     @JvmStatic
     public fun text(lines: Iterable<String>): Text {
         checkNoSeparators(lines)
-        val joined = joiner.join(lines)
+        val joined = lines.joinToString(separator = NL)
         return text(joined)
     }
 

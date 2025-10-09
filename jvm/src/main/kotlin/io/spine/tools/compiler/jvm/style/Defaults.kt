@@ -26,7 +26,7 @@
 
 package io.spine.tools.compiler.jvm.style
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 
 /**
  * Constants for default Java code style.

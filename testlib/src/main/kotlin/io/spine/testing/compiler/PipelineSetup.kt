@@ -26,8 +26,20 @@
 
 package io.spine.testing.compiler
 
-import com.google.common.annotations.VisibleForTesting
 import com.google.protobuf.compiler.PluginProtos.CodeGeneratorRequest
+import io.spine.annotation.VisibleForTesting
+import io.spine.format.Format
+import io.spine.io.Resource
+import io.spine.io.ResourceDirectory
+import io.spine.io.replaceExtension
+import io.spine.reflect.CallerFinder.findCallerOf
+import io.spine.testing.compiler.PipelineSetup.Companion.byResources
+import io.spine.testing.server.blackbox.BlackBox
+import io.spine.tools.code.Java
+import io.spine.tools.code.Kotlin
+import io.spine.tools.code.Language
+import io.spine.tools.code.Protobuf
+import io.spine.tools.code.TypeScript
 import io.spine.tools.compiler.ast.toAbsoluteFile
 import io.spine.tools.compiler.ast.toPath
 import io.spine.tools.compiler.backend.CodeGenerationContext
@@ -37,18 +49,6 @@ import io.spine.tools.compiler.params.PipelineParameters
 import io.spine.tools.compiler.plugin.Plugin
 import io.spine.tools.compiler.render.SourceFileSet
 import io.spine.tools.compiler.settings.SettingsDirectory
-import io.spine.testing.compiler.PipelineSetup.Companion.byResources
-import io.spine.format.Format
-import io.spine.io.Resource
-import io.spine.io.ResourceDirectory
-import io.spine.io.replaceExtension
-import io.spine.reflect.CallerFinder.findCallerOf
-import io.spine.testing.server.blackbox.BlackBox
-import io.spine.tools.code.Java
-import io.spine.tools.code.Kotlin
-import io.spine.tools.code.Language
-import io.spine.tools.code.Protobuf
-import io.spine.tools.code.TypeScript
 import io.spine.tools.prototap.CompiledProtosFile
 import io.spine.tools.prototap.Names.PROTOC_PLUGIN_NAME
 import io.spine.tools.prototap.Paths.CODE_GENERATOR_REQUEST_FILE
@@ -59,7 +59,6 @@ import io.spine.validate.NonValidated
 import java.nio.file.Path
 import java.nio.file.StandardOpenOption.CREATE
 import java.nio.file.StandardOpenOption.TRUNCATE_EXISTING
-import kotlin.collections.get
 import kotlin.io.path.Path
 import kotlin.io.path.writeBytes
 import kotlin.io.path.writeText

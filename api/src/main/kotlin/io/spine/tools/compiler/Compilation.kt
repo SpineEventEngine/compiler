@@ -26,16 +26,16 @@
 
 package io.spine.tools.compiler
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import io.spine.base.Mistake
 import io.spine.environment.Tests
+import io.spine.string.Indent
+import io.spine.string.Separator
+import io.spine.string.indent
 import io.spine.tools.compiler.Compilation.ERROR_EXIT_CODE
 import io.spine.tools.compiler.Compilation.error
 import io.spine.tools.compiler.ast.Span
 import io.spine.tools.compiler.ast.toJava
-import io.spine.string.Indent
-import io.spine.string.Separator
-import io.spine.string.indent
 import java.io.File
 import java.io.Serial
 import kotlin.system.exitProcess

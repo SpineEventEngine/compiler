@@ -26,17 +26,17 @@
 
 package io.spine.tools.compiler.render
 
-import com.google.common.annotations.VisibleForTesting
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.fileTypes.FileTypeRegistry
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
+import io.spine.annotation.VisibleForTesting
+import io.spine.server.query.select
+import io.spine.tools.code.Language
 import io.spine.tools.compiler.ast.toProto
 import io.spine.tools.compiler.render.SourceFile.Companion.fromCode
-import io.spine.tools.compiler.util.Cache
-import io.spine.server.query.select
 import io.spine.tools.compiler.render.TextFactory.text
-import io.spine.tools.code.Language
+import io.spine.tools.compiler.util.Cache
 import io.spine.tools.psi.convertLineSeparators
 import io.spine.tools.psi.java.Environment
 import java.lang.System.lineSeparator

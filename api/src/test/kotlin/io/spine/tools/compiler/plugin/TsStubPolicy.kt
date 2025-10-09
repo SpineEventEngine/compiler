@@ -26,10 +26,10 @@
 
 package io.spine.tools.compiler.plugin
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import io.spine.base.EventMessage
-import io.spine.tools.compiler.type.TypeSystem
 import io.spine.server.BoundedContext
+import io.spine.tools.compiler.type.TypeSystem
 
 /**
  * The abstract base for stub policy classes used in tests related to injecting [TypeSystem].
