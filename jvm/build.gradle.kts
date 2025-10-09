@@ -24,7 +24,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.lib.JavaPoet
 import io.spine.dependency.lib.PalantirJavaFormat
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Time
