@@ -34,9 +34,10 @@ package io.spine.dependency.local
 @Suppress("ConstPropertyName", "unused")
 object ToolBase {
     const val group = Spine.toolsGroup
-    const val version = "2.0.0-SNAPSHOT.360"
+    const val version = "2.0.0-SNAPSHOT.361"
 
     const val lib = "$group:tool-base:$version"
+    const val classicCodegen = "$group:classic-codegen:$version"
     const val pluginBase = "$group:plugin-base:$version"
     const val pluginTestlib = "$group:plugin-testlib:$version"
 
@@ -44,8 +45,7 @@ object ToolBase {
     const val intellijPlatformJava = "$group:intellij-platform-java:$version"
 
     const val psi = "$group:psi:$version"
-    const val psiJavaArtifactName = "psi-java"
-    const val psiJava = "$group:$psiJavaArtifactName:$version"
+    const val psiJava = "$group:psi-java:$version"
 
     const val gradleRootPlugin = "$group:gradle-root-plugin:$version"
     const val gradlePluginApi = "$group:gradle-plugin-api:$version"
