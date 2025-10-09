@@ -25,7 +25,7 @@
  */
 
 /**
- * This package provides data types and utilities for working with multi-line texts.
+ * This package provides API for rendering actions and related data types.
  */
 @CheckReturnValue
 @NullMarked
