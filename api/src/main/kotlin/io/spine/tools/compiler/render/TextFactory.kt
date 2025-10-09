@@ -31,7 +31,6 @@ import io.spine.annotation.VisibleForTesting
 import io.spine.string.Separator
 import io.spine.string.containsLineSeparators
 import io.spine.string.escapeLineSeparators
-import io.spine.tools.compiler.render.TextFactory.newLine
 import java.util.regex.Pattern
 
 /**
@@ -48,7 +47,7 @@ import java.util.regex.Pattern
  */
 public object TextFactory {
 
-    private val NL: String = Separator.nl()
+    private val NL: String = Separator.Companion.nl()
 
     private val newLinePattern by lazy {
         Pattern.compile("\n|(\r\n)|\r")
