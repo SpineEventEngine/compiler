@@ -24,134 +24,104 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.compiler.render;
+package io.spine.tools.compiler.render
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Joiner;
-import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableList;
-import io.spine.string.CharSequences;
-import io.spine.string.Separator;
-
-import java.util.regex.Pattern;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-import static io.spine.string.CharSequences.containsLineSeparators;
-import static io.spine.string.CharSequences.escapeLineSeparators;
-import static io.spine.util.Exceptions.newIllegalArgumentException;
+import com.google.common.annotations.VisibleForTesting
+import com.google.common.base.Joiner
+import com.google.common.base.Splitter
+import io.spine.string.Separator
+import io.spine.string.containsLineSeparators
+import io.spine.string.escapeLineSeparators
+import io.spine.tools.compiler.render.TextFactory.newLine
+import java.util.regex.Pattern
 
 /**
- * Static factories and precondition checks for creating instances of {@link Text}.
+ * Static factories and precondition checks for creating instances of [Text].
  *
- * @apiNote A recommended way for using this class is using its methods statically
- *         imported, so that the creation of {@link Text} objects looks compact:
- *         <pre>{@code
- *         import io.spine.tools.compiler.render.TextFactory.text
- *         ...
- *         var twoLines = text("one", "two");
- *         }</pre>
+ * A recommended way for using this class is using its methods statically
+ * imported, so that the creation of [Text] objects looks compact:
+ *
+ * ```kotlin
+ * import io.spine.tools.compiler.render.TextFactory.text
+ * ...
+ * var twoLines = text("one", "two");
+ * ```
  */
-public final class TextFactory {
+public object TextFactory {
 
-    @SuppressWarnings("HardcodedLineSeparator") // For use in a regex.
-    private static final Pattern newLinePattern = Pattern.compile("\n|(\r\n)|\r");
-    private static final Splitter SPLITTER = Splitter.on(newLinePattern);
-    private static final String NL = Separator.nl();
-    private static final Joiner JOINER = Joiner.on(NL);
-
-    /**
-     * Prevents instantiation of this static factory class.
-     */
-    private TextFactory() {
-    }
+    private val newLinePattern: Pattern = Pattern.compile("\n|(\r\n)|\r")
+    private val SPLITTER = Splitter.on(newLinePattern)
+    private val NL: String = Separator.nl()
+    private val JOINER = Joiner.on(NL)
 
     /**
      * Creates a new instance with the given value.
      */
-    public static Text text(String value) {
-        checkNotNull(value);
-        return Text.newBuilder()
-                .setValue(value)
-                .build();
+    public fun text(value: String): Text = text {
+        this.value = value
     }
 
     /**
-     * Creates a new instance of text with lines separated by {@linkplain #newLine()
-     * line separator}.
+     * Creates a new instance of text with lines separated by [line separator][newLine].
      *
      * @throws IllegalArgumentException
-     *         if one of the lines
+     * if one of the lines
      */
-    public static Text text(Iterable<String> lines) {
-        checkNotNull(lines);
-        checkNoSeparators(lines);
-        var joined = JOINER.join(lines);
-        return text(joined);
+    public fun text(lines: Iterable<String>): Text {
+        checkNoSeparators(lines)
+        val joined = JOINER.join(lines)
+        return text(joined)
     }
 
     /**
      * Creates a new multi-line text with the given lines.
      *
-     * @throws IllegalArgumentException
-     *         if any of the lines contains a
-     *         {@linkplain CharSequences#containsLineSeparators(CharSequence) line separator}
+     * @throws IllegalArgumentException if any of the lines contains a
+     *  [line separator][containsLineSeparators]
      */
     @VisibleForTesting
-    public static Text createText(String... lines) {
-        checkNotNull(lines);
-        return text(ImmutableList.copyOf(lines));
+    public fun createText(vararg lines: String): Text {
+        return text(lines.asList())
     }
 
     /**
      * Ensures that lines do not contain
-     * {@linkplain CharSequences#containsLineSeparators(CharSequence) line separators}.
+     * [line separators][containsLineSeparators].
      *
-     * @throws IllegalArgumentException
-     *         if at least one line contains a
-     *         {@linkplain CharSequences#containsLineSeparators(CharSequence) line separator}
+     * @throws IllegalArgumentException if at least one line contains
+     *   a [line separator][containsLineSeparators].
      */
-    public static void checkNoSeparators(Iterable<String> lines) {
-        lines.forEach(TextFactory::checkNoSeparator);
+    public fun checkNoSeparators(lines: Iterable<String>) {
+        lines.forEach(::checkNoSeparator)
     }
 
     /**
-     * Ensures that charter sequence does not contain a
-     * {@linkplain CharSequences#containsLineSeparators(CharSequence) line separator}.
+     * Ensures that the charter sequence does not contain a
+     * [line separator][containsLineSeparators].
      *
-     * @throws IllegalArgumentException
-     *         if the sequence contains a
-     *         {@linkplain CharSequences#containsLineSeparators(CharSequence) line separator}
+     * @throws IllegalArgumentException if the sequence contains a
+     *   [line separator][containsLineSeparators]
      */
-    public static void checkNoSeparator(CharSequence line) {
-        if (containsLineSeparators(line)) {
-            throw newIllegalArgumentException(
-                    "Unexpected line separators found in the string: `%s`.",
-                    escapeLineSeparators(line)
-            );
+    public fun checkNoSeparator(line: CharSequence) {
+        require(!line.containsLineSeparators()) {
+            "Unexpected line separators found in the string: `${line.escapeLineSeparators()}`."
         }
     }
 
     /**
-     * Obtains the instance of the joiner on {@linkplain #newLine() line separator}.
+     * Obtains the instance of the joiner on [line separator][newLine].
      */
-    public static Joiner lineJoiner() {
-        return JOINER;
-    }
+    public fun lineJoiner(): Joiner = JOINER
 
     /**
-     * Obtains the splitter that breaks the text on lines at {@linkplain #newLine()
-     * line separators}.
+     * Obtains the splitter that breaks the text on lines at [line separators][newLine].
      */
-    public static Splitter lineSplitter() {
-        return SPLITTER;
-    }
+    public fun lineSplitter(): Splitter = SPLITTER
 
     /**
      * Obtains line separator used in the operating system.
      *
-     * @apiNote Use this method for brevity of code related to working with lines.
+     * Use this method for brevity of code related to working with lines.
      */
-    public static String newLine() {
-        return NL;
-    }
+    public fun newLine(): String = NL
 }
