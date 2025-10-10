@@ -82,7 +82,7 @@ class StubSourceSet(private val name: String) : SourceSet {
 
     override fun getOutput(): SourceSetOutput = stubMethod()
 
-    override fun compiledBy(vararg taskPaths: Any?): SourceSet = stubMethod()
+    override fun compiledBy(vararg taskPaths: Any): SourceSet = stubMethod()
 
     override fun getResources(): SourceDirectorySet = stubMethod()
 
