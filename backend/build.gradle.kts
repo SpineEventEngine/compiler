@@ -97,3 +97,9 @@ val compileKotlin: Task by tasks.getting {
     }
 }
  */
+
+afterEvaluate {
+    val kspKotlin by tasks.getting
+    val launchSpineCompiler by tasks.getting
+    kspKotlin.dependsOn(launchSpineCompiler)
+}
