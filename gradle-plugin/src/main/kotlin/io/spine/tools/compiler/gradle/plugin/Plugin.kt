@@ -167,9 +167,7 @@ internal val Project.compilerSettings: Extension
  * user-defined classpath, and adds dependency on [Artifacts.fatCli].
  */
 private fun Project.createConfigurations(compilerVersion: String) {
-    val artifactConfig = configurations.create(COMPILER_RAW_ARTIFACT) {
-        it.isVisible = false
-    }
+    val artifactConfig = configurations.create(COMPILER_RAW_ARTIFACT)
     val cliDependency = Artifacts.fatCli(compilerVersion)
     dependencies.add(artifactConfig.name, cliDependency)
 
