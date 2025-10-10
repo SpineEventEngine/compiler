@@ -107,6 +107,7 @@ subprojects {
                     Kotlin.bom,
                     KotlinPoet.lib,
                     Caffeine.lib,
+                    Base.annotations,
                     Base.lib,
                     ToolBase.lib,
                     ToolBase.psiJava,

@@ -78,3 +78,9 @@ tasks.withType<PublishToMavenRepository>().configureEach {
  * No need to generate the documentation for test environment code.
  */
 disableDocumentationTasks()
+
+afterEvaluate {
+    val kspKotlin by tasks.getting
+    val launchSpineCompiler by tasks.getting
+    kspKotlin.dependsOn(launchSpineCompiler)
+}
