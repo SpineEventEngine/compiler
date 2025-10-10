@@ -26,10 +26,10 @@
 
 package io.spine.tools.compiler.test.annotation;
 
-import io.spine.text.TextCoordinates;
+import io.spine.tools.compiler.render.Text;
+import io.spine.tools.compiler.render.TextCoordinates;
 import io.spine.tools.compiler.render.NonRepeatingInsertionPoint;
 import io.spine.tools.compiler.test.FieldId;
-import io.spine.text.Text;
 import org.jspecify.annotations.NonNull;
 
 import java.util.List;

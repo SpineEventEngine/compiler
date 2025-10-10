@@ -35,7 +35,7 @@ import com.intellij.psi.PsiJavaFile
 import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.render.SourceFile
 import io.spine.string.Separator
-import io.spine.text.Text
+import io.spine.tools.compiler.render.Text
 import io.spine.tools.psi.convertLineSeparators
 import io.spine.tools.psi.java.Environment
 import io.spine.tools.psi.java.Parser

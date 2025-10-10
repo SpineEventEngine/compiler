@@ -28,9 +28,9 @@ package io.spine.tools.compiler.jvm.file
 
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import io.spine.tools.compiler.jvm.ClassName
 import io.spine.string.ti
-import io.spine.text.text
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.render.text
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test

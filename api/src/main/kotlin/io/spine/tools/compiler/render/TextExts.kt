@@ -24,17 +24,45 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.compiler.test
+@file:JvmName("Texts")
 
-import io.spine.tools.compiler.render.InsertionPoint
-import io.spine.tools.compiler.render.TextCoordinates
+package io.spine.tools.compiler.render
+
+import io.spine.string.Indent
+import io.spine.string.Indent.Companion.DEFAULT_JAVA_INDENT_SIZE
+import io.spine.string.Separator
+import io.spine.string.containsNonSystemLineSeparator
+import io.spine.string.pi
+import io.spine.string.ti
+import io.spine.tools.compiler.render.Text
 
 /**
- * An insertion point that can never be added to a file.
+ * Trims indentation in this text, preserving system line separators.
  */
-public object NonExistingPoint : InsertionPoint {
-
-    override val label: String = "NonExistingPoint"
-
-    override fun locate(text: String): Set<TextCoordinates> = emptySet()
+public fun Text.trimIndent(): Text = text {
+    value = this@trimIndent.value.ti()
 }
+
+private val DEFAULT_INDENT = Indent(DEFAULT_JAVA_INDENT_SIZE).value
+
+/**
+ * Prepends indentation of this text, preserving system line separators.
+ */
+public fun Text.prependIndent(indent: String = DEFAULT_INDENT): Text = text {
+    value = this@prependIndent.value.pi(indent)
+}
+
+/**
+ * Ensures that the text does not contain non-system line separators.
+ *
+ * If this text does not contain such separators, the same instance is returned.
+ * Otherwise, new instance is created with the required line separators.
+ */
+public fun Text.ensureSystemLineSeparators(): Text {
+    if (!value.containsNonSystemLineSeparator()) {
+        return this
+    }
+    val rejoined = value.lines().joinToString(separator = Separator.nl())
+    return text { value = rejoined }
+}
+

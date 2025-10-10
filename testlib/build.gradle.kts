@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.ProtoTap
 import io.spine.dependency.local.Reflect
@@ -40,7 +40,7 @@ plugins {
 dependencies {
     api(gradleTestKit())
     api(TestLib.lib)
-    api(CoreJava.testUtilServer)
+    api(CoreJvm.serverTestLib)
     api(ProtoTap.api)
     api(project(":api"))
     api(project(":params"))

@@ -26,7 +26,7 @@
 
 package io.spine.tools.compiler.render
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import io.spine.string.Indent
 import io.spine.string.Indent.Companion.DEFAULT_JAVA_INDENT_SIZE
 import io.spine.string.Separator

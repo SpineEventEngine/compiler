@@ -28,7 +28,7 @@ package io.spine.tools.compiler.test
 
 import io.spine.tools.compiler.render.InsertionPoint
 import io.spine.tools.compiler.render.InsertionPointPrinter
-import io.spine.text.TextCoordinates
+import io.spine.tools.compiler.render.TextCoordinates
 import io.spine.tools.code.Kotlin
 
 /**

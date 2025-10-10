@@ -29,8 +29,6 @@ package io.spine.tools.compiler.render
 import io.spine.logging.WithLogging
 import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.qualifiedName
-import io.spine.text.Text
-import io.spine.text.TextCoordinates
 
 /**
  * A point is a source file, where more code may be inserted.

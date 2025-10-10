@@ -31,6 +31,7 @@ import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.gradle.javac.configureErrorProne
@@ -80,7 +81,7 @@ fun Module.setDependencies() {
         ErrorProne.apply {
             errorprone(core)
         }
-        testImplementation(CoreJava.testUtilServer)
+        testImplementation(CoreJvm.serverTestLib)
         testImplementation(kotlin("test-junit5"))
     }
 }

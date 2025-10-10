@@ -26,8 +26,8 @@
 
 package io.spine.tools.compiler.type
 
-import com.google.common.annotations.VisibleForTesting
 import com.google.protobuf.Descriptors.FileDescriptor
+import io.spine.annotation.VisibleForTesting
 import io.spine.base.FieldPath
 import io.spine.base.isNotNested
 import io.spine.base.root

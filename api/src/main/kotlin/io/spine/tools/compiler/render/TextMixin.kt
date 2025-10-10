@@ -24,17 +24,47 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.local
+package io.spine.tools.compiler.render
+
+import io.spine.annotation.GeneratedMixin
 
 /**
- * Spine Reflect library.
- *
- * @see <a href="https://github.com/SpineEventEngine/text">spine-text</a>
+ * Mixin interface for the `Text` data type.
  */
-@Suppress("ConstPropertyName")
-object Text {
-    const val version = "2.0.0-SNAPSHOT.6"
-    const val group = Spine.group
-    const val artifact = "spine-text"
-    const val lib = "$group:$artifact:$version"
+@GeneratedMixin
+public interface TextMixin : TextOrBuilder {
+
+    /**
+     * Obtains a read-only list of lines of this text.
+     */
+    public fun lines(): List<String> {
+        return TextFactory.splitter.splitToList(getValue())
+    }
+
+    /**
+     * Tells if this text is empty.
+     */
+    public val isEmpty: Boolean
+        get() = getValue().isEmpty()
+
+    /**
+     * Obtains the size of the text in characters, including line separators.
+     */
+    public val size: Int
+        get() = size()
+
+    /**
+     * Obtains the size of the text in characters, including line separators.
+     */
+    public fun size(): Int {
+        return getValue().length
+    }
+
+    /**
+     * Tells if this text contains the given sequence.
+     */
+    public fun contains(sequence: CharSequence): Boolean {
+        TextFactory.checkNoSeparator(sequence)
+        return getValue().contains(sequence)
+    }
 }

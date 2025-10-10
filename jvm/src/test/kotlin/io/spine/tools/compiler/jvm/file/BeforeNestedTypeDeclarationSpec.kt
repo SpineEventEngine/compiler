@@ -34,7 +34,7 @@ import io.spine.string.ti
 import io.spine.testing.compiler.RenderingTestbed
 import io.spine.testing.compiler.pipelineParams
 import io.spine.testing.compiler.withRoots
-import io.spine.text.TextCoordinates
+import io.spine.tools.compiler.render.TextCoordinates
 import io.spine.tools.code.Java
 import io.spine.tools.compiler.backend.Pipeline
 import io.spine.tools.compiler.jvm.ClassName

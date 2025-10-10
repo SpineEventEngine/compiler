@@ -26,12 +26,12 @@
 
 package io.spine.tools.compiler.context
 
-import com.google.common.annotations.VisibleForTesting
-import io.spine.tools.compiler.type.TypeSystem
+import io.spine.annotation.VisibleForTesting
 import io.spine.server.Closeable
 import io.spine.server.entity.Entity
 import io.spine.server.integration.ThirdPartyContext
 import io.spine.server.query.Querying
+import io.spine.tools.compiler.type.TypeSystem
 
 /**
  * A context of code generation.
