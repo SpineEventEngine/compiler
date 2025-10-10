@@ -24,11 +24,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.test.JUnit
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Jackson.DataFormat
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.ToolBase
+import io.spine.dependency.test.JUnit
 import io.spine.gradle.publish.CheckVersionIncrement
 import io.spine.gradle.publish.IncrementGuard
 import io.spine.gradle.publish.PublishingRepos
