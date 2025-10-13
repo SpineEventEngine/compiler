@@ -27,7 +27,7 @@
 package io.spine.dependency.local
 
 /**
- * Provides names of the Maven groups to which artifacts of the Spine SDK belong.
+ * Dependencies on smaller Spine modules.
  */
 @Suppress("unused", "ConstPropertyName")
 object Spine {

@@ -42,7 +42,6 @@ object ToolBase {
     const val pluginTestlib = "$group:plugin-testlib:$version"
 
     const val intellijPlatform = "$group:intellij-platform:$version"
-
     const val intellijPlatformJava = "$group:intellij-platform-java:$version"
 
     const val psi = "$group:psi:$version"
