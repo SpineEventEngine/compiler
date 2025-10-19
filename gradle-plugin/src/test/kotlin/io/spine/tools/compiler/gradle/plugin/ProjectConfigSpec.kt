@@ -64,6 +64,7 @@ class ProjectConfigSpec {
             project = ProjectBuilder.builder()
                 .withProjectDir(projectDir)
                 .build()
+            project.group = "io.spine.stubs"
             with(project) {
                 apply(plugin = "java")
                 apply<ProtobufPlugin>()

@@ -41,7 +41,7 @@ import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.compiler.params.pipelineParameters
 import io.spine.tools.gradle.project.findJavaCompileFor
 import io.spine.tools.gradle.project.findKotlinCompileFor
-import io.spine.tools.gradle.protobuf.containsProtoFiles
+import io.spine.tools.protobuf.gradle.containsProtoFiles
 import java.io.File
 import java.io.File.pathSeparator
 import java.nio.file.Files

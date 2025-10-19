@@ -31,7 +31,7 @@ import io.spine.tools.compiler.gradle.api.builtins
 import io.spine.tools.compiler.gradle.api.debug
 import io.spine.tools.compiler.gradle.api.plugins
 import io.spine.tools.compiler.gradle.api.generatedDir
-import io.spine.tools.gradle.protobuf.generatedSourceProtoDir
+import io.spine.tools.protobuf.gradle.generatedSourceProtoDir
 import java.io.File
 import java.nio.file.Path
 import java.nio.file.Paths
