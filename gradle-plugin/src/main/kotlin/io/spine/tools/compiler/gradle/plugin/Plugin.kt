@@ -33,7 +33,6 @@ import com.google.common.collect.ImmutableList
 import com.google.errorprone.annotations.CanIgnoreReturnValue
 import com.google.protobuf.gradle.GenerateProtoTask
 import io.spine.annotation.VisibleForTesting
-import io.spine.code.proto.DescriptorSetReferenceFile
 import io.spine.string.toBase64Encoded
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.compiler.gradle.api.Artifacts
@@ -60,15 +59,12 @@ import io.spine.tools.gradle.project.hasJava
 import io.spine.tools.gradle.project.hasJavaOrKotlin
 import io.spine.tools.gradle.project.hasKotlin
 import io.spine.tools.gradle.project.sourceSets
-import io.spine.tools.protobuf.gradle.protobufExtension
-import io.spine.tools.gradle.task.JavaTaskName
-import io.spine.tools.protobuf.gradle.descriptorSetFile
 import io.spine.tools.gradle.task.findKotlinDirectorySet
 import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.MavenArtifact
+import io.spine.tools.protobuf.gradle.plugin.DescriptorSetFilePlugin
+import io.spine.tools.protobuf.gradle.protobufExtension
 import java.io.File
-import java.io.IOException
-import java.nio.file.Path
 import org.gradle.api.Project
 import org.gradle.api.file.SourceDirectorySet
 import org.gradle.api.tasks.Delete
@@ -242,6 +238,9 @@ private fun Project.setProtocArtifact() {
 private fun Project.configureWithProtobufPlugin(compilerVersion: String) {
     val protocPlugin = ProtocPluginArtifact(compilerVersion)
     pluginManager.withPlugin(PROTOBUF_GRADLE_PLUGIN_ID) {
+        afterEvaluate {
+            pluginManager.apply(DescriptorSetFilePlugin::class.java)
+        }
         setProtocPluginArtifact(protocPlugin)
         configureGenerateProtoTasks()
     }
@@ -295,7 +294,6 @@ private fun Project.configureProtoTask(task: GenerateProtoTask) {
     }
     task.addProtocPlugin()
     task.configureSourceSetDirs()
-    task.setupDescriptorSetFileCreation()
     handleLaunchTaskDependency(task)
 }
 
@@ -389,67 +387,6 @@ private fun GenerateProtoTask.configureSourceSetDirs() {
  */
 private fun GenerateProtoTask.generatedDir(language: String = ""): File =
     project.generatedDir(sourceSet, language)
-
-/**
- * Tell `protoc` to generate descriptor set files under the project build dir.
- *
- * The name of the descriptor set file to be generated
- * is made to be unique via the project's [Maven coordinates][descriptorSetFile].
- * A unique name is needed for subsequent merging of these files.
- *
- * As the last step of this task, writes a [reference file][DescriptorSetReferenceFile],
- * pointing to the generated descriptor set file.
- * The reference file is used by the Spine Base library and Spine SDK tools
- * when loading the generated descriptor set files.
- */
-private fun GenerateProtoTask.setupDescriptorSetFileCreation() {
-    isGenerateDescriptorSet = true
-    with(descriptorSetOptions) {
-        path = descriptorSetFile.path
-        isIncludeImports = true
-        isIncludeSourceInfo = true
-    }
-
-    val descriptorsDir = descriptorSetFile.parentFile
-
-    // Add the `descriptorsDir` directory to the resources.
-    project.sourceSets.named(sourceSet.name) {
-        it.resources.srcDirs(descriptorsDir)
-    }
-
-    setProcessResourceDependency()
-
-    doLast {
-        // Create a `desc.ref` in the same resource directory which will be put into resources.
-        createDescriptorReferenceFile(descriptorsDir.toPath())
-    }
-}
-
-/**
- * Makes the `ProcessResources` task of the same source set depend on this task to
- * ensure that descriptor set files and the reference file are picked up as resources.
- */
-private fun GenerateProtoTask.setProcessResourceDependency() {
-    val taskName = JavaTaskName.processResources(SourceSetName(sourceSet.name))
-    project.tasks.named(taskName.value()) {
-        it.dependsOn(this)
-    }
-}
-
-/**
- * Creates a [descriptor reference][DescriptorSetReferenceFile] file in the given directory.
- *
- * Overwrites the file if it already exists.
- */
-private fun GenerateProtoTask.createDescriptorReferenceFile(dir: Path) {
-    val descRefFile = dir.resolve(DescriptorSetReferenceFile.NAME).toFile()
-    try {
-        descRefFile.writeText(descriptorSetFile.name)
-    } catch (e: IOException) {
-        project.logger.error("Error writing `${descRefFile.absolutePath}`.", e)
-        throw e
-    }
-}
 
 /**
  * Makes a [LaunchSpineCompiler], if it exists for the source set of the given [GenerateProtoTask],
