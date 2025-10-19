@@ -33,7 +33,7 @@ import com.google.common.collect.ImmutableList
 import com.google.errorprone.annotations.CanIgnoreReturnValue
 import com.google.protobuf.gradle.GenerateProtoTask
 import io.spine.annotation.VisibleForTesting
-import io.spine.code.proto.DescriptorReference
+import io.spine.code.proto.DescriptorSetReferenceFile
 import io.spine.string.toBase64Encoded
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.compiler.gradle.api.Artifacts
@@ -60,9 +60,9 @@ import io.spine.tools.gradle.project.hasJava
 import io.spine.tools.gradle.project.hasJavaOrKotlin
 import io.spine.tools.gradle.project.hasKotlin
 import io.spine.tools.gradle.project.sourceSets
-import io.spine.tools.gradle.protobuf.protobufExtension
+import io.spine.tools.protobuf.gradle.protobufExtension
 import io.spine.tools.gradle.task.JavaTaskName
-import io.spine.tools.gradle.task.descriptorSetFile
+import io.spine.tools.protobuf.gradle.descriptorSetFile
 import io.spine.tools.gradle.task.findKotlinDirectorySet
 import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.MavenArtifact
@@ -397,7 +397,7 @@ private fun GenerateProtoTask.generatedDir(language: String = ""): File =
  * is made to be unique via the project's [Maven coordinates][descriptorSetFile].
  * A unique name is needed for subsequent merging of these files.
  *
- * As the last step of this task, writes a [reference file][DescriptorReference],
+ * As the last step of this task, writes a [reference file][DescriptorSetReferenceFile],
  * pointing to the generated descriptor set file.
  * The reference file is used by the Spine Base library and Spine SDK tools
  * when loading the generated descriptor set files.
@@ -437,12 +437,12 @@ private fun GenerateProtoTask.setProcessResourceDependency() {
 }
 
 /**
- * Creates a [descriptor reference][DescriptorReference] file in the given directory.
+ * Creates a [descriptor reference][DescriptorSetReferenceFile] file in the given directory.
  *
  * Overwrites the file if it already exists.
  */
 private fun GenerateProtoTask.createDescriptorReferenceFile(dir: Path) {
-    val descRefFile = DescriptorReference.fileAt(dir)
+    val descRefFile = dir.resolve(DescriptorSetReferenceFile.NAME).toFile()
     try {
         descRefFile.writeText(descriptorSetFile.name)
     } catch (e: IOException) {

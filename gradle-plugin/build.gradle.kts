@@ -114,6 +114,7 @@ dependencies {
     implementation(project(":params"))
     implementation(ToolBase.lib)
     implementation(ToolBase.jvmTools)
+    implementation(ToolBase.protobufSetupPlugins)
     implementation(ToolBase.pluginBase)
 }
 
