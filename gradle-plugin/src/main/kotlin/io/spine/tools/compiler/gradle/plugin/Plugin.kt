@@ -58,6 +58,7 @@ import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.MavenArtifact
 import io.spine.tools.protobuf.gradle.GeneratedDirectoryContext
 import io.spine.tools.protobuf.gradle.plugin.DescriptorSetFilePlugin
+import io.spine.tools.protobuf.gradle.plugin.configureSourceSetDirs
 import io.spine.tools.protobuf.gradle.protobufExtension
 import java.nio.file.Path
 import org.gradle.api.Project
@@ -66,8 +67,6 @@ import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.exclude
 import org.gradle.kotlin.dsl.register
-
-import io.spine.tools.protobuf.gradle.plugin.configureSourceSetDirs
 
 /**
  * The Gradle plugin of the Spine Compiler.
