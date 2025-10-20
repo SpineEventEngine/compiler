@@ -122,13 +122,7 @@ public class Plugin : LibraryPlugin<CompilerSettings>(
         project: Project,
         sourceSet: SourceSet,
         language: String
-    ): Path {
-        val generateDir = project.generatedDir
-        return if (language.isBlank())
-            generateDir.resolve(sourceSet.name)
-        else
-            generateDir.resolve("${sourceSet.name}/$language")
-    }
+    ): Path = project.generatedDir.resolve("${sourceSet.name}/$language")
 
     public companion object {
 

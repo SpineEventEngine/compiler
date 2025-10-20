@@ -26,8 +26,19 @@
 
 package io.spine.tools.compiler.gradle.plugin
 
+import io.spine.tools.protobuf.gradle.protobufExtension
 import java.io.File
 import java.nio.file.Path
+import org.gradle.api.Project
+
+/**
+ * Obtains the root directory into which Protobuf Gradle Plugin assigns the `protoc` output.
+ */
+internal val Project.protocOutputDir: File
+    get() {
+        val path = protobufExtension!!.generatedFilesBaseDir
+        return File(path)
+    }
 
 /**
  * Obtains a list of directories resolved as nested into this one.

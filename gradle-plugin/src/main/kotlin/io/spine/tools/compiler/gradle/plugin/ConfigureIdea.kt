@@ -29,10 +29,8 @@ package io.spine.tools.compiler.gradle.plugin
 import com.google.protobuf.gradle.GenerateProtoTask
 import io.spine.tools.compiler.gradle.api.builtins
 import io.spine.tools.compiler.gradle.api.debug
-import io.spine.tools.compiler.gradle.api.plugins
 import io.spine.tools.compiler.gradle.api.generatedDir
-import io.spine.tools.protobuf.gradle.generatedSourceProtoDir
-import java.io.File
+import io.spine.tools.compiler.gradle.api.plugins
 import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.io.path.Path
@@ -76,15 +74,6 @@ private fun IdeaModule.setupDirectories(project: Project) {
     setGeneratedSourceDirs(protocTargets)
     excludeExtractedDirs(project)
 }
-
-/**
- * Obtains the root directory into which Protobuf Gradle Plugin assigns the `protoc` output.
- *
- * This is an alias for [io.spine.tools.protobuf.gradle.generatedSourceProtoDir] which
- * also returns [File] instead of [Path].
- */
-private val Project.protocOutputDir: File
-    get() = generatedSourceProtoDir.toFile()
 
 /**
  * Traverses [generatedSourceDirs][IdeaModule.generatedSourceDirs] excluding those
