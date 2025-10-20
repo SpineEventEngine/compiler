@@ -48,12 +48,6 @@ all modules and does not describe the project structure per-subproject.
     <scope>compile</scope>
   </dependency>
   <dependency>
-    <groupId>com.google.auto.service</groupId>
-    <artifactId>auto-service-annotations</artifactId>
-    <version>1.1.1</version>
-    <scope>compile</scope>
-  </dependency>
-  <dependency>
     <groupId>com.google.protobuf</groupId>
     <artifactId>protobuf-java</artifactId>
     <version>4.31.1</version>
@@ -140,25 +134,25 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>gradle-plugin-api</artifactId>
-    <version>2.0.0-SNAPSHOT.365</version>
+    <version>2.0.0-SNAPSHOT.366</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>jvm-tools</artifactId>
-    <version>2.0.0-SNAPSHOT.365</version>
+    <version>2.0.0-SNAPSHOT.366</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>plugin-base</artifactId>
-    <version>2.0.0-SNAPSHOT.365</version>
+    <version>2.0.0-SNAPSHOT.366</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>protobuf-setup-plugins</artifactId>
-    <version>2.0.0-SNAPSHOT.365</version>
+    <version>2.0.0-SNAPSHOT.366</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -170,13 +164,13 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>psi-java</artifactId>
-    <version>2.0.0-SNAPSHOT.365</version>
+    <version>2.0.0-SNAPSHOT.366</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>tool-base</artifactId>
-    <version>2.0.0-SNAPSHOT.365</version>
+    <version>2.0.0-SNAPSHOT.366</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -236,7 +230,7 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>plugin-testlib</artifactId>
-    <version>2.0.0-SNAPSHOT.365</version>
+    <version>2.0.0-SNAPSHOT.366</version>
     <scope>test</scope>
   </dependency>
   <dependency>
@@ -298,6 +292,12 @@ all modules and does not describe the project structure per-subproject.
     <artifactId>junit-jupiter-params</artifactId>
     <version>5.13.2</version>
     <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>com.google.auto.service</groupId>
+    <artifactId>auto-service-annotations</artifactId>
+    <version>1.1.1</version>
+    <scope>provided</scope>
   </dependency>
   <dependency>
     <groupId>com.google.devtools.ksp</groupId>
