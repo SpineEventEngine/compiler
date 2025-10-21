@@ -49,24 +49,19 @@ import io.spine.tools.compiler.gradle.api.ProtocPluginArtifact
 import io.spine.tools.compiler.gradle.api.SpineCompilerCleanTask
 import io.spine.tools.compiler.gradle.api.compilerWorkingDir
 import io.spine.tools.compiler.gradle.api.generatedDir
-import io.spine.tools.compiler.gradle.plugin.GeneratedSubdir.GRPC
-import io.spine.tools.compiler.gradle.plugin.GeneratedSubdir.JAVA
-import io.spine.tools.compiler.gradle.plugin.GeneratedSubdir.KOTLIN
 import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.gradle.lib.LibraryPlugin
 import io.spine.tools.gradle.lib.spineExtension
-import io.spine.tools.gradle.project.hasJava
 import io.spine.tools.gradle.project.hasJavaOrKotlin
-import io.spine.tools.gradle.project.hasKotlin
 import io.spine.tools.gradle.project.sourceSets
-import io.spine.tools.gradle.task.findKotlinDirectorySet
 import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.MavenArtifact
+import io.spine.tools.protobuf.gradle.GeneratedDirectoryContext
 import io.spine.tools.protobuf.gradle.plugin.DescriptorSetFilePlugin
+import io.spine.tools.protobuf.gradle.plugin.configureSourceSetDirs
 import io.spine.tools.protobuf.gradle.protobufExtension
-import java.io.File
+import java.nio.file.Path
 import org.gradle.api.Project
-import org.gradle.api.file.SourceDirectorySet
 import org.gradle.api.tasks.Delete
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.TaskProvider
@@ -101,7 +96,7 @@ import org.gradle.kotlin.dsl.register
  */
 public class Plugin : LibraryPlugin<CompilerSettings>(
     CompilerDslSpec()
-) {
+), GeneratedDirectoryContext {
 
     init {
         // Inject the access to the project so that `CompilerDslSpec` can
@@ -121,6 +116,12 @@ public class Plugin : LibraryPlugin<CompilerSettings>(
             configureIdea()
         }
     }
+
+    override fun generatedDir(
+        project: Project,
+        sourceSet: SourceSet,
+        language: String
+    ): Path = project.generatedDir.resolve("${sourceSet.name}/$language")
 
     public companion object {
 
@@ -235,6 +236,7 @@ private fun Project.setProtocArtifact() {
     }
 }
 
+context(_: GeneratedDirectoryContext)
 private fun Project.configureWithProtobufPlugin(compilerVersion: String) {
     val protocPlugin = ProtocPluginArtifact(compilerVersion)
     pluginManager.withPlugin(PROTOBUF_GRADLE_PLUGIN_ID) {
@@ -264,6 +266,7 @@ private fun Project.setProtocPluginArtifact(protocPlugin: ProtocPluginArtifact) 
  * Configures the `GenerateProtoTaskCollection` by adding a configuration action for
  * each of the tasks.
  */
+context(_: GeneratedDirectoryContext)
 private fun Project.configureGenerateProtoTasks() {
     protobufExtension?.apply {
         /* The below block adds a configuration action for the `GenerateProtoTaskCollection`.
@@ -288,6 +291,7 @@ private fun Project.configureGenerateProtoTasks() {
  * @see [GenerateProtoTask.configureSourceSetDirs]
  * @see [Project.handleLaunchTaskDependency]
  */
+context(_: GeneratedDirectoryContext)
 private fun Project.configureProtoTask(task: GenerateProtoTask) {
     if (hasJavaOrKotlin()) {
         task.builtins.maybeCreate("kotlin")
@@ -315,78 +319,6 @@ private fun GenerateProtoTask.addProtocPlugin() {
         }
     }
 }
-
-/**
- * The names of the subdirectories where the Compiler places generated files.
- */
-private object GeneratedSubdir {
-    const val JAVA = "java"
-    const val KOTLIN = "kotlin"
-    const val GRPC = "grpc"
-}
-
-/**
- * Exclude [GenerateProtoTask.outputBaseDir] from Java source set directories to avoid
- * duplicated source code files.
- *
- * Adds the `generated` directory to the Java and Kotlin source sets instead.
- */
-private fun GenerateProtoTask.configureSourceSetDirs() {
-    val project = project
-    val protocOutputDir = File(outputBaseDir).parentFile
-
-    /** Filters out directories belonging to `build/generated/source/proto`. */
-    fun excludeFor(lang: SourceDirectorySet) {
-        val newSourceDirectories = lang.sourceDirectories
-            .filter { !it.residesIn(protocOutputDir) }
-            .toSet()
-
-        // Clear the source directories of the Java source set.
-        // This trick was needed when building the `base` module of Spine.
-        // Otherwise, the `java` plugin would complain about duplicate source files.
-        lang.setSrcDirs(listOf<String>())
-
-        // Add the filtered directories back to the Java source set.
-        lang.srcDirs(newSourceDirectories)
-    }
-
-    val sourceSet = sourceSet
-
-    if (project.hasJava()) {
-        val java = sourceSet.java
-        excludeFor(java)
-
-        java.srcDir(generatedDir(JAVA))
-
-        // Add the `grpc` directory unconditionally.
-        // We may not have all the `protoc` plugins configured for the task at this time.
-        // So, we cannot check if the `grpc` plugin is enabled.
-        // It is safe to add the directory anyway, because `srcDir()` does not require
-        // the directory to exist.
-        java.srcDir(generatedDir(GRPC))
-    }
-
-    fun SourceDirectorySet.setup() {
-        excludeFor(this@setup)
-        srcDirs(generatedDir(KOTLIN))
-    }
-
-    if (project.hasKotlin()) {
-        val kotlinDirectorySet = sourceSet.findKotlinDirectorySet()
-        kotlinDirectorySet?.setup()
-            ?: project.afterEvaluate {
-                sourceSet.findKotlinDirectorySet()?.setup()
-            }
-    }
-}
-
-/**
- * Obtains the `generated` directory for the source set of the task.
- *
- * If [language] is specified returns the subdirectory for this language.
- */
-private fun GenerateProtoTask.generatedDir(language: String = ""): File =
-    project.generatedDir(sourceSet, language)
 
 /**
  * Makes a [LaunchSpineCompiler], if it exists for the source set of the given [GenerateProtoTask],

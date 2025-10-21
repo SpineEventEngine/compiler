@@ -32,7 +32,6 @@ import io.spine.tools.compiler.gradle.api.Names.EXTENSION_NAME
 import io.spine.tools.compiler.gradle.plugin.Extension.Companion.defaultSubdirectories
 import io.spine.tools.fs.DirectoryName.generated
 import io.spine.tools.gradle.DslSpec
-import io.spine.tools.protobuf.gradle.generatedSourceProtoDir
 import org.gradle.api.Project
 import org.gradle.api.file.Directory
 import org.gradle.api.file.DirectoryProperty
@@ -64,13 +63,13 @@ public class Extension(private val project: Project): CompilerSettings {
 
     /**
      * Synthetic property for providing the source directories for the given
-     * source set under [Project.generatedSourceProtoDir].
+     * source set under [Project.protocOutputDir].
      *
      * @see sourceDirs
      */
     private val srcBaseDirProperty: DirectoryProperty = with(project) {
         objects.directoryProperty().convention(provider {
-            layout.projectDirectory.dir(generatedSourceProtoDir.toString())
+            layout.projectDirectory.dir(protocOutputDir.toString())
         })
     }
 
