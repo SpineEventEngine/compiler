@@ -49,9 +49,3 @@ dependencies {
     implementation(Reflect.lib)
     implementation(Logging.testLib)?.because("We need `tapConsole`.")
 }
-
-afterEvaluate {
-    val kspKotlin by tasks.getting
-    val launchSpineCompiler by tasks.getting
-    kspKotlin.dependsOn(launchSpineCompiler)
-}

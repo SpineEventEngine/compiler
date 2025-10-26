@@ -32,9 +32,3 @@ plugins {
 dependencies {
     implementation(project(":api"))?.because("We need `File`, `Directory`, and other types.")
 }
-
-afterEvaluate {
-    val kspKotlin by tasks.getting
-    val launchSpineCompiler by tasks.getting
-    kspKotlin.dependsOn(launchSpineCompiler)
-}
