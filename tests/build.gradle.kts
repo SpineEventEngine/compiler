@@ -114,6 +114,7 @@ subprojects {
                     ToolBase.jvmTools,
                     ToolBase.pluginBase,
                     ToolBase.gradlePluginApi,
+                    ToolBase.protobufSetupPlugins,
                     Compiler.api(compilerVersion),
                     Validation.runtime,
                     Logging.lib,

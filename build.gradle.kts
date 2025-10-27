@@ -186,10 +186,3 @@ dependencies {
         dokka(it)
     }
 }
-
-@Suppress("unused")
-val dokkaGeneratePublicationHtml by tasks.getting {
-//    productionModules.forEach {
-//        dependsOn(it.tasks.named("jar"))
-//    }
-}
