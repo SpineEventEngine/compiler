@@ -40,7 +40,7 @@ import io.spine.testing.compiler.googleProtobufProtos
 import io.spine.testing.compiler.spineOptionProtos
 import io.spine.time.LocalDates
 import io.spine.time.Month.SEPTEMBER
-import io.spine.time.toInstant
+import io.spine.time.java.toInstant
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.compiler.ast.AstProto
 import io.spine.tools.compiler.ast.FileProto

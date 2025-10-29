@@ -28,6 +28,7 @@ import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.AutoServiceKsp
 import io.spine.dependency.lib.Clikt
 import io.spine.dependency.local.Logging
+import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.gradle.publish.SpinePublishing
 import io.spine.gradle.publish.handleMergingServiceFiles
@@ -63,6 +64,7 @@ dependencies {
         "We need `@AutoService` for registering custom options provider.")
     ksp(AutoServiceKsp.processor)
     testCompileOnly(AutoService.annotations)
+    testImplementation(Time.javaExtensions)
     testImplementation(Logging.testLib)?.because("We need `tapConsole`.")
     testImplementation(project(":testlib"))
     testImplementation(project(":test-env"))
