@@ -131,12 +131,6 @@ subprojects {
         }
     }
 
-    protobuf {
-        protoc {
-            artifact = Protobuf.compiler
-        }
-    }
-
     disableDocumentationTasks()
 
     kotlin {
