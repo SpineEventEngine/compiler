@@ -32,7 +32,7 @@ import io.spine.base.Time
 import io.spine.base.Time.currentTime
 import io.spine.base.Time.currentTimeZone
 import io.spine.string.Separator
-import io.spine.time.toInstant
+import io.spine.time.java.toInstant
 import io.spine.tools.code.Java
 import io.spine.tools.compiler.Constants.CLI_APP_CLASS
 import io.spine.tools.compiler.render.SourceFile

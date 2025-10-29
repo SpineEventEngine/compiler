@@ -38,7 +38,7 @@ plugins {
     `kotlin-dsl`
 
     // https://github.com/jk1/Gradle-License-Report/releases
-    id("com.github.jk1.dependency-license-report").version("2.7")
+    id("com.github.jk1.dependency-license-report").version("2.9")
 }
 
 repositories {
@@ -130,7 +130,7 @@ val kotestJvmPluginVersion = "0.4.10"
 /**
  * @see [io.spine.dependency.test.Kotest.MultiplatformGradlePlugin]
  */
-val kotestMultiplatformPluginVersion = "5.9.1"
+val kotestMultiplatformPluginVersion = "6.0.0.M4"
 
 /**
  * @see [io.spine.dependency.test.Kover]

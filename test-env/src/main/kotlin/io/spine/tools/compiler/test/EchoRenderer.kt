@@ -32,7 +32,7 @@ import io.spine.tools.compiler.plugin.Plugin
 import io.spine.tools.compiler.render.Renderer
 import io.spine.tools.compiler.render.SourceFileSet
 import io.spine.tools.compiler.settings.loadSettings
-import io.spine.time.toInstant
+import io.spine.time.java.toInstant
 import io.spine.tools.code.AnyLanguage
 import kotlin.io.path.Path
 

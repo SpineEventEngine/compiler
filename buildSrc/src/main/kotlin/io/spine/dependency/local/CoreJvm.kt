@@ -32,12 +32,12 @@ typealias CoreJava = CoreJvm
 /**
  * Dependencies on `core-java` modules.
  *
- * See [`SpineEventEngine/core-java`](https://github.com/SpineEventEngine/core-java/).
+ * See [`SpineEventEngine/core-java`](https://github.com/SpineEventEngine/core-jvm/).
  */
 @Suppress("ConstPropertyName", "unused")
 object CoreJvm {
     const val group = Spine.group
-    const val version = "2.0.0-SNAPSHOT.332"
+    const val version = "2.0.0-SNAPSHOT.334"
 
     const val coreArtifact = "spine-core"
     const val clientArtifact = "spine-client"

@@ -39,6 +39,7 @@ dependencies {
     api(project(":backend"))
     api(ToolBase.psiJava)
     implementation(PalantirJavaFormat.lib)
+    implementation(Time.javaExtensions)
 
     testImplementation(Time.testLib)
     testImplementation(Logging.testLib)
