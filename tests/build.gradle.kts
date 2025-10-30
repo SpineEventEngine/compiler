@@ -36,6 +36,7 @@ import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Reflect
+import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.gradle.kotlin.setFreeCompilerArgs
@@ -102,6 +103,7 @@ subprojects {
                 Jackson.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
                 @Suppress("DEPRECATION") // To force `Kotlin.stdLibJdk7`.
                 force(
+                    Grpc.bom,
                     Jackson.bom,
                     Jackson.annotations,
                     Kotlin.bom,
@@ -109,6 +111,8 @@ subprojects {
                     Caffeine.lib,
                     Base.annotations,
                     Base.lib,
+                    Time.lib,
+                    Time.javaExtensions,
                     ToolBase.lib,
                     ToolBase.psiJava,
                     ToolBase.jvmTools,
@@ -124,12 +128,6 @@ subprojects {
                     CoreJvm.server,
                 )
             }
-        }
-    }
-
-    protobuf {
-        protoc {
-            artifact = Protobuf.compiler
         }
     }
 

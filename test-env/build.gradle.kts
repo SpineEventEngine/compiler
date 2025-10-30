@@ -26,6 +26,7 @@
 
 import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.Grpc
+import io.spine.dependency.local.Time
 
 plugins {
     module
@@ -37,6 +38,7 @@ dependencies {
     annotationProcessor(AutoService.processor)
     compileOnly(AutoService.annotations)
 
+    implementation(Time.javaExtensions)
     implementation(project(":backend"))
     implementation(platform(Grpc.bom))
     implementation(Grpc.stub)

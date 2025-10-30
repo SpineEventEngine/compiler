@@ -38,7 +38,7 @@ import io.spine.tools.compiler.jvm.annotation.ModifiedTypeAnnotation.Companion.c
 import io.spine.tools.compiler.render.SourceFile
 import io.spine.testing.compiler.pipelineParams
 import io.spine.testing.compiler.withRoots
-import io.spine.time.testing.FrozenMadHatterParty
+import io.spine.testing.time.FrozenMadHatterParty
 import io.spine.time.toTimestamp
 import java.time.ZoneId
 import java.time.ZonedDateTime

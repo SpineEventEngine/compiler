@@ -38,7 +38,7 @@ plugins {
     `kotlin-dsl`
 
     // https://github.com/jk1/Gradle-License-Report/releases
-    id("com.github.jk1.dependency-license-report").version("2.7")
+    id("com.github.jk1.dependency-license-report").version("2.9")
 }
 
 repositories {
@@ -123,16 +123,6 @@ val dokkaVersion = "2.0.0"
 val detektVersion = "1.23.8"
 
 /**
- * @see [io.spine.dependency.test.Kotest]
- */
-val kotestJvmPluginVersion = "0.4.10"
-
-/**
- * @see [io.spine.dependency.test.Kotest.MultiplatformGradlePlugin]
- */
-val kotestMultiplatformPluginVersion = "5.9.1"
-
-/**
  * @see [io.spine.dependency.test.Kover]
  */
 val koverVersion = "0.9.1"
@@ -184,8 +174,6 @@ dependencies {
         "com.google.protobuf:protobuf-gradle-plugin:$protobufPluginVersion",
         "com.gradleup.shadow:shadow-gradle-plugin:$shadowVersion",
         "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion",
-        "io.kotest:kotest-gradle-plugin:$kotestJvmPluginVersion",
-        "io.kotest:kotest-framework-multiplatform-plugin-gradle:$kotestMultiplatformPluginVersion",
         // https://github.com/srikanth-lingala/zip4j
         "net.lingala.zip4j:zip4j:2.10.0",
         "net.ltgt.gradle:gradle-errorprone-plugin:$errorPronePluginVersion",
