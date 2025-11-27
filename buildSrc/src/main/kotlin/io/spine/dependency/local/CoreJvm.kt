@@ -32,7 +32,7 @@ typealias CoreJava = CoreJvm
 /**
  * Dependencies on `core-java` modules.
  *
- * See [`SpineEventEngine/core-java`](https://github.com/SpineEventEngine/core-jvm/).
+ * See [`SpineEventEngine/core-java`](https://github.com/SpineEventEngine/core-java/).
  */
 @Suppress("ConstPropertyName", "unused")
 object CoreJvm {

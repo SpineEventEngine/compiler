@@ -67,7 +67,7 @@ plugins {
     jacoco
     `gradle-doctor`
     `project-report`
-    `dokka-for-kotlin`
+    `dokka-setup`
 }
 
 /**

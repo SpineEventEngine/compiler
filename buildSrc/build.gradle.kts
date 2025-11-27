@@ -113,7 +113,7 @@ val protobufPluginVersion = "0.9.5"
  * @see <a href="https://github.com/Kotlin/dokka/releases">
  *     Dokka Releases</a>
  */
-val dokkaVersion = "2.0.0"
+val dokkaVersion = "2.1.0"
 
 /**
  * The version of Detekt Gradle Plugin.
@@ -121,6 +121,16 @@ val dokkaVersion = "2.0.0"
  * @see <a href="https://github.com/detekt/detekt/releases">Detekt Releases</a>
  */
 val detektVersion = "1.23.8"
+
+/**
+ * @see [io.spine.dependency.test.Kotest]
+ */
+val kotestJvmPluginVersion = "0.4.10"
+
+/**
+ * @see [io.spine.dependency.test.Kotest.MultiplatformGradlePlugin]
+ */
+val kotestMultiplatformPluginVersion = "6.0.0.M4"
 
 /**
  * @see [io.spine.dependency.test.Kover]
@@ -174,6 +184,8 @@ dependencies {
         "com.google.protobuf:protobuf-gradle-plugin:$protobufPluginVersion",
         "com.gradleup.shadow:shadow-gradle-plugin:$shadowVersion",
         "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion",
+        "io.kotest:kotest-gradle-plugin:$kotestJvmPluginVersion",
+        "io.kotest:kotest-framework-multiplatform-plugin-gradle:$kotestMultiplatformPluginVersion",
         // https://github.com/srikanth-lingala/zip4j
         "net.lingala.zip4j:zip4j:2.10.0",
         "net.ltgt.gradle:gradle-errorprone-plugin:$errorPronePluginVersion",

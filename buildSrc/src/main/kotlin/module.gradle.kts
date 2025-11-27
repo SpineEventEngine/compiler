@@ -48,8 +48,7 @@ plugins {
     id("module-testing")
     id("net.ltgt.errorprone")
     id("detekt-code-analysis")
-    id("dokka-for-java")
-    id("dokka-for-kotlin")
+    id("dokka-setup")
     jacoco
 }
 apply<BomsPlugin>()
