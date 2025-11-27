@@ -111,7 +111,7 @@ message ProtoFileHeader {
 // Rather, it serves for informative purposes.
 //
 message ProtobufDependency {
-    option (entity).kind = VIEW;
+    option (entity).kind = PROJECTION;
 
     // The relative path to the dependency.
     //

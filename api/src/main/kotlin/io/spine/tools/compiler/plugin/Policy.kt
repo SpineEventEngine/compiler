@@ -28,13 +28,13 @@ package io.spine.tools.compiler.plugin
 
 import io.spine.base.EntityState
 import io.spine.base.EventMessage
-import io.spine.tools.compiler.settings.LoadsSettings
-import io.spine.tools.compiler.type.TypeSystem
 import io.spine.server.event.NoReaction
-import io.spine.server.event.Policy
+import io.spine.server.event.Reaction
 import io.spine.server.event.asB
 import io.spine.server.query.QueryingClient
 import io.spine.server.tuple.EitherOf2
+import io.spine.tools.compiler.settings.LoadsSettings
+import io.spine.tools.compiler.type.TypeSystem
 
 /**
  * A policy converts one event into zero to many other events.
@@ -85,7 +85,7 @@ import io.spine.server.tuple.EitherOf2
  * any value. Not so many commands will do anything but produce events with the same
  * information in the code generation domain. Thus, we directly convert between events.
  */
-public abstract class Policy<E : EventMessage> : Policy<E>(), LoadsSettings {
+public abstract class Policy<E : EventMessage> : Reaction<E>(), LoadsSettings {
 
     /**
      * The backing field for the [typeSystem] property.

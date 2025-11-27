@@ -27,6 +27,7 @@
 package io.spine.tools.compiler.plugin
 
 import io.spine.base.EntityState
+import io.spine.base.ProjectionState
 import io.spine.server.BoundedContextBuilder
 import io.spine.server.DefaultRepository
 import io.spine.server.projection.Projection
@@ -100,7 +101,7 @@ import kotlin.reflect.KClass
  * @param M The type of the view's state; must be a Protobuf message implementing [EntityState].
  * @param B The type of the view's state builder; must match `<M>`.
  */
-public open class View<I : Any, M : EntityState<I>, B : ValidatingBuilder<M>> :
+public open class View<I : Any, M : ProjectionState<I>, B : ValidatingBuilder<M>> :
     Projection<I, M, B>()
 
 /**
@@ -117,14 +118,14 @@ public open class View<I : Any, M : EntityState<I>, B : ValidatingBuilder<M>> :
  * If no customization is required from a `ViewRepository`, users should prefer
  * [ViewRepository.default] to creating custom repository types.
  */
-public open class ViewRepository<I : Any, V : View<I, S, *>, S : EntityState<I>>
+public open class ViewRepository<I : Any, V : View<I, S, *>, S : ProjectionState<I>>
     : ProjectionRepository<I, V, S>() {
 
     public companion object {
 
         @Suppress("UNCHECKED_CAST")
         public fun default(cls: Class<out View<*, *, *>>): ViewRepository<*, *, *> {
-            val cast = cls as Class<View<Any, EntityState<Any>, *>>
+            val cast = cls as Class<View<Any, ProjectionState<Any>, *>>
             return DefaultViewRepository(cast)
         }
     }
@@ -166,10 +167,11 @@ public fun MutableSet<ViewRepository<*, *, *>>.addDefault(view: KClass<out View<
  * Otherwise, users should use `DefaultViewRepository` by calling [ViewRepository.default].
  */
 internal class DefaultViewRepository(
-    private val cls: Class<View<Any, EntityState<Any>, *>>
-) : ViewRepository<Any, View<Any, EntityState<Any>, *>, EntityState<Any>>(), DefaultRepository {
+    private val cls: Class<View<Any, ProjectionState<Any>, *>>
+) : ViewRepository<Any, View<Any, ProjectionState<Any>, *>, ProjectionState<Any>>(),
+    DefaultRepository {
 
-    override fun entityModelClass(): ProjectionClass<View<Any, EntityState<Any>, *>> =
+    override fun entityModelClass(): ProjectionClass<View<Any, ProjectionState<Any>, *>> =
         ProjectionClass.asProjectionClass(cls)
 
     override fun logName(): String =
