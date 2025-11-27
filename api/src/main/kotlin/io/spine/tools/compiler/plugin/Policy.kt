@@ -95,8 +95,7 @@ public abstract class Policy<E : EventMessage> : Policy<E>(), LoadsSettings {
     /**
      * The type system for resolving type information for generating events.
      *
-     * A non-null value is available in
-     * a [rendering pipeline][io.spine.tools.compiler.backend.Pipeline.invoke].
+     * A non-null value is available in a rendering pipeline.
      */
     protected open val typeSystem: TypeSystem by lazy {
         check(::_typeSystem.isInitialized) {
