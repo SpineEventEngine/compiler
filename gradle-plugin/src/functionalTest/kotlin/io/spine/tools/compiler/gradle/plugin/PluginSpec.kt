@@ -96,6 +96,8 @@ class PluginSpec {
             "-XX:MaxMetaspaceSize=1512m",
             "-XX:+UseParallelGC",
             "-XX:+HeapDumpOnOutOfMemoryError"
+        ).withEnvironment(
+            mapOf("TEMPORARILY_DISABLE_PROTOBUF_VERSION_CHECK" to "true")
         )
     }
 
