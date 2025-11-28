@@ -41,14 +41,14 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-@DisplayName("`Policy` should")
-internal class PolicySpec {
+@DisplayName("`Reaction` should")
+internal class ReactionSpec {
 
     @Test
     fun `obtain 'TypeSystem' after injected`() {
-        val policy = StubPolicy()
+        val reaction = StubReaction()
         assertThrows<IllegalStateException> {
-            policy.typeSystem()
+            reaction.typeSystem()
         }
 
         val typeSystem = TypeSystem(
@@ -56,33 +56,33 @@ internal class PolicySpec {
             emptySet()
         )
 
-        policy.use(typeSystem)
-        policy.typeSystem() shouldBe typeSystem
+        reaction.use(typeSystem)
+        reaction.typeSystem() shouldBe typeSystem
     }
 
     /**
-     * This test merely makes the [Policy.ignore] method used without making any
+     * This test merely makes the [Reaction.ignore] method used without making any
      * meaningful assertions.
      *
-     * It creates a [Policy] which calls the `protected` method of the companion object
+     * It creates a [Reaction] which calls the `protected` method of the companion object
      * showing the usage scenario.
      *
-     * @see PolicyJavaApiSpec.allowIgnoring the test for Java API.
+     * @see ReactionJavaApiSpec.allowIgnoring the test for Java API.
      */
     @Test
     @JvmName("allowIgnoring")
     fun `have a shortcut for ignoring incoming events`() {
-        val policy = object : Policy<TypeEntered>() {
+        val reaction = object : Reaction<TypeEntered>() {
             @React
             override fun whenever(
                 @External event: TypeEntered
             ): EitherOf2<TypeEntered, NoReaction> = ignore()
         }
-        policy shouldNotBe null
+        reaction shouldNotBe null
     }
 }
 
-private class StubPolicy : TsStubPolicy<TypeDiscovered>() {
+private class StubReaction : TsStubReaction<TypeDiscovered>() {
     @React
     override fun whenever(@External event: TypeDiscovered): Just<NoReaction> = Just.noReaction
 }

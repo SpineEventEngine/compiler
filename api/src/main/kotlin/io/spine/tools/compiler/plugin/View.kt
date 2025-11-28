@@ -64,7 +64,7 @@ import kotlin.reflect.KClass
  * The `(entity)` option ensures that is the case.
  *
  * The state of a view is constructed based on events, which are produced either by
- * the Protobuf Compiler or by a [Policy].
+ * the Protobuf Compiler or by a [Reaction].
  *
  * To listen to the events, define single parameter methods annotated with
  * [@Subscribe][io.spine.core.Subscribe]. In these methods, change the state of the view via

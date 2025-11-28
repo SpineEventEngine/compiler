@@ -32,9 +32,9 @@ import io.spine.server.BoundedContext
 import io.spine.tools.compiler.type.TypeSystem
 
 /**
- * The abstract base for stub policy classes used in tests related to injecting [TypeSystem].
+ * The abstract base for stub reaction classes used in tests related to injecting [TypeSystem].
  */
-internal abstract class TsStubPolicy<E : EventMessage> : Policy<E>() {
+internal abstract class TsStubReaction<E : EventMessage> : Reaction<E>() {
 
     /**
      * Opens access to the protected [typeSystem] property.

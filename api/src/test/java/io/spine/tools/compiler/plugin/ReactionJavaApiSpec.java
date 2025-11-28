@@ -36,22 +36,22 @@ import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 
-@DisplayName("`Policy` Java API should")
-class PolicyJavaApiSpec {
+@DisplayName("`Reaction` Java API should")
+class ReactionJavaApiSpec {
 
     /**
-     * This test merely makes the {@link Policy#ignore} method used without making any
+     * This test merely makes the {@link Reaction#ignore} method used without making any
      * meaningful assertions.
      *
-     * <p>It creates a {@link Policy} which calls the `protected` method of the companion object
+     * <p>It creates a {@link Reaction} which calls the `protected` method of the companion object
      * showing the usage scenario.
      *
-     * @see PolicySpec#allowIgnoring() the test for Kotlin API
+     * @see ReactionSpec#allowIgnoring() the test for Kotlin API
      */
     @Test
     @DisplayName("have static factory method for ignoring incoming events")
     void allowIgnoring() {
-        var policy = new Policy<TypeEntered>() {
+        var reaction = new Reaction<TypeEntered>() {
             @React
             @Override
             protected EitherOf2<TypeEntered, NoReaction> whenever(
@@ -59,6 +59,6 @@ class PolicyJavaApiSpec {
                 return ignore();
             }
         };
-        assertThat(policy).isNotNull();
+        assertThat(reaction).isNotNull();
     }
 }

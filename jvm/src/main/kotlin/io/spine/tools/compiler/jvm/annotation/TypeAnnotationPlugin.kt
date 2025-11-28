@@ -28,7 +28,7 @@ package io.spine.tools.compiler.jvm.annotation
 
 import io.spine.tools.compiler.jvm.file.PrintBeforePrimaryDeclaration
 import io.spine.tools.compiler.plugin.Plugin
-import io.spine.tools.compiler.plugin.Policy
+import io.spine.tools.compiler.plugin.Reaction
 import io.spine.tools.compiler.plugin.View
 import io.spine.tools.compiler.plugin.ViewRepository
 
@@ -42,7 +42,7 @@ public abstract class TypeAnnotationPlugin(
     renderers: Iterable<TypeAnnotation<*>>,
     views: Set<Class<out View<*, *, *>>> = setOf(),
     viewRepositories: Set<ViewRepository<*, *, *>> = setOf(),
-    policies: Set<Policy<*>> = setOf(),
+    policies: Set<Reaction<*>> = setOf(),
 ) : Plugin(
     listOf(PrintBeforePrimaryDeclaration()) + renderers,
     views, viewRepositories, policies
