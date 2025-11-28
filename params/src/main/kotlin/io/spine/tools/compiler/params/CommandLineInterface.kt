@@ -30,7 +30,7 @@ package io.spine.tools.compiler.params
 
 /**
  * The command-line parameter for specifying the name of the file which stores an instance of
- * [PipelineParameters] in [PROTO_JSON][io.spine.tools.compiler.util.Format.PROTO_JSON] format.
+ * [PipelineParameters] in [ProtoJson][io.spine.format.Format.ProtoJson] format.
  */
 public object ParametersFileParam : Parameter(
     name = "--params",

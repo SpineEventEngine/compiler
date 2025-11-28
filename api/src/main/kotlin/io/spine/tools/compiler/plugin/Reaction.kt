@@ -28,18 +28,18 @@ package io.spine.tools.compiler.plugin
 
 import io.spine.base.EntityState
 import io.spine.base.EventMessage
-import io.spine.tools.compiler.settings.LoadsSettings
-import io.spine.tools.compiler.type.TypeSystem
 import io.spine.server.event.NoReaction
-import io.spine.server.event.Policy
+import io.spine.server.event.Reaction
 import io.spine.server.event.asB
 import io.spine.server.query.QueryingClient
 import io.spine.server.tuple.EitherOf2
+import io.spine.tools.compiler.settings.LoadsSettings
+import io.spine.tools.compiler.type.TypeSystem
 
 /**
- * A policy converts one event into zero to many other events.
+ * A reaction converts one event into zero to many other events.
  *
- * As a rule of thumb, a policy should read:
+ * As a rule of thumb, a reaction should read:
  * ```markdown
  * Whenever <something happens>, then <something else must happen>.
  * ```
@@ -47,9 +47,9 @@ import io.spine.server.tuple.EitherOf2
  * ```markdown
  * Whenever a field option is discovered, a validation rule must be added.
  * ```
- * To implement the policy, declare a method which reacts to an event with an event:
+ * To implement the reaction, declare a method which reacts to an event with an event:
  * ```kotlin
- * class MyPolicy : Policy<FieldOptionDiscovered>() {
+ * class MyReaction : Reaction<FieldOptionDiscovered>() {
  *
  *     @React
  *     override fun whenever(@External event: FieldOptionDiscovered): Just<ValidationRuleAdded> {
@@ -62,7 +62,7 @@ import io.spine.server.tuple.EitherOf2
  * [@External][io.spine.core.External]. See the whole list of Protobuf compiler events
  * in `spine/compiler/events.proto`.
  *
- * One policy only accepts one kind of events. Declaring multiple methods with
+ * One reaction only accepts one kind of events. Declaring multiple methods with
  * the [@React][io.spine.server.event.React] annotation causes a runtime error.
  *
  * The `whenever` method accepts a single event and produces an `Iterable` of events. In case if
@@ -78,14 +78,8 @@ import io.spine.server.tuple.EitherOf2
  *
  * Finally, if there are multiple events of the same type, use a typed list,
  * e.g. `List<SomethingHappened>`.
- *
- * ### The note on avoiding intermediate types
- * Often when talking about policies, people imply converting an event into a command, not
- * an event. We believe such an approach would introduce additional complexity without adding
- * any value. Not so many commands will do anything but produce events with the same
- * information in the code generation domain. Thus, we directly convert between events.
  */
-public abstract class Policy<E : EventMessage> : Policy<E>(), LoadsSettings {
+public abstract class Reaction<E : EventMessage> : Reaction<E>(), LoadsSettings {
 
     /**
      * The backing field for the [typeSystem] property.
@@ -95,20 +89,19 @@ public abstract class Policy<E : EventMessage> : Policy<E>(), LoadsSettings {
     /**
      * The type system for resolving type information for generating events.
      *
-     * A non-null value is available in
-     * a [rendering pipeline][io.spine.tools.compiler.backend.Pipeline.invoke].
+     * A non-null value is available in a rendering pipeline.
      */
     protected open val typeSystem: TypeSystem by lazy {
         check(::_typeSystem.isInitialized) {
-            "Access to `Policy.typeSystem` property is not allowed until" +
+            "Access to `Reaction.typeSystem` property is not allowed until" +
                     " the `Code Generation` context has been injected and" +
-                    " `Policy.use(typeSystem: TypeSystem)` invoked."
+                    " `Reaction.use(typeSystem: TypeSystem)` invoked."
         }
         _typeSystem
     }
 
     /**
-     * Assigns the type system to the policy.
+     * Assigns the type system to this reaction.
      */
     internal fun use(typeSystem: TypeSystem) {
         _typeSystem = typeSystem

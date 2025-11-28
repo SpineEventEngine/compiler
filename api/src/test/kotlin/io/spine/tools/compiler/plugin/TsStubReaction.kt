@@ -24,13 +24,29 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.gradle.dokka
+package io.spine.tools.compiler.plugin
 
-import org.gradle.api.tasks.TaskContainer
-import org.jetbrains.dokka.gradle.DokkaTask
+import io.spine.annotation.VisibleForTesting
+import io.spine.base.EventMessage
+import io.spine.server.BoundedContext
+import io.spine.tools.compiler.type.TypeSystem
 
 /**
- * Finds the `dokkaHtml` Gradle task.
+ * The abstract base for stub reaction classes used in tests related to injecting [TypeSystem].
  */
-@Suppress("unused")
-fun TaskContainer.dokkaHtmlTask() = this.getByName("dokkaHtml") as DokkaTask
+internal abstract class TsStubReaction<E : EventMessage> : Reaction<E>() {
+
+    /**
+     * Opens access to the protected [typeSystem] property.
+     */
+    @VisibleForTesting
+    fun typeSystem(): TypeSystem = typeSystem
+
+    /**
+     * Opens access to the protected [context] property.
+     */
+    @VisibleForTesting
+    fun context(): BoundedContext {
+        return context
+    }
+}

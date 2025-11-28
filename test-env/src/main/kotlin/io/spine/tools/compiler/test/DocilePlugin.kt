@@ -27,7 +27,7 @@
 package io.spine.tools.compiler.test
 
 import io.spine.tools.compiler.plugin.Plugin
-import io.spine.tools.compiler.plugin.Policy
+import io.spine.tools.compiler.plugin.Reaction
 import io.spine.tools.compiler.plugin.View
 import io.spine.tools.compiler.plugin.ViewRepository
 import io.spine.tools.compiler.render.Renderer
@@ -39,10 +39,10 @@ public class DocilePlugin(
     renderers: List<Renderer<*>> = listOf(),
     viewRepositories: Set<ViewRepository<*, *, *>> = setOf(),
     views: Set<Class<out View<*, *, *>>> = setOf(),
-    policies: Set<Policy<*>> = setOf()
+    policies: Set<Reaction<*>> = setOf()
 ) : Plugin(
     renderers = renderers,
     views = views,
     viewRepositories = viewRepositories,
-    policies = policies
+    reactions = policies
 )

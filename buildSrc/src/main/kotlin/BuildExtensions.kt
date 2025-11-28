@@ -214,21 +214,19 @@ fun Project.configureTaskDependencies() {
             dependOn(createVersionFile)
             dependOn("prepareProtocConfigVersions")
         }
-        val dokkaHtml = "dokkaHtml"
-        dokkaHtml.run {
+        val dokkaGenerate = "dokkaGenerate"
+        dokkaGenerate.run {
             dependOn(generateProto)
             dependOn(kspKotlin)
         }
-        val dokkaJavadoc = "dokkaJavadoc"
-        dokkaJavadoc.run {
-            dependOn(kspKotlin)
-        }
+        val dokkaGeneratePublicationJavadoc = "dokkaGeneratePublicationJavadoc"
+        dokkaGeneratePublicationJavadoc.dependOn(kspKotlin)
         "publishPluginJar".dependOn(createVersionFile)
         compileKotlin.dependOn(kspKotlin)
         compileTestKotlin.dependOn("kspTestKotlin")
         "compileTestFixturesKotlin".dependOn("kspTestFixturesKotlin")
-        "javadocJar".dependOn(dokkaHtml)
-        "dokkaKotlinJar".dependOn(dokkaJavadoc)
+        "javadocJar".dependOn(dokkaGeneratePublicationJavadoc)
+        "htmlDocsJar".dependOn(dokkaGenerate)
     }
 }
 
@@ -342,3 +340,15 @@ val buildToolConfigurations: Array<String> = arrayOf(
     "ksp",
     "dokka",
 )
+
+/**
+ * Make the `sourcesJar` task accept duplicated input which seems to occur
+ * somewhere inside Protobuf Gradle Plugin.
+ */
+fun Project.allowDuplicationInSourcesJar() {
+    tasks.withType(Jar::class.java).configureEach {
+        if (name == "sourcesJar") {
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+    }
+}

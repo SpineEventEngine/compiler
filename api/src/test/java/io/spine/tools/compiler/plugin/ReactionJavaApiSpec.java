@@ -24,29 +24,41 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.compiler.plugin
+package io.spine.tools.compiler.plugin;
 
-import io.spine.annotation.VisibleForTesting
-import io.spine.base.EventMessage
-import io.spine.server.BoundedContext
-import io.spine.tools.compiler.type.TypeSystem
+import io.spine.core.External;
+import io.spine.tools.compiler.ast.event.TypeEntered;
+import io.spine.server.event.NoReaction;
+import io.spine.server.event.React;
+import io.spine.server.tuple.EitherOf2;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-/**
- * The abstract base for stub policy classes used in tests related to injecting [TypeSystem].
- */
-internal abstract class TsStubPolicy<E : EventMessage> : Policy<E>() {
+import static com.google.common.truth.Truth.assertThat;
 
-    /**
-     * Opens access to the protected [typeSystem] property.
-     */
-    @VisibleForTesting
-    fun typeSystem(): TypeSystem = typeSystem
+@DisplayName("`Reaction` Java API should")
+class ReactionJavaApiSpec {
 
     /**
-     * Opens access to the protected [context] property.
+     * This test merely makes the {@link Reaction#ignore} method used without making any
+     * meaningful assertions.
+     *
+     * <p>It creates a {@link Reaction} which calls the `protected` method of the companion object
+     * showing the usage scenario.
+     *
+     * @see ReactionSpec#allowIgnoring() the test for Kotlin API
      */
-    @VisibleForTesting
-    fun context(): BoundedContext {
-        return context
+    @Test
+    @DisplayName("have static factory method for ignoring incoming events")
+    void allowIgnoring() {
+        var reaction = new Reaction<TypeEntered>() {
+            @React
+            @Override
+            protected EitherOf2<TypeEntered, NoReaction> whenever(
+                    @External TypeEntered entered) {
+                return ignore();
+            }
+        };
+        assertThat(reaction).isNotNull();
     }
 }

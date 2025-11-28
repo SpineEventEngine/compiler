@@ -39,12 +39,12 @@ import kotlin.reflect.KClass
  *
  * The Compiler uses the reactive approach to handling Protobuf source info.
  * We handle events which describe a Protobuf source
- * set via a set of [views][View] and [policies][Policy].
+ * set via a set of [views][View] and [policies][Reaction].
  *
- * Users may want to define bespoke [views][View] and [policies][Policy] based
+ * Users may want to define bespoke [views][View] and [policies][Reaction] based
  * on the Protobuf compiler events.
  * To do so, define your handlers and events and expose the components via
- * [Plugin.viewRepositories], [Plugin.views], and [Plugin.policies] properties.
+ * [Plugin.viewRepositories], [Plugin.views], and [Plugin.reactions] properties.
  *
  * Implementing classes must provide a parameterless constructor so that
  * the Compiler can instantiate a plugin via its fully qualified class name.
@@ -62,13 +62,13 @@ import kotlin.reflect.KClass
  *   the view may not have a need for repository.
  *   In such a case, please use [Plugin.views] instead.
  *
- * @property policies The [policies][Policy] added by this plugin.
+ * @property reactions The [reactions][Reaction] added by this plugin.
  */
 public abstract class Plugin(
     public val renderers: List<Renderer<*>> = listOf(),
     public val views: Set<Class<out View<*, *, *>>> = setOf(),
     public val viewRepositories: Set<ViewRepository<*, *, *>> = setOf(),
-    public val policies: Set<Policy<*>> = setOf(),
+    public val reactions: Set<Reaction<*>> = setOf(),
 ) {
     /**
      * Extends the given bounded context being built with additional functionality.
@@ -110,7 +110,7 @@ public fun Plugin.applyTo(context: BoundedContextBuilder, typeSystem: TypeSystem
     repos.addAll(defaultRepos)
     checkNoViewRepoDuplication(repos)
     repos.forEach(context::add)
-    policies.forEach {
+    reactions.forEach {
         context.addEventDispatcher(it)
         it.use(typeSystem)
     }
