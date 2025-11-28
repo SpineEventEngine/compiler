@@ -26,12 +26,12 @@
 
 package io.spine.testing.compiler.recorder
 
-import io.spine.base.EntityState
+import io.spine.base.ProjectionState
 
 /**
  * The interface common to view states collecting names of Protobuf declarations.
  */
-public interface DeclarationViewState : EntityState<String> {
+public interface DeclarationViewState : ProjectionState<String> {
 
     public fun getNameList(): List<String>
 }
