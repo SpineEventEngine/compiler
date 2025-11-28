@@ -31,7 +31,7 @@ package io.spine.dependency.local
 typealias CoreJava = CoreJvm
 
 /**
- * Dependencies on `core-java` modules.
+ * Dependencies on `core-jvm` modules.
  *
  * See [`SpineEventEngine/core-jvm`](https://github.com/SpineEventEngine/core-jvm/).
  */
