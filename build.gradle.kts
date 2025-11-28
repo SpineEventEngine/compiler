@@ -47,6 +47,7 @@ buildscript {
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib)
         classpath(io.spine.dependency.build.Ksp.run { artifact(gradlePlugin) })
         classpath(io.spine.dependency.local.ToolBase.jvmToolPluginDogfooding)
+        classpath(spineCompiler.pluginLib)
         classpath(coreJvmCompiler.pluginLib)
     }
     configurations.all {
