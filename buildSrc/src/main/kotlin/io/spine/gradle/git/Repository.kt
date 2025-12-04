@@ -26,8 +26,10 @@
 
 package io.spine.gradle.git
 
+import com.google.common.util.concurrent.Uninterruptibles.sleepUninterruptibly
 import io.spine.gradle.Cli
 import io.spine.gradle.fs.LazyTempPath
+import java.util.concurrent.TimeUnit.MILLISECONDS
 import org.gradle.api.logging.Logger
 
 /**
@@ -133,8 +135,10 @@ class Repository private constructor(
      * Performs a pull with rebase before pushing to ensure the local branch is up-to-date.
      */
     fun push() {
-        repoExecute("git", "pull", "--rebase")
-        repoExecute("git", "push")
+        withRetries(description = "Pushing  to $sshUrl, branch = '$currentBranch'") {
+            repoExecute("git", "pull", "--rebase")
+            repoExecute("git", "push")
+        }
     }
 
     override fun close() {
@@ -173,4 +177,26 @@ class Repository private constructor(
             return repo
         }
     }
+}
+
+fun <T> withRetries(
+    times: Int = 3,
+    initialDelay: Long = 100,      // ms
+    maxDelay: Long = 2000,         // ms
+    factor: Double = 2.0,
+    description: String = "",
+    block: () -> T
+): T {
+    var currentDelay = initialDelay
+    repeat(times - 1) {
+        try {
+            return block()
+        } catch (e: Exception) {
+            System.err.println("'$description' failed. " +
+                    "Message: '${e.message}'. Retrying in $currentDelay ms.")
+        }
+        sleepUninterruptibly(currentDelay, MILLISECONDS)
+        currentDelay = (currentDelay * factor).toLong().coerceAtMost(maxDelay)
+    }
+    return block()
 }
