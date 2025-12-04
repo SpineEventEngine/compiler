@@ -127,5 +127,8 @@ public abstract class Reaction<E : EventMessage> : Reaction<E>(), LoadsSettings 
     }
 }
 
+/**
+ * Provided for backward compatibility during migration to [Reaction].
+ */
 @Deprecated("Use `Reaction` instead.", ReplaceWith("Reaction"))
-public typealias Policy<E> = Reaction<E>
+public abstract class Policy<E : EventMessage>: Reaction<E>()
