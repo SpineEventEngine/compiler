@@ -179,7 +179,23 @@ class Repository private constructor(
     }
 }
 
-fun <T> withRetries(
+/**
+ * Executes a given operation with retries using exponential backoff strategy.
+ *
+ * If the operation fails, it will be retried up to the specified number of times
+ * with increasing delays between attempts.
+ * The delay increases exponentially but is capped at the specified maximum value.
+ *
+ * @param T the type of value returned by the operation
+ * @param times the maximum number of attempts to execute the operation (default: 3)
+ * @param initialDelay the delay before the first retry in milliseconds (default: 100ms)
+ * @param maxDelay the maximum delay between retries in milliseconds (default: 2000ms)
+ * @param factor the multiplier used to increase delay after each failure (default: 2.0)
+ * @param description a description of the operation for error reporting (default: empty string)
+ * @param block the operation to execute
+ * @return the result of the successful operation execution
+ */
+private fun <T> withRetries(
     times: Int = 3,
     initialDelay: Long = 100,      // ms
     maxDelay: Long = 2000,         // ms
