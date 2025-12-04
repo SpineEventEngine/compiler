@@ -1,0 +1,5 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension.Companion///PointingToDeclaration/io/spine/tools/compiler/gradle/plugin/Extension.Companion.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Plugin.Companion///PointingToDeclaration/io/spine/tools/compiler/gradle/plugin/Plugin.Companion.html
+io.spine.tools.compiler.gradle.plugin
