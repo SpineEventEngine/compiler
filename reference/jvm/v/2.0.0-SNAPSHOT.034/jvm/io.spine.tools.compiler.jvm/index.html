@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.spine.tools.compiler.jvm</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../images/logo-icon.svg">
+<link href="../../styles/custom-styles.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../index.html" tabindex="1">
+                    jvm
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+2.0.0-SNAPSHOT.034        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":jvm/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":jvm/main"
+                                       data-filter=":jvm/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    jvm
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="jvm::io.spine.tools.compiler.jvm////PointingToDeclaration//1144021071">
+  <div class="breadcrumbs"><a href="../../index.html">jvm</a><span class="delimiter">/</span><span class="current">io.spine.tools.compiler.jvm</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="-1257319676%2FClasslikes%2F1144021071" anchor-label="AbstractServiceConvention" id="-1257319676%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-abstract-service-convention/index.html"><span>Abstract</span><wbr></wbr><span>Service</span><wbr></wbr><span><span>Convention</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1257319676%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-abstract-service-convention/index.html">AbstractServiceConvention</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">ts<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span> : <a href="-base-java-convention/index.html">BaseJavaConvention</a><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.compiler.ast/ServiceName///PointingToDeclaration/">ServiceName</span><span class="token punctuation">, </span><a href="-class-name/index.html">ClassName</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Abstract base for conventions which govern generated code for protobuf services.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="14343513%2FClasslikes%2F1144021071" anchor-label="AnElement" id="14343513%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-an-element/index.html"><span>An</span><wbr></wbr><span><span>Element</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="14343513%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-an-element/index.html">AnElement</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>code<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-java-element/index.html">JavaElement</a></div><div class="brief "><p class="paragraph">An arbitrary piece of Java code.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-689446481%2FClasslikes%2F1144021071" anchor-label="AnnotatedClassName" id="-689446481%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-annotated-class-name/index.html"><span>Annotated</span><wbr></wbr><span>Class</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-689446481%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-annotated-class-name/index.html">AnnotatedClassName</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">className<span class="token operator">: </span><a href="-class-name/index.html">ClassName</a><span class="token punctuation">, </span></span><span class="parameter ">annotation<span class="token operator">: </span><a href="-class-name/index.html">ClassName</a></span></span><span class="token punctuation">)</span> : <a href="-java-type-name/index.html">JavaTypeName</a></div><div class="brief "><p class="paragraph">An annotated <a href="-class-name/index.html">ClassName</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="59691114%2FClasslikes%2F1144021071" anchor-label="ArrayTypeName" id="59691114%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-array-type-name/index.html"><span>Array</span><wbr></wbr><span>Type</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="59691114%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-array-type-name/index.html">ArrayTypeName</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">javaName<span class="token operator">: </span><a href="-java-type-name/index.html">JavaTypeName</a></span></span><span class="token punctuation">)</span> : <a href="-java-type-name/index.html">JavaTypeName</a></div><div class="brief "><p class="paragraph">A fully qualified name of a Java array.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2061425110%2FClasslikes%2F1144021071" anchor-label="BaseJavaConvention" id="2061425110%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-base-java-convention/index.html"><span>Base</span><wbr></wbr><span>Java</span><wbr></wbr><span><span>Convention</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2061425110%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-base-java-convention/index.html">BaseJavaConvention</a><span class="token operator">&lt;</span><a href="-base-java-convention/index.html">P</a><span class="token operator"> : </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoDeclarationName///PointingToDeclaration/">ProtoDeclarationName</span><span class="token punctuation">, </span><a href="-base-java-convention/index.html">J</a><span class="token operator"> : </span><a href="-class-name/index.html">ClassName</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span> : <span data-unresolved-link="io.spine.tools.compiler.type/Convention///PointingToDeclaration/">Convention</span><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.code/Java///PointingToDeclaration/">Java</span><span class="token punctuation">, </span><a href="-base-java-convention/index.html">P</a><span class="token punctuation">, </span><a href="-base-java-convention/index.html">J</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">An abstract base for Java <span data-unresolved-link="io.spine.tools.compiler.type/Convention///PointingToDeclaration/">Convention</span>s.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-410841659%2FClasslikes%2F1144021071" anchor-label="ClassName" id="-410841659%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-class-name/index.html"><span>Class</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-410841659%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-class-name/index.html">ClassName</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>packageName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>simpleNames<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="-java-type-name/index.html">JavaTypeName</a></div><div class="brief "><p class="paragraph">A fully qualified Java class name.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2071220760%2FClasslikes%2F1144021071" anchor-label="CodeBlock" id="-2071220760%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-code-block/index.html"><span>Code</span><wbr></wbr><span><span>Block</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2071220760%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-code-block/index.html">CodeBlock</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">code<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-an-element/index.html">AnElement</a></div><div class="brief "><p class="paragraph">Represents a block of Java code.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1915677332%2FClasslikes%2F1144021071" anchor-label="CopyByteString" id="-1915677332%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-copy-byte-string/index.html"><span>Copy</span><wbr></wbr><span>Byte</span><wbr></wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1915677332%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-copy-byte-string/index.html">CopyByteString</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">bytes<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ByteString///PointingToDeclaration/">ByteString</span></span></span><span class="token punctuation">)</span> : <a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/ByteString///PointingToDeclaration/">ByteString</span><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">An expression which yields the given Protobuf <span data-unresolved-link="com.google.protobuf/ByteString///PointingToDeclaration/">ByteString</span> using <span data-unresolved-link="com.google.protobuf/ByteString/copyFrom/#kotlin.ByteArray#kotlin.Int#kotlin.Int/PointingToDeclaration/">ByteString.copyFrom</span> method.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1833404107%2FClasslikes%2F1144021071" anchor-label="DeclVar" id="1833404107%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-decl-var/index.html"><span>Decl</span><wbr></wbr><span><span>Var</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1833404107%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-decl-var/index.html">DeclVar</a><span class="token operator">&lt;</span><a href="-decl-var/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>type<span class="token operator">: </span><a href="-java-type-name/index.html">JavaTypeName</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-statement/index.html">Statement</a></div><div class="brief "><p class="paragraph">Declares a local Java variable with the give <span data-unresolved-link="io.spine.tools.compiler.jvm/DeclVar//#io.spine.tools.compiler.jvm.JavaTypeName#kotlin.String/PointingToCallableParameters(1)/">name</span> and <span data-unresolved-link="io.spine.tools.compiler.jvm/DeclVar//#io.spine.tools.compiler.jvm.JavaTypeName#kotlin.String/PointingToCallableParameters(0)/">type</span>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1953580878%2FClasslikes%2F1144021071" anchor-label="EnumName" id="1953580878%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-enum-name/index.html"><span>Enum</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1953580878%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-enum-name/index.html">EnumName</a> : <a href="-class-name/index.html">ClassName</a></div><div class="brief "><p class="paragraph">A fully qualified name of a Java enum type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-752143582%2FClasslikes%2F1144021071" anchor-label="Expression" id="-752143582%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-expression/index.html"><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-752143582%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="-expression/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">code<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-an-element/index.html">AnElement</a></div><div class="brief "><p class="paragraph">A piece of Java code that yields a value.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2107583882%2FClasslikes%2F1144021071" anchor-label="FieldAccess" id="2107583882%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-field-access/index.html"><span>Field</span><wbr></wbr><span><span>Access</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2107583882%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-field-access/index.html">FieldAccess</a> : <a href="-field-conventions/index.html">FieldConventions</a></div><div class="brief "><p class="paragraph">A selector to access methods for a Protobuf message field.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1949935822%2FClasslikes%2F1144021071" anchor-label="FieldConventions" id="-1949935822%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-field-conventions/index.html"><span>Field</span><wbr></wbr><span><span>Conventions</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1949935822%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-field-conventions/index.html">FieldConventions</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/FieldName///PointingToDeclaration/">FieldName</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>kind<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/Cardinality///PointingToDeclaration/">Cardinality</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Abstract base for field access conventions.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-395327526%2FClasslikes%2F1144021071" anchor-label="FieldDeclaration" id="-395327526%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-field-declaration/index.html"><span>Field</span><wbr></wbr><span><span>Declaration</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-395327526%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-field-declaration/index.html">FieldDeclaration</a><span class="token operator">&lt;</span><a href="-field-declaration/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">code<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-member-declaration/index.html">MemberDeclaration</a></div><div class="brief "><p class="paragraph">A declaration of a Java field.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="635980322%2FClasslikes%2F1144021071" anchor-label="FieldMethods" id="635980322%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-field-methods/index.html"><span>Field</span><wbr></wbr><span><span>Methods</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="635980322%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-field-methods/index.html">FieldMethods</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/FieldName///PointingToDeclaration/">FieldName</span><span class="token punctuation">, </span></span><span class="parameter ">kind<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/Cardinality///PointingToDeclaration/">Cardinality</span></span></span><span class="token punctuation">)</span> : <a href="-field-conventions/index.html">FieldConventions</a></div><div class="brief "><p class="paragraph">Obtains the names of the methods associated with the given field.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1199784683%2FClasslikes%2F1144021071" anchor-label="GenericServiceConvention" id="1199784683%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-generic-service-convention/index.html"><span>Generic</span><wbr></wbr><span>Service</span><wbr></wbr><span><span>Convention</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1199784683%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-generic-service-convention/index.html">GenericServiceConvention</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">ts<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span> : <a href="-abstract-service-convention/index.html">AbstractServiceConvention</a></div><div class="brief "><p class="paragraph">This convention governs declarations of <a href="https://protobuf.dev/reference/java/java-generated/#service">generic</a> Protobuf service stubs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-333154432%2FClasslikes%2F1144021071" anchor-label="GrpcServiceConvention" id="-333154432%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-grpc-service-convention/index.html"><span>Grpc</span><wbr></wbr><span>Service</span><wbr></wbr><span><span>Convention</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-333154432%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-grpc-service-convention/index.html">GrpcServiceConvention</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">ts<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span> : <a href="-abstract-service-convention/index.html">AbstractServiceConvention</a></div><div class="brief "><p class="paragraph">This convention governs declarations of generated gRPC stubs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1179060851%2FClasslikes%2F1144021071" anchor-label="InitTypedVar" id="-1179060851%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-init-typed-var/index.html"><span>Init</span><wbr></wbr><span>Typed</span><wbr></wbr><span><span>Var</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1179060851%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-init-typed-var/index.html">InitTypedVar</a><span class="token operator">&lt;</span><a href="-init-typed-var/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>type<span class="token operator">: </span><a href="-java-type-name/index.html">JavaTypeName</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>value<span class="token operator">: </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="-init-typed-var/index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="-statement/index.html">Statement</a></div><div class="brief "><p class="paragraph">Creates a local Java variable with explicitly specified <span data-unresolved-link="io.spine.tools.compiler.jvm/InitTypedVar//#io.spine.tools.compiler.jvm.JavaTypeName#kotlin.String#io.spine.tools.compiler.jvm.Expression[TypeParam(bounds=[kotlin.Any?])]/PointingToCallableParameters(0)/">type</span>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="552794673%2FClasslikes%2F1144021071" anchor-label="InitVar" id="552794673%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-init-var/index.html"><span>Init</span><wbr></wbr><span><span>Var</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="552794673%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-init-var/index.html">InitVar</a><span class="token operator">&lt;</span><a href="-init-var/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>value<span class="token operator">: </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="-init-var/index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="-statement/index.html">Statement</a></div><div class="brief "><p class="paragraph">Creates a local Java variable with the given <span data-unresolved-link="io.spine.tools.compiler.jvm/InitVar//#kotlin.String#io.spine.tools.compiler.jvm.Expression[TypeParam(bounds=[kotlin.Any?])]/PointingToCallableParameters(0)/">name</span> and <span data-unresolved-link="io.spine.tools.compiler.jvm/InitVar//#kotlin.String#io.spine.tools.compiler.jvm.Expression[TypeParam(bounds=[kotlin.Any?])]/PointingToCallableParameters(1)/">value</span>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1168846222%2FClasslikes%2F1144021071" anchor-label="JavaElement" id="1168846222%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-java-element/index.html"><span>Java</span><wbr></wbr><span><span>Element</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1168846222%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-java-element/index.html">JavaElement</a> : <span data-unresolved-link="io.spine.tools.compiler.type/CodeElement///PointingToDeclaration/">CodeElement</span><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.code/Java///PointingToDeclaration/">Java</span><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">A piece of Java code.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-105752269%2FClasslikes%2F1144021071" anchor-label="JavaTypeName" id="-105752269%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-java-type-name/index.html"><span>Java</span><wbr></wbr><span>Type</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-105752269%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="-java-type-name/index.html">JavaTypeName</a> : <span data-unresolved-link="io.spine.tools.compiler.type/NameElement///PointingToDeclaration/">NameElement</span><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.code/Java///PointingToDeclaration/">Java</span><span class="token operator">&gt; </span>, <a href="-java-element/index.html">JavaElement</a></div><div class="brief "><p class="paragraph">A name of a Java type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1013168361%2FClasslikes%2F1144021071" anchor-label="JavaValueConverter" id="1013168361%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-java-value-converter/index.html"><span>Java</span><wbr></wbr><span>Value</span><wbr></wbr><span><span>Converter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1013168361%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-java-value-converter/index.html">JavaValueConverter</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span> : <span data-unresolved-link="io.spine.tools.compiler.type/ValueConverter///PointingToDeclaration/">ValueConverter</span><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.code/Java///PointingToDeclaration/">Java</span><span class="token punctuation">, </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">A <span data-unresolved-link="io.spine.tools.compiler.type/ValueConverter///PointingToDeclaration/">ValueConverter</span> which converts values into Java expressions.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="947497081%2FClasslikes%2F1144021071" anchor-label="Literal" id="947497081%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-literal/index.html"><span><span>Literal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="947497081%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-literal/index.html">Literal</a><span class="token operator">&lt;</span><a href="-literal/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="-literal/index.html">T</a></span></span><span class="token punctuation">)</span> : <a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="-literal/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">An arbitrary literal.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1426038677%2FClasslikes%2F1144021071" anchor-label="LongLiteral" id="1426038677%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-long-literal/index.html"><span>Long</span><wbr></wbr><span><span>Literal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1426038677%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-long-literal/index.html">LongLiteral</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-long/index.html">Long</a></span></span><span class="token punctuation">)</span> : <a href="-literal/index.html">Literal</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">A <code class="lang-kotlin">long</code> literal.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1693087992%2FClasslikes%2F1144021071" anchor-label="MemberDeclaration" id="-1693087992%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-member-declaration/index.html"><span>Member</span><wbr></wbr><span><span>Declaration</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1693087992%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-member-declaration/index.html">MemberDeclaration</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">code<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-an-element/index.html">AnElement</a></div><div class="brief "><p class="paragraph">Represents a class-level member declaration.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1920201544%2FClasslikes%2F1144021071" anchor-label="MessageOrBuilderConvention" id="-1920201544%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-message-or-builder-convention/index.html"><span>Message</span><wbr></wbr><span>Or</span><wbr></wbr><span>Builder</span><wbr></wbr><span><span>Convention</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1920201544%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-message-or-builder-convention/index.html">MessageOrBuilderConvention</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">ts<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span> : <a href="-base-java-convention/index.html">BaseJavaConvention</a><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.compiler.ast/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">, </span><a href="-class-name/index.html">ClassName</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">This convention governs declarations of interfaces extending <span data-unresolved-link="com.google.protobuf/MessageOrBuilder///PointingToDeclaration/">MessageOrBuilder</span> which are generated along with corresponding message classes.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1219902860%2FClasslikes%2F1144021071" anchor-label="MessageOrEnumConvention" id="1219902860%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-message-or-enum-convention/index.html"><span>Message</span><wbr></wbr><span>Or</span><wbr></wbr><span>Enum</span><wbr></wbr><span><span>Convention</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1219902860%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-message-or-enum-convention/index.html">MessageOrEnumConvention</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">ts<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span> : <a href="-base-java-convention/index.html">BaseJavaConvention</a><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.compiler.ast/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">, </span><a href="-class-name/index.html">ClassName</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">This convention covers declarations of message or enum types declared in Protobuf.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-136123205%2FClasslikes%2F1144021071" anchor-label="MethodCall" id="-136123205%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-method-call/index.html"><span>Method</span><wbr></wbr><span><span>Call</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-136123205%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><a href="-method-call/index.html">T</a><span class="token operator">&gt;</span> <span><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a> </span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">scope<span class="token operator">: </span><a href="-java-element/index.html">JavaElement</a><span class="token punctuation">, </span></span><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">arguments<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator"> = </span>listOf()<span class="token punctuation">, </span></span><span class="parameter ">generics<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-java-type-name/index.html">JavaTypeName</a><span class="token operator">&gt;</span><span class="token operator"> = </span>listOf()</span></span><span class="token punctuation">)</span> : <a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="-method-call/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">An expression of a Java method call.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1828287951%2FClasslikes%2F1144021071" anchor-label="MethodDeclaration" id="1828287951%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-method-declaration/index.html"><span>Method</span><wbr></wbr><span><span>Declaration</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1828287951%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-method-declaration/index.html">MethodDeclaration</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">code<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-member-declaration/index.html">MemberDeclaration</a></div><div class="brief "><p class="paragraph">A declaration of a Java method.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-288606765%2FClasslikes%2F1144021071" anchor-label="Null" id="-288606765%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-null/index.html"><span><span>Null</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-288606765%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-null/index.html">Null</a> : <a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="-null/index.html">Null</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">An expression that evaluates to <code class="lang-kotlin">null</code>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-170754294%2FClasslikes%2F1144021071" anchor-label="ParameterizedTypeName" id="-170754294%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parameterized-type-name/index.html"><span>Parameterized</span><wbr></wbr><span>Type</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-170754294%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-parameterized-type-name/index.html">ParameterizedTypeName</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">base<span class="token operator">: </span><a href="-java-type-name/index.html">JavaTypeName</a><span class="token punctuation">, </span></span><span class="parameter ">parameters<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-java-type-name/index.html">JavaTypeName</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="-java-type-name/index.html">JavaTypeName</a></div><div class="brief "><p class="paragraph">A parameterized Java type name.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1761455100%2FClasslikes%2F1144021071" anchor-label="ReadField" id="-1761455100%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-read-field/index.html"><span>Read</span><wbr></wbr><span><span>Field</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1761455100%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-read-field/index.html">ReadField</a><span class="token operator">&lt;</span><a href="-read-field/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">explicitThis<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span> : <a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="-read-field/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Provides a read access to the field with the given name.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1810724425%2FClasslikes%2F1144021071" anchor-label="ReadVar" id="-1810724425%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-read-var/index.html"><span>Read</span><wbr></wbr><span><span>Var</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1810724425%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-read-var/index.html">ReadVar</a><span class="token operator">&lt;</span><a href="-read-var/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="-read-var/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Provides a read access to the variable with the given name.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1097145483%2FClasslikes%2F1144021071" anchor-label="SetVar" id="-1097145483%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-set-var/index.html"><span>Set</span><wbr></wbr><span><span>Var</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1097145483%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-set-var/index.html">SetVar</a><span class="token operator">&lt;</span><a href="-set-var/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>value<span class="token operator">: </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="-set-var/index.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="-statement/index.html">Statement</a></div><div class="brief "><p class="paragraph">Assigns a <span data-unresolved-link="io.spine.tools.compiler.jvm/SetVar//#kotlin.String#io.spine.tools.compiler.jvm.Expression[TypeParam(bounds=[kotlin.Any?])]/PointingToCallableParameters(1)/">value</span> to a variable with the given <span data-unresolved-link="io.spine.tools.compiler.jvm/SetVar//#kotlin.String#io.spine.tools.compiler.jvm.Expression[TypeParam(bounds=[kotlin.Any?])]/PointingToCallableParameters(0)/">name</span>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-860729863%2FClasslikes%2F1144021071" anchor-label="Statement" id="-860729863%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-statement/index.html"><span><span>Statement</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-860729863%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-statement/index.html">Statement</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">code<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-an-element/index.html">AnElement</a></div><div class="brief "><p class="paragraph">An executable Java instruction.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2003707030%2FClasslikes%2F1144021071" anchor-label="StringLiteral" id="-2003707030%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-string-literal/index.html"><span>String</span><wbr></wbr><span><span>Literal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2003707030%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-string-literal/index.html">StringLiteral</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-literal/index.html">Literal</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">A string literal.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="218907804%2FClasslikes%2F1144021071" anchor-label="This" id="218907804%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-this/index.html"><span><span>This</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="218907804%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-this/index.html">This</a><span class="token operator">&lt;</span><a href="-this/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">explicit<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">true</span></span></span><span class="token punctuation">)</span> : <a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="-this/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">A reference to the current <code class="lang-kotlin">this</code> instance.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1895124227%2FClasslikes%2F1144021071" anchor-label="TypedInsertionPoint" id="-1895124227%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-typed-insertion-point/index.html"><span>Typed</span><wbr></wbr><span>Insertion</span><wbr></wbr><span><span>Point</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1895124227%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-typed-insertion-point/index.html">TypedInsertionPoint</a> : <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><a href="-typed-insertion-point/index.html">TypedInsertionPoint</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Standard <span data-unresolved-link="io.spine.tools.compiler.render/InsertionPoint///PointingToDeclaration/">InsertionPoint</span>s generated for a message, or an enum type by the Protobuf compiler.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1041539993%2FClasslikes%2F1144021071" anchor-label="TypeVariableName" id="1041539993%2FClasslikes%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-type-variable-name/index.html"><span>Type</span><wbr></wbr><span>Variable</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1041539993%2FClasslikes%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-type-variable-name/index.html">TypeVariableName</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span> : <a href="-java-type-name/index.html">JavaTypeName</a></div><div class="brief "><p class="paragraph">A type parameter name.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="1836637772%2FProperties%2F1144021071" anchor-label="OUTER_CLASS_SCOPE" id="1836637772%2FProperties%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-o-u-t-e-r_-c-l-a-s-s_-s-c-o-p-e.html"><span>OUTER_</span><wbr></wbr><span>CLASS_</span><wbr></wbr><span>SCOPE</span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1836637772%2FProperties%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-o-u-t-e-r_-c-l-a-s-s_-s-c-o-p-e.html">OUTER_CLASS_SCOPE</a><span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.render/InsertionPoint///PointingToDeclaration/">InsertionPoint</span></div><div class="brief "><p class="paragraph">The standard <span data-unresolved-link="io.spine.tools.compiler.render/InsertionPoint///PointingToDeclaration/">InsertionPoint</span> generated by the Protobuf compiler in the Java outer class for every Protobuf file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_PROPERTY">
+        <h2 class="tableheader">Inherited properties</h2>
+        <div class="table"><a data-name="535086315%2FProperties%2F1144021071" anchor-label="codeReference" id="535086315%2FProperties%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="code-reference.html"><span>code</span><wbr></wbr><span><span>Reference</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="535086315%2FProperties%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">val </span><span class="token operator">&lt;</span><a href="code-reference.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-annotation/index.html">Annotation</a><span class="token operator">&gt; </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><a href="code-reference.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="code-reference.html"><strike>codeReference</strike></a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains the code which is used for referencing this annotation class in Java code.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-601294382%2FProperties%2F1144021071" anchor-label="getterName" id="-601294382%2FProperties%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="getter-name.html"><span>getter</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-601294382%2FProperties%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">val </span><span data-unresolved-link="io.spine.tools.compiler.ast/Field///PointingToDeclaration/">Field</span><span class="token punctuation">.</span><a href="getter-name.html">getterName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains the name of the accessor method for this field.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1373757717%2FProperties%2F1144021071" anchor-label="isJavaLang" id="1373757717%2FProperties%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-java-lang.html"><span>is</span><wbr></wbr><span>Java</span><wbr></wbr><span><span>Lang</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1373757717%2FProperties%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="is-java-lang.html"><strike>isJavaLang</strike></a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Tells if this class belongs to the &quot;java.lang&quot; package.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-22138873%2FProperties%2F1144021071" anchor-label="isJavaPrimitive" id="-22138873%2FProperties%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-java-primitive.html"><span>is</span><wbr></wbr><span>Java</span><wbr></wbr><span><span>Primitive</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-22138873%2FProperties%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">val </span><span data-unresolved-link="io.spine.tools.compiler.ast/Field///PointingToDeclaration/">Field</span><span class="token punctuation">.</span><a href="is-java-primitive.html">isJavaPrimitive</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Tells if the type of this field corresponds to a primitive type in Java.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="216172346%2FProperties%2F1144021071" anchor-label="isRepeatable" id="216172346%2FProperties%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-repeatable.html"><span>is</span><wbr></wbr><span><span>Repeatable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="216172346%2FProperties%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">val </span><span class="token operator">&lt;</span><a href="is-repeatable.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-annotation/index.html">Annotation</a><span class="token operator">&gt; </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><a href="is-repeatable.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="is-repeatable.html"><strike>isRepeatable</strike></a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Tells if this annotation type is repeatable.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="655281720%2FProperties%2F1144021071" anchor-label="primarySetterName" id="655281720%2FProperties%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primary-setter-name.html"><span>primary</span><wbr></wbr><span>Setter</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="655281720%2FProperties%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">val </span><span data-unresolved-link="io.spine.tools.compiler.ast/Field///PointingToDeclaration/">Field</span><span class="token punctuation">.</span><a href="primary-setter-name.html">primarySetterName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains the name of the primary setter method for this field.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2000133147%2FProperties%2F1144021071" anchor-label="reference" id="-2000133147%2FProperties%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="reference.html"><span><span>reference</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2000133147%2FProperties%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">val </span><span class="token operator">&lt;</span><a href="reference.html">T</a><span class="token operator"> : </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><a href="reference.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="reference.html"><strike>reference</strike></a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains the code which is used for referencing this class in Java code.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1281332830%2FFunctions%2F1144021071" anchor-label="listExpression" id="-1281332830%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="list-expression.html"><span>list</span><wbr></wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1281332830%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="list-expression.html"><span class="token function">listExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">vararg </span>expressions<span class="token operator">: </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.common.collect/ImmutableList///PointingToDeclaration/">ImmutableList</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Constructs an expression of a list of the given <a href="list-expression.html">expressions</a>.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="list-expression.html"><span class="token function">listExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">expressions<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.common.collect/ImmutableList///PointingToDeclaration/">ImmutableList</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Constructs an expression of a list from the given list of <a href="list-expression.html">expressions</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1931258284%2FFunctions%2F1144021071" anchor-label="mapExpression" id="-1931258284%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map-expression.html"><span>map</span><wbr></wbr><span><span>Expression</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1931258284%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="map-expression.html"><span class="token function">mapExpression</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.common.collect/ImmutableMap///PointingToDeclaration/">ImmutableMap</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token punctuation">, </span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Constructs an expression that yields an empty Guava's <span data-unresolved-link="com.google.common.collect/ImmutableMap///PointingToDeclaration/">ImmutableMap</span>.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="map-expression.html"><span class="token function">mapExpression</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">keyType<span class="token operator">: </span><a href="-class-name/index.html">ClassName</a><span class="token punctuation">, </span></span><span class="parameter ">valueType<span class="token operator">: </span><a href="-class-name/index.html">ClassName</a><span class="token punctuation">, </span></span><span class="parameter ">entries<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.common.collect/ImmutableMap///PointingToDeclaration/">ImmutableMap</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token punctuation">, </span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Constructs an expression that yields Guava's <span data-unresolved-link="com.google.common.collect/ImmutableMap///PointingToDeclaration/">ImmutableMap</span> with the given <a href="map-expression.html">entries</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="tableheader">Inherited functions</h2>
+        <div class="table"><a data-name="-463920980%2FFunctions%2F1144021071" anchor-label="call" id="-463920980%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="call.html"><span><span>call</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-463920980%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="call.html">T</a><span class="token operator">&gt; </span><a href="-class-name/index.html">ClassName</a><span class="token punctuation">.</span><a href="call.html"><span class="token function">call</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">argument<span class="token operator">: </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">generics<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-class-name/index.html">ClassName</a><span class="token operator">&gt;</span><span class="token operator"> = </span>listOf()</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><a href="call.html">T</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="call.html">T</a><span class="token operator">&gt; </span><a href="-class-name/index.html">ClassName</a><span class="token punctuation">.</span><a href="call.html"><span class="token function">call</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">arguments<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator"> = </span>listOf()<span class="token punctuation">, </span></span><span class="parameter ">generics<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-class-name/index.html">ClassName</a><span class="token operator">&gt;</span><span class="token operator"> = </span>listOf()</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><a href="call.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Constructs a call to a static method of this class.</p></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="call.html">T</a><span class="token operator">&gt; </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="call.html"><span class="token function">call</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>argument<span class="token operator">: </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">generics<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-class-name/index.html">ClassName</a><span class="token operator">&gt;</span><span class="token operator"> = </span>listOf()</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><a href="call.html">T</a><span class="token operator">&gt;</span></div><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-overloads/index.html"><span class="token annotation builtin">JvmOverloads</span></a></div></div><span class="token keyword">fun </span><span class="token operator">&lt;</span><a href="call.html">T</a><span class="token operator">&gt; </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="call.html"><span class="token function">call</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">arguments<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator"> = </span>listOf()<span class="token punctuation">, </span></span><span class="parameter ">generics<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="-class-name/index.html">ClassName</a><span class="token operator">&gt;</span><span class="token operator"> = </span>listOf()</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><a href="call.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Constructs a method call upon this <a href="-expression/index.html">Expression</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1154088581%2FFunctions%2F1144021071" anchor-label="enumValue" id="1154088581%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="enum-value.html"><span>enum</span><wbr></wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1154088581%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-enum-name/index.html">EnumName</a><span class="token punctuation">.</span><a href="enum-value.html"><span class="token function">enumValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">number<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Constructs an expression that returns the Protobuf enum value by the given number from this class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1129141155%2FFunctions%2F1144021071" anchor-label="field" id="-1129141155%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="field.html"><span><span>field</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1129141155%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="field.html"><span class="token function">field</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">field<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/Field///PointingToDeclaration/">Field</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-field-access/index.html">FieldAccess</a></div><div class="brief "><p class="paragraph">Obtains a <a href="-field-access/index.html">FieldAccess</a> to the <a href="field.html">field</a> of this message.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="field.html"><span class="token function">field</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">cardinality<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/Cardinality///PointingToDeclaration/">Cardinality</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-field-access/index.html">FieldAccess</a></div><div class="brief "><p class="paragraph">Obtains a <a href="-field-access/index.html">FieldAccess</a> to the field of this message with the given <a href="field.html">name</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-223033872%2FFunctions%2F1144021071" anchor-label="findField" id="-223033872%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-field.html"><span>find</span><wbr></wbr><span><span>Field</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-223033872%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/MessageType///PointingToDeclaration/">MessageType</span><span class="token punctuation">.</span><a href="find-field.html"><span class="token function">findField</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/Field///PointingToDeclaration/">Field</span><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Looks for the field with the given <a href="find-field.html">name</a> in this <span data-unresolved-link="io.spine.tools.compiler.ast/MessageType///PointingToDeclaration/">MessageType</span>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1062020153%2FFunctions%2F1144021071" anchor-label="findJavaClassName" id="-1062020153%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-java-class-name.html"><span>find</span><wbr></wbr><span>Java</span><wbr></wbr><span>Class</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1062020153%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">.</span><a href="find-java-class-name.html"><span class="token function">findJavaClassName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-class-name/index.html">ClassName</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Finds a fully qualified Java class name, generated for the Protobuf type with this name.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-196880540%2FFunctions%2F1144021071" anchor-label="getDefaultInstance" id="-196880540%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-default-instance.html"><span>get</span><wbr></wbr><span>Default</span><wbr></wbr><span><span>Instance</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-196880540%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-class-name/index.html">ClassName</a><span class="token punctuation">.</span><a href="get-default-instance.html"><span class="token function">getDefaultInstance</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Constructs an expression which obtains the default instance for this class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="655612089%2FFunctions%2F1144021071" anchor-label="javaCase" id="655612089%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="java-case.html"><span>java</span><wbr></wbr><span><span>Case</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="655612089%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/FieldName///PointingToDeclaration/">FieldName</span><span class="token punctuation">.</span><a href="java-case.html"><span class="token function">javaCase</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains the name of the field in Java case, as if it were declared as a field in a Java class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1574634002%2FFunctions%2F1144021071" anchor-label="javaClass" id="1574634002%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="java-class.html"><span>java</span><wbr></wbr><span><span>Class</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1574634002%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-class-name/index.html">ClassName</a><span class="token punctuation">.</span><a href="java-class.html"><span class="token function">javaClass</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Returns the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a> instance for this <a href="-class-name/index.html">ClassName</a>, if any.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/MessageType///PointingToDeclaration/">MessageType</span><span class="token punctuation">.</span><a href="java-class.html"><span class="token function">javaClass</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">accordingTo<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/MessageType///PointingToDeclaration/">MessageType</span><span class="token punctuation">.</span><a href="java-class.html"><span class="token function">javaClass</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Obtains the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Class.html">Class</a> instance for this <span data-unresolved-link="io.spine.tools.compiler.ast/MessageType///PointingToDeclaration/">MessageType</span>, if any.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1909173983%2FFunctions%2F1144021071" anchor-label="javaClassName" id="-1909173983%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="java-class-name.html"><span>java</span><wbr></wbr><span>Class</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1909173983%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/EnumType///PointingToDeclaration/">EnumType</span><span class="token punctuation">.</span><a href="java-class-name.html"><span class="token function">javaClassName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">accordingTo<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-class-name/index.html">ClassName</a></div><div class="brief "><p class="paragraph">Obtains the full name of the Java enum, generated from this Protobuf enum.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/EnumType///PointingToDeclaration/">EnumType</span><span class="token punctuation">.</span><a href="java-class-name.html"><span class="token function">javaClassName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-class-name/index.html">ClassName</a></div><div class="brief "><p class="paragraph">Obtains a class name for the Java code generated for this enum type.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/FieldType///PointingToDeclaration/">FieldType</span><span class="token punctuation">.</span><a href="java-class-name.html"><span class="token function">javaClassName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-class-name/index.html">ClassName</a></div><div class="brief "><p class="paragraph">Obtains a Java class name for this field type.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/MessageType///PointingToDeclaration/">MessageType</span><span class="token punctuation">.</span><a href="java-class-name.html"><span class="token function">javaClassName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">accordingTo<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-class-name/index.html">ClassName</a></div><div class="brief "><p class="paragraph">Obtains the full name of the Java class, generated from this message.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/MessageType///PointingToDeclaration/">MessageType</span><span class="token punctuation">.</span><a href="java-class-name.html"><span class="token function">javaClassName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-class-name/index.html">ClassName</a></div><div class="brief "><p class="paragraph">Obtains a class name for the Java code generated for this message type.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/TypeBase///PointingToDeclaration/">TypeBase</span><span class="token punctuation">.</span><a href="java-class-name.html"><span class="token function">javaClassName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">accordingTo<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains a name of a Java class which corresponds to values with this type.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">.</span><a href="java-class-name.html"><span class="token function">javaClassName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">accordingTo<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-class-name/index.html">ClassName</a></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">.</span><a href="java-class-name.html"><span class="token function">javaClassName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-class-name/index.html">ClassName</a></div><div class="brief "><p class="paragraph">Obtains a fully qualified Java class name, generated for the Protobuf type with this name.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1536092341%2FFunctions%2F1144021071" anchor-label="javaEnumName" id="1536092341%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="java-enum-name.html"><span>java</span><wbr></wbr><span>Enum</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1536092341%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">.</span><a href="java-enum-name.html"><span class="token function">javaEnumName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">accordingTo<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-enum-name/index.html">EnumName</a></div><div class="brief "><p class="paragraph">Obtains a fully qualified Java enum type name, generated for the Protobuf enum with this name.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="412844236%2FFunctions%2F1144021071" anchor-label="javaFile" id="412844236%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="java-file.html"><span>java</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="412844236%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/MessageType///PointingToDeclaration/">MessageType</span><span class="token punctuation">.</span><a href="java-file.html"><span class="token function">javaFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">accordingTo<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a></div><div class="brief "><p class="paragraph">Obtains the path to the <code class="lang-kotlin">.java</code> file, generated from this message.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/TypeName///PointingToDeclaration/">TypeName</span><span class="token punctuation">.</span><a href="java-file.html"><span class="token function">javaFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">accordingTo<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a></div><div class="brief "><p class="paragraph">Obtains the path to the <code class="lang-kotlin">.java</code> file, generated for the type with this name.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="206687976%2FFunctions%2F1144021071" anchor-label="javaMultipleFiles" id="206687976%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="java-multiple-files.html"><span>java</span><wbr></wbr><span>Multiple</span><wbr></wbr><span><span>Files</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="206687976%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span><span class="token punctuation">.</span><a href="java-multiple-files.html"><span class="token function">javaMultipleFiles</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Obtains a value of <code class="lang-kotlin">java_multiple_files</code> option set for this file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1882179325%2FFunctions%2F1144021071" anchor-label="javaOuterClassName" id="1882179325%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="java-outer-class-name.html"><span>java</span><wbr></wbr><span>Outer</span><wbr></wbr><span>Class</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1882179325%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span><span class="token punctuation">.</span><a href="java-outer-class-name.html"><span class="token function">javaOuterClassName</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains a name of the Java outer class generated for this Protobuf file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-717887001%2FFunctions%2F1144021071" anchor-label="javaPackage" id="-717887001%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="java-package.html"><span>java</span><wbr></wbr><span><span>Package</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-717887001%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span><span class="token punctuation">.</span><a href="java-package.html"><span class="token function">javaPackage</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains a name of a Java package for the code generated from this Protobuf file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="265299227%2FFunctions%2F1144021071" anchor-label="javaType" id="265299227%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="java-type.html"><span>java</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="265299227%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/Field///PointingToDeclaration/">Field</span><span class="token punctuation">.</span><a href="java-type.html"><span class="token function">javaType</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains the Java type of the field in the context of the given <span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span>.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/TypeBase///PointingToDeclaration/">TypeBase</span><span class="token punctuation">.</span><a href="java-type.html"><span class="token function">javaType</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains a fully qualified name of this type in the context of the given <span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-957883329%2FFunctions%2F1144021071" anchor-label="newBuilder" id="-957883329%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="new-builder.html"><span>new</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-957883329%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-class-name/index.html">ClassName</a><span class="token punctuation">.</span><a href="new-builder.html"><span class="token function">newBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Message.Builder///PointingToDeclaration/">Message.Builder</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Constructs an expression which creates a new builder for this class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1055395359%2FFunctions%2F1144021071" anchor-label="packToAny" id="1055395359%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pack-to-any.html"><span>pack</span><wbr></wbr><span>To</span><wbr></wbr><span><span>Any</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1055395359%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="pack-to-any.html"><span class="token function">packToAny</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Any///PointingToDeclaration/">Any</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Wraps this <a href="-expression/index.html">Expression</a> into Protobuf <code class="lang-kotlin">Any</code> using <span data-unresolved-link="io.spine.protobuf/TypeConverter/toAny/#TypeParam(bounds=[kotlin.Any])/PointingToDeclaration/">TypeConverter.toAny</span> method.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2089181068%2FFunctions%2F1144021071" anchor-label="plus" id="-2089181068%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="plus.html"><span><span>plus</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2089181068%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="plus.html"><span class="token function">plus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Yields a new string <a href="-expression/index.html">Expression</a> by concatenating this <a href="-expression/index.html">Expression</a> with another <a href="-expression/index.html">Expression</a>.</p></div><div class="symbol monospace"><span class="token keyword">operator </span><span class="token keyword">fun </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="plus.html"><span class="token function">plus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Yields a new string <a href="-expression/index.html">Expression</a> by appending the given <a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a> literal to this string <a href="-expression/index.html">Expression</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1040841332%2FFunctions%2F1144021071" anchor-label="primitiveClass" id="1040841332%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="primitive-class.html"><span>primitive</span><wbr></wbr><span><span>Class</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1040841332%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/PrimitiveType///PointingToDeclaration/">PrimitiveType</span><span class="token punctuation">.</span><a href="primitive-class.html"><span class="token function">primitiveClass</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Obtains a Kotlin class which corresponds to this primitive type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="199285483%2FFunctions%2F1144021071" anchor-label="qualifiedJavaType" id="199285483%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="qualified-java-type.html"><span>qualified</span><wbr></wbr><span>Java</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="199285483%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.option/EveryIsOption///PointingToDeclaration/">EveryIsOption</span><span class="token punctuation">.</span><a href="qualified-java-type.html"><span class="token function">qualifiedJavaType</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">header<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="org.checkerframework.checker.signature.qual/FullyQualifiedName///PointingToDeclaration/"><span class="token annotation builtin">FullyQualifiedName</span></span> </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains a fully qualified name of a Java type corresponding the value of the <code class="lang-kotlin">java_type</code> property of the <code class="lang-kotlin">every_is</code> option.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.option/IsOption///PointingToDeclaration/">IsOption</span><span class="token punctuation">.</span><a href="qualified-java-type.html"><span class="token function">qualifiedJavaType</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">header<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/ProtoFileHeader///PointingToDeclaration/">ProtoFileHeader</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="org.checkerframework.checker.signature.qual/FullyQualifiedName///PointingToDeclaration/"><span class="token annotation builtin">FullyQualifiedName</span></span> </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains a fully qualified name of a Java type corresponding the value of the <code class="lang-kotlin">java_type</code> property of the <code class="lang-kotlin">is</code> option.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2101768869%2FFunctions%2F1144021071" anchor-label="toBuilder" id="2101768869%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-builder.html"><span>to</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2101768869%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-expression/index.html">Expression</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="to-builder.html"><span class="token function">toBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-method-call/index.html">MethodCall</a><span class="token operator">&lt;</span><span data-unresolved-link="com.google.protobuf/Message.Builder///PointingToDeclaration/">Message.Builder</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Constructs an expression which creates a new builder for this <span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1154907182%2FFunctions%2F1144021071" anchor-label="toJavaClass" id="1154907182%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-java-class.html"><span>to</span><wbr></wbr><span>Java</span><wbr></wbr><span><span>Class</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1154907182%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/PrimitiveType///PointingToDeclaration/">PrimitiveType</span><span class="token punctuation">.</span><a href="to-java-class.html"><span class="token function">toJavaClass</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-class-name/index.html">ClassName</a></div><div class="brief "><p class="paragraph">Obtains the name of the Java class corresponding to this primitive type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-468630966%2FFunctions%2F1144021071" anchor-label="toPrimitiveName" id="-468630966%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-primitive-name.html"><span>to</span><wbr></wbr><span>Primitive</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-468630966%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/PrimitiveType///PointingToDeclaration/">PrimitiveType</span><span class="token punctuation">.</span><a href="to-primitive-name.html"><span class="token function">toPrimitiveName</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains a name of the class which corresponds to this primitive type.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="895026715%2FFunctions%2F1144021071" anchor-label="toPsi" id="895026715%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-psi.html"><span>to</span><wbr></wbr><span><span>Psi</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="895026715%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="-field-declaration/index.html">FieldDeclaration</a><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="to-psi.html"><span class="token function">toPsi</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><span data-unresolved-link="com.intellij.psi/PsiElement///PointingToDeclaration/">PsiElement</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.intellij.psi/PsiField///PointingToDeclaration/">PsiField</span></div><div class="brief "><p class="paragraph">Creates a new <span data-unresolved-link="com.intellij.psi/PsiField///PointingToDeclaration/">PsiField</span> from this Java <a href="-field-declaration/index.html">FieldDeclaration</a>.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="-statement/index.html">Statement</a><span class="token punctuation">.</span><a href="to-psi.html"><span class="token function">toPsi</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><span data-unresolved-link="com.intellij.psi/PsiElement///PointingToDeclaration/">PsiElement</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.intellij.psi/PsiStatement///PointingToDeclaration/">PsiStatement</span></div><div class="brief "><p class="paragraph">Creates a new <span data-unresolved-link="com.intellij.psi/PsiStatement///PointingToDeclaration/">PsiStatement</span> from this Java <a href="-statement/index.html">Statement</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="297354823%2FFunctions%2F1144021071" anchor-label="typeReference" id="297354823%2FFunctions%2F1144021071" data-filterable-set=":jvm/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":jvm/main" data-filterable-set=":jvm/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="type-reference.html"><span>type</span><wbr></wbr><span><span>Reference</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="297354823%2FFunctions%2F1144021071"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":jvm/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="io.spine.tools.compiler.ast/Field///PointingToDeclaration/">Field</span><span class="token punctuation">.</span><a href="type-reference.html"><span class="token function">typeReference</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">message<span class="token operator">: </span><a href="-class-name/index.html">ClassName</a><span class="token punctuation">, </span></span><span class="parameter ">typeSystem<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.type/TypeSystem///PointingToDeclaration/">TypeSystem</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Obtains a reference the type of this field in the context of the given <a href="type-reference.html">message</a> class.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright 2025, TeamDev</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
