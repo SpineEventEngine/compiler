@@ -73,8 +73,8 @@ import io.spine.tools.compiler.type.TypeSystem
  * If there can be a few alternative events, see the descendants of
  * [Either][io.spine.server.tuple.Either].
  *
- * In case if one of the options does nothing at all, use [io.spine.server.event.NoReaction]
- * as one of the event types.
+ * If one of the options does nothing at all, use [io.spine.server.event.NoReaction]
+ * as the event type.
  *
  * Finally, if there are multiple events of the same type, use a typed list,
  * e.g. `List<SomethingHappened>`.
