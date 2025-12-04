@@ -1,0 +1,693 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>PipelineSetup 2.0.0-SNAPSHOT.034 API </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">io.spine.testing.compiler</a></div>
+        <h2 title="Class PipelineSetup" class="title">Class PipelineSetup</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public final class <span class="typeNameLabel"><a href=PipelineSetup.html>PipelineSetup</a></span>
+
+                    </pre>
+                    <div class="block"><p>Creates a Pipeline for testing given Compiler plugins.</p><p>This class simulates the first step of the code generation process performed by <code>protoc</code> compiler. Since <code>protoc</code> is a stable and predictable piece of software, we do not need to go through the &quot;vanilla&quot; code generation process when we test the Compiler plugins.</p><p>Instead of running the whole code generation process in a Gradle build with the Compiler Gradle Plugin applied over and over again, we can generate the code and related binary data like CodeGeneratorRequest or FileDescriptorSet using <code>protoc</code> and then use its output in tests.</p><p>A convenient way of capturing the generated &quot;vanilla&quot; code and associated files is using <a href=https://github.com/SpineEventEngine/ProtoTap.html>ProtoTap Gradle Plugin</a>. This is the recommended way for working with <code>PipelineSetup</code> which provides most of the input for creation of a Pipeline automatically. Configuration steps associated with this approach are described below.</p><p>The class also allows fine-tuned way of working using its constructor directly for the usage scenarios when generated code and CodeGeneratorRequest are already available or generated via a custom procedure.</p><p>Here are the steps for creating an instance of <code>PipelineSetup</code> in your tests.</p><p>The plugin will create the <code>testFixtures</code> source set in which we will put proto files.</p><p>Alternatively, you can put proto files under the <code>test</code> source set, but with <code>testFixtures</code> it is a bit neater.</p><p>... if it's not yet applied directly or indirectly.</p><p>Please remember to specify the <a href=https://github.com/google/protobuf-gradle-plugin?tab=readme-ov-file#locate-external-executables.html><code>protoc</code> artifact</a>.</p><p>If you're going to put proto files under <code>testFixtures</code> or <code>test</code> source sets, ProtoTap would pick them automatically.</p><p>If you're going to use a custom source set, please pass it to the <a href=https://github.com/SpineEventEngine/ProtoTap?tab=readme-ov-file#using-plugin-settings.html>plugin settings</a>.</p><p>This step applies if you're using JUnit. We will need two directories: one is for storing settings for the Compiler plugins we're going to test, and another is for the output of the code generation process:</p><pre><code>@Test
+fun `my test`(
+    @TempDir outputDir: Path,
+    @TempDir settingsDir: Path
+) {
+    // Test code will be here.
+}</code></pre><pre><code>val setup = PipelineSetup.byResources(plugins, outputDir, settingsDir, descriptorFilter) {
+    // Write settings here.
+}</code></pre><p>The above call to <a href=PipelineSetup.Companion.html#byResources(io.spine.tools.code.Language,io.spine.tools.compiler.params.PipelineParameters,java.util.List,java.nio.file.Path,io.spine.tools.compiler.backend.DescriptorFilter,kotlin.jvm.functions.Function1)>byResources</a> assumes we work with code generation in Java. For other programming languages please use the overload which accepts Language as the first parameter (e.g. Kotlin or TypeScript).</p><p>The callback block for writing settings accepts an instance of SettingsDirectory that will be available from the Pipeline to be created.</p><p>Protobuf compiler creates a separate directory for each programming language after a name of the corresponding <code>protoc</code> plugin or built-in. Correspondingly, directories in test resources with the generated code copied by ProtoTap would have those names. Here are the conventions used by <code>PipelineSetup</code> for accessing language subdirectories:</p><ul><li><p>Java -&gt;<code>&quot;java&quot;</code></p></li><li><p>Kotlin -&gt;<code>&quot;kotlin&quot;</code></p></li><li><p>TypeScript -&gt;<code>&quot;ts&quot;</code></p></li><li><p>Protobuf -&gt;<code>&quot;proto&quot;</code></p></li><li><p>Other languages -&gt; a lowercase version of Language.name.</p></li></ul></div>
+
+                    <dl>
+
+                    
+
+                    
+
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>public class</code></td>
+                                            <th class="colSecond" scope="row"><code><a href="PipelineSetup.Companion.html">PipelineSetup.Companion</a></span></code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html>List</a>&lt;Plugin&gt;</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#plugins>plugins</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final PipelineParameters</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#params>params</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final SettingsDirectory</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#settings>settings</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final SourceFileSet</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#sourceFiles>sourceFiles</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final SourceFileSet</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#sourceFileSet>sourceFileSet</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>public final static <a href=PipelineSetup.Companion.html>PipelineSetup.Companion</a></code></td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#Companion>Companion</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#PipelineSetup(io.spine.tools.compiler.params.PipelineParameters,java.util.List,java.nio.file.Path,java.nio.file.Path,io.spine.tools.compiler.backend.DescriptorFilter,kotlin.jvm.functions.Function1)">PipelineSetup</a></span>(PipelineParameters params, <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html>List</a>&lt;Plugin&gt; plugins, <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html>Path</a> inputDir, <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html>Path</a> outputDir, Function1&lt;Descriptors.GenericDescriptor, <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html>Boolean</a>&gt; descriptorFilter, Function1&lt;SettingsDirectory, <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a>&gt; writeSettings)</code></th>
+                                                <td class="colLast">Creates in instance for creating Pipeline for testing the given plugins.</td>
+                                            </tr>
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="enum.constant.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Enum Constant Summary</h3>
+                                <table class="memberSummary">
+                                    <caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+                                    <tr>
+                                        <th class="colFirst" scope="col">Enum Constant</th>
+                                        <th class="colLast" scope="col">Description</th>
+                                    </tr>
+                                    
+                                </table>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>final <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html>List</a>&lt;Plugin&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#getPlugins()>getPlugins</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>final PipelineParameters</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#getParams()>getParams</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>final SettingsDirectory</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#getSettings()>getSettings</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>final SourceFileSet</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#getSourceFiles()>getSourceFiles</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>final SourceFileSet</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#getSourceFileSet()>getSourceFileSet</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>final Pipeline</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#createPipeline()>createPipeline</a>() </code>
+                                            </th>
+                                            <td class="colLast">Creates the pipeline.</td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-pair/index.html>Pair</a>&lt;Pipeline, BlackBox&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#createPipelineAndBlackbox()>createPipelineAndBlackbox</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-pair/index.html>Pair</a>&lt;Pipeline, BlackBox&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=PipelineSetup.html#createPipelineWithBlackBox()>createPipelineWithBlackBox</a>() </code>
+                                            </th>
+                                            <td class="colLast">Creates a Pipeline and a BlackBox to for testing the CodeGenerationContext of the created pipeline.</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                                <a name="PipelineSetup(io.spine.tools.compiler.params.PipelineParameters,java.util.List,java.nio.file.Path,java.nio.file.Path,io.spine.tools.compiler.backend.DescriptorFilter,kotlin.jvm.functions.Function1)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>PipelineSetup</h4>
+                                        <pre>PipelineSetup(PipelineParameters params, <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html>List</a>&lt;Plugin&gt; plugins, <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html>Path</a> inputDir, <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html>Path</a> outputDir, Function1&lt;Descriptors.GenericDescriptor, <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Boolean.html>Boolean</a>&gt; descriptorFilter, Function1&lt;SettingsDirectory, <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html>Unit</a>&gt; writeSettings)</pre>
+                                        <div class="block"><p>Creates in instance for creating Pipeline for testing the given plugins.</p></div>
+                                        
+                                        <dl>
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <dd><code>inputDir</code> - The root directory with the source code generated by <code>protoc</code>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>outputDir</code> - The root directory where the updated code will be placed.</dd>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <dd><code>writeSettings</code> - A callback for writing plugin settings before the pipeline is created.</dd>
+                                            
+                                            
+                                        </dl>
+                                        
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="getPlugins()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getPlugins</h4>
+                                        <pre class="methodSignature"> final <a href=https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html>List</a>&lt;Plugin&gt; <a href=PipelineSetup.html#getPlugins()>getPlugins</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getParams()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getParams</h4>
+                                        <pre class="methodSignature"> final PipelineParameters <a href=PipelineSetup.html#getParams()>getParams</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getSettings()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSettings</h4>
+                                        <pre class="methodSignature"> final SettingsDirectory <a href=PipelineSetup.html#getSettings()>getSettings</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getSourceFiles()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSourceFiles</h4>
+                                        <pre class="methodSignature"> final SourceFileSet <a href=PipelineSetup.html#getSourceFiles()>getSourceFiles</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="getSourceFileSet()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSourceFileSet</h4>
+                                        <pre class="methodSignature"> final SourceFileSet <a href=PipelineSetup.html#getSourceFileSet()>getSourceFileSet</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="createPipeline()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createPipeline</h4>
+                                        <pre class="methodSignature"> final Pipeline <a href=PipelineSetup.html#createPipeline()>createPipeline</a>()</pre>
+                                        <div class="block"><p>Creates the pipeline.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="createPipelineAndBlackbox()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createPipelineAndBlackbox</h4>
+                                        <pre class="methodSignature">@<a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-deprecated/index.html>Deprecated</a>(message = &quot;Please use `createPipelineAndBlackBox()` instead.&quot;, replaceWith = @<a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-replace-with/index.html>ReplaceWith</a>(expression = &quot;createPipelineAndBlackBox()&quot;)) final <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-pair/index.html>Pair</a>&lt;Pipeline, BlackBox&gt; <a href=PipelineSetup.html#createPipelineAndBlackbox()>createPipelineAndBlackbox</a>()</pre>
+                                        <div class="block"></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="createPipelineWithBlackBox()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>createPipelineWithBlackBox</h4>
+                                        <pre class="methodSignature"> final <a href=https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-pair/index.html>Pair</a>&lt;Pipeline, BlackBox&gt; <a href=PipelineSetup.html#createPipelineWithBlackBox()>createPipelineWithBlackBox</a>()</pre>
+                                        <div class="block"><p>Creates a Pipeline and a BlackBox to for testing the CodeGenerationContext of the created pipeline.</p><p>The created instances of Pipeline and BlackBox are &quot;entangled&quot; in the sense that the BlackBox instance should be queried only after the Pipeline is executed.</p></div>
+
+                                        <dl>
+
+                                        
+
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>
