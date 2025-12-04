@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Builder</title>
+    <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../../../images/logo-icon.svg">
+<link href="../../../../styles/custom-styles.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../../index.html" tabindex="1">
+                    api
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+2.0.0-SNAPSHOT.033        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":api/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":api/main"
+                                       data-filter=":api/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    api
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="api::io.spine.tools.compiler.ast.event/DependencyDiscovered.Builder///PointingToDeclaration//1081350600">
+  <div class="breadcrumbs"><a href="../../../../index.html">api</a><span class="delimiter">/</span><a href="../../index.html">io.spine.tools.compiler.ast.event</a><span class="delimiter">/</span><a href="../index.html">DependencyDiscovered</a><span class="delimiter">/</span><span class="current">Builder</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Builder</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Builder</a> : <span data-unresolved-link="com.google.protobuf/GeneratedMessage.Builder///PointingToDeclaration/">GeneratedMessage.Builder</span><span class="token operator">&lt;</span><a href="index.html">DependencyDiscovered.Builder</a><span class="token operator">&gt; </span>, <a href="../../-dependency-discovered-or-builder/index.html">DependencyDiscoveredOrBuilder</a>, <span data-unresolved-link="io.spine.validate/ValidatingBuilder///PointingToDeclaration/">ValidatingBuilder</span><span class="token operator">&lt;</span><a href="../index.html">DependencyDiscovered</a><span class="token operator">&gt; </span></div><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Emitted when the Protobuf compiler discovers a dependency file.
+
+The order of files reported by events of this type is unspecified.
+Users should not rely on any particular order.
+
+Each dependency file is only reported by one event.
+
+`DependencyDiscovered` events always precede all other Protobuf compiler events, i.e.
+the first `FileEntered` will always be emitted after the last `DependencyDiscovered`.
+
+Normally, no code should be generated for dependencies.
+However, they can be used for additional info when generating code for the module's own types.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div> Protobuf type <code class="lang-kotlin">spine.compiler.DependencyDiscovered</code></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="2028613332%2FFunctions%2F1081350600" anchor-label="build" id="2028613332%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build.html"><span><span>build</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2028613332%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="build.html"><span class="token function">build</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="io.spine.validate/Validated///PointingToDeclaration/"><span class="token annotation builtin">Validated</span></span> </span><a href="../index.html">DependencyDiscovered</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-257950075%2FFunctions%2F1081350600" anchor-label="buildPartial" id="-257950075%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build-partial.html"><span>build</span><wbr></wbr><span><span>Partial</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-257950075%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="build-partial.html"><span class="token function">buildPartial</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="io.spine.validate/NonValidated///PointingToDeclaration/"><span class="token annotation builtin">NonValidated</span></span> </span><a href="../index.html">DependencyDiscovered</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-437614635%2FFunctions%2F1081350600" anchor-label="clear" id="-437614635%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear.html"><span><span>clear</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-437614635%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear.html"><span class="token function">clear</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="363862457%2FFunctions%2F1081350600" anchor-label="clearFile" id="363862457%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-file.html"><span>clear</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="363862457%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear-file.html"><span class="token function">clearFile</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="684485114%2FFunctions%2F1081350600" anchor-label="clearSource" id="684485114%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-source.html"><span>clear</span><wbr></wbr><span><span>Source</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="684485114%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear-source.html"><span class="token function">clearSource</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The source file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.ProtobufSourceFile source = 2 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1097270943%2FFunctions%2F1081350600" anchor-label="getDefaultInstanceForType" id="1097270943%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-default-instance-for-type.html"><span>get</span><wbr></wbr><span>Default</span><wbr></wbr><span>Instance</span><wbr></wbr><span>For</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1097270943%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-default-instance-for-type.html"><span class="token function">getDefaultInstanceForType</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">DependencyDiscovered</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1058310333%2FFunctions%2F1081350600" anchor-label="getDescriptor" id="1058310333%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-descriptor.html"><span>get</span><wbr></wbr><span><span>Descriptor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1058310333%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-descriptor.html"><span class="token function">getDescriptor</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.Descriptor///PointingToDeclaration/">Descriptors.Descriptor</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1602458470%2FFunctions%2F1081350600" anchor-label="getDescriptorForType" id="-1602458470%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-descriptor-for-type.html"><span>get</span><wbr></wbr><span>Descriptor</span><wbr></wbr><span>For</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1602458470%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-descriptor-for-type.html"><span class="token function">getDescriptorForType</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.Descriptor///PointingToDeclaration/">Descriptors.Descriptor</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-613550448%2FFunctions%2F1081350600" anchor-label="getFile" id="-613550448%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file.html"><span>get</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-613550448%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-file.html"><span class="token function">getFile</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file/index.html">File</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1287825809%2FFunctions%2F1081350600" anchor-label="getFileBuilder" id="-1287825809%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file-builder.html"><span>get</span><wbr></wbr><span>File</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1287825809%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-file-builder.html"><span class="token function">getFileBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file/-builder/index.html">File.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-144091854%2FFunctions%2F1081350600" anchor-label="getFileOrBuilder" id="-144091854%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file-or-builder.html"><span>get</span><wbr></wbr><span>File</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-144091854%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-file-or-builder.html"><span class="token function">getFileOrBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file-or-builder/index.html">FileOrBuilder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1988521233%2FFunctions%2F1081350600" anchor-label="getSource" id="1988521233%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-source.html"><span>get</span><wbr></wbr><span><span>Source</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1988521233%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-source.html"><span class="token function">getSource</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-protobuf-source-file/index.html">ProtobufSourceFile</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The source file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.ProtobufSourceFile source = 2 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="273398990%2FFunctions%2F1081350600" anchor-label="getSourceBuilder" id="273398990%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-source-builder.html"><span>get</span><wbr></wbr><span>Source</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="273398990%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-source-builder.html"><span class="token function">getSourceBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-protobuf-source-file/-builder/index.html">ProtobufSourceFile.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The source file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.ProtobufSourceFile source = 2 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1249353681%2FFunctions%2F1081350600" anchor-label="getSourceOrBuilder" id="1249353681%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-source-or-builder.html"><span>get</span><wbr></wbr><span>Source</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1249353681%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-source-or-builder.html"><span class="token function">getSourceOrBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-protobuf-source-file-or-builder/index.html">ProtobufSourceFileOrBuilder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The source file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.ProtobufSourceFile source = 2 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="256797132%2FFunctions%2F1081350600" anchor-label="hasFile" id="256797132%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="has-file.html"><span>has</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="256797132%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="has-file.html"><span class="token function">hasFile</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="873922893%2FFunctions%2F1081350600" anchor-label="hasSource" id="873922893%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="has-source.html"><span>has</span><wbr></wbr><span><span>Source</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="873922893%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="has-source.html"><span class="token function">hasSource</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The source file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.ProtobufSourceFile source = 2 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-667269348%2FFunctions%2F1081350600" anchor-label="internalGetFieldAccessorTable" id="-667269348%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="internal-get-field-accessor-table.html"><span>internal</span><wbr></wbr><span>Get</span><wbr></wbr><span>Field</span><wbr></wbr><span>Accessor</span><wbr></wbr><span><span>Table</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-667269348%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">protected </span><span class="token keyword">open </span><span class="token keyword">fun </span><a href="internal-get-field-accessor-table.html"><span class="token function">internalGetFieldAccessorTable</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/GeneratedMessage.FieldAccessorTable///PointingToDeclaration/">GeneratedMessage.FieldAccessorTable</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-594867080%2FFunctions%2F1081350600" anchor-label="isInitialized" id="-594867080%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-initialized.html"><span>is</span><wbr></wbr><span><span>Initialized</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-594867080%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-initialized.html"><span class="token function">isInitialized</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="408705853%2FFunctions%2F1081350600" anchor-label="mergeFile" id="408705853%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="merge-file.html"><span>merge</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="408705853%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-file.html"><span class="token function">mergeFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file/index.html">File</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1984307072%2FFunctions%2F1081350600" anchor-label="mergeFrom" id="1984307072%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="merge-from.html"><span>merge</span><wbr></wbr><span><span>From</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1984307072%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-from.html"><span class="token function">mergeFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-from.html"><span class="token function">mergeFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="../index.html">DependencyDiscovered</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-from.html"><span class="token function">mergeFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">input<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/CodedInputStream///PointingToDeclaration/">CodedInputStream</span><span class="token punctuation">, </span></span><span class="parameter ">extensionRegistry<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ExtensionRegistryLite///PointingToDeclaration/">ExtensionRegistryLite</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1759746840%2FFunctions%2F1081350600" anchor-label="mergeSource" id="1759746840%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="merge-source.html"><span>merge</span><wbr></wbr><span><span>Source</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1759746840%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-source.html"><span class="token function">mergeSource</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-protobuf-source-file/index.html">ProtobufSourceFile</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The source file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.ProtobufSourceFile source = 2 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="14848249%2FFunctions%2F1081350600" anchor-label="setFile" id="14848249%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-file.html"><span>set</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="14848249%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-file.html"><span class="token function">setFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file/index.html">File</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-file.html"><span class="token function">setFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">builderForValue<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file/-builder/index.html">File.Builder</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-110022311%2FFunctions%2F1081350600" anchor-label="setSource" id="-110022311%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-source.html"><span>set</span><wbr></wbr><span><span>Source</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-110022311%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-source.html"><span class="token function">setSource</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-protobuf-source-file/index.html">ProtobufSourceFile</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-source.html"><span class="token function">setSource</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">builderForValue<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-protobuf-source-file/-builder/index.html">ProtobufSourceFile.Builder</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">DependencyDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The source file of the dependency.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.ProtobufSourceFile source = 2 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright 2025, TeamDev</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

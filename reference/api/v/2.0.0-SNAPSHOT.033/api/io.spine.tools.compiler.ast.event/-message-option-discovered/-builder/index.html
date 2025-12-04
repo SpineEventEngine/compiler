@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Builder</title>
+    <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../../../images/logo-icon.svg">
+<link href="../../../../styles/custom-styles.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../../index.html" tabindex="1">
+                    api
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+2.0.0-SNAPSHOT.033        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":api/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":api/main"
+                                       data-filter=":api/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    api
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="api::io.spine.tools.compiler.ast.event/MessageOptionDiscovered.Builder///PointingToDeclaration//1081350600">
+  <div class="breadcrumbs"><a href="../../../../index.html">api</a><span class="delimiter">/</span><a href="../../index.html">io.spine.tools.compiler.ast.event</a><span class="delimiter">/</span><a href="../index.html">MessageOptionDiscovered</a><span class="delimiter">/</span><span class="current">Builder</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Builder</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Builder</a> : <span data-unresolved-link="com.google.protobuf/GeneratedMessage.Builder///PointingToDeclaration/">GeneratedMessage.Builder</span><span class="token operator">&lt;</span><a href="index.html">MessageOptionDiscovered.Builder</a><span class="token operator">&gt; </span>, <a href="../../-message-option-discovered-or-builder/index.html">MessageOptionDiscoveredOrBuilder</a>, <span data-unresolved-link="io.spine.validate/ValidatingBuilder///PointingToDeclaration/">ValidatingBuilder</span><span class="token operator">&lt;</span><a href="../index.html">MessageOptionDiscovered</a><span class="token operator">&gt; </span></div><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Emitted when a message-level option is found.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div> Protobuf type <code class="lang-kotlin">spine.compiler.MessageOptionDiscovered</code></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-881384841%2FFunctions%2F1081350600" anchor-label="build" id="-881384841%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build.html"><span><span>build</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-881384841%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="build.html"><span class="token function">build</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="io.spine.validate/Validated///PointingToDeclaration/"><span class="token annotation builtin">Validated</span></span> </span><a href="../index.html">MessageOptionDiscovered</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-896844414%2FFunctions%2F1081350600" anchor-label="buildPartial" id="-896844414%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build-partial.html"><span>build</span><wbr></wbr><span><span>Partial</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-896844414%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="build-partial.html"><span class="token function">buildPartial</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="io.spine.validate/NonValidated///PointingToDeclaration/"><span class="token annotation builtin">NonValidated</span></span> </span><a href="../index.html">MessageOptionDiscovered</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="947354488%2FFunctions%2F1081350600" anchor-label="clear" id="947354488%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear.html"><span><span>clear</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="947354488%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear.html"><span class="token function">clear</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1417378852%2FFunctions%2F1081350600" anchor-label="clearFile" id="-1417378852%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-file.html"><span>clear</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1417378852%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear-file.html"><span class="token function">clearFile</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file in which the type is defined.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1744826435%2FFunctions%2F1081350600" anchor-label="clearOption" id="1744826435%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-option.html"><span>clear</span><wbr></wbr><span><span>Option</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1744826435%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear-option.html"><span class="token function">clearOption</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The discovered option.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.Option option = 3 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1090171882%2FFunctions%2F1081350600" anchor-label="clearSubject" id="-1090171882%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-subject.html"><span>clear</span><wbr></wbr><span><span>Subject</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1090171882%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear-subject.html"><span class="token function">clearSubject</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The message type in which the option is discovered.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.MessageType subject = 4 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-533218338%2FFunctions%2F1081350600" anchor-label="clearType" id="-533218338%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-type.html"><span>clear</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-533218338%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear-type.html"><span class="token function"><strike>clearType</strike></span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Deprecated: please use `subject` instead.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.TypeName type = 2 [deprecated = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="207669954%2FFunctions%2F1081350600" anchor-label="getDefaultInstanceForType" id="207669954%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-default-instance-for-type.html"><span>get</span><wbr></wbr><span>Default</span><wbr></wbr><span>Instance</span><wbr></wbr><span>For</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="207669954%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-default-instance-for-type.html"><span class="token function">getDefaultInstanceForType</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">MessageOptionDiscovered</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1567544992%2FFunctions%2F1081350600" anchor-label="getDescriptor" id="-1567544992%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-descriptor.html"><span>get</span><wbr></wbr><span><span>Descriptor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1567544992%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-descriptor.html"><span class="token function">getDescriptor</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.Descriptor///PointingToDeclaration/">Descriptors.Descriptor</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2045468311%2FFunctions%2F1081350600" anchor-label="getDescriptorForType" id="2045468311%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-descriptor-for-type.html"><span>get</span><wbr></wbr><span>Descriptor</span><wbr></wbr><span>For</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2045468311%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-descriptor-for-type.html"><span class="token function">getDescriptorForType</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.Descriptor///PointingToDeclaration/">Descriptors.Descriptor</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1098085005%2FFunctions%2F1081350600" anchor-label="getFile" id="-1098085005%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file.html"><span>get</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1098085005%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-file.html"><span class="token function">getFile</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file/index.html">File</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file in which the type is defined.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1084962260%2FFunctions%2F1081350600" anchor-label="getFileBuilder" id="-1084962260%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file-builder.html"><span>get</span><wbr></wbr><span>File</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1084962260%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-file-builder.html"><span class="token function">getFileBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file/-builder/index.html">File.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file in which the type is defined.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1534250415%2FFunctions%2F1081350600" anchor-label="getFileOrBuilder" id="1534250415%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-file-or-builder.html"><span>get</span><wbr></wbr><span>File</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1534250415%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-file-or-builder.html"><span class="token function">getFileOrBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file-or-builder/index.html">FileOrBuilder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file in which the type is defined.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-651431910%2FFunctions%2F1081350600" anchor-label="getOption" id="-651431910%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-option.html"><span>get</span><wbr></wbr><span><span>Option</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-651431910%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-option.html"><span class="token function">getOption</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-option/index.html">Option</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The discovered option.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.Option option = 3 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="988245413%2FFunctions%2F1081350600" anchor-label="getOptionBuilder" id="988245413%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-option-builder.html"><span>get</span><wbr></wbr><span>Option</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="988245413%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-option-builder.html"><span class="token function">getOptionBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-option/-builder/index.html">Option.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The discovered option.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.Option option = 3 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1021998824%2FFunctions%2F1081350600" anchor-label="getOptionOrBuilder" id="1021998824%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-option-or-builder.html"><span>get</span><wbr></wbr><span>Option</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1021998824%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-option-or-builder.html"><span class="token function">getOptionOrBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-option-or-builder/index.html">OptionOrBuilder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The discovered option.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.Option option = 3 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1935230751%2FFunctions%2F1081350600" anchor-label="getSubject" id="1935230751%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-subject.html"><span>get</span><wbr></wbr><span><span>Subject</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1935230751%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-subject.html"><span class="token function">getSubject</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-message-type/index.html">MessageType</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The message type in which the option is discovered.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.MessageType subject = 4 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-775940352%2FFunctions%2F1081350600" anchor-label="getSubjectBuilder" id="-775940352%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-subject-builder.html"><span>get</span><wbr></wbr><span>Subject</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-775940352%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-subject-builder.html"><span class="token function">getSubjectBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-message-type/-builder/index.html">MessageType.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The message type in which the option is discovered.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.MessageType subject = 4 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2143406717%2FFunctions%2F1081350600" anchor-label="getSubjectOrBuilder" id="-2143406717%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-subject-or-builder.html"><span>get</span><wbr></wbr><span>Subject</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2143406717%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-subject-or-builder.html"><span class="token function">getSubjectOrBuilder</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-message-type-or-builder/index.html">MessageTypeOrBuilder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The message type in which the option is discovered.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.MessageType subject = 4 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-213924491%2FFunctions%2F1081350600" anchor-label="getType" id="-213924491%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-type.html"><span>get</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-213924491%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-type.html"><span class="token function"><strike>getType</strike></span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-type-name/index.html">TypeName</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Deprecated: please use `subject` instead.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.TypeName type = 2 [deprecated = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2094328810%2FFunctions%2F1081350600" anchor-label="getTypeBuilder" id="2094328810%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-type-builder.html"><span>get</span><wbr></wbr><span>Type</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2094328810%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-type-builder.html"><span class="token function"><strike>getTypeBuilder</strike></span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-type-name/-builder/index.html">TypeName.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Deprecated: please use `subject` instead.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.TypeName type = 2 [deprecated = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1183746067%2FFunctions%2F1081350600" anchor-label="getTypeOrBuilder" id="-1183746067%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-type-or-builder.html"><span>get</span><wbr></wbr><span>Type</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1183746067%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-type-or-builder.html"><span class="token function"><strike>getTypeOrBuilder</strike></span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-type-name-or-builder/index.html">TypeNameOrBuilder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Deprecated: please use `subject` instead.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.TypeName type = 2 [deprecated = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-227737425%2FFunctions%2F1081350600" anchor-label="hasFile" id="-227737425%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="has-file.html"><span>has</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-227737425%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="has-file.html"><span class="token function">hasFile</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file in which the type is defined.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1766030250%2FFunctions%2F1081350600" anchor-label="hasOption" id="-1766030250%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="has-option.html"><span>has</span><wbr></wbr><span><span>Option</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1766030250%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="has-option.html"><span class="token function">hasOption</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The discovered option.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.Option option = 3 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1742420579%2FFunctions%2F1081350600" anchor-label="hasSubject" id="1742420579%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="has-subject.html"><span>has</span><wbr></wbr><span><span>Subject</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1742420579%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="has-subject.html"><span class="token function">hasSubject</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The message type in which the option is discovered.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.MessageType subject = 4 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="656423089%2FFunctions%2F1081350600" anchor-label="hasType" id="656423089%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="has-type.html"><span>has</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="656423089%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="has-type.html"><span class="token function"><strike>hasType</strike></span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Deprecated: please use `subject` instead.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.TypeName type = 2 [deprecated = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1251951039%2FFunctions%2F1081350600" anchor-label="internalGetFieldAccessorTable" id="1251951039%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="internal-get-field-accessor-table.html"><span>internal</span><wbr></wbr><span>Get</span><wbr></wbr><span>Field</span><wbr></wbr><span>Accessor</span><wbr></wbr><span><span>Table</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1251951039%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">protected </span><span class="token keyword">open </span><span class="token keyword">fun </span><a href="internal-get-field-accessor-table.html"><span class="token function">internalGetFieldAccessorTable</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/GeneratedMessage.FieldAccessorTable///PointingToDeclaration/">GeneratedMessage.FieldAccessorTable</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1074244891%2FFunctions%2F1081350600" anchor-label="isInitialized" id="1074244891%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-initialized.html"><span>is</span><wbr></wbr><span><span>Initialized</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1074244891%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-initialized.html"><span class="token function">isInitialized</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-427329184%2FFunctions%2F1081350600" anchor-label="mergeFile" id="-427329184%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="merge-file.html"><span>merge</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-427329184%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-file.html"><span class="token function">mergeFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file/index.html">File</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file in which the type is defined.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="30164730%2FFunctions%2F1081350600" anchor-label="mergeFrom" id="30164730%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="merge-from.html"><span>merge</span><wbr></wbr><span><span>From</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="30164730%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-from.html"><span class="token function">mergeFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-from.html"><span class="token function">mergeFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="../index.html">MessageOptionDiscovered</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-from.html"><span class="token function">mergeFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">input<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/CodedInputStream///PointingToDeclaration/">CodedInputStream</span><span class="token punctuation">, </span></span><span class="parameter ">extensionRegistry<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ExtensionRegistryLite///PointingToDeclaration/">ExtensionRegistryLite</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="429224174%2FFunctions%2F1081350600" anchor-label="mergeOption" id="429224174%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="merge-option.html"><span>merge</span><wbr></wbr><span><span>Option</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="429224174%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-option.html"><span class="token function">mergeOption</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-option/index.html">Option</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The discovered option.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.Option option = 3 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-347003851%2FFunctions%2F1081350600" anchor-label="mergeSubject" id="-347003851%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="merge-subject.html"><span>merge</span><wbr></wbr><span><span>Subject</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-347003851%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-subject.html"><span class="token function">mergeSubject</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-message-type/index.html">MessageType</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The message type in which the option is discovered.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.MessageType subject = 4 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="729684313%2FFunctions%2F1081350600" anchor-label="mergeType" id="729684313%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="merge-type.html"><span>merge</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="729684313%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-type.html"><span class="token function"><strike>mergeType</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-type-name/index.html">TypeName</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Deprecated: please use `subject` instead.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.TypeName type = 2 [deprecated = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-811583565%2FFunctions%2F1081350600" anchor-label="setFile" id="-811583565%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-file.html"><span>set</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-811583565%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-file.html"><span class="token function">setFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file/index.html">File</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-file.html"><span class="token function">setFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">builderForValue<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-file/-builder/index.html">File.Builder</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The file in which the type is defined.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.File file = 1 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1256845745%2FFunctions%2F1081350600" anchor-label="setOption" id="-1256845745%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-option.html"><span>set</span><wbr></wbr><span><span>Option</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1256845745%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-option.html"><span class="token function">setOption</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-option/index.html">Option</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-option.html"><span class="token function">setOption</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">builderForValue<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-option/-builder/index.html">Option.Builder</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The discovered option.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.Option option = 3 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-467718051%2FFunctions%2F1081350600" anchor-label="setSubject" id="-467718051%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-subject.html"><span>set</span><wbr></wbr><span><span>Subject</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-467718051%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-subject.html"><span class="token function">setSubject</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-message-type/index.html">MessageType</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-subject.html"><span class="token function">setSubject</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">builderForValue<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-message-type/-builder/index.html">MessageType.Builder</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The message type in which the option is discovered.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.MessageType subject = 4 [(.required) = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-247105243%2FFunctions%2F1081350600" anchor-label="setType" id="-247105243%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-type.html"><span>set</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-247105243%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-type.html"><span class="token function"><strike>setType</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-type-name/index.html">TypeName</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-type.html"><span class="token function"><strike>setType</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">builderForValue<span class="token operator">: </span><a href="../../../io.spine.tools.compiler.ast/-type-name/-builder/index.html">TypeName.Builder</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">MessageOptionDiscovered.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Deprecated: please use `subject` instead.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">.spine.compiler.TypeName type = 2 [deprecated = true];</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright 2025, TeamDev</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

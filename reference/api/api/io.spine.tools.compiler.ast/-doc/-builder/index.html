@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Builder</title>
+    <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../../../images/logo-icon.svg">
+<link href="../../../../styles/custom-styles.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../../index.html" tabindex="1">
+                    api
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+2.0.0-SNAPSHOT.033        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":api/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":api/main"
+                                       data-filter=":api/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    api
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="api::io.spine.tools.compiler.ast/Doc.Builder///PointingToDeclaration//1081350600">
+  <div class="breadcrumbs"><a href="../../../../index.html">api</a><span class="delimiter">/</span><a href="../../index.html">io.spine.tools.compiler.ast</a><span class="delimiter">/</span><a href="../index.html">Doc</a><span class="delimiter">/</span><span class="current">Builder</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Builder</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Builder</a> : <span data-unresolved-link="com.google.protobuf/GeneratedMessage.Builder///PointingToDeclaration/">GeneratedMessage.Builder</span><span class="token operator">&lt;</span><a href="index.html">Doc.Builder</a><span class="token operator">&gt; </span>, <a href="../../-doc-or-builder/index.html">DocOrBuilder</a>, <span data-unresolved-link="io.spine.validate/ValidatingBuilder///PointingToDeclaration/">ValidatingBuilder</span><span class="token operator">&lt;</span><a href="../index.html">Doc</a><span class="token operator">&gt; </span></div><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Documentation associated with a certain Protobuf declaration.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div> Protobuf type <code class="lang-kotlin">spine.compiler.Doc</code></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="2087328685%2FFunctions%2F1081350600" anchor-label="addAllDetachedComment" id="2087328685%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-all-detached-comment.html"><span>add</span><wbr></wbr><span>All</span><wbr></wbr><span>Detached</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2087328685%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="add-all-detached-comment.html"><span class="token function">addAllDetachedComment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">values<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Iterable.html">Iterable</a><span class="token operator">&lt;</span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Comments placed above the declaration separated by at least
+one empty line from the declaration.
+
+This can often be a general comment, related not to the declaration itself,
+but rather to its context.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">repeated string detached_comment = 3;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1592816596%2FFunctions%2F1081350600" anchor-label="addDetachedComment" id="-1592816596%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-detached-comment.html"><span>add</span><wbr></wbr><span>Detached</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1592816596%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="add-detached-comment.html"><span class="token function">addDetachedComment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Comments placed above the declaration separated by at least
+one empty line from the declaration.
+
+This can often be a general comment, related not to the declaration itself,
+but rather to its context.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">repeated string detached_comment = 3;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1398057046%2FFunctions%2F1081350600" anchor-label="addDetachedCommentBytes" id="-1398057046%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-detached-comment-bytes.html"><span>add</span><wbr></wbr><span>Detached</span><wbr></wbr><span>Comment</span><wbr></wbr><span><span>Bytes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1398057046%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="add-detached-comment-bytes.html"><span class="token function">addDetachedCommentBytes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ByteString///PointingToDeclaration/">ByteString</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Comments placed above the declaration separated by at least
+one empty line from the declaration.
+
+This can often be a general comment, related not to the declaration itself,
+but rather to its context.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">repeated string detached_comment = 3;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="511879791%2FFunctions%2F1081350600" anchor-label="build" id="511879791%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build.html"><span><span>build</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="511879791%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="build.html"><span class="token function">build</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="io.spine.validate/Validated///PointingToDeclaration/"><span class="token annotation builtin">Validated</span></span> </span><a href="../index.html">Doc</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1710050954%2FFunctions%2F1081350600" anchor-label="buildPartial" id="1710050954%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="build-partial.html"><span>build</span><wbr></wbr><span><span>Partial</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1710050954%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="build-partial.html"><span class="token function">buildPartial</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="io.spine.validate/NonValidated///PointingToDeclaration/"><span class="token annotation builtin">NonValidated</span></span> </span><a href="../index.html">Doc</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1954348176%2FFunctions%2F1081350600" anchor-label="clear" id="-1954348176%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear.html"><span><span>clear</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1954348176%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear.html"><span class="token function">clear</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="917134813%2FFunctions%2F1081350600" anchor-label="clearDetachedComment" id="917134813%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-detached-comment.html"><span>clear</span><wbr></wbr><span>Detached</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="917134813%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear-detached-comment.html"><span class="token function">clearDetachedComment</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Comments placed above the declaration separated by at least
+one empty line from the declaration.
+
+This can often be a general comment, related not to the declaration itself,
+but rather to its context.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">repeated string detached_comment = 3;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="377464759%2FFunctions%2F1081350600" anchor-label="clearLeadingComment" id="377464759%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-leading-comment.html"><span>clear</span><wbr></wbr><span>Leading</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="377464759%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear-leading-comment.html"><span class="token function">clearLeadingComment</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The comment placed directly above the declaration without any empty lines.
+
+For example, this very doc is the leading comment of the `leading_comment` field.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">string leading_comment = 1;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1583991431%2FFunctions%2F1081350600" anchor-label="clearTrailingComment" id="1583991431%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="clear-trailing-comment.html"><span>clear</span><wbr></wbr><span>Trailing</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1583991431%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="clear-trailing-comment.html"><span class="token function">clearTrailingComment</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The comment placed beneath the declaration without any empty lines.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">string trailing_comment = 2;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1234216634%2FFunctions%2F1081350600" anchor-label="getDefaultInstanceForType" id="1234216634%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-default-instance-for-type.html"><span>get</span><wbr></wbr><span>Default</span><wbr></wbr><span>Instance</span><wbr></wbr><span>For</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1234216634%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-default-instance-for-type.html"><span class="token function">getDefaultInstanceForType</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../index.html">Doc</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1936800088%2FFunctions%2F1081350600" anchor-label="getDescriptor" id="1936800088%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-descriptor.html"><span>get</span><wbr></wbr><span><span>Descriptor</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1936800088%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="get-descriptor.html"><span class="token function">getDescriptor</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.Descriptor///PointingToDeclaration/">Descriptors.Descriptor</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1060116577%2FFunctions%2F1081350600" anchor-label="getDescriptorForType" id="-1060116577%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-descriptor-for-type.html"><span>get</span><wbr></wbr><span>Descriptor</span><wbr></wbr><span>For</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1060116577%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-descriptor-for-type.html"><span class="token function">getDescriptorForType</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Descriptors.Descriptor///PointingToDeclaration/">Descriptors.Descriptor</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2142163635%2FFunctions%2F1081350600" anchor-label="getDetachedComment" id="-2142163635%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-detached-comment.html"><span>get</span><wbr></wbr><span>Detached</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2142163635%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-detached-comment.html"><span class="token function">getDetachedComment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Comments placed above the declaration separated by at least
+one empty line from the declaration.
+
+This can often be a general comment, related not to the declaration itself,
+but rather to its context.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">repeated string detached_comment = 3;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-887730422%2FFunctions%2F1081350600" anchor-label="getDetachedCommentBytes" id="-887730422%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-detached-comment-bytes.html"><span>get</span><wbr></wbr><span>Detached</span><wbr></wbr><span>Comment</span><wbr></wbr><span><span>Bytes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-887730422%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-detached-comment-bytes.html"><span class="token function">getDetachedCommentBytes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ByteString///PointingToDeclaration/">ByteString</span></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Comments placed above the declaration separated by at least
+one empty line from the declaration.
+
+This can often be a general comment, related not to the declaration itself,
+but rather to its context.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">repeated string detached_comment = 3;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="699339045%2FFunctions%2F1081350600" anchor-label="getDetachedCommentCount" id="699339045%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-detached-comment-count.html"><span>get</span><wbr></wbr><span>Detached</span><wbr></wbr><span>Comment</span><wbr></wbr><span><span>Count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="699339045%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-detached-comment-count.html"><span class="token function">getDetachedCommentCount</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Comments placed above the declaration separated by at least
+one empty line from the declaration.
+
+This can often be a general comment, related not to the declaration itself,
+but rather to its context.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">repeated string detached_comment = 3;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1705292392%2FFunctions%2F1081350600" anchor-label="getDetachedCommentList" id="1705292392%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-detached-comment-list.html"><span>get</span><wbr></wbr><span>Detached</span><wbr></wbr><span>Comment</span><wbr></wbr><span><span>List</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1705292392%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-detached-comment-list.html"><span class="token function">getDetachedCommentList</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ProtocolStringList///PointingToDeclaration/">ProtocolStringList</span></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Comments placed above the declaration separated by at least
+one empty line from the declaration.
+
+This can often be a general comment, related not to the declaration itself,
+but rather to its context.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">repeated string detached_comment = 3;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1187316082%2FFunctions%2F1081350600" anchor-label="getLeadingComment" id="-1187316082%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-leading-comment.html"><span>get</span><wbr></wbr><span>Leading</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1187316082%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-leading-comment.html"><span class="token function">getLeadingComment</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The comment placed directly above the declaration without any empty lines.
+
+For example, this very doc is the leading comment of the `leading_comment` field.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">string leading_comment = 1;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1824255393%2FFunctions%2F1081350600" anchor-label="getLeadingCommentBytes" id="1824255393%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-leading-comment-bytes.html"><span>get</span><wbr></wbr><span>Leading</span><wbr></wbr><span>Comment</span><wbr></wbr><span><span>Bytes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1824255393%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-leading-comment-bytes.html"><span class="token function">getLeadingCommentBytes</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ByteString///PointingToDeclaration/">ByteString</span></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The comment placed directly above the declaration without any empty lines.
+
+For example, this very doc is the leading comment of the `leading_comment` field.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">string leading_comment = 1;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="320425616%2FFunctions%2F1081350600" anchor-label="getTrailingComment" id="320425616%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-trailing-comment.html"><span>get</span><wbr></wbr><span>Trailing</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="320425616%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-trailing-comment.html"><span class="token function">getTrailingComment</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The comment placed beneath the declaration without any empty lines.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">string trailing_comment = 2;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="347688671%2FFunctions%2F1081350600" anchor-label="getTrailingCommentBytes" id="347688671%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-trailing-comment-bytes.html"><span>get</span><wbr></wbr><span>Trailing</span><wbr></wbr><span>Comment</span><wbr></wbr><span><span>Bytes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="347688671%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="get-trailing-comment-bytes.html"><span class="token function">getTrailingCommentBytes</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ByteString///PointingToDeclaration/">ByteString</span></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The comment placed beneath the declaration without any empty lines.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">string trailing_comment = 2;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1947230647%2FFunctions%2F1081350600" anchor-label="internalGetFieldAccessorTable" id="1947230647%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="internal-get-field-accessor-table.html"><span>internal</span><wbr></wbr><span>Get</span><wbr></wbr><span>Field</span><wbr></wbr><span>Accessor</span><wbr></wbr><span><span>Table</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1947230647%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">protected </span><span class="token keyword">open </span><span class="token keyword">fun </span><a href="internal-get-field-accessor-table.html"><span class="token function">internalGetFieldAccessorTable</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/GeneratedMessage.FieldAccessorTable///PointingToDeclaration/">GeneratedMessage.FieldAccessorTable</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="283622675%2FFunctions%2F1081350600" anchor-label="isInitialized" id="283622675%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-initialized.html"><span>is</span><wbr></wbr><span><span>Initialized</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="283622675%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-initialized.html"><span class="token function">isInitialized</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1251231274%2FFunctions%2F1081350600" anchor-label="mergeFrom" id="1251231274%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="merge-from.html"><span>merge</span><wbr></wbr><span><span>From</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1251231274%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-from.html"><span class="token function">mergeFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/Message///PointingToDeclaration/">Message</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-from.html"><span class="token function">mergeFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="../index.html">Doc</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="merge-from.html"><span class="token function">mergeFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">input<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/CodedInputStream///PointingToDeclaration/">CodedInputStream</span><span class="token punctuation">, </span></span><span class="parameter ">extensionRegistry<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ExtensionRegistryLite///PointingToDeclaration/">ExtensionRegistryLite</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-326439975%2FFunctions%2F1081350600" anchor-label="setDetachedComment" id="-326439975%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-detached-comment.html"><span>set</span><wbr></wbr><span>Detached</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-326439975%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-detached-comment.html"><span class="token function">setDetachedComment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">index<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">Comments placed above the declaration separated by at least
+one empty line from the declaration.
+
+This can often be a general comment, related not to the declaration itself,
+but rather to its context.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">repeated string detached_comment = 3;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-163585539%2FFunctions%2F1081350600" anchor-label="setLeadingComment" id="-163585539%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-leading-comment.html"><span>set</span><wbr></wbr><span>Leading</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-163585539%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-leading-comment.html"><span class="token function">setLeadingComment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The comment placed directly above the declaration without any empty lines.
+
+For example, this very doc is the leading comment of the `leading_comment` field.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">string leading_comment = 1;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1086907961%2FFunctions%2F1081350600" anchor-label="setLeadingCommentBytes" id="1086907961%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-leading-comment-bytes.html"><span>set</span><wbr></wbr><span>Leading</span><wbr></wbr><span>Comment</span><wbr></wbr><span><span>Bytes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1086907961%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-leading-comment-bytes.html"><span class="token function">setLeadingCommentBytes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ByteString///PointingToDeclaration/">ByteString</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The comment placed directly above the declaration without any empty lines.
+
+For example, this very doc is the leading comment of the `leading_comment` field.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">string leading_comment = 1;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1204129385%2FFunctions%2F1081350600" anchor-label="setTrailingComment" id="-1204129385%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-trailing-comment.html"><span>set</span><wbr></wbr><span>Trailing</span><wbr></wbr><span><span>Comment</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1204129385%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-trailing-comment.html"><span class="token function">setTrailingComment</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The comment placed beneath the declaration without any empty lines.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">string trailing_comment = 2;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-156701601%2FFunctions%2F1081350600" anchor-label="setTrailingCommentBytes" id="-156701601%2FFunctions%2F1081350600" data-filterable-set=":api/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":api/main" data-filterable-set=":api/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-trailing-comment-bytes.html"><span>set</span><wbr></wbr><span>Trailing</span><wbr></wbr><span>Comment</span><wbr></wbr><span><span>Bytes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-156701601%2FFunctions%2F1081350600"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":api/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="set-trailing-comment-bytes.html"><span class="token function">setTrailingCommentBytes</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><span data-unresolved-link="com.google.protobuf/ByteString///PointingToDeclaration/">ByteString</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Doc.Builder</a></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The comment placed beneath the declaration without any empty lines.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><code class="lang-kotlin">string trailing_comment = 2;</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright 2025, TeamDev</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
