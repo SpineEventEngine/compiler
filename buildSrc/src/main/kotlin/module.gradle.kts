@@ -69,10 +69,10 @@ project.run {
     configureKotlin()
 
     setupTests()
-    setupDocPublishing()
 
     afterEvaluate {
         configureTaskDependencies()
+        setupDocPublishing()
     }
 }
 
