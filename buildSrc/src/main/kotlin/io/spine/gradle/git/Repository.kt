@@ -135,7 +135,7 @@ class Repository private constructor(
      * Performs a pull with rebase before pushing to ensure the local branch is up-to-date.
      */
     fun push() {
-        withRetries(description = "Pushing  to $sshUrl, branch = '$currentBranch'") {
+        withRetries(description = "Pushing to $sshUrl, branch = '$currentBranch'") {
             repoExecute("git", "pull", "--rebase")
             repoExecute("git", "push")
         }
