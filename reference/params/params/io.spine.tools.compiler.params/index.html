@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>io.spine.tools.compiler.params</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../images/logo-icon.svg">
+<link href="../../styles/custom-styles.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../index.html" tabindex="1">
+                    params
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+2.0.0-SNAPSHOT.034        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":params/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":params/main"
+                                       data-filter=":params/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    params
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="params::io.spine.tools.compiler.params////PointingToDeclaration//-1740343994">
+  <div class="breadcrumbs"><a href="../../index.html">params</a><span class="delimiter">/</span><span class="current">io.spine.tools.compiler.params</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="TYPE">Types</button><button class="section-tab" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button><button class="section-tab" data-togglable="PROPERTY,EXTENSION_PROPERTY">Properties</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="1366452684%2FClasslikes%2F-1740343994" anchor-label="CodeGeneratorRequestFile" id="1366452684%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-code-generator-request-file/index.html"><span>Code</span><wbr></wbr><span>Generator</span><wbr></wbr><span>Request</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1366452684%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-code-generator-request-file/index.html">CodeGeneratorRequestFile</a></div><div class="brief "><p class="paragraph">Utilities for working with <code class="lang-kotlin">CodeGeneratorRequest</code> files.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2017022352%2FClasslikes%2F-1740343994" anchor-label="DebugLoggingParam" id="2017022352%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-debug-logging-param/index.html"><span>Debug</span><wbr></wbr><span>Logging</span><wbr></wbr><span><span>Param</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2017022352%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-debug-logging-param/index.html">DebugLoggingParam</a> : <a href="-parameter/index.html">Parameter</a></div><div class="brief "><p class="paragraph">The command-line parameter which turns the <code class="lang-kotlin">DEBUG</code> logging level on.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-706677914%2FClasslikes%2F-1740343994" anchor-label="Directories" id="-706677914%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-directories/index.html"><span><span>Directories</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-706677914%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-directories/index.html">Directories</a></div><div class="brief "><p class="paragraph">Constants for directory names used by the Compiler.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="952719061%2FClasslikes%2F-1740343994" anchor-label="InfoLoggingParam" id="952719061%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-info-logging-param/index.html"><span>Info</span><wbr></wbr><span>Logging</span><wbr></wbr><span><span>Param</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="952719061%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-info-logging-param/index.html">InfoLoggingParam</a> : <a href="-parameter/index.html">Parameter</a></div><div class="brief "><p class="paragraph">The command-line parameter which turns the <code class="lang-kotlin">INFO</code> logging level on.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1343822520%2FClasslikes%2F-1740343994" anchor-label="Parameter" id="-1343822520%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parameter/index.html"><span><span>Parameter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1343822520%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-parameter/index.html">Parameter</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>shortName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">help<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A parameter passed to the Compiler command-line application.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1129831054%2FClasslikes%2F-1740343994" anchor-label="ParametersDirectory" id="1129831054%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parameters-directory/index.html"><span>Parameters</span><wbr></wbr><span><span>Directory</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1129831054%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-parameters-directory/index.html">ParametersDirectory</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>path<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A directory under <a href="-working-directory/index.html">WorkingDirectory</a> which manages files of <a href="-pipeline-parameters/index.html">PipelineParameters</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1553483018%2FClasslikes%2F-1740343994" anchor-label="ParametersFileParam" id="1553483018%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-parameters-file-param/index.html"><span>Parameters</span><wbr></wbr><span>File</span><wbr></wbr><span><span>Param</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1553483018%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-parameters-file-param/index.html">ParametersFileParam</a> : <a href="-parameter/index.html">Parameter</a></div><div class="brief "><p class="paragraph">The command-line parameter for specifying the name of the file which stores an instance of <a href="-pipeline-parameters/index.html">PipelineParameters</a> in <span data-unresolved-link="io.spine.format/Format.ProtoJson///PointingToDeclaration/">ProtoJson</span> format.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-768644379%2FClasslikes%2F-1740343994" anchor-label="PipelineParameters" id="-768644379%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pipeline-parameters/index.html"><span>Pipeline</span><wbr></wbr><span><span>Parameters</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-768644379%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="com.google.protobuf/Generated///PointingToDeclaration/"><span class="token annotation builtin">Generated</span></span></div></div><span class="token keyword">class </span><a href="-pipeline-parameters/index.html">PipelineParameters</a> : <span data-unresolved-link="com.google.protobuf/GeneratedMessage///PointingToDeclaration/">GeneratedMessage</span>, <a href="-pipeline-parameters-or-builder/index.html">PipelineParametersOrBuilder</a>, <span data-unresolved-link="io.spine.validate/ValidatableMessage///PointingToDeclaration/">ValidatableMessage</span></div><div class="brief "><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">The parameter object passed to the `Pipeline` constructor.
+</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div> Protobuf type <code class="lang-kotlin">spine.compiler.params.PipelineParameters</code></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1987485820%2FClasslikes%2F-1740343994" anchor-label="PipelineParametersKt" id="1987485820%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pipeline-parameters-kt/index.html"><span>Pipeline</span><wbr></wbr><span>Parameters</span><wbr></wbr><span><span>Kt</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1987485820%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-pipeline-parameters-kt/index.html">PipelineParametersKt</a></div><div class="brief "><p class="paragraph">Protobuf type <code class="lang-kotlin">spine.compiler.params.PipelineParameters</code></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1466094309%2FClasslikes%2F-1740343994" anchor-label="PipelineParametersOrBuilder" id="1466094309%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pipeline-parameters-or-builder/index.html"><span>Pipeline</span><wbr></wbr><span>Parameters</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1466094309%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="com.google.protobuf/Generated///PointingToDeclaration/"><span class="token annotation builtin">Generated</span></span></div></div><span class="token keyword">interface </span><a href="-pipeline-parameters-or-builder/index.html">PipelineParametersOrBuilder</a> : <span data-unresolved-link="com.google.protobuf/MessageOrBuilder///PointingToDeclaration/">MessageOrBuilder</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="352078133%2FClasslikes%2F-1740343994" anchor-label="PipelineParametersProto" id="352078133%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pipeline-parameters-proto/index.html"><span>Pipeline</span><wbr></wbr><span>Parameters</span><wbr></wbr><span><span>Proto</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="352078133%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="com.google.protobuf/Generated///PointingToDeclaration/"><span class="token annotation builtin">Generated</span></span></div></div><span class="token keyword">class </span><a href="-pipeline-parameters-proto/index.html">PipelineParametersProto</a> : <span data-unresolved-link="com.google.protobuf/GeneratedFile///PointingToDeclaration/">GeneratedFile</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-969985869%2FClasslikes%2F-1740343994" anchor-label="RequestDirectory" id="-969985869%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-request-directory/index.html"><span>Request</span><wbr></wbr><span><span>Directory</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-969985869%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-request-directory/index.html">RequestDirectory</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>path<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The directory for <code class="lang-kotlin">CodeGeneratorRequest</code> files.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1197227819%2FClasslikes%2F-1740343994" anchor-label="WorkingDirectory" id="-1197227819%2FClasslikes%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-working-directory/index.html"><span>Working</span><wbr></wbr><span><span>Directory</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1197227819%2FClasslikes%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="-working-directory/index.html">WorkingDirectory</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>path<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A directory which stores files passed to the Compiler command-line application.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_PROPERTY">
+        <h2 class="tableheader">Inherited properties</h2>
+        <div class="table"><a data-name="-1916626688%2FProperties%2F-1740343994" anchor-label="requestOrNull" id="-1916626688%2FProperties%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="request-or-null.html"><span>request</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Null</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1916626688%2FProperties%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-pipeline-parameters-or-builder/index.html">PipelineParametersOrBuilder</a><span class="token punctuation">.</span><a href="request-or-null.html">requestOrNull</a><span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/File///PointingToDeclaration/">File</span><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1795037074%2FProperties%2F-1740343994" anchor-label="settingsOrNull" id="-1795037074%2FProperties%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="settings-or-null.html"><span>settings</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Null</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1795037074%2FProperties%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="-pipeline-parameters-or-builder/index.html">PipelineParametersOrBuilder</a><span class="token punctuation">.</span><a href="settings-or-null.html">settingsOrNull</a><span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.ast/Directory///PointingToDeclaration/">Directory</span><span class="token operator">?</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1126518308%2FFunctions%2F-1740343994" anchor-label="pipelineParameters" id="-1126518308%2FFunctions%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="pipeline-parameters.html"><span>pipeline</span><wbr></wbr><span><span>Parameters</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1126518308%2FFunctions%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-name/index.html"><span class="token annotation builtin">JvmName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;-initializepipelineParameters&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="pipeline-parameters.html"><span class="token function">pipelineParameters</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="-pipeline-parameters-kt/-dsl/index.html">PipelineParametersKt.Dsl</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-pipeline-parameters/index.html">PipelineParameters</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="tableheader">Inherited functions</h2>
+        <div class="table"><a data-name="-944577680%2FFunctions%2F-1740343994" anchor-label="copy" id="-944577680%2FFunctions%2F-1740343994" data-filterable-set=":params/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":params/main" data-filterable-set=":params/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="copy.html"><span><span>copy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-944577680%2FFunctions%2F-1740343994"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":params/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><a href="-pipeline-parameters/index.html">PipelineParameters</a><span class="token punctuation">.</span><a href="copy.html"><span class="token function">copy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">block<span class="token operator">: </span><a href="-pipeline-parameters-kt/-dsl/index.html">PipelineParametersKt.Dsl</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-pipeline-parameters/index.html">PipelineParameters</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright 2025, TeamDev</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
