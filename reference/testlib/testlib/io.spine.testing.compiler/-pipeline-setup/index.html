@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PipelineSetup</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+<link href="../../../images/logo-icon.svg">
+<link href="../../../styles/custom-styles.css" rel="Stylesheet">
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
+                    testlib
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+2.0.0-SNAPSHOT.034        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":testlib/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":testlib/main"
+                                       data-filter=":testlib/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    testlib
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="testlib::io.spine.testing.compiler/PipelineSetup///PointingToDeclaration//-87343903">
+  <div class="breadcrumbs"><a href="../../../index.html">testlib</a><span class="delimiter">/</span><a href="../index.html">io.spine.testing.compiler</a><span class="delimiter">/</span><span class="current">PipelineSetup</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Pipeline</span><wbr></wbr><span><span>Setup</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">PipelineSetup</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">params<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="io.spine.validate/NonValidated///PointingToDeclaration/"><span class="token annotation builtin">NonValidated</span></span> </span><span data-unresolved-link="io.spine.tools.compiler.params/PipelineParameters///PointingToDeclaration/">PipelineParameters</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>plugins<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.compiler.plugin/Plugin///PointingToDeclaration/">Plugin</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">inputDir<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a><span class="token punctuation">, </span></span><span class="parameter ">outputDir<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a><span class="token punctuation">, </span></span><span class="parameter ">descriptorFilter<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.backend/DescriptorFilter///PointingToDeclaration/">DescriptorFilter</span><span class="token operator"> = </span>{ true }<span class="token punctuation">, </span></span><span class="parameter ">writeSettings<span class="token operator">: </span><span class="token punctuation">(</span><span data-unresolved-link="io.spine.tools.compiler.settings/SettingsDirectory///PointingToDeclaration/">SettingsDirectory</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="source-link-wrapper"><span class="source-link" data-element-type="source-link">(<a href="https://github.com/SpineEventEngine/spine-compiler/tree/master/testlib/src/main/kotlin/io/spine/testing/compiler/PipelineSetup.kt#L174">source</a>)</span></span></div><p class="paragraph">Creates a <span data-unresolved-link="io.spine.tools.compiler.backend/Pipeline///PointingToDeclaration/">Pipeline</span> for testing given Compiler <span data-unresolved-link="io.spine.testing.compiler/PipelineSetup//#io.spine.tools.compiler.params.PipelineParameters#kotlin.collections.List[io.spine.tools.compiler.plugin.Plugin]#java.nio.file.Path#java.nio.file.Path#kotlin.Function1[com.google.protobuf.Descriptors.GenericDescriptor,kotlin.Boolean]#kotlin.Function1[io.spine.tools.compiler.settings.SettingsDirectory,kotlin.Unit]/PointingToCallableParameters(1)/">plugins</span>.</p><p class="paragraph">This class simulates the first step of the code generation process performed by <code class="lang-kotlin">protoc</code> compiler. Since <code class="lang-kotlin">protoc</code> is a stable and predictable piece of software, we do not need to go through the &quot;vanilla&quot; code generation process when we test the Compiler plugins.</p><p class="paragraph">Instead of running the whole code generation process in a Gradle build with the Compiler Gradle Plugin applied over and over again, we can generate the code and related binary data like <span data-unresolved-link="com.google.protobuf.compiler/PluginProtos.CodeGeneratorRequest///PointingToDeclaration/">CodeGeneratorRequest</span> or <span data-unresolved-link="com.google.protobuf/DescriptorProtos.FileDescriptorSet///PointingToDeclaration/">FileDescriptorSet</span> using <code class="lang-kotlin">protoc</code> and then use its output in tests.</p><p class="paragraph">A convenient way of capturing the generated &quot;vanilla&quot; code and associated files is using <a href="https://github.com/SpineEventEngine/ProtoTap">ProtoTap Gradle Plugin</a>. This is the recommended way for working with <code class="lang-kotlin">PipelineSetup</code> which provides most of the input for creation of a <span data-unresolved-link="io.spine.tools.compiler.backend/Pipeline///PointingToDeclaration/">Pipeline</span> automatically. Configuration steps associated with this approach are described below.</p><p class="paragraph">The class also allows fine-tuned way of working using its constructor directly for the usage scenarios when generated code and <span data-unresolved-link="com.google.protobuf.compiler/PluginProtos.CodeGeneratorRequest///PointingToDeclaration/">CodeGeneratorRequest</span> are already available or generated via a custom procedure.</p><h2 class="">Creating <code class="lang-kotlin">PipelineSetup</code> with the help of ProtoTap</h2><p class="paragraph">Here are the steps for creating an instance of <code class="lang-kotlin">PipelineSetup</code> in your tests.</p><h3 class="">1. Add <a href="https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures"><code class="lang-kotlin">java-test-fixtures</code></a> plugin</h3><p class="paragraph">The plugin will create the <code class="lang-kotlin">testFixtures</code> source set in which we will put proto files.</p><p class="paragraph">Alternatively, you can put proto files under the <code class="lang-kotlin">test</code> source set, but with <code class="lang-kotlin">testFixtures</code> it is a bit neater.</p><h3 class="">2. Add <a href="https://github.com/google/protobuf-gradle-plugin">Protobuf Gradle Plugin</a></h3><p class="paragraph">... if it's not yet applied directly or indirectly.</p><p class="paragraph">Please remember to specify the <a href="https://github.com/google/protobuf-gradle-plugin?tab=readme-ov-file#locate-external-executables"><code class="lang-kotlin">protoc</code> artifact</a>.</p><h3 class="">3. Add <a href="https://github.com/SpineEventEngine/ProtoTap">ProtoTap Gradle Plugin</a></h3><p class="paragraph">If you're going to put proto files under <code class="lang-kotlin">testFixtures</code> or <code class="lang-kotlin">test</code> source sets, ProtoTap would pick them automatically.</p><p class="paragraph">If you're going to use a custom source set, please pass it to the <a href="https://github.com/SpineEventEngine/ProtoTap?tab=readme-ov-file#using-plugin-settings">plugin settings</a>.</p><h3 class="">4. Add a test method with two <code class="lang-kotlin">@TempDir</code> parameters</h3><p class="paragraph">This step applies if you're using JUnit. We will need two directories: one is for storing settings for the Compiler plugins we're going to test, and another is for the output of the code generation process:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">@Test<br>fun `my test`(<br>    @TempDir outputDir: Path,<br>    @TempDir settingsDir: Path<br>) {<br>    // Test code will be here.<br>}</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><h3 class="">5. Create <code class="lang-kotlin">PipelineSetup</code> instance using <a href="-companion/by-resources.html">byResources</a> factory method</h3><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">val setup = PipelineSetup.byResources(plugins, outputDir, settingsDir, descriptorFilter) {<br>    // Write settings here.<br>}</code></pre><span class="copy-tooltip"><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div><span class="copy-icon"></span></span></div><p class="paragraph">The above call to <a href="-companion/by-resources.html">byResources</a> assumes we work with code generation in <span data-unresolved-link="io.spine.tools.code/Java///PointingToDeclaration/">Java</span>. For other programming languages please use the overload which accepts <span data-unresolved-link="io.spine.tools.code/Language///PointingToDeclaration/">Language</span> as the first parameter (e.g. <span data-unresolved-link="io.spine.tools.code/Kotlin///PointingToDeclaration/">Kotlin</span> or <span data-unresolved-link="io.spine.tools.code/TypeScript///PointingToDeclaration/">TypeScript</span>).</p><p class="paragraph">The callback block for writing settings accepts an instance of <span data-unresolved-link="io.spine.tools.compiler.settings/SettingsDirectory///PointingToDeclaration/">SettingsDirectory</span> that will be available from the <span data-unresolved-link="io.spine.tools.compiler.backend/Pipeline///PointingToDeclaration/">Pipeline</span> to be created.</p><h2 class="">Conventions for directory names with the generated code</h2><p class="paragraph">Protobuf compiler creates a separate directory for each programming language after a name of the corresponding <code class="lang-kotlin">protoc</code> plugin or built-in. Correspondingly, directories in test resources with the generated code copied by ProtoTap would have those names. Here are the conventions used by <code class="lang-kotlin">PipelineSetup</code> for accessing language subdirectories:</p><ul><li><p class="paragraph"><span data-unresolved-link="io.spine.tools.code/Java///PointingToDeclaration/">Java</span> -><code class="lang-kotlin">&quot;java&quot;</code></p></li><li><p class="paragraph"><span data-unresolved-link="io.spine.tools.code/Kotlin///PointingToDeclaration/">Kotlin</span> -><code class="lang-kotlin">&quot;kotlin&quot;</code></p></li><li><p class="paragraph"><span data-unresolved-link="io.spine.tools.code/TypeScript///PointingToDeclaration/">TypeScript</span> -><code class="lang-kotlin">&quot;ts&quot;</code></p></li><li><p class="paragraph"><span data-unresolved-link="io.spine.tools.code/Protobuf///PointingToDeclaration/">Protobuf</span> -><code class="lang-kotlin">&quot;proto&quot;</code></p></li><li><p class="paragraph">Other languages -> a lowercase version of <span data-unresolved-link="io.spine.tools.code/Language/name/#/PointingToDeclaration/">Language.name</span>.</p></li></ul><h4 class="tableheader">Parameters</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>input</span><wbr></wbr><span><span>Dir</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The root directory with the source code generated by <code class="lang-kotlin">protoc</code>.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>output</span><wbr></wbr><span><span>Dir</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The root directory where the updated code will be placed.</p></div></div></div></div><div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>write</span><wbr></wbr><span><span>Settings</span></span></u></div></span></div><div><div class="title"><p class="paragraph">A callback for writing plugin settings before the pipeline is created.</p></div></div></div></div></div><h4 class="tableheader">See also</h4><div class="table"><div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="-companion/by-resources.html"><span>Pipeline</span><wbr></wbr><span>Setup.</span><wbr></wbr><span>Companion.</span><wbr></wbr><span>by</span><wbr></wbr><span><span>Resources</span></span></a></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><span data-unresolved-link="io.spine.tools.compiler.settings/SettingsDirectory///PointingToDeclaration/"><span>Settings</span><wbr></wbr><span><span>Directory</span></span></span></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><span data-unresolved-link="io.spine.tools.compiler.settings/LoadsSettings/consumerId/#/PointingToDeclaration/"><span>Loads</span><wbr></wbr><span>Settings.</span><wbr></wbr><span>consumerId</span></span></div></span></div><div></div></div></div><div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><span data-unresolved-link="io.spine.tools.compiler.backend/DescriptorFilter///PointingToDeclaration/"><span>Descriptor</span><wbr></wbr><span><span>Filter</span></span></span></div></span></div><div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="tableheader">Constructors</h2>
+        <div class="table"><a data-name="-1226641451%2FConstructors%2F-87343903" anchor-label="PipelineSetup" id="-1226641451%2FConstructors%2F-87343903" data-filterable-set=":testlib/main"></a>
+          <div class="table-row table-row_content" data-togglable="CONSTRUCTOR" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pipeline-setup.html"><span>Pipeline</span><wbr></wbr><span><span>Setup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1226641451%2FConstructors%2F-87343903"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">params<span class="token operator">: </span><span><span class="token annotation builtin">@</span><span data-unresolved-link="io.spine.validate/NonValidated///PointingToDeclaration/"><span class="token annotation builtin">NonValidated</span></span> </span><span data-unresolved-link="io.spine.tools.compiler.params/PipelineParameters///PointingToDeclaration/">PipelineParameters</span><span class="token punctuation">, </span></span><span class="parameter ">plugins<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.compiler.plugin/Plugin///PointingToDeclaration/">Plugin</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">inputDir<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a><span class="token punctuation">, </span></span><span class="parameter ">outputDir<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html">Path</a><span class="token punctuation">, </span></span><span class="parameter ">descriptorFilter<span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.backend/DescriptorFilter///PointingToDeclaration/">DescriptorFilter</span><span class="token operator"> = </span>{ true }<span class="token punctuation">, </span></span><span class="parameter ">writeSettings<span class="token operator">: </span><span class="token punctuation">(</span><span data-unresolved-link="io.spine.tools.compiler.settings/SettingsDirectory///PointingToDeclaration/">SettingsDirectory</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Creates in instance for creating <span data-unresolved-link="io.spine.tools.compiler.backend/Pipeline///PointingToDeclaration/">Pipeline</span> for testing the given <span data-unresolved-link="io.spine.testing.compiler/PipelineSetup//#io.spine.tools.compiler.params.PipelineParameters#kotlin.collections.List[io.spine.tools.compiler.plugin.Plugin]#java.nio.file.Path#java.nio.file.Path#kotlin.Function1[com.google.protobuf.Descriptors.GenericDescriptor,kotlin.Boolean]#kotlin.Function1[io.spine.tools.compiler.settings.SettingsDirectory,kotlin.Unit]/PointingToCallableParameters(1)/">plugins</span>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="tableheader">Types</h2>
+        <div class="table"><a data-name="1611015223%2FClasslikes%2F-87343903" anchor-label="Companion" id="1611015223%2FClasslikes%2F-87343903" data-filterable-set=":testlib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1611015223%2FClasslikes%2F-87343903"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="1601774244%2FProperties%2F-87343903" anchor-label="params" id="1601774244%2FProperties%2F-87343903" data-filterable-set=":testlib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="params.html"><span><span>params</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1601774244%2FProperties%2F-87343903"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="params.html">params</a><span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.params/PipelineParameters///PointingToDeclaration/">PipelineParameters</span></div><div class="brief "><p class="paragraph">Parameters with populated source and target rood directories passed as <code class="lang-kotlin">inputDir</code> and <code class="lang-kotlin">outputDir</code> constructor parameters.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-351084528%2FProperties%2F-87343903" anchor-label="plugins" id="-351084528%2FProperties%2F-87343903" data-filterable-set=":testlib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="plugins.html"><span><span>plugins</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-351084528%2FProperties%2F-87343903"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="plugins.html">plugins</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.compiler.plugin/Plugin///PointingToDeclaration/">Plugin</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The list of plugins to be passed to the created pipeline.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-655826073%2FProperties%2F-87343903" anchor-label="settings" id="-655826073%2FProperties%2F-87343903" data-filterable-set=":testlib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="settings.html"><span><span>settings</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-655826073%2FProperties%2F-87343903"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="settings.html">settings</a><span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.settings/SettingsDirectory///PointingToDeclaration/">SettingsDirectory</span></div><div class="brief "><p class="paragraph">The directory to store settings for the <span data-unresolved-link="io.spine.testing.compiler/PipelineSetup//#io.spine.tools.compiler.params.PipelineParameters#kotlin.collections.List[io.spine.tools.compiler.plugin.Plugin]#java.nio.file.Path#java.nio.file.Path#kotlin.Function1[com.google.protobuf.Descriptors.GenericDescriptor,kotlin.Boolean]#kotlin.Function1[io.spine.tools.compiler.settings.SettingsDirectory,kotlin.Unit]/PointingToCallableParameters(1)/">plugins</span>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="286822036%2FProperties%2F-87343903" anchor-label="sourceFiles" id="286822036%2FProperties%2F-87343903" data-filterable-set=":testlib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="source-files.html"><span>source</span><wbr></wbr><span><span>Files</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="286822036%2FProperties%2F-87343903"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="source-files.html"><strike>sourceFiles</strike></a><span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.render/SourceFileSet///PointingToDeclaration/">SourceFileSet</span></div><div class="brief "><p class="paragraph">The source file set used by the pipeline.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1646424283%2FProperties%2F-87343903" anchor-label="sourceFileSet" id="-1646424283%2FProperties%2F-87343903" data-filterable-set=":testlib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="source-file-set.html"><span>source</span><wbr></wbr><span>File</span><wbr></wbr><span><span>Set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1646424283%2FProperties%2F-87343903"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="source-file-set.html"><strike>sourceFileSet</strike></a><span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.render/SourceFileSet///PointingToDeclaration/">SourceFileSet</span></div><div class="brief "><p class="paragraph">The source file set used by the pipeline.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1994024340%2FFunctions%2F-87343903" anchor-label="createPipeline" id="-1994024340%2FFunctions%2F-87343903" data-filterable-set=":testlib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-pipeline.html"><span>create</span><wbr></wbr><span><span>Pipeline</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1994024340%2FFunctions%2F-87343903"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-pipeline.html"><span class="token function">createPipeline</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="io.spine.tools.compiler.backend/Pipeline///PointingToDeclaration/">Pipeline</span></div><div class="brief "><p class="paragraph">Creates the pipeline.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1723761355%2FFunctions%2F-87343903" anchor-label="createPipelineAndBlackbox" id="1723761355%2FFunctions%2F-87343903" data-filterable-set=":testlib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-pipeline-and-blackbox.html"><span>create</span><wbr></wbr><span>Pipeline</span><wbr></wbr><span>And</span><wbr></wbr><span><span>Blackbox</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1723761355%2FFunctions%2F-87343903"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-pipeline-and-blackbox.html"><span class="token function"><strike>createPipelineAndBlackbox</strike></span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.compiler.backend/Pipeline///PointingToDeclaration/">Pipeline</span><span class="token punctuation">, </span><span data-unresolved-link="io.spine.testing.server.blackbox/BlackBox///PointingToDeclaration/">BlackBox</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-473110566%2FFunctions%2F-87343903" anchor-label="createPipelineWithBlackBox" id="-473110566%2FFunctions%2F-87343903" data-filterable-set=":testlib/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":testlib/main" data-filterable-set=":testlib/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-pipeline-with-black-box.html"><span>create</span><wbr></wbr><span>Pipeline</span><wbr></wbr><span>With</span><wbr></wbr><span>Black</span><wbr></wbr><span><span>Box</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-473110566%2FFunctions%2F-87343903"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":testlib/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-pipeline-with-black-box.html"><span class="token function">createPipelineWithBlackBox</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span data-unresolved-link="io.spine.tools.compiler.backend/Pipeline///PointingToDeclaration/">Pipeline</span><span class="token punctuation">, </span><span data-unresolved-link="io.spine.testing.server.blackbox/BlackBox///PointingToDeclaration/">BlackBox</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Creates a <span data-unresolved-link="io.spine.tools.compiler.backend/Pipeline///PointingToDeclaration/">Pipeline</span> and a <span data-unresolved-link="io.spine.testing.server.blackbox/BlackBox///PointingToDeclaration/">BlackBox</span> to for testing the <span data-unresolved-link="io.spine.tools.compiler.backend/CodeGenerationContext///PointingToDeclaration/">CodeGenerationContext</span> of the created pipeline.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>Copyright 2025, TeamDev</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
