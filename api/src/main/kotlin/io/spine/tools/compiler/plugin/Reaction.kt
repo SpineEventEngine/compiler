@@ -58,23 +58,23 @@ import io.spine.tools.compiler.type.TypeSystem
  * }
  * ```
  *
- * Please note that when reacting on Protobuf Compiler events, one should mark them as
+ * Note that when reacting on Protobuf Compiler events, one should mark them as
  * [@External][io.spine.core.External]. See the whole list of Protobuf compiler events
  * in `spine/compiler/events.proto`.
  *
  * One reaction only accepts one kind of events. Declaring multiple methods with
  * the [@React][io.spine.server.event.React] annotation causes a runtime error.
  *
- * The `whenever` method accepts a single event and produces an `Iterable` of events. In case if
- * you need to return a single event, use [Just][io.spine.server.event.Just].
+ * The `whenever` method accepts a single event and produces an `Iterable` of events.
+ * If you need to return a single event, use [Just][io.spine.server.event.Just].
  *
- * If there are a few events, see the descendants of [Tuple][io.spine.server.tuple.Tuple].
+ * To return a few events, see the descendants of [Tuple][io.spine.server.tuple.Tuple].
  *
  * If there can be a few alternative events, see the descendants of
  * [Either][io.spine.server.tuple.Either].
  *
- * In case if one of the options does nothing at all, please use [io.spine.server.event.NoReaction]
- * as one of the event types.
+ * If one of the options does nothing at all, use [io.spine.server.event.NoReaction]
+ * as the event type.
  *
  * Finally, if there are multiple events of the same type, use a typed list,
  * e.g. `List<SomethingHappened>`.

@@ -30,10 +30,10 @@ import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
+import io.spine.gradle.github.pages.updateGitHubPages
 import io.spine.gradle.javac.configureErrorProne
 import io.spine.gradle.javac.configureJavac
 import io.spine.gradle.javadoc.JavadocConfig
@@ -72,6 +72,7 @@ project.run {
 
     afterEvaluate {
         configureTaskDependencies()
+        setupDocPublishing()
     }
 }
 
@@ -138,5 +139,18 @@ fun Module.configureKotlin() {
             jvmTarget.set(BuildSettings.jvmTarget)
             setFreeCompilerArgs()
         }
+    }
+}
+
+/**
+ * Configures documentation publishing for this subproject.
+ */
+fun Module.setupDocPublishing() {
+    updateGitHubPages {
+        rootFolder.set(rootDir)
+    }
+
+    tasks.named("publish") {
+        dependsOn("${project.path}:updateGitHubPages")
     }
 }

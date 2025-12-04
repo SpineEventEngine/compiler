@@ -24,23 +24,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.lib.Protobuf
+package io.spine.tools.compiler.plugin
 
-plugins {
-    protobuf
-    prototap
-    `test-module`
-}
+import io.spine.base.EventMessage
 
-protobuf {
-    protoc { artifact = Protobuf.compiler }
-}
-
-dependencies {
-    arrayOf(
-        project(":api"),
-        project(":testlib")
-    ).forEach {
-        testImplementation(it)
-    }
-}
+/**
+ * Provided for backward compatibility during migration to [Reaction].
+ */
+@Deprecated("Use `Reaction` instead.", ReplaceWith("Reaction"))
+public abstract class Policy<E : EventMessage> : Reaction<E>()
