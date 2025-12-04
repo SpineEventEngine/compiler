@@ -154,4 +154,3 @@ fun Module.setupDocPublishing() {
         dependsOn("${project.path}:updateGitHubPages")
     }
 }
-
