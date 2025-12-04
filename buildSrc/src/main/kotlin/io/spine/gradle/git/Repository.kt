@@ -186,6 +186,8 @@ class Repository private constructor(
  * with increasing delays between attempts.
  * The delay increases exponentially but is capped at the specified maximum value.
  *
+ * If all retries fail, the exception from the final attempt will be thrown to the caller.
+ *
  * @param T the type of value returned by the operation
  * @param times the maximum number of attempts to execute the operation (default: 3)
  * @param initialDelay the delay before the first retry in milliseconds (default: 100ms)
