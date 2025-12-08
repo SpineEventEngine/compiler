@@ -1,0 +1,24 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.compiler.backend////PointingToDeclaration/backend/io.spine.tools.compiler.backend/index.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext.Companion///PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/-companion/index.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext.Companion/NAME_PREFIX/#/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/-companion/-n-a-m-e_-p-r-e-f-i-x.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext.Companion/newInstance/#kotlin.String/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/-companion/new-instance.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext///PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/index.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext/CodeGenerationContext/#kotlin.String#io.spine.tools.compiler.type.TypeSystem#kotlin.Function1[io.spine.server.BoundedContextBuilder,kotlin.Unit]/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/-code-generation-context.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext/CodeGenerationContext/#kotlin.String/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/-code-generation-context.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext/close/#/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/close.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext/context/#/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/context.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext/hasEntitiesOfType/#java.lang.Class[TypeParam(bounds=[io.spine.server.entity.Entity[*,*]])]/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/has-entities-of-type.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext/insertionPointsContext/#/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/insertion-points-context.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext/isOpen/#/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/is-open.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext/select/#java.lang.Class[TypeParam(bounds=[io.spine.base.EntityState[*]])]/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/select.html
+$dokka.location:io.spine.tools.compiler.backend/CodeGenerationContext/typeSystem/#/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-code-generation-context/type-system.html
+$dokka.location:io.spine.tools.compiler.backend/DescriptorFilter///PointingToDeclaration/backend/io.spine.tools.compiler.backend/-descriptor-filter/index.html
+$dokka.location:io.spine.tools.compiler.backend/SecureRandomString///PointingToDeclaration/backend/io.spine.tools.compiler.backend/-secure-random-string/index.html
+$dokka.location:io.spine.tools.compiler.backend/SecureRandomString/generate/#kotlin.Int/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-secure-random-string/generate.html
+$dokka.location:io.spine.tools.compiler.backend/SettingsViewEventRouting///PointingToDeclaration/backend/io.spine.tools.compiler.backend/-settings-view-event-routing/index.html
+$dokka.location:io.spine.tools.compiler.backend/SettingsViewEventRouting/SettingsViewEventRouting/#/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-settings-view-event-routing/-settings-view-event-routing.html
+$dokka.location:io.spine.tools.compiler.backend/SettingsViewEventRouting/entityClass/#/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-settings-view-event-routing/entity-class.html
+$dokka.location:io.spine.tools.compiler.backend/SettingsViewEventRouting/setup/#io.spine.server.route.EventRouting[kotlin.String]/PointingToDeclaration/backend/io.spine.tools.compiler.backend/-settings-view-event-routing/setup.html
+io.spine.tools.compiler.backend
