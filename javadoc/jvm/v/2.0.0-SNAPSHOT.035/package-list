@@ -1,0 +1,49 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.compiler.jvm.annotation/ModifiedTypeAnnotation.Companion///PointingToDeclaration/io/spine/tools/compiler/jvm/annotation/ModifiedTypeAnnotation.Companion.html
+$dokka.location:io.spine.tools.compiler.jvm.annotation/ModifiedTypeAnnotation.Plugin///PointingToDeclaration/io/spine/tools/compiler/jvm/annotation/ModifiedTypeAnnotation.Plugin.html
+$dokka.location:io.spine.tools.compiler.jvm.annotation/SuppressWarningsAnnotation.Companion///PointingToDeclaration/io/spine/tools/compiler/jvm/annotation/SuppressWarningsAnnotation.Companion.html
+$dokka.location:io.spine.tools.compiler.jvm.annotation/SuppressWarningsAnnotation.Plugin///PointingToDeclaration/io/spine/tools/compiler/jvm/annotation/SuppressWarningsAnnotation.Plugin.html
+$dokka.location:io.spine.tools.compiler.jvm.annotation/SuppressionSettings.Builder///PointingToDeclaration/io/spine/tools/compiler/jvm/annotation/SuppressionSettings.Builder.html
+$dokka.location:io.spine.tools.compiler.jvm.annotation/SuppressionSettingsKt.Dsl///PointingToDeclaration/io/spine/tools/compiler/jvm/annotation/SuppressionSettingsKt.Dsl.html
+$dokka.location:io.spine.tools.compiler.jvm.annotation/Warnings.Builder///PointingToDeclaration/io/spine/tools/compiler/jvm/annotation/Warnings.Builder.html
+$dokka.location:io.spine.tools.compiler.jvm.annotation/WarningsKt.Dsl.ValueProxy///PointingToDeclaration/io/spine/tools/compiler/jvm/annotation/WarningsKt.Dsl.ValueProxy.html
+$dokka.location:io.spine.tools.compiler.jvm.annotation/WarningsKt.Dsl///PointingToDeclaration/io/spine/tools/compiler/jvm/annotation/WarningsKt.Dsl.html
+$dokka.location:io.spine.tools.compiler.jvm.render/SuperInterfaceKt.Dsl.GenericArgumentProxy///PointingToDeclaration/io/spine/tools/compiler/jvm/render/SuperInterfaceKt.Dsl.GenericArgumentProxy.html
+$dokka.location:io.spine.tools.compiler.jvm.render/SuperInterfaceKt.Dsl///PointingToDeclaration/io/spine/tools/compiler/jvm/render/SuperInterfaceKt.Dsl.html
+$dokka.location:io.spine.tools.compiler.jvm.style/ImportOnDemand.Builder///PointingToDeclaration/io/spine/tools/compiler/jvm/style/ImportOnDemand.Builder.html
+$dokka.location:io.spine.tools.compiler.jvm.style/ImportOnDemandKt.Dsl///PointingToDeclaration/io/spine/tools/compiler/jvm/style/ImportOnDemandKt.Dsl.html
+$dokka.location:io.spine.tools.compiler.jvm.style/ImportSettings.Builder///PointingToDeclaration/io/spine/tools/compiler/jvm/style/ImportSettings.Builder.html
+$dokka.location:io.spine.tools.compiler.jvm.style/ImportSettingsKt.Dsl///PointingToDeclaration/io/spine/tools/compiler/jvm/style/ImportSettingsKt.Dsl.html
+$dokka.location:io.spine.tools.compiler.jvm.style/InnerClassImports.Builder///PointingToDeclaration/io/spine/tools/compiler/jvm/style/InnerClassImports.Builder.html
+$dokka.location:io.spine.tools.compiler.jvm.style/InnerClassImportsKt.Dsl.ExcludeProxy///PointingToDeclaration/io/spine/tools/compiler/jvm/style/InnerClassImportsKt.Dsl.ExcludeProxy.html
+$dokka.location:io.spine.tools.compiler.jvm.style/InnerClassImportsKt.Dsl///PointingToDeclaration/io/spine/tools/compiler/jvm/style/InnerClassImportsKt.Dsl.html
+$dokka.location:io.spine.tools.compiler.jvm.style/JavaCodeStyle.Builder///PointingToDeclaration/io/spine/tools/compiler/jvm/style/JavaCodeStyle.Builder.html
+$dokka.location:io.spine.tools.compiler.jvm.style/JavaCodeStyleKt.Dsl///PointingToDeclaration/io/spine/tools/compiler/jvm/style/JavaCodeStyleKt.Dsl.html
+$dokka.location:io.spine.tools.compiler.jvm.style/PackageTable.Builder///PointingToDeclaration/io/spine/tools/compiler/jvm/style/PackageTable.Builder.html
+$dokka.location:io.spine.tools.compiler.jvm.style/PackageTable.Entry.Builder///PointingToDeclaration/io/spine/tools/compiler/jvm/style/PackageTable.Entry.Builder.html
+$dokka.location:io.spine.tools.compiler.jvm.style/PackageTable.Entry///PointingToDeclaration/io/spine/tools/compiler/jvm/style/PackageTable.Entry.html
+$dokka.location:io.spine.tools.compiler.jvm.style/PackageTable.EntryOrBuilder///PointingToDeclaration/io/spine/tools/compiler/jvm/style/PackageTable.EntryOrBuilder.html
+$dokka.location:io.spine.tools.compiler.jvm.style/PackageTableKt.Dsl.EntryProxy///PointingToDeclaration/io/spine/tools/compiler/jvm/style/PackageTableKt.Dsl.EntryProxy.html
+$dokka.location:io.spine.tools.compiler.jvm.style/PackageTableKt.Dsl///PointingToDeclaration/io/spine/tools/compiler/jvm/style/PackageTableKt.Dsl.html
+$dokka.location:io.spine.tools.compiler.jvm.style/PackageTableKt.EntryKt.Dsl///PointingToDeclaration/io/spine/tools/compiler/jvm/style/PackageTableKt.EntryKt.Dsl.html
+$dokka.location:io.spine.tools.compiler.jvm.style/PackageTableKt.EntryKt///PointingToDeclaration/io/spine/tools/compiler/jvm/style/PackageTableKt.EntryKt.html
+$dokka.location:io.spine.tools.compiler.jvm.style/PsiJavaCodeStyleFormatter.Companion///PointingToDeclaration/io/spine/tools/compiler/jvm/style/PsiJavaCodeStyleFormatter.Companion.html
+$dokka.location:io.spine.tools.compiler.jvm/ClassName.Companion///PointingToDeclaration/io/spine/tools/compiler/jvm/ClassName.Companion.html
+$dokka.location:io.spine.tools.compiler.jvm/FieldMethods.Companion///PointingToDeclaration/io/spine/tools/compiler/jvm/FieldMethods.Companion.html
+$dokka.location:io.spine.tools.compiler.jvm/JavaTypeName.BOOLEAN///PointingToDeclaration/io/spine/tools/compiler/jvm/JavaTypeName.BOOLEAN.html
+$dokka.location:io.spine.tools.compiler.jvm/JavaTypeName.BYTE///PointingToDeclaration/io/spine/tools/compiler/jvm/JavaTypeName.BYTE.html
+$dokka.location:io.spine.tools.compiler.jvm/JavaTypeName.CHAR///PointingToDeclaration/io/spine/tools/compiler/jvm/JavaTypeName.CHAR.html
+$dokka.location:io.spine.tools.compiler.jvm/JavaTypeName.Companion///PointingToDeclaration/io/spine/tools/compiler/jvm/JavaTypeName.Companion.html
+$dokka.location:io.spine.tools.compiler.jvm/JavaTypeName.DOUBLE///PointingToDeclaration/io/spine/tools/compiler/jvm/JavaTypeName.DOUBLE.html
+$dokka.location:io.spine.tools.compiler.jvm/JavaTypeName.FLOAT///PointingToDeclaration/io/spine/tools/compiler/jvm/JavaTypeName.FLOAT.html
+$dokka.location:io.spine.tools.compiler.jvm/JavaTypeName.INT///PointingToDeclaration/io/spine/tools/compiler/jvm/JavaTypeName.INT.html
+$dokka.location:io.spine.tools.compiler.jvm/JavaTypeName.LONG///PointingToDeclaration/io/spine/tools/compiler/jvm/JavaTypeName.LONG.html
+$dokka.location:io.spine.tools.compiler.jvm/JavaTypeName.SHORT///PointingToDeclaration/io/spine/tools/compiler/jvm/JavaTypeName.SHORT.html
+$dokka.location:io.spine.tools.compiler.jvm/JavaTypeName.VOID///PointingToDeclaration/io/spine/tools/compiler/jvm/JavaTypeName.VOID.html
+$dokka.location:io.spine.tools.compiler.jvm/TypeVariableName.Companion///PointingToDeclaration/io/spine/tools/compiler/jvm/TypeVariableName.Companion.html
+io.spine.tools.compiler.jvm
+io.spine.tools.compiler.jvm.annotation
+io.spine.tools.compiler.jvm.file
+io.spine.tools.compiler.jvm.render
+io.spine.tools.compiler.jvm.style
