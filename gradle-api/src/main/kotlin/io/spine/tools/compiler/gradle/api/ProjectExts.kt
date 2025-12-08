@@ -29,9 +29,11 @@ package io.spine.tools.compiler.gradle.api
 import io.spine.tools.compiler.params.Directories.COMPILER_WORKING_DIR
 import io.spine.tools.gradle.lib.spineExtension
 import io.spine.tools.gradle.root.rootWorkingDir
+import io.spine.tools.meta.MavenArtifact
 import java.io.File
 import java.nio.file.Path
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Dependency
 import org.gradle.api.file.Directory
 import org.gradle.api.tasks.SourceSet
 
@@ -63,4 +65,27 @@ public val Project.generatedDir: Path
 public fun Project.generatedDir(sourceSet: SourceSet, language: String = ""): File {
     val path = generatedDir.resolve("${sourceSet.name}/$language")
     return path.toFile()
+}
+
+/**
+ * Adds the given artifacts to the [spineCompiler][Names.USER_CLASSPATH_CONFIGURATION]
+ * configuration of this project.
+ */
+public fun Project.addUserClasspathDependency(vararg artifacts: MavenArtifact): Unit =
+    artifacts.forEach {
+        addDependency(Names.USER_CLASSPATH_CONFIGURATION, it)
+    }
+
+private fun Project.addDependency(configuration: String, artifact: MavenArtifact) {
+    val dependency = findDependency(artifact) ?: artifact.coordinates
+    dependencies.add(configuration, dependency)
+}
+
+private fun Project.findDependency(artifact: MavenArtifact): Dependency? {
+    val dependencies = configurations.flatMap { c -> c.dependencies }
+    val found = dependencies.firstOrNull { d ->
+        artifact.group == d.group // `d.group` could be `null`.
+                && artifact.name == d.name
+    }
+    return found
 }
