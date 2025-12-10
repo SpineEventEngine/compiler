@@ -1,0 +1,1 @@
+var memberSearchIndex = [{"p":"io.spine.tools.compiler.protoc","c":"Plugin","l":"main()","url":"io/spine/tools/compiler/protoc/Plugin.html#main()"}]
