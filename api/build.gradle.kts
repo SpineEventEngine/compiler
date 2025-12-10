@@ -61,6 +61,7 @@ dependencies {
         implementation(Jackson.DataFormat.yaml)
         runtimeOnly(moduleKotlin)
     }
+    implementation(Base.environment)
 
     arrayOf(Base.lib, Validation.runtime)
         .forEach {

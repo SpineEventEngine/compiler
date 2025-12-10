@@ -27,6 +27,7 @@
 import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Jackson.DataFormat
+import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.JUnit
@@ -46,7 +47,9 @@ dependencies {
     api(CoreJava.server)
     api(ToolBase.lib)
     api(project(":api"))
+
     implementation(project(":params"))?.because("We need the `PipelineParameters` type.")
+    implementation(Base.environment)
 
     api(platform(Jackson.bom))
     with(Jackson) {
