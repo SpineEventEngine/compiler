@@ -126,6 +126,7 @@ subprojects {
                     Logging.libJvm,
                     Reflect.lib,
                     CoreJvm.server,
+                    "io.spine.validation:spine-validation-java-runtime:2.0.0-SNAPSHOT.352"
                 )
             }
         }
