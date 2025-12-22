@@ -56,7 +56,7 @@ import io.spine.tools.compiler.render.SourceFileSet
 import io.spine.tools.compiler.settings.SettingsDirectory
 import io.spine.tools.compiler.type.TypeSystem
 import io.spine.type.parse
-import io.spine.validate.NonValidated
+import io.spine.validation.NonValidated
 import kotlin.io.path.Path
 import kotlin.io.path.exists
 import kotlin.io.path.inputStream
@@ -84,7 +84,7 @@ import kotlin.io.path.inputStream
  *   the `PipelineParameters` message type. This is to allow tests to pass only some of
  *   the parameters if plugins under the test do not need them all.
  *   The production mode of the execution requires a `@Validated` instance of `PipelineParameters`.
- * @param plugins The code generation plugins to be applied to the pipeline in addition to
+ * @param additionalPlugins The code generation plugins to be applied to the pipeline in addition to
  *  those specified via [params][PipelineParameters.getPluginClassNameList].
  * @property descriptorFilter The predicate to accept descriptors during parsing of the [request].
  *  The default value accepts all the descriptors.
@@ -95,7 +95,7 @@ import kotlin.io.path.inputStream
 public class Pipeline(
     public val id: String = generateId(),
     public val params: @NonValidated PipelineParameters,
-    @VisibleForTesting plugins: List<Plugin> = emptyList(),
+    @VisibleForTesting additionalPlugins: List<Plugin> = emptyList(),
     private val descriptorFilter: DescriptorFilter = { true }
 ) : WithLogging {
 
@@ -126,7 +126,7 @@ public class Pipeline(
     }
 
     /**
-     * The directory to which setting files for the [plugins] should be stored.
+     * The directory to which setting files for the [additionalPlugins] should be stored.
      */
     public val settings: SettingsDirectory by lazy {
         val dir = params.settings.toPath()
@@ -141,7 +141,7 @@ public class Pipeline(
      * the constructor parameter.
      */
     public val plugins: List<Plugin> by lazy {
-        val combined = loadPlugins(params.pluginClassNameList) + plugins
+        val combined = loadPlugins(params.pluginClassNameList) + additionalPlugins
         combined
     }
 
@@ -279,7 +279,7 @@ public class Pipeline(
     }
 
     /**
-     * Assembles the `Code Generation` context by applying given [plugins].
+     * Assembles the `Code Generation` context by applying given [additionalPlugins].
      */
     private fun assembleCodegenContext(): CodegenContext =
         CodeGenerationContext(id, typeSystem) {
