@@ -28,7 +28,7 @@
 
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.TestLib
 import io.spine.gradle.RunBuild
@@ -108,7 +108,7 @@ allprojects {
                 Reflect.lib,
                 Base.lib,
                 TestLib.lib,
-                CoreJava.server
+                CoreJvm.server
             )
         }
     }
