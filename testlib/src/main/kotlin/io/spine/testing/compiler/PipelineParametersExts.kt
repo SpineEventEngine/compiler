@@ -31,7 +31,7 @@ import io.spine.tools.compiler.ast.toAbsoluteFile
 import io.spine.tools.compiler.params.PipelineParameters
 import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.code.SourceSetName
-import io.spine.validate.NonValidated
+import io.spine.validation.NonValidated
 import java.io.File
 import java.nio.file.Path
 
