@@ -26,6 +26,7 @@
 
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Spine
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
@@ -110,6 +111,7 @@ dependencies {
 
     implementation(project(":api")) {
         exclude(group = Spine.toolsGroup, module = ToolBase.psiJavaArtifactName)
+        exclude(group = Spine.group, module = CoreJvm.serverArtifact)
     }
     implementation(project(":params"))
     implementation(ToolBase.lib)
