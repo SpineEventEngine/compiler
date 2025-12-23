@@ -1,0 +1,485 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>Package io.spine.tools.compiler.render </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li class="navBarCell1Rev">Package</li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+<main role="main">
+    <div class="header">
+        <h1 title="Package" class="title">Package io.spine.tools.compiler.render </h1>
+    </div>
+        <div class="header">
+            <div class="subtitle">
+                <div class="block"></div>
+            </div>
+            <p>See: <a href="#overview_description">Description</a></p>
+        </div>
+    <div class="contentContainer">
+        
+            <ul class="blockList">
+                
+                <li class="blockList">
+                    
+                    
+                    
+                    
+                    
+    <div class="typeSummary">
+
+<table>
+<caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Actions.Builder.html>Builder</a></th><td class="colLast"><pre><code>A collection of code generation actions associated with the parameters passed to these actions.
+
+Some code generation scenarios may be solved by applying combination of render actions.
+For example, we want to make messages declared in proto files named `command.proto`
+implement the `CommandMessage` interface, and messages declared in files named `event.proto`
+implement the `EventMessage` interface. Implementation will involve the following steps:
+
+1) Create a render action called `ImplementInterface`. The action would accept the name
+of the interface as the parameter.
+2) Create Protobuf type for settings that would match a file pattern with the action and
+the corresponding parameter with the name of the interface.
+3) Create a Compiler plugin with a renderer which would load the settings and
+run corresponding actions.
+
+This type addresses the need #2 above, for having parameterised rendering actions in settings
+passed to Compiler plugins.
+
+Code generation actions listed in this collection serve the same programming language and
+are applied to Protobuf declarations of the same kind. For example, we may have actions
+serving code generation in Java for certain `MessageType`s.
+
+@see io.spine.compiler.renderer.RenderAction
+@see io.spine.tools.code.Language
+@see io.spine.compiler.ProtoDeclaration
+</code></pre> Protobuf type <code>spine.compiler.Actions</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Actions.html>Actions</a></th><td class="colLast"><pre><code>A collection of code generation actions associated with the parameters passed to these actions.
+
+Some code generation scenarios may be solved by applying combination of render actions.
+For example, we want to make messages declared in proto files named `command.proto`
+implement the `CommandMessage` interface, and messages declared in files named `event.proto`
+implement the `EventMessage` interface. Implementation will involve the following steps:
+
+1) Create a render action called `ImplementInterface`. The action would accept the name
+of the interface as the parameter.
+2) Create Protobuf type for settings that would match a file pattern with the action and
+the corresponding parameter with the name of the interface.
+3) Create a Compiler plugin with a renderer which would load the settings and
+run corresponding actions.
+
+This type addresses the need #2 above, for having parameterised rendering actions in settings
+passed to Compiler plugins.
+
+Code generation actions listed in this collection serve the same programming language and
+are applied to Protobuf declarations of the same kind. For example, we may have actions
+serving code generation in Java for certain `MessageType`s.
+
+@see io.spine.compiler.renderer.RenderAction
+@see io.spine.tools.code.Language
+@see io.spine.compiler.ProtoDeclaration
+</code></pre> Protobuf type <code>spine.compiler.Actions</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Text.Builder.html>Builder</a></th><td class="colLast"><pre><code>A multi-line text.
+</code></pre> Protobuf type <code>spine.compiler.Text</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Text.html>Text</a></th><td class="colLast"><pre><code>A multi-line text.
+</code></pre> Protobuf type <code>spine.compiler.Text</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ActionsProto.html>ActionsProto</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertedPoints.Builder.html>Builder</a></th><td class="colLast"><pre><code>Insertion points added to a single code file.
+</code></pre> Protobuf type <code>spine.compiler.InsertedPoints</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=InsertedPoints.Field.FileField.html>FileField</a></th><td class="colLast">Provides fields of the <a href=../ast/File.html>io.spine.tools.compiler.ast.File</a> message type.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertedPoints.Field.html>Field</a></th><td class="colLast">The listing of <a href=InsertedPoints.html>InsertedPoints</a> fields to be used for creating a subscription filter.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=InsertedPoints.Column.html>Column</a></th><td class="colLast">A listing of entity columns defined in <a href=InsertedPoints.html>InsertedPoints</a>.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertedPoints.QueryBuilder.html>QueryBuilder</a></th><td class="colLast">A builder for the queries for the <a href=InsertedPoints.html>InsertedPoints</a> entity state.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=InsertedPoints.Query.html>Query</a></th><td class="colLast">A query for finding entity states of the type <a href=InsertedPoints.html>InsertedPoints</a>.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertedPoints.html>InsertedPoints</a></th><td class="colLast"><pre><code>Insertion points added to a single code file.
+</code></pre> Protobuf type <code>spine.compiler.InsertedPoints</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TextProto.html>TextProto</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertedPoint.Builder.html>Builder</a></th><td class="colLast"><pre><code>An insertion point added to a file.
+</code></pre> Protobuf type <code>spine.compiler.InsertedPoint</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=InsertedPoint.html>InsertedPoint</a></th><td class="colLast"><pre><code>An insertion point added to a file.
+</code></pre> Protobuf type <code>spine.compiler.InsertedPoint</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertionProto.html>InsertionProto</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Cursor.Builder.html>Builder</a></th><td class="colLast"><pre><code>Coordinates inside a text.
+</code></pre> Protobuf type <code>spine.compiler.Cursor</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Cursor.html>Cursor</a></th><td class="colLast"><pre><code>Coordinates inside a text.
+</code></pre> Protobuf type <code>spine.compiler.Cursor</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TextCoordinates.Builder.html>Builder</a></th><td class="colLast"><pre><code>A pointer to a place in a text file.
+</code></pre> Protobuf type <code>spine.compiler.TextCoordinates</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TextCoordinates.html>TextCoordinates</a></th><td class="colLast"><pre><code>A pointer to a place in a text file.
+</code></pre> Protobuf type <code>spine.compiler.TextCoordinates</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ActionsKt.Dsl.ActionProxy.html>ActionProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ActionsKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=CursorKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertedPointKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=InsertedPointsKt.Dsl.PointProxy.html>PointProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertedPointsKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TextCoordinatesKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TextKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ActionFactory.html>ActionFactory</a></th><td class="colLast">Creates instances of <a href=RenderAction.html>RenderAction</a> specified in the given actions.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ActionFactoryException.html>ActionFactoryException</a></th><td class="colLast">Thrown when <a href=ActionFactory.html>ActionFactory</a> cannot instantiate a <a href=RenderAction.html>RenderAction</a>.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FileLookup.html>FileLookup</a></th><td class="colLast">Part of the fluent API for finding source files.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FileCreation.html>FileCreation</a></th><td class="colLast">Part of the fluent API for creating new source files.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FileCreationWithPath.html>FileCreationWithPath</a></th><td class="colLast">Part of the fluent API for creating new source files.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtocInsertionPoint.html>ProtocInsertionPoint</a></th><td class="colLast">An <a href=InsertionPoint.html>InsertionPoint</a> already generated by the Protobuf compiler.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=InsertionPointPrinter.html>InsertionPointPrinter</a></th><td class="colLast">A <a href=Renderer.html>Renderer</a> which adds <a href=InsertionPoint.html>InsertionPoint</a>s to the code.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=RenderAction.html>RenderAction</a></th><td class="colLast">A base class for classes that modify the code of a single source file.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeAction.html>TypeAction</a></th><td class="colLast">A render action performed for a Protobuf type, such as <a href=../ast/MessageType.html>MessageType</a> or <a href=../ast/EnumType.html>EnumType</a>.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageAction.html>MessageAction</a></th><td class="colLast">A render action performed for a <a href=../ast/MessageType.html>MessageType</a>.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumAction.html>EnumAction</a></th><td class="colLast">A render action performed for an <a href=../ast/EnumType.html>EnumType</a>.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceAction.html>ServiceAction</a></th><td class="colLast">A render action performed for a <a href=../ast/Service.html>Service</a>.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Renderer.html>Renderer</a></th><td class="colLast">A <code>Renderer</code> takes an existing <a href=SourceFileSet.html>SourceFileSet</a> and modifies it, changing the contents of existing source files, creating new ones, or deleting unwanted files.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=RenderingException.html>RenderingException</a></th><td class="colLast">An exception thrown when insertion-point-based rendering fails.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=SourceAtLine.html>SourceAtLine</a></th><td class="colLast">A fluent builder for inserting code into pre-prepared insertion points.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=SourceFile.html>SourceFile</a></th><td class="colLast">A file with the source code.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=SourceFileSet.html>SourceFileSet</a></th><td class="colLast">A mutable set of source files that participate in the code generation workflow.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertedPointKtKt.html>InsertedPointKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=InsertedPointsKtKt.html>InsertedPointsKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TextCoordinatesKtKt.html>TextCoordinatesKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=InsertionPointKt.html>InsertionPointKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ActionsKtKt.html>ActionsKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=CursorKtKt.html>CursorKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TextKtKt.html>TextKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ActionsExtsKt.html>ActionsExtsKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=SourceFileSetKt.html>SourceFileSetKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Texts.html>Texts</a></th><td class="colLast"></td></tr>
+</tbody>
+</table>
+
+    </div>
+
+                </li>
+                
+                <li class="blockList">
+                    
+                    
+                    
+                    
+                    
+    <div class="typeSummary">
+
+<table>
+<caption><span>Interface Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Interface</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TextOrBuilder.html>TextOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ActionsOrBuilder.html>ActionsOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=CursorOrBuilder.html>CursorOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TextCoordinatesOrBuilder.html>TextCoordinatesOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=InsertedPointOrBuilder.html>InsertedPointOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertedPointsOrBuilder.html>InsertedPointsOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FileOperation.html>FileOperation</a></th><td class="colLast">A marker interface for fluent API operation classes for creating or searching for a file.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertionPoint.html>InsertionPoint</a></th><td class="colLast">A point is a source file, where more code may be inserted.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=NonRepeatingInsertionPoint.html>NonRepeatingInsertionPoint</a></th><td class="colLast">An insertion point that can only occur once per code file.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=SourceAtPoint.html>SourceAtPoint</a></th><td class="colLast">A fluent builder for inserting code into pre-prepared inline insertion points.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TextMixin.html>TextMixin</a></th><td class="colLast">Mixin interface for the <code>Text</code> data type.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TypeActions.html>TypeActions</a></th><td class="colLast">An interface common to view states that contain a list of render actions to be applied to a message type.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeListActions.html>TypeListActions</a></th><td class="colLast">An interface common to view states that gather message types.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=WithActions.html>WithActions</a></th><td class="colLast">The interface common to generated types holding the property named <code>actions</code> with the type <code>spine.compiler.Actions</code>.</td></tr>
+</tbody>
+</table>
+
+    </div>
+
+                </li>
+                
+                <li class="blockList">
+                    
+                    
+                    
+                    
+                    
+    <div class="typeSummary">
+
+<table>
+<caption><span>Enum Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Enum</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TextCoordinates.KindCase.html>KindCase</a></th><td class="colLast"></td></tr>
+</tbody>
+</table>
+
+    </div>
+
+                </li>
+                
+                <li class="blockList">
+                    
+                    
+                    
+                    
+                    
+    <div class="typeSummary">
+
+<table>
+<caption><span>Object Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Object</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ActionsKt.html>ActionsKt</a></th><td class="colLast"><pre><code>A collection of code generation actions associated with the parameters passed to these actions.
+
+Some code generation scenarios may be solved by applying combination of render actions.
+For example, we want to make messages declared in proto files named `command.proto`
+implement the `CommandMessage` interface, and messages declared in files named `event.proto`
+implement the `EventMessage` interface. Implementation will involve the following steps:
+
+1) Create a render action called `ImplementInterface`. The action would accept the name
+of the interface as the parameter.
+2) Create Protobuf type for settings that would match a file pattern with the action and
+the corresponding parameter with the name of the interface.
+3) Create a Compiler plugin with a renderer which would load the settings and
+run corresponding actions.
+
+This type addresses the need #2 above, for having parameterised rendering actions in settings
+passed to Compiler plugins.
+
+Code generation actions listed in this collection serve the same programming language and
+are applied to Protobuf declarations of the same kind. For example, we may have actions
+serving code generation in Java for certain `MessageType`s.
+
+@see io.spine.compiler.renderer.RenderAction
+@see io.spine.tools.code.Language
+@see io.spine.compiler.ProtoDeclaration</code></pre>Protobuf type <code>spine.compiler.Actions</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=CursorKt.html>CursorKt</a></th><td class="colLast"><pre><code>Coordinates inside a text.</code></pre>Protobuf type <code>spine.compiler.Cursor</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=InsertedPointKt.html>InsertedPointKt</a></th><td class="colLast"><pre><code>An insertion point added to a file.</code></pre>Protobuf type <code>spine.compiler.InsertedPoint</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=InsertedPointsKt.html>InsertedPointsKt</a></th><td class="colLast"><pre><code>Insertion points added to a single code file.</code></pre>Protobuf type <code>spine.compiler.InsertedPoints</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TextCoordinatesKt.html>TextCoordinatesKt</a></th><td class="colLast"><pre><code>A pointer to a place in a text file.</code></pre>Protobuf type <code>spine.compiler.TextCoordinates</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TextKt.html>TextKt</a></th><td class="colLast"><pre><code>A multi-line text.</code></pre>Protobuf type <code>spine.compiler.Text</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=SourceFile.Companion.html>Companion</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TextFactory.html>TextFactory</a></th><td class="colLast">Static factories and precondition checks for creating instances of <a href=Text.html>Text</a>.</td></tr>
+</tbody>
+</table>
+
+    </div>
+
+                </li>
+                
+            </ul>
+        
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li class="navBarCell1Rev">Package</li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>
