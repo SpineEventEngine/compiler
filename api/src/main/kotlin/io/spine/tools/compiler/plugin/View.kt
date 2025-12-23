@@ -35,7 +35,7 @@ import io.spine.server.projection.ProjectionRepository
 import io.spine.server.projection.model.ProjectionClass
 import io.spine.server.route.EventRoute
 import io.spine.server.route.EventRouting
-import io.spine.validate.ValidatingBuilder
+import io.spine.validation.ValidatingBuilder
 import kotlin.reflect.KClass
 
 /**

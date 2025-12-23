@@ -26,7 +26,7 @@
 
 package io.spine.tools.compiler.ast
 
-import io.spine.validate.ValidationException
+import io.spine.validation.ValidationException
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
