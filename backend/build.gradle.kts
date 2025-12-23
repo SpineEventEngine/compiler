@@ -28,7 +28,7 @@ import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Jackson.DataFormat
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.JUnit
 import io.spine.gradle.publish.CheckVersionIncrement
@@ -44,7 +44,7 @@ plugins {
 
 dependencies {
     api(AutoService.annotations)
-    api(CoreJava.server)
+    api(CoreJvm.server)
     api(ToolBase.lib)
     api(project(":api"))
 

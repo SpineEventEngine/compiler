@@ -55,7 +55,7 @@ import io.spine.tools.prototap.Paths.CODE_GENERATOR_REQUEST_FILE
 import io.spine.tools.prototap.Paths.COMPILED_PROTOS_FILE
 import io.spine.type.parse
 import io.spine.type.toJson
-import io.spine.validate.NonValidated
+import io.spine.validation.NonValidated
 import java.nio.file.Path
 import java.nio.file.StandardOpenOption.CREATE
 import java.nio.file.StandardOpenOption.TRUNCATE_EXISTING

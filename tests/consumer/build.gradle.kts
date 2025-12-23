@@ -58,3 +58,5 @@ rootExtension.extensions.getByType<CompilerSettings>().apply {
         "io.spine.tools.compiler.test.annotation.AnnotationPlugin"
     )
 }
+
+spineCompilerRemoteDebug(enabled = false)

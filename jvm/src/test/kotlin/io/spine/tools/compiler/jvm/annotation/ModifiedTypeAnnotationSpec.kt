@@ -147,7 +147,7 @@ internal class ModifiedTypeAnnotationSpec : WithSourceFileSet() {
         }
         Pipeline(
             params = params,
-            plugins = listOf(modifiedTypeAnnotation.toPlugin()),
+            additionalPlugins = listOf(modifiedTypeAnnotation.toPlugin()),
         )()
     }
 }

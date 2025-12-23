@@ -63,7 +63,7 @@ internal class SuppressWarningsAnnotationSpec : WithSourceFileSet() {
             }
             Pipeline(
                 params = params,
-                plugins = listOf(SuppressWarningsAnnotation.Plugin()),
+                additionalPlugins = listOf(SuppressWarningsAnnotation.Plugin()),
             )()
             val code = loadCode()
             assertContainsSuppressionAll(code)
@@ -85,7 +85,7 @@ internal class SuppressWarningsAnnotationSpec : WithSourceFileSet() {
 
             Pipeline(
                 params = params,
-                plugins = listOf(SuppressWarningsAnnotation.Plugin()),
+                additionalPlugins = listOf(SuppressWarningsAnnotation.Plugin()),
             )()
             val code = loadCode()
             assertContainsSuppressionAll(code)
@@ -114,7 +114,7 @@ internal class SuppressWarningsAnnotationSpec : WithSourceFileSet() {
 
         Pipeline(
             params = params,
-            plugins = listOf(SuppressWarningsAnnotation.Plugin()),
+            additionalPlugins = listOf(SuppressWarningsAnnotation.Plugin()),
         )()
         val code = loadCode()
 

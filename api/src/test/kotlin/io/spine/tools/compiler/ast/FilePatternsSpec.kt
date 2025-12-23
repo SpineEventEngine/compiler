@@ -35,7 +35,7 @@ import io.spine.tools.compiler.ast.FilePatternFactory.infix
 import io.spine.tools.compiler.ast.FilePatternFactory.prefix
 import io.spine.tools.compiler.ast.FilePatternFactory.regex
 import io.spine.tools.compiler.ast.FilePatternFactory.suffix
-import io.spine.validate.ValidationError
+import io.spine.validation.ValidationError
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test

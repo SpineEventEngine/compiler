@@ -27,7 +27,7 @@
 import io.spine.dependency.lib.Aedile
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.ToolBase
@@ -43,7 +43,7 @@ dependencies {
     listOf(
         Base.lib,
         Base.format,
-        CoreJava.server,
+        CoreJvm.server,
         ToolBase.lib,
         ToolBase.psiJava
     ).forEach {

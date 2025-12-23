@@ -107,7 +107,7 @@ class InsertionPointsSpec {
             params = pipelineParams {
                 withRoots(input, output)
             },
-            plugins = listOf(RenderingTestbed(
+            additionalPlugins = listOf(RenderingTestbed(
                 renderers = listOf(
                     VariousKtInsertionPointsPrinter(),
                     CatOutOfTheBoxEmancipator(),

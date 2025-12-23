@@ -44,7 +44,7 @@ import io.spine.tools.compiler.plugin.Plugin
 import io.spine.tools.compiler.plugin.View
 import io.spine.tools.compiler.render.Renderer
 import io.spine.tools.compiler.render.SourceFileSet
-import io.spine.validate.ValidatingBuilder
+import io.spine.validation.ValidatingBuilder
 
 /**
  * The diagnostics plugin that gathers names of message types, enum types, or services

@@ -154,7 +154,7 @@ internal class PipelineSpec {
     fun `render enhanced code`() {
         Pipeline(
             params = params,
-            plugins = listOf(TestPlugin(), RenderingTestbed(renderer)),
+            additionalPlugins = listOf(TestPlugin(), RenderingTestbed(renderer)),
         )()
         assertTextIn(targetFile).isEqualTo("_Journey worth taking")
     }
@@ -163,7 +163,7 @@ internal class PipelineSpec {
     fun `generate new files`() {
         Pipeline(
             params = params,
-            plugins = listOf(TestPlugin(), RenderingTestbed(InternalAccessRenderer())),
+            additionalPlugins = listOf(TestPlugin(), RenderingTestbed(InternalAccessRenderer())),
         )()
         val newClass = targetRoot.resolve("$SRC_DIR_NO_IO/JourneyInternal.java")
         assertExists(newClass)
@@ -176,7 +176,7 @@ internal class PipelineSpec {
         write(path, "foo bar")
         Pipeline(
             params = params,
-            plugins = listOf(TestPlugin(), RenderingTestbed(DeletingRenderer()))
+            additionalPlugins = listOf(TestPlugin(), RenderingTestbed(DeletingRenderer()))
         )()
         assertDoesNotExist(targetRoot / path)
     }
@@ -229,7 +229,7 @@ internal class PipelineSpec {
         """.trimIndent())
         Pipeline(
             params = params,
-            plugins = listOf(RenderingTestbed(
+            additionalPlugins = listOf(RenderingTestbed(
                 renderers = listOf(
                     AnnotationInsertionPointPrinter(),
                     NullableAnnotationRenderer()
@@ -318,7 +318,7 @@ internal class PipelineSpec {
         }
         Pipeline(
             params = local,
-            plugins = listOf(TestPlugin(), RenderingTestbed(InternalAccessRenderer())),
+            additionalPlugins = listOf(TestPlugin(), RenderingTestbed(InternalAccessRenderer())),
         )()
 
         val path = "$SRC_DIR_NO_IO/JourneyInternal.java"
@@ -335,7 +335,7 @@ internal class PipelineSpec {
     fun `copy all sources into the new destination`() {
         Pipeline(
             params = params,
-            plugins = listOf(TestPlugin(), RenderingTestbed(NoOpRenderer())),
+            additionalPlugins = listOf(TestPlugin(), RenderingTestbed(NoOpRenderer())),
         )()
         assertExists(targetFile)
     }
@@ -363,7 +363,7 @@ internal class PipelineSpec {
 
             Pipeline(
                 params = local,
-                plugins = listOf(
+                additionalPlugins = listOf(
                     TestPlugin(),
                     RenderingTestbed(NoOpRenderer())
                 )
@@ -403,7 +403,7 @@ internal class PipelineSpec {
 
             Pipeline(
                 params = params,
-                plugins = listOf(
+                additionalPlugins = listOf(
                     TestPlugin(),
                     RenderingTestbed(PlainStringRenderer())
                 ),
@@ -436,7 +436,7 @@ internal class PipelineSpec {
             }
             Pipeline(
                 params = local,
-                plugins = listOf(
+                additionalPlugins = listOf(
                     TestPlugin(),
                     RenderingTestbed(listOf(
                             JavaGenericInsertionPointPrinter(),
@@ -461,7 +461,7 @@ internal class PipelineSpec {
             val viewClass = DeletedTypeView::class.java
             val pipeline = Pipeline(
                 params = params,
-                plugins = listOf(
+                additionalPlugins = listOf(
                     DocilePlugin(
                         views = setOf(viewClass),
                         viewRepositories = setOf(DeletedTypeRepository())
@@ -478,7 +478,7 @@ internal class PipelineSpec {
     fun `expose 'codegenContext' property for testing purposes`() {
         val pipeline = Pipeline(
             params = params,
-            plugins = listOf(TestPlugin(), RenderingTestbed(renderer)),
+            additionalPlugins = listOf(TestPlugin(), RenderingTestbed(renderer)),
         )
         var codegenContext: CodegenContext? = null
         try {

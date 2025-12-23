@@ -34,7 +34,7 @@ package io.spine.tools.compiler.jvm
  * ```
  * val validate = MethodDeclaration(
  *     """
- *     public java.util.Optional<io.spine.validate.ValidationError> validate() {
+ *     public java.util.Optional<io.spine.validation.ValidationError> validate() {
  *         var noParent = io.spine.base.FieldPath.getDefaultInstance();
  *         return validate(noParent);
  *     }

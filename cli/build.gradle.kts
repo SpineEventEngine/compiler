@@ -46,19 +46,24 @@ plugins {
 
 dependencies {
     listOf(
-        kotlin("reflect"),
         Clikt.lib,
         ToolBase.jvmTools,
         Logging.lib,
         Logging.libJvm,
-    ).forEach { implementation(it) }
+    ).forEach { implementation(it) {
+        exclude(group = "io.spine.validation", module = "spine-validation-java-runtime")
+    } }
+
+    implementation(kotlin("reflect"))
 
     listOf(
         ":api",
         ":params",
         ":backend",
         ":jvm",
-    ).forEach { implementation(project(it)) }
+    ).forEach { implementation(project(it)) {
+        exclude(group = "io.spine.validation", module = "spine-validation-java-runtime")
+    } }
 
     testAnnotationProcessor(AutoService.processor)?.because(
         "We need `@AutoService` for registering custom options provider.")

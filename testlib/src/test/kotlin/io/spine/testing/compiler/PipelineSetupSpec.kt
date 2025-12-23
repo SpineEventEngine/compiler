@@ -45,7 +45,7 @@ import io.spine.tools.compiler.plugin.Plugin
 import io.spine.tools.compiler.settings.SettingsDirectory
 import io.spine.tools.prototap.Names.PROTOC_PLUGIN_NAME
 import io.spine.tools.prototap.Paths.CODE_GENERATOR_REQUEST_JSON_FILE
-import io.spine.validate.NonValidated
+import io.spine.validation.NonValidated
 import java.io.File
 import java.nio.file.Path
 import kotlin.io.path.Path

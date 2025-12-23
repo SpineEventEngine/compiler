@@ -56,6 +56,8 @@ configurations.all {
             io.spine.dependency.local.ToolBase.lib,
             io.spine.dependency.local.ToolBase.intellijPlatform,
             io.spine.dependency.local.ToolBase.intellijPlatformJava,
+            io.spine.dependency.local.Validation.runtime,
+            io.spine.dependency.local.Validation.javaBundle
         )
     }
 }
@@ -64,5 +66,5 @@ val compilerVersion: String by extra
 
 dependencies {
     compileOnly("io.spine.tools:compiler-backend:$compilerVersion")
-    implementation("io.spine.tools:compiler-jvm:$compilerVersion")
+    compileOnly("io.spine.tools:compiler-jvm:$compilerVersion")
 }
