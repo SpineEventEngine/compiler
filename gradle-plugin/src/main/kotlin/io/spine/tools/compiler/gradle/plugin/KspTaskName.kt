@@ -24,17 +24,23 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.local
+package io.spine.tools.compiler.gradle.plugin
+
+import io.spine.tools.code.SourceSetName
+import io.spine.tools.gradle.task.TaskWithSourceSetName
+import org.gradle.api.tasks.SourceSet
 
 /**
- * Spine Base module.
- *
- * @see <a href="https://github.com/SpineEventEngine/base-types">spine-base-types</a>
+ * The name of the Kotlin Symbol Processing task, such as `compileKotlin` or `compileTestKotlin`.
  */
-@Suppress("ConstPropertyName")
-object BaseTypes {
-    const val version = "2.0.0-SNAPSHOT.223"
-    const val group = Spine.group
-    const val artifact = "spine-base-types"
-    const val lib = "$group:$artifact:$version"
+internal class KspTaskName(ssn: SourceSetName) :
+    TaskWithSourceSetName("compile${ssn.toInfix()}Kotlin", ssn) {
+
+    companion object {
+
+        /**
+         * Obtains the task name for the given source set.
+         */
+        fun of(ss: SourceSet) = KspTaskName(SourceSetName(ss.name))
+    }
 }
