@@ -212,6 +212,9 @@ private fun LaunchSpineCompiler.setDependencies(sourceSet: SourceSet) {
     val launchTask = this
     project.findJavaCompileFor(sourceSet)?.dependsOn(launchTask)
     project.findKotlinCompileFor(sourceSet)?.dependsOn(launchTask)
+
+    val kspTask = KspTaskName.of(sourceSet)
+    project.tasks.findByName(kspTask.value())?.dependsOn(launchTask)
 }
 
 /**
