@@ -51,7 +51,7 @@ public val Project.compilerSettings: CompilerSettings
 
 /**
  * Obtains the path of the directory with the generated code as configured by
- * the [CompilerSettings.outputBaseDir] property of the the Compiler extension
+ * the [CompilerSettings.outputBaseDir] property of the Compiler extension
  * of this Gradle project.
  */
 public val Project.generatedDir: Path
