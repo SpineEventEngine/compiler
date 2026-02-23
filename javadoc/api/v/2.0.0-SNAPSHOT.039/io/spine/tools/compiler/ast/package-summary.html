@@ -1,0 +1,904 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>Package io.spine.tools.compiler.ast </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li class="navBarCell1Rev">Package</li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+<main role="main">
+    <div class="header">
+        <h1 title="Package" class="title">Package io.spine.tools.compiler.ast </h1>
+    </div>
+        <div class="header">
+            <div class="subtitle">
+                <div class="block"><p>This package provides the data types and functions needed to work with the structure of Protobuf files.</p></div>
+            </div>
+            <p>See: <a href="#overview_description">Description</a></p>
+        </div>
+    <div class="contentContainer">
+        
+            <ul class="blockList">
+                
+                <li class="blockList">
+                    
+                    
+                    
+                    
+                    
+    <div class="typeSummary">
+
+<table>
+<caption><span>Enum Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Enum</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Cardinality.html>Cardinality</a></th><td class="colLast"><pre><code>A cardinality of values stored a field.
+</code></pre> Protobuf enum <code>spine.compiler.Cardinality</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=PrimitiveType.html>PrimitiveType</a></th><td class="colLast"><pre><code>A primitive Protobuf type.
+</code></pre> Protobuf enum <code>spine.compiler.PrimitiveType</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=CallCardinality.html>CallCardinality</a></th><td class="colLast"><pre><code>The kind of exchange between a client and a server in a single `rpc` call.
+</code></pre> Protobuf enum <code>spine.compiler.CallCardinality</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Type.KindCase.html>KindCase</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtoFileHeader.SyntaxVersion.html>SyntaxVersion</a></th><td class="colLast"><pre><code>The version of the Protobuf syntax, as defined in a Protobuf source file.
+</code></pre> Protobuf enum <code>spine.compiler.ProtoFileHeader.SyntaxVersion</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FilePattern.KindCase.html>KindCase</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldType.KindCase.html>KindCase</a></th><td class="colLast"></td></tr>
+</tbody>
+</table>
+
+    </div>
+
+                </li>
+                
+                <li class="blockList">
+                    
+                    
+                    
+                    
+                    
+    <div class="typeSummary">
+
+<table>
+<caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldName.Builder.html>Builder</a></th><td class="colLast"><pre><code>A name of a field in a message.
+</code></pre> Protobuf type <code>spine.compiler.FieldName</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldName.html>FieldName</a></th><td class="colLast"><pre><code>A name of a field in a message.
+</code></pre> Protobuf type <code>spine.compiler.FieldName</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofName.Builder.html>Builder</a></th><td class="colLast"><pre><code>Name of a group of fields.
+</code></pre> Protobuf type <code>spine.compiler.OneofName</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OneofName.html>OneofName</a></th><td class="colLast"><pre><code>Name of a group of fields.
+</code></pre> Protobuf type <code>spine.compiler.OneofName</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MapEntryType.Builder.html>Builder</a></th><td class="colLast"><pre><code>A type of entries in a map.
+</code></pre> Protobuf type <code>spine.compiler.MapEntryType</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MapEntryType.html>MapEntryType</a></th><td class="colLast"><pre><code>A type of entries in a map.
+</code></pre> Protobuf type <code>spine.compiler.MapEntryType</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldRef.Builder.html>Builder</a></th><td class="colLast"><pre><code>Uniquely identifies a field declaration within a compilation process.
+</code></pre> Protobuf type <code>spine.compiler.FieldRef</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldRef.html>FieldRef</a></th><td class="colLast"><pre><code>Uniquely identifies a field declaration within a compilation process.
+</code></pre> Protobuf type <code>spine.compiler.FieldRef</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFile.Builder.html>Builder</a></th><td class="colLast"><pre><code>A view of a complete source file.
+
+Includes all the message types declared in the file, along with their fields.
+</code></pre> Protobuf type <code>spine.compiler.ProtobufSourceFile</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFile.Field.FileField.html>FileField</a></th><td class="colLast">Provides fields of the <a href=File.html>io.spine.tools.compiler.ast.File</a> message type.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFile.Field.ProtoFileHeaderField.html>ProtoFileHeaderField</a></th><td class="colLast">Provides fields of the <a href=ProtoFileHeader.html>io.spine.tools.compiler.ast.ProtoFileHeader</a> message type.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFile.Field.html>Field</a></th><td class="colLast">The listing of <a href=ProtobufSourceFile.html>ProtobufSourceFile</a> fields to be used for creating a subscription filter.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFile.Column.html>Column</a></th><td class="colLast">A listing of entity columns defined in <a href=ProtobufSourceFile.html>ProtobufSourceFile</a>.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFile.QueryBuilder.html>QueryBuilder</a></th><td class="colLast">A builder for the queries for the <a href=ProtobufSourceFile.html>ProtobufSourceFile</a> entity state.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFile.Query.html>Query</a></th><td class="colLast">A query for finding entity states of the type <a href=ProtobufSourceFile.html>ProtobufSourceFile</a>.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFile.html>ProtobufSourceFile</a></th><td class="colLast"><pre><code>A view of a complete source file.
+
+Includes all the message types declared in the file, along with their fields.
+</code></pre> Protobuf type <code>spine.compiler.ProtobufSourceFile</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofRef.Builder.html>Builder</a></th><td class="colLast"><pre><code>Uniquely identifies a `oneof` group declaration within a compilation process.
+</code></pre> Protobuf type <code>spine.compiler.OneofRef</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OneofRef.html>OneofRef</a></th><td class="colLast"><pre><code>Uniquely identifies a `oneof` group declaration within a compilation process.
+</code></pre> Protobuf type <code>spine.compiler.OneofRef</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofGroup.Builder.html>Builder</a></th><td class="colLast"><pre><code>Group is a set of fields declared within one `oneof` block.
+</code></pre> Protobuf type <code>spine.compiler.OneofGroup</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OneofGroup.html>OneofGroup</a></th><td class="colLast"><pre><code>Group is a set of fields declared within one `oneof` block.
+</code></pre> Protobuf type <code>spine.compiler.OneofGroup</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ServiceInFile.Builder.html>Builder</a></th><td class="colLast"><pre><code>A tuple of a service declaration and the header of the file where it is declared.
+</code></pre> Protobuf type <code>spine.compiler.ServiceInFile</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceInFile.html>ServiceInFile</a></th><td class="colLast"><pre><code>A tuple of a service declaration and the header of the file where it is declared.
+</code></pre> Protobuf type <code>spine.compiler.ServiceInFile</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FileProto.html>FileProto</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumInFile.Builder.html>Builder</a></th><td class="colLast"><pre><code>A tuple of an enum type and the header of the file where it is declared.
+</code></pre> Protobuf type <code>spine.compiler.EnumInFile</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumInFile.html>EnumInFile</a></th><td class="colLast"><pre><code>A tuple of an enum type and the header of the file where it is declared.
+</code></pre> Protobuf type <code>spine.compiler.EnumInFile</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Span.Builder.html>Builder</a></th><td class="colLast"><pre><code>The location span of a Protobuf declaration.
+
+Values of the fields are 1-based.
+Zero values mean that the location is unknown.
+</code></pre> Protobuf type <code>spine.compiler.Span</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Span.html>Span</a></th><td class="colLast"><pre><code>The location span of a Protobuf declaration.
+
+Values of the fields are 1-based.
+Zero values mean that the location is unknown.
+</code></pre> Protobuf type <code>spine.compiler.Span</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=AstProto.html>AstProto</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumConstant.Builder.html>Builder</a></th><td class="colLast"><pre><code>An enum constant, a.k.a. an enum value.
+</code></pre> Protobuf type <code>spine.compiler.EnumConstant</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumConstant.html>EnumConstant</a></th><td class="colLast"><pre><code>An enum constant, a.k.a. an enum value.
+</code></pre> Protobuf type <code>spine.compiler.EnumConstant</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumType.Builder.html>Builder</a></th><td class="colLast"><pre><code>A Protobuf enum type.
+</code></pre> Protobuf type <code>spine.compiler.EnumType</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumType.html>EnumType</a></th><td class="colLast"><pre><code>A Protobuf enum type.
+</code></pre> Protobuf type <code>spine.compiler.EnumType</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufDependency.Builder.html>Builder</a></th><td class="colLast"><pre><code>A Protobuf definitions file which is included into the module as a dependency.
+
+Unlike `ProtobufSourceFile`, `ProtobufDependency` should not result in any code generation.
+Rather, it serves for informative purposes.
+</code></pre> Protobuf type <code>spine.compiler.ProtobufDependency</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufDependency.Field.FileField.html>FileField</a></th><td class="colLast">Provides fields of the <a href=File.html>io.spine.tools.compiler.ast.File</a> message type.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufDependency.Field.ProtobufSourceFileField.html>ProtobufSourceFileField</a></th><td class="colLast">Provides fields of the <a href=ProtobufSourceFile.html>io.spine.tools.compiler.ast.ProtobufSourceFile</a> message type.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufDependency.Field.ProtoFileHeaderField.html>ProtoFileHeaderField</a></th><td class="colLast">Provides fields of the <a href=ProtoFileHeader.html>io.spine.tools.compiler.ast.ProtoFileHeader</a> message type.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufDependency.Field.html>Field</a></th><td class="colLast">The listing of <a href=ProtobufDependency.html>ProtobufDependency</a> fields to be used for creating a subscription filter.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufDependency.Column.html>Column</a></th><td class="colLast">A listing of entity columns defined in <a href=ProtobufDependency.html>ProtobufDependency</a>.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufDependency.QueryBuilder.html>QueryBuilder</a></th><td class="colLast">A builder for the queries for the <a href=ProtobufDependency.html>ProtobufDependency</a> entity state.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufDependency.Query.html>Query</a></th><td class="colLast">A query for finding entity states of the type <a href=ProtobufDependency.html>ProtobufDependency</a>.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufDependency.html>ProtobufDependency</a></th><td class="colLast"><pre><code>A Protobuf definitions file which is included into the module as a dependency.
+
+Unlike `ProtobufSourceFile`, `ProtobufDependency` should not result in any code generation.
+Rather, it serves for informative purposes.
+</code></pre> Protobuf type <code>spine.compiler.ProtobufDependency</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=DeclarationsProto.html>DeclarationsProto</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=File.Builder.html>Builder</a></th><td class="colLast"><pre><code>A path to a file in an arbitrary OS.
+
+In most cases it is going to be a relative path.
+In some cases it may be an absolute path.
+
+The Protobuf compiler only works with the Unix-style file separator (`/`), regardless of
+the current operating system. This value holds this exact format of the path.
+</code></pre> Protobuf type <code>spine.compiler.File</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=File.html>File</a></th><td class="colLast"><pre><code>A path to a file in an arbitrary OS.
+
+In most cases it is going to be a relative path.
+In some cases it may be an absolute path.
+
+The Protobuf compiler only works with the Unix-style file separator (`/`), regardless of
+the current operating system. This value holds this exact format of the path.
+</code></pre> Protobuf type <code>spine.compiler.File</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Type.Builder.html>Builder</a></th><td class="colLast"><pre><code>A Protobuf type.
+</code></pre> Protobuf type <code>spine.compiler.Type</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Type.html>Type</a></th><td class="colLast"><pre><code>A Protobuf type.
+</code></pre> Protobuf type <code>spine.compiler.Type</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Doc.Builder.html>Builder</a></th><td class="colLast"><pre><code>Documentation associated with a certain Protobuf declaration.
+</code></pre> Protobuf type <code>spine.compiler.Doc</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Doc.html>Doc</a></th><td class="colLast"><pre><code>Documentation associated with a certain Protobuf declaration.
+</code></pre> Protobuf type <code>spine.compiler.Doc</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Rpc.Builder.html>Builder</a></th><td class="colLast"><pre><code>A remote procedure call method defined in a Protobuf service.
+</code></pre> Protobuf type <code>spine.compiler.Rpc</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Rpc.html>Rpc</a></th><td class="colLast"><pre><code>A remote procedure call method defined in a Protobuf service.
+</code></pre> Protobuf type <code>spine.compiler.Rpc</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ServiceName.Builder.html>Builder</a></th><td class="colLast"><pre><code>A name of a Protobuf service type.
+</code></pre> Protobuf type <code>spine.compiler.ServiceName</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceName.html>ServiceName</a></th><td class="colLast"><pre><code>A name of a Protobuf service type.
+</code></pre> Protobuf type <code>spine.compiler.ServiceName</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=RpcName.Builder.html>Builder</a></th><td class="colLast"><pre><code>A name of an RPC method.
+</code></pre> Protobuf type <code>spine.compiler.RpcName</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=RpcName.html>RpcName</a></th><td class="colLast"><pre><code>A name of an RPC method.
+</code></pre> Protobuf type <code>spine.compiler.RpcName</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Field.Builder.html>Builder</a></th><td class="colLast"><pre><code>A Protobuf message field.
+</code></pre> Protobuf type <code>spine.compiler.Field</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Field.html>Field</a></th><td class="colLast"><pre><code>A Protobuf message field.
+</code></pre> Protobuf type <code>spine.compiler.Field</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Option.Builder.html>Builder</a></th><td class="colLast"><pre><code>A Protobuf option.
+
+An option may be declared for a whole file, a type (message, enum, or service), for
+a message field, a standalone `rpc`, or an enum value.
+
+We do not distinguish between options with different targets, e.g. message and field options.
+Options of a certain target are placed next to the target's definition.
+
+See `File.option`, `MessageType.option`, `Field.option`, etc.
+</code></pre> Protobuf type <code>spine.compiler.Option</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Option.html>Option</a></th><td class="colLast"><pre><code>A Protobuf option.
+
+An option may be declared for a whole file, a type (message, enum, or service), for
+a message field, a standalone `rpc`, or an enum value.
+
+We do not distinguish between options with different targets, e.g. message and field options.
+Options of a certain target are placed next to the target's definition.
+
+See `File.option`, `MessageType.option`, `Field.option`, etc.
+</code></pre> Protobuf type <code>spine.compiler.Option</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageInFile.Builder.html>Builder</a></th><td class="colLast"><pre><code>A tuple of a message type and the header of the file where it is declared.
+</code></pre> Protobuf type <code>spine.compiler.MessageInFile</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageInFile.html>MessageInFile</a></th><td class="colLast"><pre><code>A tuple of a message type and the header of the file where it is declared.
+</code></pre> Protobuf type <code>spine.compiler.MessageInFile</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FilePatternProto.html>FilePatternProto</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ConstantName.Builder.html>Builder</a></th><td class="colLast"><pre><code>A name of an enum constant.
+</code></pre> Protobuf type <code>spine.compiler.ConstantName</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ConstantName.html>ConstantName</a></th><td class="colLast"><pre><code>A name of an enum constant.
+</code></pre> Protobuf type <code>spine.compiler.ConstantName</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtoFileHeader.Builder.html>Builder</a></th><td class="colLast"><pre><code>A header of the Protobuf source code file which provides basic information about the file,
+such as file-wide options applied to the file.
+</code></pre> Protobuf type <code>spine.compiler.ProtoFileHeader</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtoFileHeader.html>ProtoFileHeader</a></th><td class="colLast"><pre><code>A header of the Protobuf source code file which provides basic information about the file,
+such as file-wide options applied to the file.
+</code></pre> Protobuf type <code>spine.compiler.ProtoFileHeader</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Directory.Builder.html>Builder</a></th><td class="colLast"><pre><code>A path to a directory in an arbitrary OS.
+
+The Protobuf compiler only works with the Unix-style file separator (`/`), regardless of
+the current operating system. This value holds this exact format of the path.
+</code></pre> Protobuf type <code>spine.compiler.Directory</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Directory.html>Directory</a></th><td class="colLast"><pre><code>A path to a directory in an arbitrary OS.
+
+The Protobuf compiler only works with the Unix-style file separator (`/`), regardless of
+the current operating system. This value holds this exact format of the path.
+</code></pre> Protobuf type <code>spine.compiler.Directory</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FilePattern.Builder.html>Builder</a></th><td class="colLast"><pre><code>A pattern matching file paths.
+</code></pre> Protobuf type <code>spine.compiler.FilePattern</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FilePattern.html>FilePattern</a></th><td class="colLast"><pre><code>A pattern matching file paths.
+</code></pre> Protobuf type <code>spine.compiler.FilePattern</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageType.Builder.html>Builder</a></th><td class="colLast"><pre><code>A Protobuf message type.
+</code></pre> Protobuf type <code>spine.compiler.MessageType</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageType.html>MessageType</a></th><td class="colLast"><pre><code>A Protobuf message type.
+</code></pre> Protobuf type <code>spine.compiler.MessageType</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TypeName.Builder.html>Builder</a></th><td class="colLast"><pre><code>Name of a Protobuf type.
+
+Applicable to message and enum types.
+</code></pre> Protobuf type <code>spine.compiler.TypeName</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeName.html>TypeName</a></th><td class="colLast"><pre><code>Name of a Protobuf type.
+
+Applicable to message and enum types.
+</code></pre> Protobuf type <code>spine.compiler.TypeName</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=DirectoryProto.html>DirectoryProto</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufSourceProto.html>ProtobufSourceProto</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldType.Builder.html>Builder</a></th><td class="colLast"><pre><code>A type of a message field.
+</code></pre> Protobuf type <code>spine.compiler.FieldType</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldType.html>FieldType</a></th><td class="colLast"><pre><code>A type of a message field.
+</code></pre> Protobuf type <code>spine.compiler.FieldType</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Service.Builder.html>Builder</a></th><td class="colLast"><pre><code>A Protobuf service type.
+</code></pre> Protobuf type <code>spine.compiler.Service</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Service.html>Service</a></th><td class="colLast"><pre><code>A Protobuf service type.
+</code></pre> Protobuf type <code>spine.compiler.Service</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ConstantNameKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=DirectoryKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=DocKt.Dsl.DetachedCommentProxy.html>DetachedCommentProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=DocKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumConstantKt.Dsl.OptionProxy.html>OptionProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumConstantKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumInFileKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumTypeKt.Dsl.OptionProxy.html>OptionProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumTypeKt.Dsl.ConstantProxy.html>ConstantProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumTypeKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldKt.Dsl.OptionProxy.html>OptionProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldNameKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldRefKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldTypeKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FileKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FilePatternKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MapEntryTypeKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageInFileKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageTypeKt.Dsl.OptionProxy.html>OptionProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageTypeKt.Dsl.FieldProxy.html>FieldProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageTypeKt.Dsl.OneofGroupProxy.html>OneofGroupProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageTypeKt.Dsl.NestedMessagesProxy.html>NestedMessagesProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageTypeKt.Dsl.NestedEnumsProxy.html>NestedEnumsProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageTypeKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofGroupKt.Dsl.FieldProxy.html>FieldProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OneofGroupKt.Dsl.OptionProxy.html>OptionProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofGroupKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OneofNameKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofRefKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OptionKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtoFileHeaderKt.Dsl.OptionProxy.html>OptionProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtoFileHeaderKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufDependencyKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFileKt.Dsl.TypeProxy.html>TypeProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFileKt.Dsl.EnumTypeProxy.html>EnumTypeProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFileKt.Dsl.ServiceProxy.html>ServiceProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFileKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=RpcKt.Dsl.OptionProxy.html>OptionProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=RpcKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=RpcNameKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ServiceInFileKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceKt.Dsl.OptionProxy.html>OptionProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ServiceKt.Dsl.RpcProxy.html>RpcProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ServiceNameKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=SpanKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TypeNameKt.Dsl.NestingTypeNameProxy.html>NestingTypeNameProxy</a></th><td class="colLast">An uninstantiable, behaviorless type to represent the field in generics.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeNameKt.Dsl.html>Dsl</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Coordinates.html>Coordinates</a></th><td class="colLast">Provides line and column numbers for declarations in a Protobuf file.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Documentation.html>Documentation</a></th><td class="colLast">Documentation contained in a Protobuf file.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Locations.html>Locations</a></th><td class="colLast">Provides locations in a Protobuf file.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageTypeDependencies.html>MessageTypeDependencies</a></th><td class="colLast">Contains information about <a href=MessageType.html>MessageType</a>s on which the given <a href=MessageType.html>MessageType</a> depends either directly through its immediate fields, or through the fields of its immediate dependencies.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumConstantKtKt.html>EnumConstantKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumTypeKtKt.html>EnumTypeKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldKtKt.html>FieldKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldRefKtKt.html>FieldRefKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageTypeKtKt.html>MessageTypeKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofGroupKtKt.html>OneofGroupKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OneofRefKtKt.html>OneofRefKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=RpcKtKt.html>RpcKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceKtKt.html>ServiceKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OptionKtKt.html>OptionKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumInFileKtKt.html>EnumInFileKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageInFileKtKt.html>MessageInFileKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceInFileKtKt.html>ServiceInFileKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtoFileHeaderKtKt.html>ProtoFileHeaderKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufDependencyKtKt.html>ProtobufDependencyKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFileKtKt.html>ProtobufSourceFileKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldTypeKtKt.html>FieldTypeKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeKtKt.html>TypeKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MapEntryTypeKtKt.html>MapEntryTypeKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Fields.html>Fields</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldTypes.html>FieldTypes</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofGroupExtsKt.html>OneofGroupExtsKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceNames.html>ServiceNames</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeNames.html>TypeNames</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FilesAndPathsKt.html>FilesAndPathsKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Types.html>Types</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageTypes.html>MessageTypes</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Options.html>Options</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=PrimitiveTypes.html>PrimitiveTypes</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeBaseExtsKt.html>TypeBaseExtsKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtoFileHeaders.html>ProtoFileHeaders</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeNameKtKt.html>TypeNameKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ConstantNameKtKt.html>ConstantNameKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=DirectoryKtKt.html>DirectoryKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=DocKtKt.html>DocKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldNameKtKt.html>FieldNameKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FileKtKt.html>FileKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FilePatternKtKt.html>FilePatternKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OneofNameKtKt.html>OneofNameKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=RpcNameKtKt.html>RpcNameKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceNameKtKt.html>ServiceNameKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=SpanKtKt.html>SpanKtKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtoDeclarationKt.html>ProtoDeclarationKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumTypeExtsKt.html>EnumTypeExtsKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceExtsKt.html>ServiceExtsKt</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FilePatterns.html>FilePatterns</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFileExtsKt.html>ProtobufSourceFileExtsKt</a></th><td class="colLast"></td></tr>
+</tbody>
+</table>
+
+    </div>
+
+                </li>
+                
+                <li class="blockList">
+                    
+                    
+                    
+                    
+                    
+    <div class="typeSummary">
+
+<table>
+<caption><span>Interface Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Interface</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=RpcNameOrBuilder.html>RpcNameOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TypeOrBuilder.html>TypeOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MapEntryTypeOrBuilder.html>MapEntryTypeOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumInFileOrBuilder.html>EnumInFileOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageTypeOrBuilder.html>MessageTypeOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OneofNameOrBuilder.html>OneofNameOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FilePatternOrBuilder.html>FilePatternOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldOrBuilder.html>FieldOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=DocOrBuilder.html>DocOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumTypeOrBuilder.html>EnumTypeOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageInFileOrBuilder.html>MessageInFileOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=RpcOrBuilder.html>RpcOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldTypeOrBuilder.html>FieldTypeOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFileOrBuilder.html>ProtobufSourceFileOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeNameOrBuilder.html>TypeNameOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceOrBuilder.html>ServiceOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofRefOrBuilder.html>OneofRefOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ConstantNameOrBuilder.html>ConstantNameOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=DirectoryOrBuilder.html>DirectoryOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldRefOrBuilder.html>FieldRefOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumConstantOrBuilder.html>EnumConstantOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtoFileHeaderOrBuilder.html>ProtoFileHeaderOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldNameOrBuilder.html>FieldNameOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OptionOrBuilder.html>OptionOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FileOrBuilder.html>FileOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=SpanOrBuilder.html>SpanOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofGroupOrBuilder.html>OneofGroupOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceNameOrBuilder.html>ServiceNameOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufDependencyOrBuilder.html>ProtobufDependencyOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceInFileOrBuilder.html>ServiceInFileOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FileAware.html>FileAware</a></th><td class="colLast">An interface for objects which are aware of the file they are associated with.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OptionAware.html>OptionAware</a></th><td class="colLast">An interface for objects which are associated in an <a href=Option.html>Option</a> instance.</td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeBase.html>TypeBase</a></th><td class="colLast">The common interface for <a href=Type.html>Type</a> and <a href=FieldType.html>FieldType</a>.</td></tr>
+</tbody>
+</table>
+
+    </div>
+
+                </li>
+                
+                <li class="blockList">
+                    
+                    
+                    
+                    
+                    
+    <div class="typeSummary">
+
+<table>
+<caption><span>Object Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Object</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ConstantNameKt.html>ConstantNameKt</a></th><td class="colLast"><pre><code>A name of an enum constant.</code></pre>Protobuf type <code>spine.compiler.ConstantName</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=DirectoryKt.html>DirectoryKt</a></th><td class="colLast"><pre><code>A path to a directory in an arbitrary OS.
+
+The Protobuf compiler only works with the Unix-style file separator (`/`), regardless of
+the current operating system. This value holds this exact format of the path.</code></pre>Protobuf type <code>spine.compiler.Directory</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=DocKt.html>DocKt</a></th><td class="colLast"><pre><code>Documentation associated with a certain Protobuf declaration.</code></pre>Protobuf type <code>spine.compiler.Doc</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumConstantKt.html>EnumConstantKt</a></th><td class="colLast"><pre><code>An enum constant, a.k.a. an enum value.</code></pre>Protobuf type <code>spine.compiler.EnumConstant</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumInFileKt.html>EnumInFileKt</a></th><td class="colLast"><pre><code>A tuple of an enum type and the header of the file where it is declared.</code></pre>Protobuf type <code>spine.compiler.EnumInFile</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumTypeKt.html>EnumTypeKt</a></th><td class="colLast"><pre><code>A Protobuf enum type.</code></pre>Protobuf type <code>spine.compiler.EnumType</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldKt.html>FieldKt</a></th><td class="colLast"><pre><code>A Protobuf message field.</code></pre>Protobuf type <code>spine.compiler.Field</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldNameKt.html>FieldNameKt</a></th><td class="colLast"><pre><code>A name of a field in a message.</code></pre>Protobuf type <code>spine.compiler.FieldName</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FieldRefKt.html>FieldRefKt</a></th><td class="colLast"><pre><code>Uniquely identifies a field declaration within a compilation process.</code></pre>Protobuf type <code>spine.compiler.FieldRef</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FieldTypeKt.html>FieldTypeKt</a></th><td class="colLast"><pre><code>A type of a message field.</code></pre>Protobuf type <code>spine.compiler.FieldType</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FileKt.html>FileKt</a></th><td class="colLast"><pre><code>A path to a file in an arbitrary OS.
+
+In most cases it is going to be a relative path.
+In some cases it may be an absolute path.
+
+The Protobuf compiler only works with the Unix-style file separator (`/`), regardless of
+the current operating system. This value holds this exact format of the path.</code></pre>Protobuf type <code>spine.compiler.File</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=FilePatternKt.html>FilePatternKt</a></th><td class="colLast"><pre><code>A pattern matching file paths.</code></pre>Protobuf type <code>spine.compiler.FilePattern</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MapEntryTypeKt.html>MapEntryTypeKt</a></th><td class="colLast"><pre><code>A type of entries in a map.</code></pre>Protobuf type <code>spine.compiler.MapEntryType</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageInFileKt.html>MessageInFileKt</a></th><td class="colLast"><pre><code>A tuple of a message type and the header of the file where it is declared.</code></pre>Protobuf type <code>spine.compiler.MessageInFile</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageTypeKt.html>MessageTypeKt</a></th><td class="colLast"><pre><code>A Protobuf message type.</code></pre>Protobuf type <code>spine.compiler.MessageType</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OneofGroupKt.html>OneofGroupKt</a></th><td class="colLast"><pre><code>Group is a set of fields declared within one `oneof` block.</code></pre>Protobuf type <code>spine.compiler.OneofGroup</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OneofNameKt.html>OneofNameKt</a></th><td class="colLast"><pre><code>Name of a group of fields.</code></pre>Protobuf type <code>spine.compiler.OneofName</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=OneofRefKt.html>OneofRefKt</a></th><td class="colLast"><pre><code>Uniquely identifies a `oneof` group declaration within a compilation process.</code></pre>Protobuf type <code>spine.compiler.OneofRef</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=OptionKt.html>OptionKt</a></th><td class="colLast"><pre><code>A Protobuf option.
+
+An option may be declared for a whole file, a type (message, enum, or service), for
+a message field, a standalone `rpc`, or an enum value.
+
+We do not distinguish between options with different targets, e.g. message and field options.
+Options of a certain target are placed next to the target's definition.
+
+See `File.option`, `MessageType.option`, `Field.option`, etc.</code></pre>Protobuf type <code>spine.compiler.Option</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtoFileHeaderKt.html>ProtoFileHeaderKt</a></th><td class="colLast"><pre><code>A header of the Protobuf source code file which provides basic information about the file,
+such as file-wide options applied to the file.</code></pre>Protobuf type <code>spine.compiler.ProtoFileHeader</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ProtobufDependencyKt.html>ProtobufDependencyKt</a></th><td class="colLast"><pre><code>A Protobuf definitions file which is included into the module as a dependency.
+
+Unlike `ProtobufSourceFile`, `ProtobufDependency` should not result in any code generation.
+Rather, it serves for informative purposes.</code></pre>Protobuf type <code>spine.compiler.ProtobufDependency</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ProtobufSourceFileKt.html>ProtobufSourceFileKt</a></th><td class="colLast"><pre><code>A view of a complete source file.
+
+Includes all the message types declared in the file, along with their fields.</code></pre>Protobuf type <code>spine.compiler.ProtobufSourceFile</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=RpcKt.html>RpcKt</a></th><td class="colLast"><pre><code>A remote procedure call method defined in a Protobuf service.</code></pre>Protobuf type <code>spine.compiler.Rpc</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=RpcNameKt.html>RpcNameKt</a></th><td class="colLast"><pre><code>A name of an RPC method.</code></pre>Protobuf type <code>spine.compiler.RpcName</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ServiceInFileKt.html>ServiceInFileKt</a></th><td class="colLast"><pre><code>A tuple of a service declaration and the header of the file where it is declared.</code></pre>Protobuf type <code>spine.compiler.ServiceInFile</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ServiceKt.html>ServiceKt</a></th><td class="colLast"><pre><code>A Protobuf service type.</code></pre>Protobuf type <code>spine.compiler.Service</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ServiceNameKt.html>ServiceNameKt</a></th><td class="colLast"><pre><code>A name of a Protobuf service type.</code></pre>Protobuf type <code>spine.compiler.ServiceName</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=SpanKt.html>SpanKt</a></th><td class="colLast"><pre><code>The location span of a Protobuf declaration.
+
+Values of the fields are 1-based.
+Zero values mean that the location is unknown.</code></pre>Protobuf type <code>spine.compiler.Span</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=TypeKt.html>TypeKt</a></th><td class="colLast"><pre><code>A Protobuf type.</code></pre>Protobuf type <code>spine.compiler.Type</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TypeNameKt.html>TypeNameKt</a></th><td class="colLast"><pre><code>Name of a Protobuf type.
+
+Applicable to message and enum types.</code></pre>Protobuf type <code>spine.compiler.TypeName</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Coordinates.Companion.html>Companion</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Documentation.Companion.html>Companion</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=FilePatternFactory.html>FilePatternFactory</a></th><td class="colLast">Provides methods for creating <a href=FilePattern.html>FilePattern</a> instances of sorts.</td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=TypeInstances.html>TypeInstances</a></th><td class="colLast">A collection of types used by the Compiler.</td></tr>
+</tbody>
+</table>
+
+    </div>
+
+                </li>
+                
+            </ul>
+        
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../index.html">Overview</a></li>
+    
+    <li class="navBarCell1Rev">Package</li>
+    
+    <li>Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>
