@@ -75,12 +75,14 @@ public fun Field.javaType(typeSystem: TypeSystem): String = when {
     else -> type.toType().javaType(typeSystem)
 }
 
+@Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN") // We Java Map in this context.
 private fun TypeSystem.mapType(key: PrimitiveType, value: Type): String {
     val keyType = key.primitiveClass()
     val valueType = value.javaType(this)
     return "${java.util.Map::class.java.canonicalName}<$keyType, $valueType>"
 }
 
+@Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN") // We Java List in this context.
 private fun TypeSystem.listOf(element: Type): String {
     val javaType = element.javaType(this)
     return "${java.util.List::class.java.canonicalName}<$javaType>"
