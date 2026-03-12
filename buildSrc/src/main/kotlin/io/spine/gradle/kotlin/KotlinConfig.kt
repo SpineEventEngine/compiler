@@ -56,7 +56,7 @@ fun KotlinJvmProjectExtension.applyJvmToolchain(version: String) =
 @Suppress("unused")
 fun KotlinCommonCompilerOptions.setFreeCompilerArgs() {
     if (this is KotlinJvmCompilerOptions) {
-        jvmDefault.set(JvmDefaultMode.ENABLE)
+        jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
     }
     freeCompilerArgs.addAll(
         listOf(
