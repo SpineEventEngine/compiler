@@ -1,0 +1,10 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.compiler.params/PipelineParameters.Builder///PointingToDeclaration/io/spine/tools/compiler/params/PipelineParameters.Builder.html
+$dokka.location:io.spine.tools.compiler.params/PipelineParametersKt.Dsl.CompiledProtoProxy///PointingToDeclaration/io/spine/tools/compiler/params/PipelineParametersKt.Dsl.CompiledProtoProxy.html
+$dokka.location:io.spine.tools.compiler.params/PipelineParametersKt.Dsl.PluginClassNameProxy///PointingToDeclaration/io/spine/tools/compiler/params/PipelineParametersKt.Dsl.PluginClassNameProxy.html
+$dokka.location:io.spine.tools.compiler.params/PipelineParametersKt.Dsl.SourceRootProxy///PointingToDeclaration/io/spine/tools/compiler/params/PipelineParametersKt.Dsl.SourceRootProxy.html
+$dokka.location:io.spine.tools.compiler.params/PipelineParametersKt.Dsl.TargetRootProxy///PointingToDeclaration/io/spine/tools/compiler/params/PipelineParametersKt.Dsl.TargetRootProxy.html
+$dokka.location:io.spine.tools.compiler.params/PipelineParametersKt.Dsl.UserClasspathProxy///PointingToDeclaration/io/spine/tools/compiler/params/PipelineParametersKt.Dsl.UserClasspathProxy.html
+$dokka.location:io.spine.tools.compiler.params/PipelineParametersKt.Dsl///PointingToDeclaration/io/spine/tools/compiler/params/PipelineParametersKt.Dsl.html
+io.spine.tools.compiler.params
