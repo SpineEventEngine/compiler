@@ -54,13 +54,14 @@ import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Classpath
-import org.gradle.api.tasks.CompileClasspath
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.JavaExec
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectories
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.SourceSet
 
 /**
@@ -90,7 +91,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
      */
     @get:InputFiles
     @get:Optional
-    @get:CompileClasspath
+    @get:PathSensitive(PathSensitivity.ABSOLUTE)
     internal lateinit var sources: Provider<List<Directory>>
 
     @get:InputFiles
