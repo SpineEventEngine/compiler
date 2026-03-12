@@ -52,12 +52,16 @@ import org.gradle.api.artifacts.Configuration
 import org.gradle.api.file.Directory
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
+import org.gradle.api.tasks.CacheableTask
+import org.gradle.api.tasks.Classpath
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.JavaExec
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.OutputDirectories
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.SourceSet
 
 /**
@@ -70,6 +74,7 @@ import org.gradle.api.tasks.SourceSet
  * Users should NOT change the CLI command, user directory, etc. directly.
  * Please refer to the `compiler { }` extension configuring the Compiler.
  */
+@CacheableTask
 public abstract class LaunchSpineCompiler : JavaExec() {
 
     @get:Input
@@ -86,15 +91,18 @@ public abstract class LaunchSpineCompiler : JavaExec() {
      */
     @get:InputFiles
     @get:Optional
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     internal lateinit var sources: Provider<List<Directory>>
 
     @get:InputFiles
+    @get:Classpath
     internal lateinit var userClasspathConfiguration: Configuration
 
     /**
      * A Gradle [Configuration] which is used to run the Compiler.
      */
     @get:InputFiles
+    @get:Classpath
     internal lateinit var compilerConfiguration: Configuration
 
     /**

@@ -62,6 +62,7 @@ internal class FieldTypeExtsSpec {
         }
 
         @Test
+        @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN") // It's what we test here.
         fun `a primitive field`() {
             typeOf("total").javaClassName(typeSystem) shouldBe ClassName(Integer::class.java)
         }
