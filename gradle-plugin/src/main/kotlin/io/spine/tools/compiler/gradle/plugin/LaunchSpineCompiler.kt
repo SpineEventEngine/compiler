@@ -91,7 +91,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
      */
     @get:InputFiles
     @get:Optional
-    @get:PathSensitive(PathSensitivity.ABSOLUTE)
+    @get:PathSensitive(PathSensitivity.RELATIVE)
     internal lateinit var sources: Provider<List<Directory>>
 
     @get:InputFiles
