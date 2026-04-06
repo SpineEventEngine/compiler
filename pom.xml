@@ -230,13 +230,19 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.kotest</groupId>
     <artifactId>kotest-assertions-core</artifactId>
-    <version>6.0.4</version>
+    <version>6.1.11</version>
     <scope>test</scope>
   </dependency>
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-time-java</artifactId>
     <version>2.0.0-SNAPSHOT.235</version>
+    <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>io.spine.tools</groupId>
+    <artifactId>base-testlib</artifactId>
+    <version>2.0.0-SNAPSHOT.212</version>
     <scope>test</scope>
   </dependency>
   <dependency>
@@ -255,12 +261,6 @@ all modules and does not describe the project structure per-subproject.
     <groupId>io.spine.tools</groupId>
     <artifactId>spine-server-testlib</artifactId>
     <version>2.0.0-SNAPSHOT.372</version>
-    <scope>test</scope>
-  </dependency>
-  <dependency>
-    <groupId>io.spine.tools</groupId>
-    <artifactId>spine-testlib</artifactId>
-    <version>2.0.0-SNAPSHOT.211</version>
     <scope>test</scope>
   </dependency>
   <dependency>
