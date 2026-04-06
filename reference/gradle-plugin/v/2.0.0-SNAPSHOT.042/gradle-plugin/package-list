@@ -1,0 +1,22 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.compiler.gradle.plugin////PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/index.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension.Companion///PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/-companion/index.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension.Companion/defaultSubdirectories/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/-companion/default-subdirectories.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension///PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/index.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/Extension/#org.gradle.api.Project/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/-extension.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/outputBaseDir/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/output-base-dir.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/plugins/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/plugins.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/plugins/#kotlin.String/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/plugins.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/subDirs/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/sub-dirs.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/targetBaseDir/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/target-base-dir.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/LaunchSpineCompiler///PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-launch-spine-compiler/index.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/LaunchSpineCompiler/LaunchSpineCompiler/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-launch-spine-compiler/-launch-spine-compiler.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Plugin.Companion///PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-plugin/-companion/index.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Plugin.Companion/readVersion/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-plugin/-companion/read-version.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Plugin.Companion/version/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-plugin/-companion/version.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Plugin///PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-plugin/index.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Plugin/Plugin/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-plugin/-plugin.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Plugin/apply/#org.gradle.api.Project/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-plugin/apply.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Plugin/generatedDir/#org.gradle.api.Project#org.gradle.api.tasks.SourceSet#kotlin.String/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-plugin/generated-dir.html
+io.spine.tools.compiler.gradle.plugin
