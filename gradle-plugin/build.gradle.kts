@@ -161,7 +161,7 @@ publishing {
         }
     }
     publications.withType<MavenPublication>().all {
-        groupId = "io.spine.tools"
+        groupId = Spine.toolsGroup
         artifactId = moduleArtifactId
         version = compilerVersion
     }

@@ -89,7 +89,7 @@ spinePublishing {
         gitHub("compiler")
     )}
 
-    artifactPrefix = "compiler-"
+    toolArtifactPrefix = "compiler-"
 }
 
 allprojects {

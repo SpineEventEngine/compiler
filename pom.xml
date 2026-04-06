@@ -10,7 +10,7 @@ all modules and does not describe the project structure per-subproject.
  -->
 <groupId>io.spine.tools</groupId>
 <artifactId>spine-compiler</artifactId>
-<version>2.0.0-SNAPSHOT.041</version>
+<version>2.0.0-SNAPSHOT.042</version>
 
 <inceptionYear>2015</inceptionYear>
 
@@ -98,19 +98,19 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-base</artifactId>
-    <version>2.0.0-SNAPSHOT.386</version>
+    <version>2.0.0-SNAPSHOT.387</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-environment</artifactId>
-    <version>2.0.0-SNAPSHOT.386</version>
+    <version>2.0.0-SNAPSHOT.387</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-format</artifactId>
-    <version>2.0.0-SNAPSHOT.386</version>
+    <version>2.0.0-SNAPSHOT.387</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -134,37 +134,37 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-server</artifactId>
-    <version>2.0.0-SNAPSHOT.371</version>
+    <version>2.0.0-SNAPSHOT.372</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-validation-jvm-runtime</artifactId>
-    <version>2.0.0-SNAPSHOT.406</version>
+    <version>2.0.0-SNAPSHOT.411</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>gradle-plugin-api</artifactId>
-    <version>2.0.0-SNAPSHOT.375</version>
+    <version>2.0.0-SNAPSHOT.376</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>jvm-tools</artifactId>
-    <version>2.0.0-SNAPSHOT.375</version>
+    <version>2.0.0-SNAPSHOT.376</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>plugin-base</artifactId>
-    <version>2.0.0-SNAPSHOT.375</version>
+    <version>2.0.0-SNAPSHOT.376</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>protobuf-setup-plugins</artifactId>
-    <version>2.0.0-SNAPSHOT.375</version>
+    <version>2.0.0-SNAPSHOT.376</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -176,13 +176,13 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>psi-java</artifactId>
-    <version>2.0.0-SNAPSHOT.375</version>
+    <version>2.0.0-SNAPSHOT.376</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>tool-base</artifactId>
-    <version>2.0.0-SNAPSHOT.375</version>
+    <version>2.0.0-SNAPSHOT.376</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -230,19 +230,25 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.kotest</groupId>
     <artifactId>kotest-assertions-core</artifactId>
-    <version>6.0.4</version>
+    <version>6.1.11</version>
     <scope>test</scope>
   </dependency>
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-time-java</artifactId>
-    <version>2.0.0-SNAPSHOT.232</version>
+    <version>2.0.0-SNAPSHOT.235</version>
+    <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>io.spine.tools</groupId>
+    <artifactId>base-testlib</artifactId>
+    <version>2.0.0-SNAPSHOT.212</version>
     <scope>test</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>plugin-testlib</artifactId>
-    <version>2.0.0-SNAPSHOT.375</version>
+    <version>2.0.0-SNAPSHOT.376</version>
     <scope>test</scope>
   </dependency>
   <dependency>
@@ -254,19 +260,13 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>spine-server-testlib</artifactId>
-    <version>2.0.0-SNAPSHOT.371</version>
+    <version>2.0.0-SNAPSHOT.372</version>
     <scope>test</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
-    <artifactId>spine-testlib</artifactId>
-    <version>2.0.0-SNAPSHOT.211</version>
-    <scope>test</scope>
-  </dependency>
-  <dependency>
-    <groupId>io.spine.tools</groupId>
-    <artifactId>spine-time-testlib</artifactId>
-    <version>2.0.0-SNAPSHOT.232</version>
+    <artifactId>time-testlib</artifactId>
+    <version>2.0.0-SNAPSHOT.235</version>
     <scope>test</scope>
   </dependency>
   <dependency>
@@ -350,22 +350,22 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-cli-all</artifactId>
-    <version>2.0.0-SNAPSHOT.040</version>
+    <version>2.0.0-SNAPSHOT.041</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-protoc-plugin</artifactId>
-    <version>2.0.0-SNAPSHOT.040</version>
+    <version>2.0.0-SNAPSHOT.041</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>core-jvm-gradle-plugins</artifactId>
-    <version>2.0.0-SNAPSHOT.055</version>
+    <version>2.0.0-SNAPSHOT.058</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>core-jvm-routing</artifactId>
-    <version>2.0.0-SNAPSHOT.055</version>
+    <version>2.0.0-SNAPSHOT.058</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
@@ -380,7 +380,7 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>validation-java-bundle</artifactId>
-    <version>2.0.0-SNAPSHOT.406</version>
+    <version>2.0.0-SNAPSHOT.411</version>
   </dependency>
   <dependency>
     <groupId>org.jacoco</groupId>
