@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,6 +79,12 @@ public val FieldType.isMap: Boolean
  */
 public val FieldType.isSingular: Boolean
     get() = isMessage || isEnum || isPrimitive
+
+/**
+ * Tells if this [FieldType] represents a `repeated` of messages.
+ */
+public val FieldType.isRepeatedMessage: Boolean
+    get() = isList && list.isMessage
 
 /**
  * Obtains a cardinality of this field type.

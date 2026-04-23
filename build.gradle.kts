@@ -54,6 +54,7 @@ buildscript {
     configurations.all {
         resolutionStrategy {
             force(
+                io.spine.dependency.lib.JetBrainsAnnotations.lib,
                 io.spine.dependency.lib.Protobuf.javaLib,
                 io.spine.dependency.local.Logging.grpcContext,
                 io.spine.dependency.local.ToolBase.intellijPlatform,

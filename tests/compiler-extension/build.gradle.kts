@@ -36,8 +36,11 @@ buildscript {
             )
         }
     }
+    apply(from = "$rootDir/../version.gradle.kts")
+
+    val compilerVersion: String by extra
     dependencies {
-        classpath(spineCompiler.pluginLib)
+        classpath(spineCompiler.pluginLib(compilerVersion))
         classpath(coreJvmCompiler.pluginLib)
     }
 }

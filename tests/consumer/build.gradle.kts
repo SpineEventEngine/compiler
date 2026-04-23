@@ -37,7 +37,7 @@ buildscript {
     apply(from = "$rootDir/../version.gradle.kts")
     val compilerVersion: String by extra
     dependencies {
-        classpath("io.spine.tools:compiler-gradle-plugin:$compilerVersion")
+        classpath(spineCompiler.pluginLib(compilerVersion))
     }
 }
 
