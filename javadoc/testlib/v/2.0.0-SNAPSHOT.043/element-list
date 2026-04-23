@@ -1,0 +1,26 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.testing.compiler.recorder/EnumTypes.Builder///PointingToDeclaration/io/spine/testing/compiler/recorder/EnumTypes.Builder.html
+$dokka.location:io.spine.testing.compiler.recorder/EnumTypes.Column///PointingToDeclaration/io/spine/testing/compiler/recorder/EnumTypes.Column.html
+$dokka.location:io.spine.testing.compiler.recorder/EnumTypes.Field///PointingToDeclaration/io/spine/testing/compiler/recorder/EnumTypes.Field.html
+$dokka.location:io.spine.testing.compiler.recorder/EnumTypes.Query///PointingToDeclaration/io/spine/testing/compiler/recorder/EnumTypes.Query.html
+$dokka.location:io.spine.testing.compiler.recorder/EnumTypes.QueryBuilder///PointingToDeclaration/io/spine/testing/compiler/recorder/EnumTypes.QueryBuilder.html
+$dokka.location:io.spine.testing.compiler.recorder/EnumTypesKt.Dsl.NameProxy///PointingToDeclaration/io/spine/testing/compiler/recorder/EnumTypesKt.Dsl.NameProxy.html
+$dokka.location:io.spine.testing.compiler.recorder/EnumTypesKt.Dsl///PointingToDeclaration/io/spine/testing/compiler/recorder/EnumTypesKt.Dsl.html
+$dokka.location:io.spine.testing.compiler.recorder/MessageTypes.Builder///PointingToDeclaration/io/spine/testing/compiler/recorder/MessageTypes.Builder.html
+$dokka.location:io.spine.testing.compiler.recorder/MessageTypes.Column///PointingToDeclaration/io/spine/testing/compiler/recorder/MessageTypes.Column.html
+$dokka.location:io.spine.testing.compiler.recorder/MessageTypes.Field///PointingToDeclaration/io/spine/testing/compiler/recorder/MessageTypes.Field.html
+$dokka.location:io.spine.testing.compiler.recorder/MessageTypes.Query///PointingToDeclaration/io/spine/testing/compiler/recorder/MessageTypes.Query.html
+$dokka.location:io.spine.testing.compiler.recorder/MessageTypes.QueryBuilder///PointingToDeclaration/io/spine/testing/compiler/recorder/MessageTypes.QueryBuilder.html
+$dokka.location:io.spine.testing.compiler.recorder/MessageTypesKt.Dsl.NameProxy///PointingToDeclaration/io/spine/testing/compiler/recorder/MessageTypesKt.Dsl.NameProxy.html
+$dokka.location:io.spine.testing.compiler.recorder/MessageTypesKt.Dsl///PointingToDeclaration/io/spine/testing/compiler/recorder/MessageTypesKt.Dsl.html
+$dokka.location:io.spine.testing.compiler.recorder/Services.Builder///PointingToDeclaration/io/spine/testing/compiler/recorder/Services.Builder.html
+$dokka.location:io.spine.testing.compiler.recorder/Services.Column///PointingToDeclaration/io/spine/testing/compiler/recorder/Services.Column.html
+$dokka.location:io.spine.testing.compiler.recorder/Services.Field///PointingToDeclaration/io/spine/testing/compiler/recorder/Services.Field.html
+$dokka.location:io.spine.testing.compiler.recorder/Services.Query///PointingToDeclaration/io/spine/testing/compiler/recorder/Services.Query.html
+$dokka.location:io.spine.testing.compiler.recorder/Services.QueryBuilder///PointingToDeclaration/io/spine/testing/compiler/recorder/Services.QueryBuilder.html
+$dokka.location:io.spine.testing.compiler.recorder/ServicesKt.Dsl.NameProxy///PointingToDeclaration/io/spine/testing/compiler/recorder/ServicesKt.Dsl.NameProxy.html
+$dokka.location:io.spine.testing.compiler.recorder/ServicesKt.Dsl///PointingToDeclaration/io/spine/testing/compiler/recorder/ServicesKt.Dsl.html
+$dokka.location:io.spine.testing.compiler/PipelineSetup.Companion///PointingToDeclaration/io/spine/testing/compiler/PipelineSetup.Companion.html
+io.spine.testing.compiler
+io.spine.testing.compiler.recorder
