@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,30 +58,42 @@ internal class FieldTypeSpec {
     `provide type name for diagnostics` : TypeTest() {
 
         /** Obtains a type name of the field with the given name. */
-        private fun nameOf(fieldName: String) = typeOf(fieldName).name
+        private fun nameOf(fieldName: String): String = typeOf(fieldName).name
 
         @Test
-        fun `when primitive`() = nameOf("count") shouldBe "int32"
+        fun `when primitive`() {
+            nameOf("count") shouldBe "int32"
+        }
 
         @Test
-        fun `when message`() = nameOf("email") shouldBe "given.type.Email"
+        fun `when message`() {
+            nameOf("email") shouldBe "given.type.Email"
+        }
 
         @Test
-        fun `when enum`() = nameOf("assumed") shouldBe "given.type.Priority"
+        fun `when enum`() {
+            nameOf("assumed") shouldBe "given.type.Priority"
+        }
 
         @Test
-        fun `when repeated primitive`() = nameOf("counts") shouldBe "repeated uint64"
+        fun `when repeated primitive`() {
+            nameOf("counts") shouldBe "repeated uint64"
+        }
 
         @Test
-        fun `when repeated message`() = nameOf("emails") shouldBe "repeated given.type.Email"
+        fun `when repeated message`() {
+            nameOf("emails") shouldBe "repeated given.type.Email"
+        }
 
         @Test
-        fun `when map with primitive values`() =
+        fun `when map with primitive values`() {
             nameOf("histogram") shouldBe "map<string, sint64>"
+        }
 
         @Test
-        fun `when map with message values`() =
+        fun `when map with message values`() {
             nameOf("sorted") shouldBe "map<int32, given.type.Email>"
+        }
 
         @Test
         fun `returning the name of 'kindCase' otherwise`() {
@@ -133,13 +145,19 @@ internal class FieldTypeSpec {
         private fun cardinalityOf(fieldName: String): Cardinality = typeOf(fieldName).cardinality
 
         @Test
-        fun `single fields`() = cardinalityOf("count") shouldBe CARDINALITY_SINGLE
+        fun `single fields`() {
+            cardinalityOf("count") shouldBe CARDINALITY_SINGLE
+        }
 
         @Test
-        fun `list fields`() = cardinalityOf("counts") shouldBe CARDINALITY_LIST
+        fun `list fields`() {
+            cardinalityOf("counts") shouldBe CARDINALITY_LIST
+        }
 
         @Test
-        fun `map fields`() = cardinalityOf("histogram") shouldBe CARDINALITY_MAP
+        fun `map fields`() {
+            cardinalityOf("histogram") shouldBe CARDINALITY_MAP
+        }
 
         @Test
         fun `throwing when no type information available`() {
@@ -161,12 +179,14 @@ internal class FieldTypeSpec {
         }
 
         @Test
-        fun `when message`() =
+        fun `when message`() {
             toType("email") shouldBe type { message = Email.getDescriptor().name() }
+        }
 
         @Test
-        fun `when enum`() =
+        fun `when enum`() {
             toType("assumed") shouldBe type { enumeration = Priority.getDescriptor().name() }
+        }
 
         @Test
         fun `rejecting when list`() {
@@ -197,13 +217,19 @@ internal class FieldTypeSpec {
         private val expected = Email.getDescriptor().toMessageType()
 
         @Test
-        fun `when message`() = messageTypeFrom("email") shouldBe expected
+        fun `when message`() {
+            messageTypeFrom("email") shouldBe expected
+        }
 
         @Test
-        fun `when list`() = messageTypeFrom("emails") shouldBe expected
+        fun `when list`() {
+            messageTypeFrom("emails") shouldBe expected
+        }
 
         @Test
-        fun `when map`() = messageTypeFrom("sorted") shouldBe expected
+        fun `when map`() {
+            messageTypeFrom("sorted") shouldBe expected
+        }
 
         @Test
         fun `returning 'null' for other types`() {
@@ -251,13 +277,19 @@ internal class FieldTypeSpec {
             typeOf(fieldName).extractPrimitiveType()
 
         @Test
-        fun `from singular`() = extractFrom("count") shouldBe TYPE_INT32
+        fun `from singular`() {
+            extractFrom("count") shouldBe TYPE_INT32
+        }
 
         @Test
-        fun `from list`() = extractFrom("counts") shouldBe TYPE_UINT64
+        fun `from list`() {
+            extractFrom("counts") shouldBe TYPE_UINT64
+        }
 
         @Test
-        fun `from map`() = extractFrom("histogram") shouldBe TYPE_SINT64
+        fun `from map`() {
+            extractFrom("histogram") shouldBe TYPE_SINT64
+        }
 
         @Test
         fun `returning 'null' if does not refer to a primitive type`() {
@@ -277,22 +309,34 @@ internal class FieldTypeSpec {
         private val expectedMessageType = Email.getDescriptor().toType()
 
         @Test
-        fun `when primitive`() = extractFrom("count") shouldBe TYPE_INT32.toType()
+        fun `when primitive`() {
+            extractFrom("count") shouldBe TYPE_INT32.toType()
+        }
 
         @Test
-        fun `when list of primitives`() = extractFrom("counts") shouldBe TYPE_UINT64.toType()
+        fun `when list of primitives`() {
+            extractFrom("counts") shouldBe TYPE_UINT64.toType()
+        }
 
         @Test
-        fun `when message`() = extractFrom("email") shouldBe expectedMessageType
+        fun `when message`() {
+            extractFrom("email") shouldBe expectedMessageType
+        }
 
         @Test
-        fun `when message list`() = extractFrom("emails") shouldBe expectedMessageType
+        fun `when message list`() {
+            extractFrom("emails") shouldBe expectedMessageType
+        }
 
         @Test
-        fun `when a map with messages`() = extractFrom("sorted") shouldBe expectedMessageType
+        fun `when a map with messages`() {
+            extractFrom("sorted") shouldBe expectedMessageType
+        }
 
         @Test
-        fun `when a map with primitives`() = extractFrom("histogram") shouldBe TYPE_SINT64.toType()
+        fun `when a map with primitives`() {
+            extractFrom("histogram") shouldBe TYPE_SINT64.toType()
+        }
 
         @Test
         fun `throwing when type info is not available`() {
