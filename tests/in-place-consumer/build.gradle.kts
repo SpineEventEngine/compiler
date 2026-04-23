@@ -31,7 +31,7 @@ buildscript {
     apply(from = "$rootDir/../version.gradle.kts")
     val compilerVersion: String by extra
     dependencies {
-        classpath("io.spine.tools:compiler-gradle-plugin:$compilerVersion")
+        classpath(spineCompiler.pluginLib(compilerVersion))
     }
 }
 
@@ -40,8 +40,9 @@ plugins {
 }
 
 dependencies {
-    spineCompiler(project(":compiler-extension"))
-    implementation(project(":compiler-extension"))
+    val compilerExtensionProject = project(":compiler-extension")
+    spineCompiler(compilerExtensionProject)
+    implementation(compilerExtensionProject)
 }
 
 val protobufDir = "$projectDir/proto-gen/"
