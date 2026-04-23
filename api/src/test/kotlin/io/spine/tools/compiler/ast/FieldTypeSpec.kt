@@ -142,7 +142,8 @@ internal class FieldTypeSpec {
     @Test
     fun `tell if it is repeated message`() {
         val messageType = FieldSamples.getDescriptor().toMessageType()
-        fun isRepeatedMessage(fieldName: String) = messageType.field(fieldName).type.isRepeatedMessage
+        fun isRepeatedMessage(fieldName: String) =
+            messageType.field(fieldName).type.isRepeatedMessage
 
         isRepeatedMessage("email") shouldBe false
         isRepeatedMessage("counts") shouldBe false
