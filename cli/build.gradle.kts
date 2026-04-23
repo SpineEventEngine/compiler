@@ -31,7 +31,7 @@ import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.gradle.publish.SpinePublishing
-import io.spine.gradle.publish.handleMergingServiceFiles
+import io.spine.gradle.publish.setup
 
 plugins {
     module
@@ -133,7 +133,7 @@ tasks.publish {
 }
 
 tasks.shadowJar {
-    handleMergingServiceFiles()
+    setup()
 
     // minimize() ?
 

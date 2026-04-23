@@ -24,35 +24,19 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.local
-
-// For backward compatibility.
-@Suppress("unused")
-@Deprecated("Use `CoreJvm` instead.", ReplaceWith("CoreJvm"))
-typealias CoreJava = CoreJvm
+package io.spine.dependency.lib
 
 /**
- * Dependencies on `core-jvm` modules.
+ * Annotations library from JetBrains.
  *
- * See [`SpineEventEngine/core-jvm`](https://github.com/SpineEventEngine/core-jvm/).
+ * https://github.com/JetBrains/java-annotations
  */
-@Suppress("ConstPropertyName", "unused")
-object CoreJvm {
-    const val group = Spine.group
-    const val version = "2.0.0-SNAPSHOT.373"
-
-    const val coreArtifact = "spine-core"
-    const val clientArtifact = "spine-client"
-    const val serverArtifact = "spine-server"
-
-    const val core = "$group:$coreArtifact:$version"
-    const val client = "$group:$clientArtifact:$version"
-    const val server = "$group:$serverArtifact:$version"
-
-    @Deprecated("Use `serverTestLib` instead.", ReplaceWith("serverTestLib"))
-    const val testUtilServer = "${Spine.toolsGroup}:server-testlib:$version"
-
-    const val coreTestLib = "${Spine.toolsGroup}:core-testlib:$version"
-    const val clientTestLib = "${Spine.toolsGroup}:client-testlib:$version"
-    const val serverTestLib = "${Spine.toolsGroup}:server-testlib:$version"
+object JetBrainsAnnotations {
+    /**
+     * The version of the library transitively used.
+     */
+    const val version = "23.0.0"
+    const val groupId = "org.jetbrains"
+    const val artifactId = "annotations"
+    const val lib = "$groupId:$artifactId:$version"
 }

@@ -36,9 +36,6 @@ plugins {
     java
     groovy
     `kotlin-dsl`
-
-    // https://github.com/jk1/Gradle-License-Report/releases
-    id("com.github.jk1.dependency-license-report").version("2.9")
 }
 
 repositories {
@@ -144,7 +141,7 @@ val koverVersion = "0.9.1"
  *
  * @see <a href="https://github.com/GradleUp/shadow">Shadow Plugin releases</a>
  */
-val shadowVersion = "9.2.2"
+val shadowVersion = "9.4.1"
 
 /**
  * The version of JUnit used to test the build scripts.
