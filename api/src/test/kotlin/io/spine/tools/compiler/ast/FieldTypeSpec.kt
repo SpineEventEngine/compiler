@@ -139,6 +139,18 @@ internal class FieldTypeSpec {
         FieldType.getDefaultInstance().isSingular shouldBe false
     }
 
+    @Test
+    fun `tell if it is repeated message`() {
+        val messageType = FieldSamples.getDescriptor().toMessageType()
+        fun isRepeatedMessage(fieldName: String) = messageType.field(fieldName).type.isRepeatedMessage
+
+        isRepeatedMessage("email") shouldBe false
+        isRepeatedMessage("counts") shouldBe false
+        isRepeatedMessage("sorted") shouldBe false
+        isRepeatedMessage("count") shouldBe false
+        isRepeatedMessage("emails") shouldBe true
+    }
+
     @Nested inner class
     `obtain cardinality of` : TypeTest()  {
 

@@ -81,6 +81,12 @@ public val FieldType.isSingular: Boolean
     get() = isMessage || isEnum || isPrimitive
 
 /**
+ * Tells if this [FieldType] represents a `repeated` of messages.
+ */
+public val FieldType.isRepeatedMessage: Boolean
+    get() = isList && list.isMessage
+
+/**
  * Obtains a cardinality of this field type.
  *
  * @see Cardinality
