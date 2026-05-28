@@ -72,7 +72,8 @@ internal class ActionFactorySpec {
     )
 
     /**
-     * A stub instance of [CodegenContext] to be passed to [ActionFactory.create].
+     * A stub instance of [io.spine.tools.compiler.context.CodegenContext]
+     * to be passed to [ActionFactory.create].
      */
     private val stubContext = StubContext()
 
