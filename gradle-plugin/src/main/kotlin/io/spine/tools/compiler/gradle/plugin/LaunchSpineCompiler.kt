@@ -135,7 +135,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
      */
     internal fun compileCommandLine() {
         val command = sequence {
-            // Pass parameters file.
+            // Pass the parameters file.
             val sourceSet = SourceSetName(sourceSetName.get())
             yield(ParametersFileParam.name)
             yield(workingDir.parametersDirectory.file(sourceSet))
