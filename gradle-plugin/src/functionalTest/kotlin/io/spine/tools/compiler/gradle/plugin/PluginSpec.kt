@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 package io.spine.tools.compiler.gradle.plugin
 
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import io.spine.tools.compiler.gradle.api.CompilerTaskName
 import io.spine.tools.compiler.gradle.api.Names.GRADLE_PLUGIN_ID
 import io.spine.testing.SlowTest
@@ -210,6 +211,19 @@ class PluginSpec {
         val generatedGrpcDir = generatedMainDir.resolve("grpc")
         assertExists(generatedGrpcDir)
         assertExists(generatedGrpcDir.resolve(serviceClass))
+    }
+
+    @Test
+    fun `make the KSP task depend on the launch task`() {
+        createProject("ksp-test")
+        val printKspDependencies = TaskName.of("printKspDependencies")
+
+        val result = project.executeTask(printKspDependencies)
+
+        result[printKspDependencies] shouldBe SUCCESS
+        val dependenciesLine = result.output.lineSequence()
+            .first { it.startsWith("KSP_DEPENDENCIES=") }
+        dependenciesLine shouldContain launchSpineCompiler.name()
     }
 }
 

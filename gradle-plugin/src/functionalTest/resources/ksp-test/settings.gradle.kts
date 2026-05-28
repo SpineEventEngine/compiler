@@ -24,23 +24,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.compiler.gradle.plugin
-
-import io.spine.tools.code.SourceSetName
-import io.spine.tools.gradle.task.TaskWithSourceSetName
-import org.gradle.api.tasks.SourceSet
-
-/**
- * The name of the Kotlin Symbol Processing (KSP) task, such as `kspKotlin` or `kspTestKotlin`.
- */
-internal class KspTaskName(ssn: SourceSetName) :
-    TaskWithSourceSetName("ksp${ssn.toInfix()}Kotlin", ssn) {
-
-    companion object {
-
-        /**
-         * Obtains the task name for the given source set.
-         */
-        fun of(ss: SourceSet) = KspTaskName(SourceSetName(ss.name))
+pluginManagement {
+    repositories {
+        mavenLocal()
+        // For finding the KSP Gradle plugin.
+        gradlePluginPortal()
     }
 }
