@@ -65,7 +65,7 @@ import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.SourceSet
 
 /**
- * A task which executes a single Spine Compiler command.
+ * A task that executes a single Spine Compiler command.
  *
  * This class is public to allow users to find the Compiler tasks by their type.
  * This is useful to configure task dependencies, enable and disable individual tasks,
