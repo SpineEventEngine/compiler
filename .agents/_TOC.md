@@ -1,7 +1,7 @@
 # Table of Contents
 
 1. [Quick Reference Card](quick-reference-card.md)
-2. [Project overview](project-overview.md)
+2. [JVM project requirements](jvm-project.md) — language, build, and review checklist shared by all JVM repos
 3. [Coding guidelines](coding-guidelines.md)
 4. [Documentation & comments](documentation-guidelines.md)
 5. [Documentation tasks](documentation-tasks.md)
@@ -13,9 +13,11 @@
 11. [Advanced safety rules](advanced-safety-rules.md)
 12. [Refactoring guidelines](refactoring-guidelines.md)
 13. [Common tasks](common-tasks.md)
-14. [Java to Kotlin conversion](skills/java-to-kotlin/SKILL.md)
-15. [Dependency update](skills/dependency-update/SKILL.md)
-16. [Documentation review](skills/review-docs/SKILL.md)
-17. [Pre-PR checklist](skills/pre-pr/SKILL.md)
-18. [Kotlin code review](skills/kotlin-review/SKILL.md)
-19. [Dependency audit](skills/dependency-audit/SKILL.md)
+14. [Team memory](memory/MEMORY.md)
+15. [Task plans](tasks/README.md)
+16. [Java to Kotlin conversion](skills/java-to-kotlin/SKILL.md)
+17. [Dependency update](skills/dependency-update/SKILL.md)
+18. [Documentation review](skills/review-docs/SKILL.md)
+19. [Pre-PR checklist](skills/pre-pr/SKILL.md)
+20. [Kotlin code review](skills/kotlin-review/SKILL.md)
+21. [Dependency audit](skills/dependency-audit/SKILL.md)
