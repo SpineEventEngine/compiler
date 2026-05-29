@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.SourceSet
 
 /**
- * A task which executes a single Spine Compiler command.
+ * A task that executes a single Spine Compiler command.
  *
  * This class is public to allow users to find the Compiler tasks by their type.
  * This is useful to configure task dependencies, enable and disable individual tasks,
@@ -135,7 +135,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
      */
     internal fun compileCommandLine() {
         val command = sequence {
-            // Pass parameters file.
+            // Pass the parameters file.
             val sourceSet = SourceSetName(sourceSetName.get())
             yield(ParametersFileParam.name)
             yield(workingDir.parametersDirectory.file(sourceSet))
@@ -211,6 +211,19 @@ internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
     }
 }
 
+/**
+ * Arranges the dependencies of this task that can be resolved by the time the
+ * Compiler plugin is applied.
+ *
+ * Makes this task depend on the build of the configurations used to run the Compiler,
+ * and makes the Java and Kotlin compilation tasks depend on this task.
+ *
+ * The dependency of the Kotlin Symbol Processing (KSP) task is arranged separately
+ * after the project is evaluated because the KSP task is not yet registered by the
+ * time the Compiler plugin is applied.
+ *
+ * @see [Project.arrangeKspTaskDependency][io.spine.tools.compiler.gradle.plugin.arrangeKspTaskDependency]
+ */
 private fun LaunchSpineCompiler.setDependencies(sourceSet: SourceSet) {
     val project = project
     dependsOn(
@@ -220,9 +233,6 @@ private fun LaunchSpineCompiler.setDependencies(sourceSet: SourceSet) {
     val launchTask = this
     project.findJavaCompileFor(sourceSet)?.dependsOn(launchTask)
     project.findKotlinCompileFor(sourceSet)?.dependsOn(launchTask)
-
-    val kspTask = KspTaskName.of(sourceSet)
-    project.tasks.findByName(kspTask.value())?.dependsOn(launchTask)
 }
 
 /**

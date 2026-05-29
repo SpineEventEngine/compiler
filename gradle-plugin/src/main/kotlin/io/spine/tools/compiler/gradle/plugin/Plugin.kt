@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -180,13 +180,44 @@ private fun Project.createConfigurations(compilerVersion: String) {
  * There may be cases of source sets added by other plugins after this function is invoked.
  * Such cases are handled by the [handleLaunchTaskDependency] function.
  *
+ * The dependency of the Kotlin Symbol Processing (KSP) task on the [LaunchSpineCompiler]
+ * task is arranged on [Project.afterEvaluate] because the KSP task is not yet registered
+ * by the time this plugin is applied.
+ *
  * @see [Project.handleLaunchTaskDependency]
+ * @see [Project.arrangeKspTaskDependency]
  */
 private fun Project.createTasks() {
     sourceSets.forEach { sourceSet ->
         createLaunchTask(sourceSet)
         createCleanTask(sourceSet)
     }
+    afterEvaluate {
+        sourceSets.forEach { sourceSet ->
+            arrangeKspTaskDependency(sourceSet)
+        }
+    }
+}
+
+/**
+ * Makes the Kotlin Symbol Processing (KSP) task for the given [sourceSet] depend on
+ * the [LaunchSpineCompiler] task, so that the Compiler runs before the generated code
+ * is processed by KSP.
+ *
+ * Does nothing if the [LaunchSpineCompiler] task was not created for the [sourceSet],
+ * or if the KSP task is not present in the project.
+ *
+ * This function must be called after the project is evaluated because the KSP task is
+ * not yet registered by the time the Compiler plugin is applied. The dependencies of
+ * the compilation tasks are arranged earlier, when the [LaunchSpineCompiler] task is
+ * configured.
+ *
+ * @see [LaunchSpineCompiler.setDependencies][io.spine.tools.compiler.gradle.plugin.setDependencies]
+ */
+private fun Project.arrangeKspTaskDependency(sourceSet: SourceSet) {
+    val launchTask = CompilerTask.find(this, sourceSet) ?: return
+    val kspTaskName = KspTaskName.of(sourceSet).value()
+    tasks.findByName(kspTaskName)?.dependsOn(launchTask)
 }
 
 /**
@@ -338,5 +369,6 @@ private fun Project.handleLaunchTaskDependency(generateProto: GenerateProtoTask)
                 it.dependsOn(generateProto)
             }
             createCleanTask(sourceSet)
+            arrangeKspTaskDependency(sourceSet)
         }
 }

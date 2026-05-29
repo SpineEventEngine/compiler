@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,10 +31,10 @@ import io.spine.tools.gradle.task.TaskWithSourceSetName
 import org.gradle.api.tasks.SourceSet
 
 /**
- * The name of the Kotlin Symbol Processing task, such as `compileKotlin` or `compileTestKotlin`.
+ * The name of the Kotlin Symbol Processing (KSP) task, such as `kspKotlin` or `kspTestKotlin`.
  */
 internal class KspTaskName(ssn: SourceSetName) :
-    TaskWithSourceSetName("compile${ssn.toInfix()}Kotlin", ssn) {
+    TaskWithSourceSetName("ksp${ssn.toInfix()}Kotlin", ssn) {
 
     companion object {
 
