@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,14 +24,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.test
+package io.spine.gradle
 
 /**
- * Code coverage library for Java.
+ * The Gradle task group used by every custom task registered or
+ * configured by Spine SDK code.
  *
- * @see <a href="https://www.eclemma.org/jacoco/">Releases</a>
+ * Setting `group = SpineTaskGroup.name` on every Spine-specific task
+ * keeps them listed together under `spine` in `./gradlew tasks` and
+ * in the IntelliJ IDEA Gradle tool window. See
+ * `.agents/skills/gradle-review/spine-task-conventions.md` in the
+ * `config` repository for the full convention and rationale.
+ *
+ * Example:
+ * ```
+ * tasks.register("generateSpineModel") {
+ *     group = SpineTaskGroup.name
+ *     description = "Generates Spine model classes from .proto definitions"
+ * }
+ * ```
  */
-@Suppress("ConstPropertyName")
-object Jacoco {
-    const val version = "0.8.13"
+object SpineTaskGroup {
+    const val name = "spine"
 }
