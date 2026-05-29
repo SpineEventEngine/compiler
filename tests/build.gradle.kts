@@ -112,6 +112,7 @@ subprojects {
                     Base.annotations,
                     Base.lib,
                     Base.environment,
+                    Base.format,
                     Time.lib,
                     Time.javaExtensions,
                     ToolBase.lib,
