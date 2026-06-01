@@ -1,0 +1,5 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.compiler.cli.app////PointingToDeclaration/cli/io.spine.tools.compiler.cli.app/index.html
+$dokka.location:io.spine.tools.compiler.cli.app//main/#kotlin.Array[kotlin.String]/PointingToDeclaration/cli/io.spine.tools.compiler.cli.app/main.html
+io.spine.tools.compiler.cli.app
