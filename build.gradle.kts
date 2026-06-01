@@ -37,7 +37,7 @@ import io.spine.gradle.publish.PublishingRepos
 import io.spine.gradle.publish.SpinePublishing
 import io.spine.gradle.publish.spinePublishing
 import io.spine.gradle.repo.standardToSpineSdk
-import io.spine.gradle.report.coverage.JacocoConfig
+import io.spine.gradle.report.coverage.KoverConfig
 import io.spine.gradle.report.license.LicenseReporter
 import io.spine.gradle.report.pom.PomGenerator
 
@@ -67,7 +67,7 @@ buildscript {
 
 plugins {
     kotlin
-    jacoco
+    id("org.jetbrains.kotlinx.kover")
     `gradle-doctor`
     `project-report`
     `dokka-setup`
@@ -120,7 +120,7 @@ allprojects {
 
 PomGenerator.applyTo(project)
 LicenseReporter.mergeAllReports(project)
-JacocoConfig.applyTo(project)
+KoverConfig.applyTo(project)
 
 /**
  * Collect `publishToMavenLocal` tasks for all subprojects that are specified for

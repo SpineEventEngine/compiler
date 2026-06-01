@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,27 +24,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.gradle.report.coverage
-
-import java.io.File
+package io.spine.gradle
 
 /**
- * Utilities for filtering the groups of `File`s.
+ * The Gradle task group used by every custom task registered or
+ * configured by Spine SDK code.
+ *
+ * Setting `group = SpineTaskGroup.name` on every Spine-specific task
+ * keeps them listed together under `spine` in `./gradlew tasks` and
+ * in the IntelliJ IDEA Gradle tool window. See
+ * `.agents/skills/gradle-review/spine-task-conventions.md` in the
+ * `config` repository for the full convention and rationale.
+ *
+ * Example:
+ * ```
+ * tasks.register("generateSpineModel") {
+ *     group = SpineTaskGroup.name
+ *     description = "Generates Spine model classes from .proto definitions"
+ * }
+ * ```
  */
-internal object FileFilter {
-
-    /**
-     * Excludes the generated files from this file collection, leaving only those which were
-     * created by human beings.
-     */
-    fun producedByHuman(files: Iterable<File>): Iterable<File> {
-        return files.filter { !it.isGenerated }
-    }
-
-    /**
-     * Filters this file collection so that only generated files are present.
-     */
-    fun generatedOnly(files: Iterable<File>): Iterable<File> {
-        return files.filter { it.isGenerated }
-    }
+object SpineTaskGroup {
+    const val name = "spine"
 }
