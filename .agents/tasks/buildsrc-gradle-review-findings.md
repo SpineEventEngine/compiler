@@ -46,16 +46,16 @@ The string `"spine"` does not appear as a task group anywhere in
 
 **A.1 — Tasks that set `group` to a non-Spine value.**
 
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/testing/Tasks.kt:82, 96`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/testing/Tasks.kt:82, 96`
       — `FastTest` / `SlowTest`: replace `group = "Verification"`
       with `group = SpineTaskGroup.name`.
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/dart/task/DartTasks.kt:111-114`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/dart/task/DartTasks.kt:111-114`
       — drop the `Group` object (`"Dart/Build"`, `"Dart/Publish"`).
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/javascript/task/JsTasks.kt:111-117`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/javascript/task/JsTasks.kt:111-117`
       — drop the `Group` object (`"JavaScript/Assemble"`,
       `"JavaScript/Check"`, `"JavaScript/Clean"`, `"JavaScript/Build"`,
       `"JavaScript/Publish"`).
-- [ ] Update every `Group.*` consumer to set
+- [x] Update every `Group.*` consumer to set
       `group = SpineTaskGroup.name` instead:
       `Webpack.kt:104`, `Check.kt:100, 129, 164, 189`,
       `Assemble.kt:108, 133, 161, 188`, `Publish.kt:93, 116, 156, 187`,
@@ -67,30 +67,47 @@ The string `"spine"` does not appear as a task group anywhere in
 For each, add `group = SpineTaskGroup.name` and an imperative
 `description` (no trailing period):
 
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/javadoc/ExcludeInternalDoclet.kt:94`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/javadoc/ExcludeInternalDoclet.kt:94`
       (`tasks.register(taskName, Javadoc::class.java)`).
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/publish/IncrementGuard.kt:58`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/publish/IncrementGuard.kt:58`
       (`tasks.register(taskName, CheckVersionIncrement::class.java)`).
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/github/pages/UpdateGitHubPages.kt:121, 149, 165, 183`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/github/pages/UpdateGitHubPages.kt:121, 149, 165, 183`
       (`updateGitHubPages`, `copyJavadocDocs`, `copyHtmlDocs`,
       `updatePagesTask`).
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/report/coverage/JacocoConfig.kt:165, 196`
-      (`jacocoRootReport`, `copyReports`).
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/report/license/LicenseReporter.kt:111`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/report/coverage/JacocoConfig.kt:165, 196`
+      (`jacocoRootReport`, `copyReports`). **Superseded by Kover-only
+      migration**: this file is deprecated; do not invest in micro-rewrites.
+      See `.agents/skills/raise-coverage/references/migrate-to-kover.md`.
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/report/license/LicenseReporter.kt:111`
       (`mergeAllLicenseReports`).
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/report/pom/PomGenerator.kt:85`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/report/pom/PomGenerator.kt:85`
       (`generatePom`).
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/publish/PublishingExts.kt:235, 249, 261, 273`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/publish/PublishingExts.kt:235, 249, 261, 273`
       (`sourcesJar`, `protoJar`, `testJar`, `javadocJar` via
       `getOrCreate`).
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/ConfigTester.kt:100, 121, 136`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/ConfigTester.kt:100, 121, 136`
       (three registrations).
-- [ ] `buildSrc/src/main/kotlin/write-manifest.gradle.kts:106`
+- [x] `buildSrc/src/main/kotlin/write-manifest.gradle.kts:106`
       (`exposeManifestForTests`).
-- [ ] `buildSrc/src/main/kotlin/config-tester.gradle.kts:53`
+- [x] `buildSrc/src/main/kotlin/config-tester.gradle.kts:53`
       (the script's local `clean`).
-- [ ] `buildSrc/src/main/kotlin/jvm-module.gradle.kts:152`
+- [x] `buildSrc/src/main/kotlin/jvm-module.gradle.kts:152`
       (`cleanGenerated`).
+
+**A.3 — Additional Spine-owned registrations uncovered during
+review of Section A.** Not listed in the original `/gradle-review`
+report but covered by the same mandate. All addressed in the same PR.
+
+- [x] `buildSrc/src/main/kotlin/DokkaExts.kt:206`
+      (`htmlDocsJar` via `getOrCreate`).
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/dart/task/IntegrationTest.kt:76`
+      (`DartTasks.integrationTest`).
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/publish/PublishingExts.kt:157`
+      (`getOrCreatePublishTask` — the root-aggregator `publish` task
+      created when the `maven-publish` plugin is absent).
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/publish/PublishingExts.kt:186`
+      (`registerCheckCredentialsTask` — both the `register` and the
+      `replace` code paths).
 
 ### B. `Provider.get()` outside a task action (Must fix)
 
@@ -98,7 +115,7 @@ Each of these forces evaluation during the configuration phase,
 breaking the configuration cache and serialising work Gradle would
 otherwise run in parallel.
 
-- [ ] `buildSrc/src/main/kotlin/jacoco-kmm-jvm.gradle.kts:58-72` —
+- [x] `buildSrc/src/main/kotlin/jacoco-kmm-jvm.gradle.kts:58-72` —
       rewrite the `tasks.getting(JacocoReport::class) { ... }` block
       to `tasks.named<JacocoReport>("jacocoTestReport") { ... }`,
       remove the `project.layout.buildDirectory.get().asFile.absolutePath`
@@ -107,6 +124,9 @@ otherwise run in parallel.
       that the current code silently produces an empty set on a
       clean build because `build/classes/kotlin/jvm/` does not yet
       exist — that correctness bug goes away with the lazy form.
+      **Superseded by Kover-only migration**: this file is deprecated;
+      do not invest in micro-rewrites. See
+      `.agents/skills/raise-coverage/references/migrate-to-kover.md`.
 - [ ] `buildSrc/src/main/kotlin/DokkaExts.kt:62` — change
       `dokkaHtmlOutput(): File` to return `Provider<Directory>` (or
       a `DirectoryProperty`); update its two call sites.
@@ -118,8 +138,11 @@ otherwise run in parallel.
 - [ ] `buildSrc/src/main/kotlin/io/spine/gradle/report/license/LicenseReporter.kt:84`
       — `project.layout.buildDirectory.dir(Paths.relativePath).get().asFile`:
       compose with `map` and consume inside the action.
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/report/coverage/JacocoConfig.kt:98-99`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/report/coverage/JacocoConfig.kt:98-99`
       — same pattern with the `reportsDirSuffix` directory.
+      **Superseded by Kover-only migration**: this file is deprecated;
+      do not invest in micro-rewrites. See
+      `.agents/skills/raise-coverage/references/migrate-to-kover.md`.
 - [ ] `buildSrc/src/main/kotlin/DependencyResolution.kt:146` —
       `named(configurationName).get().exclude(...)`: rewrite as
       `named(configurationName) { exclude(...) }`.
@@ -134,9 +157,12 @@ upstream rule warns about.
       — `docletpath = excludeInternalDoclet.files.toList()`: route
       via a `Provider<List<File>>` from `excludeInternalDoclet.elements`,
       resolved inside the `Javadoc` task action.
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/report/coverage/CodebaseFilter.kt:65`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/report/coverage/CodebaseFilter.kt:65`
       — `it.classesDirs.files.stream()`: switch to
       `it.classesDirs.elements` and a lazy stream/iterator.
+      **Superseded by Kover-only migration**: this file is deprecated;
+      do not invest in micro-rewrites. See
+      `.agents/skills/raise-coverage/references/migrate-to-kover.md`.
 
 ### D. Plugin task classes — caching annotations (Should fix)
 
@@ -166,10 +192,13 @@ Replace eager APIs with their lazy siblings where one exists:
 
 - [ ] `buildSrc/src/main/kotlin/uber-jar-module.gradle.kts:73` —
       `tasks.getting` → `tasks.named<Task>("publishFatJarPublicationToMavenLocal") { ... }`.
-- [ ] `buildSrc/src/main/kotlin/jacoco-kmm-jvm.gradle.kts:58` —
+- [x] `buildSrc/src/main/kotlin/jacoco-kmm-jvm.gradle.kts:58` —
       `tasks.getting(JacocoReport::class)` →
       `tasks.named<JacocoReport>("jacocoTestReport") { ... }` (folded
       into B above).
+      **Superseded by Kover-only migration**: this file is deprecated;
+      do not invest in micro-rewrites. See
+      `.agents/skills/raise-coverage/references/migrate-to-kover.md`.
 - [ ] `buildSrc/src/main/kotlin/io/spine/gradle/publish/IncrementGuard.kt:60`
       — `tasks.getByName("check").dependsOn(this)` →
       `tasks.named("check") { dependsOn(this@register) }`.
@@ -198,10 +227,13 @@ Replace eager APIs with their lazy siblings where one exists:
       `htmlDocsJar()`: same pattern; wire
       `from(tasks.dokkaHtmlTask().map { it.outputs.files })` and
       remove the explicit `dependsOn(dokkaTask)`.
-- [ ] `buildSrc/src/main/kotlin/io/spine/gradle/report/coverage/JacocoConfig.kt:196-203`
+- [x] `buildSrc/src/main/kotlin/io/spine/gradle/report/coverage/JacocoConfig.kt:196-203`
       — drop the trailing `dependsOn(projects.map { ... })` once
       `everyExecData` is verified to be a Provider-typed chain that
       carries producer dependencies.
+      **Superseded by Kover-only migration**: this file is deprecated;
+      do not invest in micro-rewrites. See
+      `.agents/skills/raise-coverage/references/migrate-to-kover.md`.
 - [ ] `buildSrc/src/main/kotlin/io/spine/gradle/report/license/LicenseReporter.kt:117-118, 123`
       — the explicit `consolidationTask.dependsOn(perProjectTask)`
       and `perProjectTask.dependsOn(assembleTask)` should be
@@ -262,3 +294,10 @@ Replace eager APIs with their lazy siblings where one exists:
 - 2026-05-29 — drafted from the `/gradle-review` run on the full
   `buildSrc/` tree. Branch `gradle-review-skill` carries the
   document; execution lands in a separate PR.
+- 2026-05-29 — Section A applied on branch
+  `address-gradle-review-01`. Five review rounds against the diff
+  surfaced four additional Spine-owned task registrations that the
+  original report missed (`htmlDocsJar`, dart `integrationTest`, the
+  root-aggregator `publish` task, and `checkCredentials`); all four
+  added to Section A.3 and addressed in the same PR. Sections B–H
+  remain pending.
