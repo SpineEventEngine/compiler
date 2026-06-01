@@ -49,7 +49,7 @@ plugins {
     id("net.ltgt.errorprone")
     id("detekt-code-analysis")
     id("dokka-setup")
-    jacoco
+    id("org.jetbrains.kotlinx.kover")
 }
 apply<BomsPlugin>()
 apply<IncrementGuard>()
