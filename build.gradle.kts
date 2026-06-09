@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -152,6 +152,9 @@ val localPublish by tasks.registering {
  */
 val integrationTest by tasks.registering(RunBuild::class) {
     directory = "$rootDir/tests"
+    /* The `tests` build consumes the Compiler published to Maven Local by `localPublish`,
+       so the build cache in that build exercises the plugin under development. */
+    task("clean", "build", "--build-cache")
     dependsOn(localPublish)
     subprojects.forEach {
         it.tasks.findByName("test")?.let { testTask ->

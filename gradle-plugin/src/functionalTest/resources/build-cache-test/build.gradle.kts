@@ -25,6 +25,7 @@
  */
 
 import com.google.protobuf.gradle.protobuf
+import io.spine.dependency.lib.Protobuf
 import io.spine.gradle.repo.standardToSpineSdk
 
 buildscript {
@@ -46,6 +47,14 @@ repositories {
     standardToSpineSdk()
 }
 
+spine {
+    compiler {
+        plugins(
+            "io.spine.tools.compiler.test.NoOpRendererPlugin",
+            "io.spine.tools.compiler.test.TestPlugin"
+        )
+    }
+}
 configurations.all {
     resolutionStrategy {
         force(
@@ -56,13 +65,5 @@ configurations.all {
 
 dependencies {
     spineCompiler("io.spine.tools:compiler-test-env:+")
-}
-
-spine {
-    compiler {
-        plugins(
-            "io.spine.tools.compiler.test.UnderscorePrefixRendererPlugin",
-            "io.spine.tools.compiler.test.TestPlugin"
-        )
-    }
+    Protobuf.libs.forEach { implementation(it) }
 }

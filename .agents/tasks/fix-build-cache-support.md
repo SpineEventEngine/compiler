@@ -59,3 +59,15 @@ and cache key do not reflect them.
 - 2026-06-09 — Implemented; version bumped to `2.0.0-SNAPSHOT.051`.
   Dependency reports (`dependencies.md`, `pom.xml`) not regenerated for
   the same reason; regenerate with the first local/CI build.
+- 2026-06-09 — CI: the functional test failed because `build-cache-test`
+  (copied from `launch-test`) lacked the Protobuf `implementation`
+  dependencies needed to compile generated code; now mirrors
+  `java-kotlin-test`. The `:integrationTest` failure
+  (`tests/build.gradle.kts:49`, unresolved `Protobuf`/`Kotlin` in
+  `buildscript`) is pre-existing: the base tip `ab708f79` fails
+  identically on `update-dependencies`.
+- 2026-06-09 — Per review: `--build-cache` enabled for the
+  `integrationTest` child build (consumes the locally-published fixed
+  plugin). The global `org.gradle.caching` stays off until the
+  `io.spine.core-jvm` plugin used by this repo's own build consumes
+  a Compiler with this fix.
