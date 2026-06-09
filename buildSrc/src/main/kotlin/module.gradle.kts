@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@
  */
 
 import io.spine.dependency.boms.BomsPlugin
-import io.spine.dependency.build.CheckerFramework
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Jackson
@@ -119,7 +118,7 @@ fun Module.configureJava() {
         sourceCompatibility = BuildSettings.javaVersionCompat
         targetCompatibility = BuildSettings.javaVersionCompat
     }
-    
+
     tasks {
         withType<JavaCompile>().configureEach {
             configureJavac()

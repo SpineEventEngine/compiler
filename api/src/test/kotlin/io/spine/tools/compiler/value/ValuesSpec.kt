@@ -110,7 +110,8 @@ class ValuesSpec {
         fields["suit"]!!.enumValue.constNumber shouldBe Suit.HEARTS.number
         fields["pip"]!!.messageValue.fieldsMap["label"]!!.stringValue shouldBe "ace"
         fields["tags"]!!.listValue.valuesList.map { it.stringValue } shouldBe listOf("a", "b")
-        fields["counts"]!!.mapValue.valueList[0].value.intValue shouldBe 3L
+        fields["counts"]!!.mapValue.valueList
+            .single { it.key.stringValue == "x" }.value.intValue shouldBe 3L
     }
 
     @Test
