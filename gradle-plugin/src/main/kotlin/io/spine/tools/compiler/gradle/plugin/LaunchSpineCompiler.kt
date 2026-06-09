@@ -49,6 +49,7 @@ import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.artifacts.Configuration
+import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.Directory
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
@@ -93,6 +94,26 @@ public abstract class LaunchSpineCompiler : JavaExec() {
     @get:Optional
     @get:PathSensitive(PathSensitivity.RELATIVE)
     internal lateinit var sources: Provider<List<Directory>>
+
+    /**
+     * The file with the serialized `CodeGeneratorRequest` written by the Compiler
+     * `protoc` plugin during the run of the `GenerateProtoTask` this task depends on.
+     *
+     * The collection is empty if the source set contains no proto files.
+     */
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.NONE)
+    internal abstract val requestFile: ConfigurableFileCollection
+
+    /**
+     * The directory with the settings files consumed by the Compiler plugins.
+     *
+     * The files are created by the build process before this task runs.
+     * The collection is empty if no settings were written.
+     */
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    internal abstract val settingsDirectory: ConfigurableFileCollection
 
     @get:InputFiles
     @get:Classpath
@@ -198,6 +219,9 @@ internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
 
     sources = ext.sourceDirs(sourceSet)
     targets = ext.outputDirs(sourceSet)
+
+    requestFile.from(workingDir.requestDirectory.file(SourceSetName(sourceSet.name)))
+    settingsDirectory.from(workingDir.settingsDirectory.path)
 
     requestPreLaunchCleanup()
     setDependencies(sourceSet)
