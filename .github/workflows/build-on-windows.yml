@@ -8,13 +8,16 @@ jobs:
     name: Build on Windows
 
     steps:
-      - name: Configure Git for Windows symlink compatibility
+      - name: Enable symlinks in Git for Windows
         shell: pwsh
         run: |
-          # Avoid creating/expecting native symlinks on Windows runners.
-          # This helps when repository paths (like .agents/guidelines) are represented
-          # via links that can trigger EPERM on stat/access.
-          git config --global core.symlinks false
+          # The build under `tests` shares `buildSrc`, the Gradle wrapper files,
+          # and `gradle.properties` with the root project via relative symlinks.
+          # With `core.symlinks=false` these links are checked out as plain text
+          # files, and the nested build launched by `integrationTest` fails to
+          # compile its build scripts. GitHub-hosted Windows runners execute
+          # with administrative rights, so Git can create native symlinks.
+          git config --global core.symlinks true
 
       - uses: actions/checkout@v6
         with:
