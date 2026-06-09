@@ -43,11 +43,17 @@ import io.spine.gradle.kotlin.setFreeCompilerArgs
 import io.spine.gradle.repo.standardToSpineSdk
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
+/*
+ * The references below must stay fully qualified: Gradle compiles the extracted
+ * `buildscript` block separately from the rest of the script, without the
+ * file-level `import` statements. Short names fail here with
+ * "Unresolved reference" at script compilation time.
+ */
 @Suppress("RemoveRedundantQualifierName")
 buildscript {
     dependencies {
-        classpath(Protobuf.GradlePlugin.lib)
-        classpath(Kotlin.GradlePlugin.lib)
+        classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib)
+        classpath(io.spine.dependency.lib.Kotlin.GradlePlugin.lib)
     }
 }
 
