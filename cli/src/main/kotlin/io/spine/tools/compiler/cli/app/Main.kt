@@ -91,8 +91,8 @@ internal class Run(private val version: String) : CliktCommand(name = "spine"), 
 
     override fun help(context: Context): String =
         "The Spine Compiler helps build better multi-platform code generation." +
-                Separator.nl() +
-                "Version $version."
+            Separator.nl() +
+            "Version $version."
 
     override fun helpEpilog(context: Context): String =
         "https://github.com/SpineEventEngine/compiler/"
