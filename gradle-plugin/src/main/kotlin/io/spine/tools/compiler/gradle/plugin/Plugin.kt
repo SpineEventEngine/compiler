@@ -33,6 +33,7 @@ import com.google.common.collect.ImmutableList
 import com.google.errorprone.annotations.CanIgnoreReturnValue
 import com.google.protobuf.gradle.GenerateProtoTask
 import io.spine.annotation.VisibleForTesting
+import io.spine.format.Format
 import io.spine.io.replaceExtension
 import io.spine.string.toBase64Encoded
 import io.spine.tools.code.SourceSetName
@@ -361,6 +362,16 @@ private fun GenerateProtoTask.addProtocPlugin() {
 }
 
 /**
+ * The name of the [GenerateProtoTask] output property for the request file.
+ */
+private const val REQUEST_FILE_PROPERTY = "spineCompilerRequestFile"
+
+/**
+ * The name of the [GenerateProtoTask] output property for the JSON twin of the request file.
+ */
+private const val REQUEST_FILE_JSON_PROPERTY = "spineCompilerRequestFileJson"
+
+/**
  * Declares the [requestFile] written by the Compiler `protoc` plugin — and its JSON
  * twin produced by `CodeGeneratorRequestWriter` — as outputs of this task.
  *
@@ -371,9 +382,9 @@ private fun GenerateProtoTask.addProtocPlugin() {
  */
 private fun GenerateProtoTask.declareRequestFileOutputs(requestFile: File) {
     outputs.file(requestFile)
-        .withPropertyName("spineCompilerRequestFile")
-    outputs.file(requestFile.replaceExtension("pb.json"))
-        .withPropertyName("spineCompilerRequestFileJson")
+        .withPropertyName(REQUEST_FILE_PROPERTY)
+    outputs.file(requestFile.replaceExtension(Format.ProtoJson.extension))
+        .withPropertyName(REQUEST_FILE_JSON_PROPERTY)
 }
 
 /**
