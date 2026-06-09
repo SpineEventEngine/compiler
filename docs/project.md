@@ -29,5 +29,5 @@ Module artifacts are published under `io.spine.tools` (see
 API boundaries live in `api` and `gradle-api`; downstream Spine repos depend
 on these.
 
-Read [`.agents/guidelines/jvm-project.md`](../.agents/guidelines/jvm-project.md) for build stack, coding style,
-tests, and versioning.
+Read [`.agents/guidelines/jvm-project.md`](../.agents/guidelines/jvm-project.md) for build stack,
+coding style, tests, and versioning.
