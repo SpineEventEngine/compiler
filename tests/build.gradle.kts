@@ -46,8 +46,8 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 @Suppress("RemoveRedundantQualifierName")
 buildscript {
     dependencies {
-        classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib)
-        classpath(io.spine.dependency.lib.Kotlin.GradlePlugin.lib)
+        classpath(Protobuf.GradlePlugin.lib)
+        classpath(Kotlin.GradlePlugin.lib)
     }
 }
 
