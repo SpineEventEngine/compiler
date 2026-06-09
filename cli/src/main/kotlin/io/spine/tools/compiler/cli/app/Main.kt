@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,9 @@ package io.spine.tools.compiler.cli.app
 
 import com.github.ajalt.clikt.completion.CompletionCandidates
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.Context
 import com.github.ajalt.clikt.core.UsageError
+import com.github.ajalt.clikt.core.main
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.required
@@ -85,14 +87,17 @@ private fun readVersion(): String = Version.fromManifestOf(Run::class.java).valu
  * The main CLI command which performs the Compiler code generation tasks.
  */
 @Suppress("TooManyFunctions") // It is OK for the `main` entry point.
-internal class Run(version: String) : CliktCommand(
-    name = "spine",
-    help = "The Spine Compiler helps build better multi-platform code generation." +
-            Separator.nl() +
-            "Version $version.",
-    epilog = "https://github.com/SpineEventEngine/compiler/",
-    printHelpOnEmptyArgs = true
-), WithLogging {
+internal class Run(private val version: String) : CliktCommand(name = "spine"), WithLogging {
+
+    override fun help(context: Context): String =
+        "The Spine Compiler helps build better multi-platform code generation." +
+                Separator.nl() +
+                "Version $version."
+
+    override fun helpEpilog(context: Context): String =
+        "https://github.com/SpineEventEngine/compiler/"
+
+    override val printHelpOnEmptyArgs: Boolean = true
 
     private fun Parameter.toOption(cc: CompletionCandidates? = null) = option(
         name, shortName,

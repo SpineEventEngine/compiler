@@ -25,6 +25,7 @@
  */
 
 import io.spine.dependency.boms.BomsPlugin
+import io.spine.dependency.build.CheckerFramework
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Jackson
