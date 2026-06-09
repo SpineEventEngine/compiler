@@ -86,7 +86,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
     /**
      * The paths to the directories with the generated source code.
      *
-     * May not be available, if `protoc` built-ins were turned off, resulting in no source code
+     * May not be available if `protoc` built-ins were turned off, resulting in no source code
      * being generated. In such a mode `protoc` worked only generating descriptor set files.
      */
     @get:InputFiles
