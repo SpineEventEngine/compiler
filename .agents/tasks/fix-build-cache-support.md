@@ -71,3 +71,12 @@ and cache key do not reflect them.
   plugin). The global `org.gradle.caching` stays off until the
   `io.spine.core-jvm` plugin used by this repo's own build consumes
   a Compiler with this fix.
+- 2026-06-10 — The functional test still fails on CI with the *same*
+  17 `compileKotlin` errors as before the Protobuf deps were added,
+  while `java-kotlin-test` (byte-identical build script) passes in the
+  same run. The settings file (with the cache block) *was* in effect.
+  Suspecting stale/shadowed test resources keyed by the directory name;
+  renamed `build-cache-test` → `cached-build-test` and added a canary
+  assertion that the copied build script declares `Protobuf.libs`.
+  If the canary passes and compilation still fails, the problem is in
+  the `--build-cache` + `compileKotlin` interplay, not in resources.

@@ -229,8 +229,14 @@ class PluginSpec {
      */
     @Test
     fun `restore the generated code from the build cache after 'clean'`() {
-        createProject("build-cache-test", "--build-cache")
+        createProject("cached-build-test", "--build-cache")
         val generateProto = TaskName.of("generateProto")
+
+        // Guard against stale or shadowed test resources: the copied build script
+        // must be the one declaring the Protobuf dependencies required to compile
+        // the generated code.
+        val buildScript = projectDir.resolve("build.gradle.kts").readText()
+        buildScript shouldContain "Protobuf.libs"
 
         // Seed the build cache.
         project.executeTask(build)
