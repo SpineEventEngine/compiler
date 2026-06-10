@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,16 +24,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.051")
+pluginManagement {
+    repositories {
+        mavenLocal()
+    }
+}
 
-/**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
- */
-val versionToPublish by extra(compilerVersion)
+// Keep the build cache inside the test project directory so that the test
+// is isolated from caches produced by other tests or builds.
+buildCache {
+    local {
+        directory = File(rootDir, "build-cache")
+    }
+}

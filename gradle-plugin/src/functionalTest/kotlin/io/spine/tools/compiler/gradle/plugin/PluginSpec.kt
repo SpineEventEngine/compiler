@@ -35,6 +35,7 @@ import io.spine.testing.assertDoesNotExist
 import io.spine.tools.code.SourceSetName
 import io.spine.testing.assertExists
 import io.spine.tools.gradle.task.BaseTaskName.build
+import io.spine.tools.gradle.task.BaseTaskName.clean
 import io.spine.tools.gradle.task.TaskName
 import io.spine.tools.gradle.testing.GradleProject
 import io.spine.tools.gradle.testing.get
@@ -42,6 +43,7 @@ import java.io.File
 import org.gradle.api.logging.LogLevel
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.TaskOutcome
+import org.gradle.testkit.runner.TaskOutcome.FROM_CACHE
 import org.gradle.testkit.runner.TaskOutcome.SKIPPED
 import org.gradle.testkit.runner.TaskOutcome.SUCCESS
 import org.gradle.testkit.runner.TaskOutcome.UP_TO_DATE
@@ -76,10 +78,11 @@ class PluginSpec {
         generatedKotlinDir  = generatedMainDir.resolve("kotlin")
     }
 
-    private fun createProject(resourceDir: String) {
+    private fun createProject(resourceDir: String, vararg options: String) {
         val builder = GradleProject.setupAt(projectDir)
             .fromResources(resourceDir)
             .withSharedTestKitDirectory()
+            .withOptions(options.toList())
             .replace("@COMPILER_PLUGIN_ID@", GRADLE_PLUGIN_ID)
             .replace("@COMPILER_VERSION@", Plugin.version)
             .withLoggingLevel(LogLevel.INFO)
@@ -211,6 +214,42 @@ class PluginSpec {
         val generatedGrpcDir = generatedMainDir.resolve("grpc")
         assertExists(generatedGrpcDir)
         assertExists(generatedGrpcDir.resolve(serviceClass))
+    }
+
+    /**
+     * Verifies that the generated code is restored when tasks are taken from
+     * the build cache after `clean`.
+     *
+     * The Compiler `protoc` plugin writes the `CodeGeneratorRequest` file as
+     * a side effect of the `generateProto` task. The file is declared as an output
+     * of that task so that the build cache restores it along with the generated code.
+     * Without the declaration, a `clean build` with the build cache enabled restores
+     * `generateProto` from the cache leaving the request file missing, which makes
+     * the launch task to be skipped, and the project misses the generated code.
+     */
+    @Test
+    fun `restore the generated code from the build cache after 'clean'`() {
+        createProject("cached-build-test", "--build-cache")
+        val generateProto = TaskName.of("generateProto")
+
+        // Guard against stale or shadowed test resources: the copied build script
+        // must be the one declaring the Protobuf dependencies required to compile
+        // the generated code.
+        val buildScript = projectDir.resolve("build.gradle.kts").readText()
+        buildScript shouldContain "Protobuf.libs"
+
+        // Seed the build cache.
+        project.executeTask(build)
+        // Delete `build/` along with the request file, and the `generated/` directory.
+        project.executeTask(clean)
+        // Both code generation tasks must be restored from the cache.
+        val result = project.executeTask(build)
+
+        result[generateProto] shouldBe FROM_CACHE
+        result[launchSpineCompiler] shouldBe FROM_CACHE
+        assertExists(projectDir.resolve("build/spine/compiler/requests/main.bin"))
+        assertExists(generatedJavaDir)
+        assertExists(generatedKotlinDir)
     }
 
     @Test

@@ -50,11 +50,14 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.file.Directory
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Classpath
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.InputFiles
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.JavaExec
@@ -93,6 +96,34 @@ public abstract class LaunchSpineCompiler : JavaExec() {
     @get:Optional
     @get:PathSensitive(PathSensitivity.RELATIVE)
     internal lateinit var sources: Provider<List<Directory>>
+
+    /**
+     * The file with the serialized `CodeGeneratorRequest` written by the Compiler
+     * `protoc` plugin during the run of the `GenerateProtoTask` this task depends on.
+     *
+     * The file does not exist if the source set contains no proto files.
+     * In such a case, the `onlyIf` condition of this task evaluates to `false`
+     * (see [hasRequestFile]), and the task is skipped. Inputs of a skipped task
+     * are neither validated nor fingerprinted, so the absent file does not
+     * violate the [InputFile] contract.
+     */
+    @get:InputFile
+    @get:PathSensitive(PathSensitivity.NONE)
+    internal abstract val requestFile: RegularFileProperty
+
+    /**
+     * The directory with the settings files consumed by the Compiler plugins.
+     *
+     * The files are created by the build process before this task runs.
+     *
+     * The directory is declared via [InputFiles] rather than
+     * [InputDirectory][org.gradle.api.tasks.InputDirectory] because it may not
+     * exist if no settings were written, while `InputDirectory` requires
+     * the directory to exist.
+     */
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    internal abstract val settingsDirectory: DirectoryProperty
 
     @get:InputFiles
     @get:Classpath
@@ -199,6 +230,9 @@ internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
     sources = ext.sourceDirs(sourceSet)
     targets = ext.outputDirs(sourceSet)
 
+    requestFile.set(workingDir.requestDirectory.file(SourceSetName(sourceSet.name)))
+    settingsDirectory.set(workingDir.settingsDirectory.path.toFile())
+
     requestPreLaunchCleanup()
     setDependencies(sourceSet)
 
@@ -282,15 +316,15 @@ private fun LaunchSpineCompiler.createParametersFile() {
  * which assumes that the request file should have been created.
  */
 internal fun LaunchSpineCompiler.hasRequestFile(sourceSet: SourceSet): Boolean {
-    val requestFile = workingDir.requestDirectory.file(SourceSetName(sourceSet.name))
-    if (!requestFile.exists() && sourceSet.containsProtoFiles()) {
+    val file = requestFile.get().asFile
+    if (!file.exists() && sourceSet.containsProtoFiles()) {
         logger.error {
-            "Unable to locate the request file `$requestFile` which should have been created" +
+            "Unable to locate the request file `$file` which should have been created" +
                     " because the source set `${sourceSet.name}` contains `.proto` files." +
                     " The task `${name}` was skipped because the absence of the request file."
         }
     }
-    return requestFile.exists()
+    return file.exists()
 }
 
 private val Project.compilerRawArtifact: Configuration

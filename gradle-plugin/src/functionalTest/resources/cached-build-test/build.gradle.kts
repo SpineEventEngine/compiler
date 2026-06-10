@@ -24,16 +24,46 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.051")
+import com.google.protobuf.gradle.protobuf
+import io.spine.dependency.lib.Protobuf
+import io.spine.gradle.repo.standardToSpineSdk
 
-/**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
- */
-val versionToPublish by extra(compilerVersion)
+buildscript {
+    standardSpineSdkRepositories()
+}
+
+group = "io.spine.tools.test"
+version = "1.0.0-SNAPSHOT"
+
+plugins {
+    java
+    kotlin("jvm")
+    id("com.google.protobuf")
+    id("@COMPILER_PLUGIN_ID@") version "@COMPILER_VERSION@"
+}
+
+repositories {
+    mavenLocal() // Must come first for `compiler-test-env`.
+    standardToSpineSdk()
+}
+
+spine {
+    compiler {
+        plugins(
+            "io.spine.tools.compiler.test.NoOpRendererPlugin",
+            "io.spine.tools.compiler.test.TestPlugin"
+        )
+    }
+}
+configurations.all {
+    resolutionStrategy {
+        force(
+            io.spine.dependency.local.Base.lib,
+        )
+    }
+}
+
+dependencies {
+    spineCompiler("io.spine.tools:compiler-test-env:+")
+    Protobuf.libs.forEach { implementation(it) }
+}
