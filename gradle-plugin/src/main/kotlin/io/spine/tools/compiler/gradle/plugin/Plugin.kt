@@ -33,6 +33,8 @@ import com.google.common.collect.ImmutableList
 import com.google.errorprone.annotations.CanIgnoreReturnValue
 import com.google.protobuf.gradle.GenerateProtoTask
 import io.spine.annotation.VisibleForTesting
+import io.spine.format.Format
+import io.spine.io.replaceExtension
 import io.spine.string.toBase64Encoded
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.compiler.gradle.api.Artifacts
@@ -61,6 +63,7 @@ import io.spine.tools.protobuf.gradle.GeneratedDirectoryContext
 import io.spine.tools.protobuf.gradle.plugin.DescriptorSetFilePlugin
 import io.spine.tools.protobuf.gradle.plugin.configureSourceSetDirs
 import io.spine.tools.protobuf.gradle.protobufExtension
+import java.io.File
 import java.nio.file.Path
 import org.gradle.api.Project
 import org.gradle.api.tasks.Delete
@@ -339,11 +342,11 @@ private fun Project.configureProtoTask(task: GenerateProtoTask) {
 }
 
 private fun GenerateProtoTask.addProtocPlugin() {
+    val requestFile = WorkingDirectory(project.compilerWorkingDir.asFile.toPath())
+        .requestDirectory
+        .file(SourceSetName(sourceSet.name))
     plugins.apply {
         create(SPINE_COMPILER_PROTOC_PLUGIN) {
-            val requestFile = WorkingDirectory(project.compilerWorkingDir.asFile.toPath())
-                .requestDirectory
-                .file(SourceSetName(sourceSet.name))
             val path = requestFile.absolutePath
             val nameEncoded = path.toBase64Encoded()
             it.option(nameEncoded)
@@ -355,6 +358,33 @@ private fun GenerateProtoTask.addProtocPlugin() {
             }
         }
     }
+    declareRequestFileOutputs(requestFile)
+}
+
+/**
+ * The name of the [GenerateProtoTask] output property for the request file.
+ */
+private const val REQUEST_FILE_PROPERTY = "spineCompilerRequestFile"
+
+/**
+ * The name of the [GenerateProtoTask] output property for the JSON twin of the request file.
+ */
+private const val REQUEST_FILE_JSON_PROPERTY = "spineCompilerRequestFileJson"
+
+/**
+ * Declares the [requestFile] written by the Compiler `protoc` plugin — and its JSON
+ * twin produced by `CodeGeneratorRequestWriter` — as outputs of this task.
+ *
+ * The Compiler `protoc` plugin writes these files as a side effect of running `protoc`.
+ * Unless they are declared as task outputs, the build cache does not store them, and
+ * a task restored from the cache leaves the request file missing. The [LaunchSpineCompiler]
+ * task is then skipped (see [hasRequestFile]), and no code is generated.
+ */
+private fun GenerateProtoTask.declareRequestFileOutputs(requestFile: File) {
+    outputs.file(requestFile)
+        .withPropertyName(REQUEST_FILE_PROPERTY)
+    outputs.file(requestFile.replaceExtension(Format.ProtoJson.extension))
+        .withPropertyName(REQUEST_FILE_JSON_PROPERTY)
 }
 
 /**

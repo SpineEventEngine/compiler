@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 
 package io.spine.tools.compiler.value
 
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.spine.base.fieldPath
@@ -137,5 +138,39 @@ internal class OptionsSpec {
 
         val max = field.optionList.find("max")!!
         max.value.typeUrl shouldBe "type.spine.io/MaxOption"
+    }
+
+    @Test
+    fun `reject an empty option value`() {
+        val field = DiceRoll.getDescriptor().fields[0].toField()
+        val emptyMin = MinOption.getDefaultInstance()
+
+        shouldThrow<IllegalStateException> {
+            emptyMin.parse(field, typeSystem)
+        }
+    }
+
+    @Test
+    fun `reject a value in an unexpected format`() {
+        val field = DiceRoll.getDescriptor().fields[0].toField()
+        val malformed = MinOption.newBuilder()
+            .setValue("1abc")
+            .build()
+
+        shouldThrow<IllegalStateException> {
+            malformed.parse(field, typeSystem)
+        }
+    }
+
+    @Test
+    fun `reject a reference to a field of a different type`() {
+        val field = NumberGenerated.getDescriptor().fields[0].toField()
+        val crossType = MinOption.newBuilder()
+            .setValue("range")
+            .build()
+
+        shouldThrow<IllegalStateException> {
+            crossType.parse(field, typeSystem)
+        }
     }
 }

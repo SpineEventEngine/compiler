@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ import io.spine.gradle.repo.standardToSpineSdk
 import io.spine.gradle.report.coverage.KoverConfig
 import io.spine.gradle.report.license.LicenseReporter
 import io.spine.gradle.report.pom.PomGenerator
+import java.nio.file.Files
 
 buildscript {
     standardSpineSdkRepositories()
@@ -144,6 +145,42 @@ val localPublish by tasks.registering {
 }
 
 /**
+ * Replaces `tests/<linkName>` with a real copy of the root `<linkName>` if
+ * the symlink did not survive the checkout.
+ *
+ * The build under `tests` shares `buildSrc` and `gradle.properties` with this
+ * project via relative symlinks. When the repository is checked out without
+ * symlink support (e.g., Git with `core.symlinks=false` under Windows), each
+ * link turns into a plain text file containing the link target (e.g.,
+ * `../buildSrc`). The nested build launched by `integrationTest` then has no
+ * `buildSrc` and fails to compile its build scripts with "Unresolved
+ * reference" errors. Restoring the linked content keeps the integration tests
+ * independent of the symlink handling of the checkout.
+ */
+fun materializeTestsLink(linkName: String) {
+    val link = file("tests/$linkName")
+    if (Files.isSymbolicLink(link.toPath())) {
+        return
+    }
+    val placeholder = link.isFile && link.readText().trim() == "../$linkName"
+    if (!placeholder) {
+        return
+    }
+    link.delete()
+    val target = file(linkName)
+    if (target.isDirectory) {
+        copy {
+            from(target) {
+                exclude("build", "build/**", ".gradle", ".gradle/**")
+            }
+            into(link)
+        }
+    } else {
+        target.copyTo(link)
+    }
+}
+
+/**
  * The `integrationTest` task runs a Gradle build in the project located
  * under the `tests` subdirectory.
  *
@@ -152,11 +189,18 @@ val localPublish by tasks.registering {
  */
 val integrationTest by tasks.registering(RunBuild::class) {
     directory = "$rootDir/tests"
+    /* The `tests` build consumes the Compiler published to Maven Local by `localPublish`,
+       so the build cache in that build exercises the plugin under development. */
+    task("clean", "build", "--build-cache")
     dependsOn(localPublish)
     subprojects.forEach {
         it.tasks.findByName("test")?.let { testTask ->
             this@registering.dependsOn(testTask)
         }
+    }
+    doFirst {
+        materializeTestsLink("buildSrc")
+        materializeTestsLink("gradle.properties")
     }
 }
 

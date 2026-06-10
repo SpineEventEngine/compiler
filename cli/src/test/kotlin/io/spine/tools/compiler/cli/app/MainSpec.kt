@@ -26,6 +26,7 @@
 
 package io.spine.tools.compiler.cli.app
 
+import com.github.ajalt.clikt.core.parse
 import com.google.protobuf.compiler.codeGeneratorRequest
 import com.google.protobuf.stringValue
 import io.kotest.matchers.shouldBe
