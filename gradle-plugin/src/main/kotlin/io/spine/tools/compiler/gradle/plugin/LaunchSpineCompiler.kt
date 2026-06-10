@@ -102,9 +102,10 @@ public abstract class LaunchSpineCompiler : JavaExec() {
      * `protoc` plugin during the run of the `GenerateProtoTask` this task depends on.
      *
      * The file does not exist if the source set contains no proto files.
-     * In such a case this task is skipped, and the input is never queried.
-     *
-     * @see hasRequestFile
+     * In such a case, the `onlyIf` condition of this task evaluates to `false`
+     * (see [hasRequestFile]), and the task is skipped. Inputs of a skipped task
+     * are neither validated nor fingerprinted, so the absent file does not
+     * violate the [InputFile] contract.
      */
     @get:InputFile
     @get:PathSensitive(PathSensitivity.NONE)
