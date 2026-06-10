@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,8 @@
 
 package io.spine.tools.compiler.value
 
+import com.google.protobuf.BoolValue
+import com.google.protobuf.ByteString
 import com.google.protobuf.FieldMask
 import com.google.protobuf.fieldMask
 import io.kotest.matchers.longs.shouldBeGreaterThan
@@ -33,6 +35,9 @@ import io.kotest.matchers.maps.shouldHaveKey
 import io.kotest.matchers.shouldBe
 import io.spine.base.Time
 import io.spine.tools.compiler.ast.qualifiedName
+import io.spine.tools.compiler.given.value.Suit
+import io.spine.tools.compiler.given.value.allScalars
+import io.spine.tools.compiler.given.value.pip
 import io.spine.tools.compiler.test.postcard
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -74,5 +79,47 @@ class ValuesSpec {
         map.valueList[0].value.stringValue shouldBe "JD"
         map.valueList[1].key.stringValue shouldBe "Alan"
         map.valueList[1].value.stringValue shouldBe "Big Al"
+    }
+
+    @Test
+    fun `convert a field of every kind`() {
+        val bytes = ByteString.copyFromUtf8("xyz")
+        val v = allScalars {
+            int32Field = 7
+            int64Field = 42L
+            floatField = 1.5f
+            doubleField = 2.5
+            boolField = true
+            stringField = "hi"
+            bytesField = bytes
+            suit = Suit.HEARTS
+            pip = pip { label = "ace" }
+            tags.add("a")
+            tags.add("b")
+            counts.put("x", 3)
+        }.toValue()
+
+        val fields = v.messageValue.fieldsMap
+        fields["int32_field"]!!.intValue shouldBe 7L
+        fields["int64_field"]!!.intValue shouldBe 42L
+        fields["float_field"]!!.doubleValue shouldBe 1.5f.toDouble()
+        fields["double_field"]!!.doubleValue shouldBe 2.5
+        fields["bool_field"]!!.boolValue shouldBe true
+        fields["string_field"]!!.stringValue shouldBe "hi"
+        fields["bytes_field"]!!.bytesValue shouldBe bytes
+        fields["suit"]!!.enumValue.constNumber shouldBe Suit.HEARTS.number
+        fields["pip"]!!.messageValue.fieldsMap["label"]!!.stringValue shouldBe "ace"
+        fields["tags"]!!.listValue.valuesList.map { it.stringValue } shouldBe listOf("a", "b")
+        fields["counts"]!!.mapValue.valueList
+            .single { it.key.stringValue == "x" }.value.intValue shouldBe 3L
+    }
+
+    @Test
+    fun `expose well-known packed values`() {
+        NULL.hasNullValue() shouldBe true
+        NULL.nullValue shouldBe NullValue.NULL_VALUE
+
+        packedTrue.unpack(BoolValue::class.java).value shouldBe true
+        packedFalse.unpack(BoolValue::class.java).value shouldBe false
     }
 }

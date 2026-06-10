@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,21 @@ private class OptionValue(
     private val field: Field,
     private val typeSystem: TypeSystem
 ) {
+    private val sourceFieldName: String by lazy {
+        field.name.value
+    }
+
+    private val messageTypeName: String by lazy {
+        field.type.message.qualifiedName
+    }
+
     init {
+        // The `lazy` properties above are declared before this `init` block on
+        // purpose: `optionPath()` reads them when the check below fails, and
+        // Kotlin initializes property delegates in their declaration order.
+        // Declaring them after `init` would leave the delegates uninitialized
+        // when the check fails for an empty value, throwing `NullPointerException`
+        // instead of the intended `IllegalStateException`.
         check(value.isNotEmpty()) {
             "${optionPath()} cannot be empty."
         }
@@ -87,14 +101,6 @@ private class OptionValue(
             }
             else -> error("${optionPath()} has the value with unexpected format (`$value`).")
         }
-    }
-
-    private val sourceFieldName: String by lazy {
-        field.name.value
-    }
-
-    private val messageTypeName: String by lazy {
-        field.type.message.qualifiedName
     }
 
     private fun optionPath() =

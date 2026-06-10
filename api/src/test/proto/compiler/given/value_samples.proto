@@ -24,21 +24,45 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.lib
+syntax = "proto3";
 
-/**
- * gRPC-Kotlin/JVM.
- *
- * @see <a href="https://github.com/grpc/grpc-kotlin">GitHub project</a>
- */
-@Suppress("unused")
-object GrpcKotlin {
-    const val version = "1.5.0"
-    const val stub = "io.grpc:grpc-kotlin-stub:$version"
+package spine.compiler.given;
 
-    object ProtocPlugin {
-        const val id = "grpckt"
-        // https://central.sonatype.com/artifact/io.grpc/protoc-gen-grpc-kotlin
-        const val artifact = "io.grpc:protoc-gen-grpc-kotlin:$version:jdk8@jar"
-    }
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.tools.compiler.given.value";
+option java_outer_classname = "ValueSamplesProto";
+option java_multiple_files = true;
+
+// A card suit used to exercise enum value conversion.
+enum Suit {
+    SUIT_UNSPECIFIED = 0;
+    HEARTS = 1;
+    SPADES = 2;
+}
+
+// A nested message used to exercise message value conversion.
+message Pip {
+    string label = 1;
+}
+
+// A message declaring a field of every Protobuf `JavaType`.
+//
+// Converting an instance of this message to a `Value` exercises all
+// the branches of `FieldDescriptor.singularValue`, plus the repeated
+// and map paths.
+//
+message AllScalars {
+    int32 int32_field = 1;
+    int64 int64_field = 2;
+    float float_field = 3;
+    double double_field = 4;
+    bool bool_field = 5;
+    string string_field = 6;
+    bytes bytes_field = 7;
+    Suit suit = 8;
+    Pip pip = 9;
+    repeated string tags = 10;
+    map<string, int32> counts = 11;
 }

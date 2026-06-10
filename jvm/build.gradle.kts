@@ -24,6 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import io.spine.dependency.build.CheckerFramework
 import io.spine.dependency.lib.PalantirJavaFormat
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Time
@@ -40,6 +41,8 @@ dependencies {
     api(ToolBase.psiJava)
     implementation(PalantirJavaFormat.lib)
     implementation(Time.javaExtensions)
+
+    testImplementation(CheckerFramework.annotations)
 
     testImplementation(Time.testLib)
     testImplementation(Logging.testLib)

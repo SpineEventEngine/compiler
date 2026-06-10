@@ -8,15 +8,28 @@ jobs:
     name: Build on Windows
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: 'true'
+      - name: Enable symlinks in Git for Windows
+        shell: pwsh
+        run: |
+          # The build under `tests` shares `buildSrc`, the Gradle wrapper files,
+          # and `gradle.properties` with the root project via relative symlinks.
+          # With `core.symlinks=false` these links are checked out as plain text
+          # files, and the nested build launched by `integrationTest` fails to
+          # compile its build scripts. GitHub-hosted Windows runners execute
+          # with administrative rights, so Git can create native symlinks.
+          git config --global core.symlinks true
 
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v5
         with:
           java-version: 17
           distribution: zulu
-          cache: gradle
+
+      - uses: gradle/actions/setup-gradle@v6
 
       # See: https://github.com/al-cheb/configure-pagefile-action
       - name: Configure Pagefile
@@ -33,4 +46,4 @@ jobs:
         if: always() # always run even if the previous step fails
         with:
           report_paths: '**/build/test-results/**/TEST-*.xml'
-          require_tests: true # will fail workflow if test reports not found
+          require_tests: true

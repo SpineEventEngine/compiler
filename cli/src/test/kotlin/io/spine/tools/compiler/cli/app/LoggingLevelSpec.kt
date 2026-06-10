@@ -27,6 +27,7 @@
 package io.spine.tools.compiler.cli.app
 
 import com.github.ajalt.clikt.core.UsageError
+import com.github.ajalt.clikt.core.parse
 import com.google.protobuf.compiler.codeGeneratorRequest
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
