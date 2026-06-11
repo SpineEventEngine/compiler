@@ -231,7 +231,17 @@ afterEvaluate {
 }
 
 dependencies {
-    productionModules.forEach {
-        dokka(it)
-    }
+    /*
+       Aggregate the API documentation from all production modules except `test-env`.
+
+       `test-env` calls `disableDocumentationTasks()` (see `test-env/build.gradle.kts`),
+       so its per-module Dokka tasks are skipped and it never produces the
+       `module-descriptor.json` that the multi-module publication consolidates.
+       Including it here makes `:dokkaGeneratePublicationHtml` fail on the missing
+       descriptor. Excluding it keeps the aggregation in sync with the modules that
+       actually generate documentation.
+     */
+    productionModules
+        .filterNot { it.name == "test-env" }
+        .forEach { dokka(it) }
 }

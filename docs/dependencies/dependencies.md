@@ -270,10 +270,6 @@
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.1.8.
-     * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
-     * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.2.4.
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -330,7 +326,7 @@
      * **Project URL:** [https://github.com/google/gson/gson](https://github.com/google/gson/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -415,7 +411,7 @@
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.9.6.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
@@ -423,23 +419,11 @@
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.35.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.35.0.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -464,17 +448,13 @@
 1.  **Group** : com.google.truth.extensions. **Name** : truth-proto-extension. **Version** : 1.4.5.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.75.0.
+1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.75.0.
+1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
-     * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
-     * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
@@ -772,7 +752,7 @@
      * **Project URL:** [https://freemarker.apache.org/](https://freemarker.apache.org/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 4.8.
+1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 5.0.
      * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
      * **License:** [The BSD3 License](https://github.com/functionaljava/functionaljava/blob/master/etc/LICENCE)
 
@@ -1127,7 +1107,7 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:04 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -1500,7 +1480,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:23 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:03 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -1781,10 +1761,6 @@ This report was generated on **Tue Jun 09 19:09:23 WEST 2026** using
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.1.8.
-     * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
-     * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.2.4.
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -1841,7 +1817,7 @@ This report was generated on **Tue Jun 09 19:09:23 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson/gson](https://github.com/google/gson/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -1926,7 +1902,7 @@ This report was generated on **Tue Jun 09 19:09:23 WEST 2026** using
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.9.6.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
@@ -1934,23 +1910,11 @@ This report was generated on **Tue Jun 09 19:09:23 WEST 2026** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.35.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.35.0.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -1975,17 +1939,13 @@ This report was generated on **Tue Jun 09 19:09:23 WEST 2026** using
 1.  **Group** : com.google.truth.extensions. **Name** : truth-proto-extension. **Version** : 1.4.5.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.75.0.
+1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.75.0.
+1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
-     * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
-     * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
@@ -2283,7 +2243,7 @@ This report was generated on **Tue Jun 09 19:09:23 WEST 2026** using
      * **Project URL:** [https://freemarker.apache.org/](https://freemarker.apache.org/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 4.8.
+1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 5.0.
      * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
      * **License:** [The BSD3 License](https://github.com/functionaljava/functionaljava/blob/master/etc/LICENCE)
 
@@ -2638,7 +2598,7 @@ This report was generated on **Tue Jun 09 19:09:23 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:04 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -3069,10 +3029,6 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.1.8.
-     * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
-     * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.2.4.
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -3133,7 +3089,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson/gson](https://github.com/google/gson/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -3218,7 +3174,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.9.6.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
@@ -3226,23 +3182,11 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.35.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.35.0.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -3267,25 +3211,13 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 1.  **Group** : com.google.truth.extensions. **Name** : truth-proto-extension. **Version** : 1.4.5.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.75.0.
-     * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
-     * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
 1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.91.0.
-     * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
-     * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.75.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
-     * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
-     * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
@@ -3587,10 +3519,6 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 1.  **Group** : org.freemarker. **Name** : freemarker. **Version** : 2.3.32.
      * **Project URL:** [https://freemarker.apache.org/](https://freemarker.apache.org/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 4.8.
-     * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
-     * **License:** [The BSD3 License](https://github.com/functionaljava/functionaljava/blob/master/etc/LICENCE)
 
 1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 5.0.
      * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
@@ -3947,7 +3875,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:04 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -4967,7 +4895,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:04 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -6031,7 +5959,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:04 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -6329,10 +6257,6 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.1.8.
-     * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
-     * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.2.4.
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -6389,7 +6313,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson/gson](https://github.com/google/gson/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -6474,7 +6398,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.9.6.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
@@ -6482,23 +6406,11 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.35.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.35.0.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -6523,25 +6435,13 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 1.  **Group** : com.google.truth.extensions. **Name** : truth-proto-extension. **Version** : 1.4.5.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.75.0.
-     * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
-     * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
 1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.91.0.
-     * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
-     * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.75.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
-     * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
-     * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
@@ -6838,10 +6738,6 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 1.  **Group** : org.freemarker. **Name** : freemarker. **Version** : 2.3.32.
      * **Project URL:** [https://freemarker.apache.org/](https://freemarker.apache.org/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 4.8.
-     * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
-     * **License:** [The BSD3 License](https://github.com/functionaljava/functionaljava/blob/master/etc/LICENCE)
 
 1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 5.0.
      * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
@@ -7198,7 +7094,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:04 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -7475,10 +7371,6 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.1.8.
-     * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
-     * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.2.4.
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -7527,7 +7419,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson/gson](https://github.com/google/gson/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -7612,7 +7504,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.9.6.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
@@ -7620,23 +7512,11 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.35.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.35.0.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -7661,17 +7541,13 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 1.  **Group** : com.google.truth.extensions. **Name** : truth-proto-extension. **Version** : 1.4.5.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.75.0.
+1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.75.0.
+1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
-     * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
-     * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
@@ -7925,7 +7801,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://freemarker.apache.org/](https://freemarker.apache.org/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 4.8.
+1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 5.0.
      * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
      * **License:** [The BSD3 License](https://github.com/functionaljava/functionaljava/blob/master/etc/LICENCE)
 
@@ -8280,7 +8156,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:04 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -8345,8 +8221,24 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlinx. **Name** : atomicfu. **Version** : 0.29.0.
+     * **Project URL:** [https://github.com/Kotlin/kotlinx.atomicfu](https://github.com/Kotlin/kotlinx.atomicfu)
+     * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlinx. **Name** : atomicfu-jvm. **Version** : 0.29.0.
+     * **Project URL:** [https://github.com/Kotlin/kotlinx.atomicfu](https://github.com/Kotlin/kotlinx.atomicfu)
+     * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlinx. **Name** : kotlinx-coroutines-bom. **Version** : 1.10.2.
      * **Project URL:** [https://github.com/Kotlin/kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines)
+     * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlinx. **Name** : kotlinx-datetime. **Version** : 0.7.1.
+     * **Project URL:** [https://github.com/Kotlin/kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime)
+     * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlinx. **Name** : kotlinx-datetime-jvm. **Version** : 0.7.1.
+     * **Project URL:** [https://github.com/Kotlin/kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jspecify. **Name** : jspecify. **Version** : 1.0.0.
@@ -9100,7 +8992,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:04 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -9381,10 +9273,6 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.1.8.
-     * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
-     * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.2.4.
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -9445,7 +9333,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson/gson](https://github.com/google/gson/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -9534,7 +9422,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.9.6.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
@@ -9542,23 +9430,11 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.35.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.35.0.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -9583,17 +9459,13 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 1.  **Group** : com.google.truth.extensions. **Name** : truth-proto-extension. **Version** : 1.4.5.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.75.0.
+1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.75.0.
+1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
-     * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
-     * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
@@ -9883,7 +9755,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://freemarker.apache.org/](https://freemarker.apache.org/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 4.8.
+1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 5.0.
      * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
      * **License:** [The BSD3 License](https://github.com/functionaljava/functionaljava/blob/master/etc/LICENCE)
 
@@ -10238,7 +10110,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:04 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -10622,10 +10494,6 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.1.8.
-     * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
-     * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.2.4.
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
      * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -10674,7 +10542,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson/gson](https://github.com/google/gson/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -10759,7 +10627,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.9.6.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
@@ -10767,23 +10635,11 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.35.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.35.0.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -10808,17 +10664,13 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 1.  **Group** : com.google.truth.extensions. **Name** : truth-proto-extension. **Version** : 1.4.5.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.75.0.
+1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.75.0.
+1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
-     * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
-     * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
@@ -11080,7 +10932,7 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
      * **Project URL:** [https://freemarker.apache.org/](https://freemarker.apache.org/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 4.8.
+1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 5.0.
      * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
      * **License:** [The BSD3 License](https://github.com/functionaljava/functionaljava/blob/master/etc/LICENCE)
 
@@ -11435,6 +11287,6 @@ This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Jun 09 19:09:24 WEST 2026** using 
+This report was generated on **Thu Jun 11 16:58:04 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).

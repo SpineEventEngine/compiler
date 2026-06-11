@@ -26,6 +26,7 @@
 
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
+import io.spine.dependency.local.ToolBase
 import org.gradle.api.file.DuplicatesStrategy.INCLUDE
 
 plugins {
@@ -35,6 +36,7 @@ plugins {
 dependencies {
     implementation(Protobuf.javaLib)
     implementation(Base.lib)?.because("`MessageOrBuilder.toJson()` is needed.")
+    implementation(ToolBase.lib)?.because("`CodeGeneratorRequestWriter` is needed.")
 }
 
 description = "The Spine Compiler plugin for `protoc`."
