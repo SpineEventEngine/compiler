@@ -8,17 +8,6 @@ jobs:
     name: Build on Windows
 
     steps:
-      - name: Enable symlinks in Git for Windows
-        shell: pwsh
-        run: |
-          # The build under `tests` shares `buildSrc`, the Gradle wrapper files,
-          # and `gradle.properties` with the root project via relative symlinks.
-          # With `core.symlinks=false` these links are checked out as plain text
-          # files, and the nested build launched by `integrationTest` fails to
-          # compile its build scripts. GitHub-hosted Windows runners execute
-          # with administrative rights, so Git can create native symlinks.
-          git config --global core.symlinks true
-
       - uses: actions/checkout@v6
         with:
           submodules: recursive
@@ -37,8 +26,7 @@ jobs:
 
       - name: Build project and run tests
         shell: cmd
-        # For the reason on `--no-daemon` see https://github.com/actions/cache/issues/454
-        run: gradlew.bat build --stacktrace --no-daemon
+        run: gradlew.bat build --stacktrace
 
       # See: https://github.com/marketplace/actions/junit-report-action
       - name: Publish Test Report
