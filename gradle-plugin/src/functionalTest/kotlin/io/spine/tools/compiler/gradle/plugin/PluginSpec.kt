@@ -62,6 +62,8 @@ class PluginSpec {
 
     private val launchSpineCompiler: TaskName = CompilerTaskName(SourceSetName.main)
 
+    private val generateProto: TaskName = TaskName.of("generateProto")
+
     private lateinit var project: GradleProject
     private lateinit var projectDir: File
     private lateinit var generatedDir: File
@@ -113,6 +115,10 @@ class PluginSpec {
         createProject("launch-test")
     }
 
+    private fun createJavaKotlinProject() {
+        createProject("java-kotlin-test")
+    }
+
     private fun launchAndExpectResult(expected: TaskOutcome) {
         val result = launch()
 
@@ -148,7 +154,7 @@ class PluginSpec {
 
     @Test
     fun `produce 'java' and 'kotlin' directories under 'generated'`() {
-        createProject("java-kotlin-test")
+        createJavaKotlinProject()
         val result = project.executeTask(build)
 
         result[build] shouldBe SUCCESS
@@ -230,7 +236,6 @@ class PluginSpec {
     @Test
     fun `restore the generated code from the build cache after 'clean'`() {
         createProject("cached-build-test", "--build-cache")
-        val generateProto = TaskName.of("generateProto")
 
         // Guard against stale or shadowed test resources: the copied build script
         // must be the one declaring the Protobuf dependencies required to compile
@@ -252,6 +257,116 @@ class PluginSpec {
         assertExists(generatedKotlinDir)
     }
 
+    /**
+     * Verifies that an incremental build picks up a proto change without `clean`,
+     * and that the code generated for the previous version of the proto file
+     * does not survive the regeneration.
+     *
+     * This is the regression test for the historic "always run `clean build`"
+     * requirement ([issue #21](https://github.com/SpineEventEngine/compiler/issues/21)):
+     * the stale `Test.java` references descriptors which no longer exist after
+     * the rename, so the build would fail if the launch task did not clean
+     * its output directories before regenerating.
+     */
+    @Test
+    fun `regenerate code and drop stale files after a proto change without 'clean'`() {
+        createJavaKotlinProject()
+        project.executeTask(build)
+        val staleFile = generatedJavaDir.resolve("$packageDir/Test.java")
+        assertExists(staleFile)
+
+        val protoFile = projectDir.resolve("src/main/proto/test.proto")
+        protoFile.writeText(
+            protoFile.readText().replace("message Test {", "message Renamed {")
+        )
+
+        val result = project.executeTask(build)
+
+        result[launchSpineCompiler] shouldBe SUCCESS
+        assertExists(generatedJavaDir.resolve("$packageDir/Renamed.java"))
+        assertDoesNotExist(staleFile)
+    }
+
+    /**
+     * Verifies that the launch task restores the `generated` directory removed
+     * between the builds, while `generateProto` stays `UP_TO_DATE`.
+     *
+     * No `clean` is required: the inputs of the launch task — produced by
+     * `generateProto` and intact under `build/` — suffice for the regeneration.
+     */
+    @Test
+    fun `restore the deleted 'generated' directory without 'clean'`() {
+        createJavaKotlinProject()
+        project.executeTask(build)
+        assertExists(generatedJavaDir)
+
+        generatedDir.deleteRecursively() shouldBe true
+
+        val result = project.executeTask(build)
+
+        result[generateProto] shouldBe UP_TO_DATE
+        result[launchSpineCompiler] shouldBe SUCCESS
+        assertExists(generatedJavaDir)
+        assertExists(generatedKotlinDir)
+    }
+
+    /**
+     * Verifies that a change unrelated to proto code does not trigger the launch
+     * task, and the previously generated code stays in place.
+     */
+    @Test
+    fun `keep the launch task up-to-date when only regular sources change`() {
+        createJavaKotlinProject()
+        project.executeTask(build)
+
+        val newClass = projectDir.resolve("src/main/java/$packageDir/Unrelated.java")
+        newClass.parentFile.mkdirs()
+        newClass.writeText("""
+            package io.spine.tools.compiler.test;
+
+            /** A class which does not depend on the generated code. */
+            final class Unrelated {
+
+                private Unrelated() {
+                }
+            }
+            """.trimIndent()
+        )
+
+        val result = project.executeTask(build)
+
+        result[launchSpineCompiler] shouldBe UP_TO_DATE
+        assertExists(generatedJavaDir.resolve("$packageDir/Test.java"))
+    }
+
+    /**
+     * Verifies that settings files rewritten with the same content on every
+     * build do not break the up-to-date state of the launch task.
+     *
+     * Consumer plugins, such as McJava, write settings for the Compiler plugins
+     * during the configuration phase of every build. As long as the content
+     * stays the same, the launch task must not re-run.
+     */
+    @Test
+    fun `stay up-to-date when settings are rewritten with the same content`() {
+        createJavaKotlinProject()
+        val buildScript = projectDir.resolve("build.gradle.kts")
+        buildScript.appendText(
+            """
+
+            // Simulate a consumer plugin writing settings on each configuration run.
+            val compilerSettingsDir = file("build/spine/compiler/settings")
+            compilerSettingsDir.mkdirs()
+            compilerSettingsDir.resolve("custom.plugin.txt").writeText("option: fixed")
+            """.trimIndent()
+        )
+
+        project.executeTask(build)
+        val result = project.executeTask(build)
+
+        result[launchSpineCompiler] shouldBe UP_TO_DATE
+    }
+
     @Test
     fun `make the KSP task depend on the launch task`() {
         createProject("ksp-test")
@@ -271,6 +386,7 @@ class PluginSpec {
  *
  * The output replaces `projectDir` name with ellipses.
  */
+@Suppress("KotlinPrintToLogpoint") // We want the console output in this case.
 private fun printFilteredBuildOutput(projectDir: File, result: BuildResult) {
     println("Spine Compiler-related build output:")
     println(
