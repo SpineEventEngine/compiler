@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ plugins {
 
 dependencies {
     api(project(":backend"))?.because(
-        "We use the `api` dependency here to allow users access `Pipeline` and" +
+        "We use the `api` dependency here to allow users to access `Pipeline` and" +
                 " `CodeGenerationContext` APIs."
     )
     api(ToolBase.psiJava)
