@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,18 @@ import java.io.File.pathSeparator
 
 /**
  * A parameter passed to the Compiler command-line application.
+ *
+ * ## Equality
+ *
+ * This class intentionally does not override `equals()` or `hashCode()`,
+ * relying on the identity-based semantics inherited from [Any].
+ *
+ * Every subtype is a Kotlin `object` — a singleton — so each parameter has
+ * exactly one instance (see [ParametersFileParam], [InfoLoggingParam], and
+ * [DebugLoggingParam]). Two distinct instances of the same parameter cannot
+ * exist; identity equality is therefore both correct and the only achievable
+ * behavior. A value-based `equals()` would add no distinguishing power, so it
+ * is deliberately omitted rather than maintained as effectively dead code.
  */
 public sealed class Parameter(
 
@@ -56,19 +68,7 @@ public sealed class Parameter(
      */
     public val help: String = help.trimIndent()
 
-    final override fun hashCode(): Int = name.hashCode()
-
     final override fun toString(): String = name
-
-    final override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is Parameter) return false
-        if (!super.equals(other)) return false
-
-        if (name != other.name) return false
-        if (shortName != other.shortName) return false
-        return help == other.help
-    }
 
     internal companion object {
 
