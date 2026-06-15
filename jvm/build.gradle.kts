@@ -37,7 +37,12 @@ plugins {
 }
 
 dependencies {
-    api(project(":backend"))
+    api(project(":backend"))?.because(
+        """
+        We use the `api` dependency here to allow users access `Pipeline` and
+        `CodeGenerationContext` API.    
+        """.trimIndent()
+    )
     api(ToolBase.psiJava)
     implementation(PalantirJavaFormat.lib)
     implementation(Time.javaExtensions)
