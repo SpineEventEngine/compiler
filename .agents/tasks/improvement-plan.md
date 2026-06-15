@@ -53,12 +53,19 @@ Milestone 2 — high-leverage (pre-GA API work):
       documenting the edge in place with a `because(...)` rationale (it
       previously carried none). Answers audit open question 3 — the
       `jvm → backend` exposure is intentional.
-- [ ] (T1) Add direct unit specs for `params` (parameter types,
-      file/directory conversions). Kotest assertions, `Spec` suffix,
-      stubs not mocks. Effort M, risk Low.
-- [ ] (P1) Add a perf smoke signal for the engine (BuildSpeed or a
-      timed pipeline run) to PR workflows of this repo — blocked on
-      audit open question 4 (perf budget). Effort M, risk Low.
+- [x] (T1) Added direct unit specs for `params` (parameter types,
+      file/directory conversions) — 5 `Spec` files, 19 cases, Kotest
+      assertions, stubs not mocks. Line coverage 0% → 94.5%; the only
+      uncovered lines were the unreachable field comparisons in
+      `Parameter.equals()` (68–70), since removed (see changelog).
+      Effort M, risk Low.
+- [x] (P1) Added a perf **smoke signal** (not a gate) for the engine: a
+      timed cold `Pipeline` run (`PipelineSmokeSpec`, tagged `performance`)
+      run by a dedicated `:backend:performanceTest` task from a new
+      repo-specific `performance-test.yml` PR workflow. It fails only on a
+      coarse hang ceiling (a deadlock/pathology guard), so it asserts no
+      perf budget — sidestepping audit open question 4 instead of waiting
+      on it. BuildSpeed is deliberately avoided. Effort M, risk Low.
 
 Milestone 3 — polish:
 
@@ -130,3 +137,43 @@ repository. All five are consolidated in
   `because(...)` rationale at `jvm/build.gradle.kts:40-45` stating this
   — closing A1 through the audit's sanctioned "ADR records why it must"
   path and answering audit open question 3 (yes, intentional).
+- 2026-06-15 — (T1) done via the `raise-coverage` skill on `:params`.
+  Added 5 Kotlin `Spec` files (19 cases) under
+  `params/src/test/kotlin/io/spine/tools/compiler/params/`:
+  `ParameterSpec` (covers `Parameter` + the three `CommandLineInterface`
+  param objects via Guava `EqualsTester`), `ParametersDirectorySpec`,
+  `WorkingDirectorySpec`, `RequestDirectorySpec`, and
+  `CodeGeneratorRequestFileSpec`. Kover line coverage for `:params` went
+  0% → 94.5% (52/55 lines); all 19 tests pass. Remaining uncovered code
+  is non-actionable: the unreachable field comparisons in
+  `Parameter.equals()` (68–70, dead because the `super.equals` identity
+  check short-circuits) and two trivial unused constant getters
+  (`ParametersDirectory.DEFAULT_FORMAT`, `Parameter.ps`). Branch is
+  already version-bumped (`2.0.0-SNAPSHOT.053`).
+- 2026-06-15 — (P1) done as a **smoke signal, not a gate** — the chosen
+  shape avoids running BuildSpeed as a perf gate on PRs. Added
+  `backend/.../backend/perf/PipelineSmokeSpec.kt`: a `@Tag("performance")`
+  test that times one cold `Pipeline` run over the `test-env` `doctor.proto`
+  fixture (reusing the `PipelineSpec` construction), logs the elapsed time,
+  and asserts only that it stays under a deliberately generous 60s hang
+  ceiling. Because it asserts no perf budget, audit open question 4 does
+  **not** block it (Q4 only gates a workflow that *asserts* a budget). Wired
+  via a dedicated `:backend:performanceTest` task in `backend/build.gradle.kts`
+  (the `performance` tag is excluded from the normal `test`); the task is not
+  in `check`/`build`. Runs on PRs through a new **repo-specific**
+  `.github/workflows/performance-test.yml` — confirmed `performance-test.yml`
+  is not a `config` template (it is git-tracked directly in
+  `core-jvm-compiler`), so it is introduced here, not delegated to `config`.
+  BuildSpeed stays the downstream end-to-end measure; this is the upstream
+  early-warning signal where the engine lives.
+- 2026-06-15 — Removed the dead `Parameter.equals()`/`hashCode()` overrides
+  that the T1 entry flagged as the only non-actionable uncovered lines.
+  `Parameter` is `sealed` with three `object` subtypes, so identity equality
+  (default `Any`) is the sole achievable behavior; the custom `equals()` was
+  unreachable past its `super.equals` identity short-circuit (former lines
+  68–70). Dropped both overrides — kept `toString()` returning the long name
+  for readable logs — removed the now-invalid `hashCode` spec case (19 → 18
+  `:params` cases), and `ParameterSpec`'s `EqualsTester` now asserts default
+  identity semantics. Bumped `Parameter.kt`'s copyright to 2026. Verified with
+  `./gradlew :params:test :params:detekt`: 18 tests pass, detekt clean. Branch
+  stays version-bumped (`2.0.0-SNAPSHOT.053`); no re-bump needed.
