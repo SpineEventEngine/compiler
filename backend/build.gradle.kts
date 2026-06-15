@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,4 +67,31 @@ apply<IncrementGuard>()
 
 tasks.withType<CheckVersionIncrement> {
     repository = PublishingRepos.cloudArtifactRegistry
+}
+
+// The performance smoke signal (`perf/PipelineSmokeSpec.kt`) is tagged
+// `performance` so it stays out of the regular (fast) `test` gate and runs only
+// via the dedicated `performanceTest` task below.
+tasks.test {
+    useJUnitPlatform {
+        excludeTags("performance")
+    }
+}
+
+// Times a single cold `Pipeline` run and fails only on a deadlock/pathology
+// (a coarse hang ceiling, not a performance budget). Intentionally NOT wired
+// into `check`/`build`; the `Engine performance smoke test` workflow runs it on
+// pull requests.
+val performanceTest by tasks.registering(Test::class) {
+    description = "Runs the engine performance smoke signal (timed `Pipeline` run, hang ceiling)."
+    group = "verification"
+    testClassesDirs = sourceSets.test.get().output.classesDirs
+    classpath = sourceSets.test.get().runtimeClasspath
+    useJUnitPlatform {
+        includeTags("performance")
+    }
+    shouldRunAfter(tasks.test)
+    testLogging {
+        showStandardStreams = true
+    }
 }
