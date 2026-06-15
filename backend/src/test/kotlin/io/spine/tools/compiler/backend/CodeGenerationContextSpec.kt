@@ -26,7 +26,6 @@
 
 package io.spine.tools.compiler.backend
 
-import com.google.common.truth.extensions.proto.ProtoTruth.assertThat
 import com.google.protobuf.AnyProto
 import com.google.protobuf.BoolValue
 import com.google.protobuf.DescriptorProtos
@@ -36,7 +35,6 @@ import com.google.protobuf.TimestampProto
 import com.google.protobuf.WrappersProto
 import com.google.protobuf.compiler.codeGeneratorRequest
 import io.kotest.matchers.collections.containExactly
-import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.maps.shouldContainKey
 import io.kotest.matchers.should
@@ -50,7 +48,6 @@ import io.spine.testing.server.blackbox.BlackBox
 import io.spine.testing.server.blackbox.assertEntity
 import io.spine.time.TimeProto
 import io.spine.tools.compiler.ast.PrimitiveType.TYPE_BOOL
-import io.spine.tools.compiler.ast.ProtobufDependency
 import io.spine.tools.compiler.ast.ProtobufSourceFile
 import io.spine.tools.compiler.ast.doc
 import io.spine.tools.compiler.ast.option
@@ -60,7 +57,6 @@ import io.spine.tools.compiler.ast.toType
 import io.spine.tools.compiler.backend.event.CompilerEvents
 import io.spine.tools.compiler.context.CodegenContext
 import io.spine.tools.compiler.protobuf.file
-import io.spine.tools.compiler.protobuf.toFile
 import io.spine.tools.compiler.test.DoctorProto
 import io.spine.tools.compiler.test.PhDProto
 import io.spine.tools.compiler.test.XtraOptsProto
@@ -68,7 +64,6 @@ import io.spine.tools.compiler.type.findAbsolute
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
