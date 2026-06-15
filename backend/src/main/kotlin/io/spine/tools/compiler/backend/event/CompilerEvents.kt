@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,10 +39,9 @@ import io.spine.tools.compiler.ast.event.dependencyDiscovered
 import io.spine.tools.compiler.ast.event.fileEntered
 import io.spine.tools.compiler.ast.event.fileExited
 import io.spine.tools.compiler.ast.event.fileOptionDiscovered
-import io.spine.tools.compiler.ast.file
 import io.spine.tools.compiler.ast.produceOptionEvents
-import io.spine.tools.compiler.ast.toJava
 import io.spine.tools.compiler.ast.toAbsoluteFile
+import io.spine.tools.compiler.ast.toJava
 import io.spine.tools.compiler.backend.DescriptorFilter
 import io.spine.tools.compiler.protobuf.file
 import io.spine.tools.compiler.protobuf.toHeader
