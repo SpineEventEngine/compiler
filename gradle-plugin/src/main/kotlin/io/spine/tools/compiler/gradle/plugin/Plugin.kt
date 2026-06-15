@@ -32,6 +32,7 @@ package io.spine.tools.compiler.gradle.plugin
 import com.google.common.collect.ImmutableList
 import com.google.errorprone.annotations.CanIgnoreReturnValue
 import com.google.protobuf.gradle.GenerateProtoTask
+import com.google.protobuf.gradle.ProtobufExtension
 import io.spine.annotation.VisibleForTesting
 import io.spine.format.Format
 import io.spine.io.replaceExtension
@@ -271,10 +272,23 @@ private fun Project.setProtocArtifact() {
     checkNotNull(protocArtifact) {
         "Unable to load `protoc` dependency of `${Plugin::class.qualifiedName}`."
     }
-    protobufExtension!!.protoc { locator ->
+    protobufExtensionOrFail().protoc { locator ->
         locator.artifact = protocArtifact.coordinates
     }
 }
+
+/**
+ * Obtains the extension of the Protobuf Gradle Plugin applied to this project.
+ *
+ * @throws IllegalStateException if the Protobuf Gradle Plugin (`com.google.protobuf`)
+ *  is not applied to the project. The Spine Compiler plugin requires it.
+ */
+internal fun Project.protobufExtensionOrFail(): ProtobufExtension =
+    checkNotNull(protobufExtension) {
+        "The Spine Compiler plugin requires the Protobuf Gradle Plugin" +
+            " (`$PROTOBUF_GRADLE_PLUGIN_ID`) to be applied to the project `$path`." +
+            " Please add `id(\"$PROTOBUF_GRADLE_PLUGIN_ID\")` to the `plugins` block."
+    }
 
 context(_: GeneratedDirectoryContext)
 private fun Project.configureWithProtobufPlugin(compilerVersion: String) {
