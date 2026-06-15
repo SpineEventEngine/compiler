@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ rootProject.name = "spine-compiler"
 
 pluginManagement {
     repositories {
+        gradlePluginPortal()
         mavenLocal()
         mavenCentral()
-        gradlePluginPortal()
         maven("https://europe-maven.pkg.dev/spine-event-engine/releases")
         maven("https://europe-maven.pkg.dev/spine-event-engine/snapshots")
     }
@@ -38,9 +38,9 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
+        gradlePluginPortal()
         mavenLocal()
         mavenCentral()
-        gradlePluginPortal()
     }
 }
 
