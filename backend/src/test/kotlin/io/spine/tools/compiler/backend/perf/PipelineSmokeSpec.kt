@@ -27,7 +27,6 @@
 package io.spine.tools.compiler.backend.perf
 
 import com.google.protobuf.compiler.codeGeneratorRequest
-import io.kotest.matchers.comparables.shouldBeLessThan
 import io.spine.string.simply
 import io.spine.testing.compiler.RenderingTestbed
 import io.spine.testing.compiler.pipelineParams
@@ -41,14 +40,16 @@ import io.spine.tools.compiler.test.Journey
 import io.spine.tools.compiler.test.TestPlugin
 import io.spine.tools.compiler.test.UnderscorePrefixRenderer
 import java.nio.file.Path
+import java.util.concurrent.TimeUnit.SECONDS
 import kotlin.io.path.createDirectories
 import kotlin.io.path.writeBytes
 import kotlin.io.path.writeText
-import kotlin.time.Duration.Companion.seconds
 import kotlin.time.measureTime
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Timeout
+import org.junit.jupiter.api.Timeout.ThreadMode.SEPARATE_THREAD
 import org.junit.jupiter.api.io.TempDir
 
 /**
@@ -58,13 +59,17 @@ import org.junit.jupiter.api.io.TempDir
  * ([CodegenContext][io.spine.tools.compiler.context.CodegenContext]) on every
  * [Pipeline] run, so a regression in that bootstrap or in the rendering path
  * inflates the compilation time of every downstream build. This test times a
- * single cold pipeline run over the `test-env` fixtures, logs the elapsed time as a
- * signal, and fails only if the run exceeds a deliberately generous [HANG_CEILING].
+ * single cold pipeline run over the `test-env` fixtures and logs the elapsed time
+ * as a signal.
  *
- * This is **not** a performance gate: the ceiling is a deadlock/pathology guard,
- * not a budget (see audit `docs/audit-2026-06.md`, open question 4). The test is
- * tagged [`performance`][Tag] so it is excluded from the regular `test` task and
- * runs only via the `:backend:performanceTest` task wired into the
+ * This is **not** a performance gate or budget. The run is bounded by a preemptive
+ * [Timeout] on a separate thread: a deadlock or pathological slowdown aborts the
+ * test at the ceiling instead of hanging until the CI job times out. The ceiling is
+ * deliberately generous — a single small pipeline run takes a few seconds at most on
+ * a CI runner — so it never trips on normal performance variance.
+ *
+ * The test is tagged [`performance`][Tag] so it is excluded from the regular `test`
+ * task and runs only via the `:backend:performanceTest` task wired into the
  * `Engine performance smoke test` workflow.
  */
 @Tag("performance")
@@ -72,6 +77,7 @@ import org.junit.jupiter.api.io.TempDir
 internal class PipelineSmokeSpec {
 
     @Test
+    @Timeout(value = 60, unit = SECONDS, threadMode = SEPARATE_THREAD)
     fun `finish a pipeline run within the hang ceiling`(@TempDir sandbox: Path) {
         val srcRoot = sandbox.resolve("src").createDirectories()
         val targetRoot = sandbox.resolve("target").createDirectories()
@@ -104,20 +110,9 @@ internal class PipelineSmokeSpec {
         }
 
         // The signal: surfaced in the build log via `testLogging.showStandardStreams`.
+        // A deadlock or hang is caught preemptively by `@Timeout` (which abandons the
+        // run on a separate thread), not by a post-hoc assertion that a hung run would
+        // never reach.
         println("[perf] engine pipeline run over `doctor.proto`: $elapsed")
-
-        // The deadlock guard — NOT a performance budget.
-        elapsed shouldBeLessThan HANG_CEILING
-    }
-
-    private companion object {
-
-        /**
-         * Deliberately generous. A single small pipeline run takes a few seconds at
-         * most on a CI runner; this trips only on a deadlock or pathological slowdown,
-         * never on normal performance variance. It is intentionally **not** a
-         * performance budget (audit open question 4).
-         */
-        private val HANG_CEILING = 60.seconds
     }
 }
