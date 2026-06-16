@@ -1,0 +1,40 @@
+name: Engine performance smoke test
+
+on: pull_request
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  performance:
+    name: Engine performance smoke test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'true'
+
+      - uses: actions/setup-java@v5
+        with:
+          java-version: 17
+          distribution: zulu
+
+      - uses: gradle/actions/setup-gradle@v6
+
+      # A timed `Pipeline` run over the `test-env` fixtures. This is a smoke
+      # signal, not a performance gate: the task fails only if the run exceeds a
+      # coarse hang ceiling (a deadlock/pathology guard), never on normal
+      # performance variance. The elapsed time is printed to the build log.
+      - name: Run the engine performance smoke test
+        shell: bash
+        run: ./gradlew :backend:performanceTest --stacktrace
+
+      # See: https://github.com/marketplace/actions/junit-report-action
+      - name: Publish performance test report
+        uses: mikepenz/action-junit-report@v4.0.3
+        if: always() # always run even if the previous step fails
+        with:
+          report_paths: 'backend/build/test-results/performanceTest/TEST-*.xml'
+          require_tests: true # fail the workflow if no perf test report is found

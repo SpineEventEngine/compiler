@@ -24,23 +24,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.local
+package io.spine.tools.compiler.params
 
-/**
- * Dependencies on ProtoTap plugins.
- *
- * See [`SpineEventEngine/ProtoTap`](https://github.com/SpineEventEngine/ProtoTap/).
- */
-@Suppress(
-    "unused" /* Some subprojects do not use ProtoTap directly. */,
-    "ConstPropertyName" /* We use custom convention for artifact properties. */,
-    "MemberVisibilityCanBePrivate" /* The properties are used directly by other subprojects. */,
-)
-object ProtoTap {
-    const val group = Spine.toolsGroup
-    const val version = "0.15.0"
-    const val gradlePluginId = "io.spine.prototap"
-    const val api = "$group:prototap-api:$version"
-    const val gradlePlugin = "$group:prototap-gradle-plugin:$version"
-    const val protocPlugin = "$group:prototap-protoc-plugin:$version"
+import io.kotest.matchers.shouldBe
+import io.spine.tools.code.SourceSetName
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+
+@DisplayName("`CodeGeneratorRequestFile` should")
+internal class CodeGeneratorRequestFileSpec {
+
+    @Test
+    fun `build the file name from the source set name`() {
+        CodeGeneratorRequestFile.name(SourceSetName("main")) shouldBe "main.bin"
+        CodeGeneratorRequestFile.name(SourceSetName("testFixtures")) shouldBe "testFixtures.bin"
+    }
+
+    @Test
+    fun `expose the default directory name`() {
+        CodeGeneratorRequestFile.defaultDirectory shouldBe "compiler/requests"
+    }
 }

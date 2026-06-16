@@ -24,23 +24,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.local
+package io.spine.tools.compiler.params
 
-/**
- * Dependencies on ProtoTap plugins.
- *
- * See [`SpineEventEngine/ProtoTap`](https://github.com/SpineEventEngine/ProtoTap/).
- */
-@Suppress(
-    "unused" /* Some subprojects do not use ProtoTap directly. */,
-    "ConstPropertyName" /* We use custom convention for artifact properties. */,
-    "MemberVisibilityCanBePrivate" /* The properties are used directly by other subprojects. */,
-)
-object ProtoTap {
-    const val group = Spine.toolsGroup
-    const val version = "0.15.0"
-    const val gradlePluginId = "io.spine.prototap"
-    const val api = "$group:prototap-api:$version"
-    const val gradlePlugin = "$group:prototap-gradle-plugin:$version"
-    const val protocPlugin = "$group:prototap-protoc-plugin:$version"
+import io.kotest.matchers.shouldBe
+import io.spine.tools.code.SourceSetName
+import java.nio.file.Path
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.io.TempDir
+
+@DisplayName("`RequestDirectory` should")
+internal class RequestDirectorySpec {
+
+    @Test
+    fun `compose the request file name for a source set`(@TempDir dir: Path) {
+        val file = RequestDirectory(dir).file(SourceSetName("main"))
+
+        file.name shouldBe "main.bin"
+        file.parentFile shouldBe dir.toFile()
+    }
+
+    @Test
+    fun `expose its path`(@TempDir dir: Path) {
+        RequestDirectory(dir).path shouldBe dir
+    }
 }
