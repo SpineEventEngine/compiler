@@ -24,40 +24,46 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.gradle.report.license
+package io.spine.testing.compiler
 
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.string.shouldContain
+import io.spine.tools.compiler.Compilation
 import java.io.File
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-/**
- * Filesystem paths used by [LicenseReporter] and
- * [PomGenerator][io.spine.gradle.report.pom.PomGenerator].
- */
-internal object Paths {
+@DisplayName("`assertCompilationError()` should")
+internal class AssertionsSpec {
 
-    /**
-     * The directory in the root project to which dependency reports are written.
-     */
-    internal const val outputDirectory = "docs/dependencies"
+    private val file = File("Order.proto")
+    private val line = 100
+    private val column = 5
+    private val message = "The ID field has an unsupported type."
 
-    /**
-     * The output filename of the license report.
-     *
-     * The file with this name is placed under [outputDirectory] of the root Gradle project —
-     * as the result of the [LicenseReporter] work.
-     *
-     * Its contents describe the licensing information for each of the Java dependencies
-     * that are referenced by Gradle projects in the repository.
-     */
-    internal const val outputFilename = "dependencies.md"
+    @Test
+    fun `return the thrown compilation error`() {
+        val (error, _) = assertCompilationError {
+            Compilation.error(file, line, column, message)
+        }
+        error.message shouldContain message
+    }
 
-    /**
-     * The path to a directory, to which a per-project report is generated.
-     */
-    internal const val relativePath = "reports/dependency-license/dependency"
+    @Test
+    fun `capture the console output produced during compilation`() {
+        val (_, output) = assertCompilationError {
+            Compilation.error(file, line, column, message)
+        }
+        output shouldContain message
+        output shouldContain "$line:$column"
+    }
 
-    /**
-     * Obtains a dependency report file under [outputDirectory] of the root project directory.
-     */
-    internal fun outputFile(rootDirectory: File, filename: String): File =
-        rootDirectory.resolve(outputDirectory).resolve(filename)
+    @Test
+    fun `fail when the action does not raise a compilation error`() {
+        shouldThrow<AssertionError> {
+            assertCompilationError {
+                // Does nothing, so no `Compilation.Error` is raised.
+            }
+        }
+    }
 }

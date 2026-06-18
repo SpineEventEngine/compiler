@@ -24,23 +24,30 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.dependency.local
+package io.spine.testing.compiler
+
+import io.spine.logging.testing.tapConsole
+import io.spine.tools.compiler.Compilation
+import org.junit.jupiter.api.assertThrows
 
 /**
- * Spine Base module.
+ * Asserts that the given [action] fails compilation, returning the thrown error
+ * together with the console output it produced.
  *
- * @see <a href="https://github.com/SpineEventEngine/base-libraries">spine-base-libraries</a>
+ * The console output is captured via [tapConsole] — so the deliberately provoked
+ * compilation error does not pollute the build log — and returned as the second
+ * component of the pair, letting callers inspect the diagnostics if they need to.
+ *
+ * @param action The code expected to fail with a [Compilation.Error].
+ * @return A pair of the thrown [Compilation.Error] and the captured console output.
+ * @see tapConsole
  */
-@Suppress("ConstPropertyName", "unused")
-object Base {
-    const val version = "2.0.0-SNAPSHOT.413"
-    const val versionForBuildScript = "2.0.0-SNAPSHOT.413"
-    const val group = Spine.group
-    private const val prefix = "spine"
-    const val libModule = "$prefix-base"
-    const val lib = "$group:$libModule:$version"
-    const val libForBuildScript = "$group:$libModule:$versionForBuildScript"
-    const val annotations = "$group:$prefix-annotations:$version"
-    const val environment = "$group:$prefix-environment:$version"
-    const val format = "$group:$prefix-format:$version"
+public fun assertCompilationError(action: () -> Unit): Pair<Compilation.Error, String> {
+    lateinit var error: Compilation.Error
+    val output = tapConsole {
+        error = assertThrows<Compilation.Error> {
+            action()
+        }
+    }
+    return error to output
 }
