@@ -27,14 +27,12 @@
 package io.spine.testing.compiler
 
 import com.google.protobuf.Descriptors.Descriptor
-import io.spine.logging.testing.tapConsole
 import io.spine.tools.compiler.Compilation
 import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.compiler.plugin.Plugin
 import io.spine.tools.compiler.settings.SettingsDirectory
 import io.spine.tools.code.SourceSetName
 import java.nio.file.Path
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.io.TempDir
 
 /**
@@ -89,11 +87,10 @@ public abstract class AbstractCompilationErrorTest {
     public fun assertCompilationFails(descriptor: Descriptor): Compilation.Error {
         val setup = createSetup(descriptor)
         val pipeline = setup.createPipeline()
-        val error = assertThrows<Compilation.Error> {
-            // Redirect console output so that we don't print errors during the build.
-            tapConsole {
-                pipeline()
-            }
+        // `assertCompilationError` redirects console output so that we don't
+        // print errors during the build. Here we only need the thrown error.
+        val (error, _) = assertCompilationError {
+            pipeline()
         }
         return error
     }
