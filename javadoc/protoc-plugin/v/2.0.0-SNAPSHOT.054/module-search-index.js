@@ -1,0 +1,1 @@
+var moduleSearchIndex = [{"l":"protoc-plugin","url":"index.html"}]
