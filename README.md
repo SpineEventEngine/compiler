@@ -3,7 +3,6 @@
 [![Build on Ubuntu][ubuntu-badge]][ubuntu-build]
 [![Build on Windows][windows-badge]][windows-build]
 [![codecov.io][codecov-badge]][codecov-report]
-
 [![license][apache-badge]][apache-license]
 
 Spine Compiler is a collection of tools for generating quality
