@@ -42,7 +42,7 @@ internal class AssertionsSpec {
     private val message = "The ID field has an unsupported type."
 
     @Test
-    fun `return the thrown 'Compilation.Error'`() {
+    fun `return the thrown compilation error`() {
         val (error, _) = assertCompilationError {
             Compilation.error(file, line, column, message)
         }
