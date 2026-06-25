@@ -62,7 +62,7 @@ message Selector {
     }; // Another trailing comment.
 
     // The current position of the selector.
-    Position position = 1 [
+    string position = 1 [
         // This comment is not included into the location info.
         (required) = true
     ];
