@@ -258,7 +258,7 @@ public object Compilation {
  *
  * @param condition If `false`, the [Compilation.error] will be called.
  * @param file The file causing the error.
- * @param span The span of the declaration which cases the error.
+ * @param span The span of the declaration that cases the error.
  * @param message The lazily evaluated part of the error message.
  *
  * @see Compilation.error

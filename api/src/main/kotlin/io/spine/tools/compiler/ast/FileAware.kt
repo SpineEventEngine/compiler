@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
 package io.spine.tools.compiler.ast
 
 /**
- * An interface for objects which are aware of the file they are associated with.
+ * An interface for objects that are aware of the file they are associated with.
  */
 public interface FileAware {
     public val file: File

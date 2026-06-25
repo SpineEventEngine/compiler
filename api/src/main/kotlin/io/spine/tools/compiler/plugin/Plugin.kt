@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import kotlin.reflect.KClass
  * A plugin into the code generation process.
  *
  * The Compiler uses the reactive approach to handling Protobuf source info.
- * We handle events which describe a Protobuf source
+ * We handle events that describe a Protobuf source
  * set via a set of [views][View] and [policies][Reaction].
  *
  * Users may want to define bespoke [views][View] and [policies][Reaction] based
@@ -153,7 +153,7 @@ private fun Plugin.checkNoViewRepoDuplication(repos: MutableList<ViewRepository<
 }
 
 /**
- * Adds the specified view class to this `MutableSet` which represents a set of views
+ * Adds the specified view class to this `MutableSet` that represents a set of views
  * exposed by a `Plugin`.
  *
  * Usage scenario:
