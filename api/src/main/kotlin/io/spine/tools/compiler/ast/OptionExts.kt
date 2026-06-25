@@ -123,7 +123,7 @@ public inline fun <reified T : Message> Iterable<Option>.find(): T? {
  * Yields events regarding a set of options.
  *
  * @param options The set of options, such as `FileOptions`, `FieldOptions`, etc.
- * @param factory A function that given an option, constructs a fitting event.
+ * @param factory A function that, given an option, constructs a fitting event.
  */
 public suspend fun SequenceScope<EventMessage>.produceOptionEvents(
     options: ExtendableMessage<*>,
