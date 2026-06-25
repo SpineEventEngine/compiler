@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ import "spine/compiler/file.proto";
 message Settings {
     option (entity).kind = VIEW;
 
-    // A name of a component which is going to consume the settings.
+    // A name of a component that is going to consume the settings.
     string consumer = 1;
 
     oneof kind {
@@ -57,7 +57,7 @@ message Settings {
         // No settings are supplied.
         google.protobuf.Empty empty = 2;
 
-        // A file which contains the configuration.
+        // A file that contains the configuration.
         //
         // The format of the configuration is inferred from the file extension.
         //

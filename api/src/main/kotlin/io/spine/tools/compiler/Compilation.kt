@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -134,7 +134,7 @@ public object Compilation {
      * If the code is run [under tests][Tests] the method throws [Compilation.Error].
      *
      * @param file The file in which the error occurred.
-     * @param span The span of the Protobuf declaration which caused the error.
+     * @param span The span of the Protobuf declaration that caused the error.
      * @param message The function calculating the description of what went wrong.
      * @throws Compilation.Error exception when called under tests.
      */
@@ -151,7 +151,7 @@ public object Compilation {
      * The method returns the string printed to the console so that it could be also
      * put into logging output by the calling code.
      *
-     * @param file The file which causes the warning.
+     * @param file The file that causes the warning.
      * @param line The one-based number of the line with the questionable code.
      * @param column The one-based number of the column with the questionable code.
      * @param message The description of the warning.
@@ -169,7 +169,7 @@ public object Compilation {
      * The method returns the string printed to the console so that it could be also
      * put into logging output by the calling code.
      *
-     * @param file The file which causes the warning.
+     * @param file The file that causes the warning.
      * @param span The span of the questionable Protobuf declaration.
      * @param message The function calculating the description of the warning.
      * @return the string printed to the console.
@@ -183,7 +183,7 @@ public object Compilation {
      * The method returns the string printed to the console so that it could be also
      * put into logging output by the calling code.
      *
-     * @param file The file which causes the warning.
+     * @param file The file that causes the warning.
      * @param line The one-based number of the line with the questionable code.
      * @param column The one-based number of the column with the questionable code.
      * @param message The description of the warning.
