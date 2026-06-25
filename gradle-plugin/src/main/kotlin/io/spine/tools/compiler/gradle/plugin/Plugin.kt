@@ -76,7 +76,7 @@ import org.gradle.kotlin.dsl.register
 /**
  * The Gradle plugin of the Spine Compiler.
  *
- * Adds the `launchSpineCompiler` tasks that runs the executable with the arguments
+ * Adds the `launchSpineCompiler` task that runs the executable with the arguments
  * assembled from settings of this plugin.
  *
  * The users can submit configuration parameters, such as renderer and plugin class

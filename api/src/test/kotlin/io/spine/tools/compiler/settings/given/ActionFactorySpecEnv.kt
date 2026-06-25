@@ -94,7 +94,7 @@ abstract class ExposeParam<P: Message>(
 }
 
 /**
- * A stab render action implemented for Java that has no parameter.
+ * A stub render action implemented for Java that has no parameter.
  */
 class ActionNoParam(
     type: MessageType,
@@ -103,7 +103,7 @@ class ActionNoParam(
 ) : ExposeParam<Empty>(type, file, Empty.getDefaultInstance(), context)
 
 /**
- * A stab render action implemented for Java that has [StringValue] parameter.
+ * A stub render action implemented for Java that has [StringValue] parameter.
  */
 class ActionStringParams(
     type: MessageType,
