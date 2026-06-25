@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ class ReactionJavaApiSpec {
      * This test merely makes the {@link Reaction#ignore} method used without making any
      * meaningful assertions.
      *
-     * <p>It creates a {@link Reaction} which calls the `protected` method of the companion object
+     * <p>It creates a {@link Reaction} that calls the `protected` method of the companion object
      * showing the usage scenario.
      *
      * @see ReactionSpec#allowIgnoring() the test for Kotlin API

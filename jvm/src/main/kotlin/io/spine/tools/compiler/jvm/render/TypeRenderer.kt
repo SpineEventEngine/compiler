@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import io.spine.tools.psi.java.execute
  * The type and actions are obtained from a view implementing [TypeActions].
  * The renderer acts on all the views queried by their [viewClass].
  *
- * @param V The type of the view state which the renderer uses for code generation.
+ * @param V The type of the view state that the renderer uses for code generation.
  *
  * @see TypeListRenderer
  */

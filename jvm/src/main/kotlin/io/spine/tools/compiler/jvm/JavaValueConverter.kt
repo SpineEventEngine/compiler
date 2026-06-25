@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ import io.spine.string.shortly
 import io.spine.tools.code.Java
 
 /**
- * A [ValueConverter] which converts values into Java expressions.
+ * A [ValueConverter] that converts values into Java expressions.
  */
 @Suppress("TooManyFunctions")
 public class JavaValueConverter(typeSystem: TypeSystem) : ValueConverter<Java, Expression<*>>() {

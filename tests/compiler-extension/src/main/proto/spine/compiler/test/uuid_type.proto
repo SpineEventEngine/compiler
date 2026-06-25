@@ -12,7 +12,7 @@ option java_multiple_files = true;
 import "spine/compiler/file.proto";
 import "spine/compiler/ast.proto";
 
-// A type which is a wrapper for a UUID string.
+// A type that is a wrapper for a UUID string.
 //
 message UuidType {
     option (entity).kind = PROJECTION;

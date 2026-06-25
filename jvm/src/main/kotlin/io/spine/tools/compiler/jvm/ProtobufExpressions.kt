@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import io.spine.tools.compiler.ast.Field
 import io.spine.tools.compiler.ast.cardinality
 
 /**
- * An expression which yields the given Protobuf [ByteString]
+ * An expression that yields the given Protobuf [ByteString]
  * using [ByteString.copyFrom] method.
  */
 public class CopyByteString(bytes: ByteString) : Expression<ByteString>(

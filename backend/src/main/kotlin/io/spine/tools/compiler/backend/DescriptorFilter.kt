@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import com.google.protobuf.Descriptors.GenericDescriptor
 /**
  * The predicate to accept the descriptors of interest.
  *
- * Filtering descriptors is a test feature which allows accepting only a portion of
+ * Filtering descriptors is a test feature that allows accepting only a portion of
  * stub types when running code generation tests.
  *
  * The filtering is applied only to top-level declarations.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,10 +39,10 @@ import io.spine.reflect.argumentIn
  * The renderer generates the code by traversing all the view states specified by the generic
  * parameter [V].
  *
- * The code generation process may be tuned by the settings which should be stored
+ * The code generation process may be tuned by the settings that should be stored
  * before the rendering process starts.
  *
- * @param V The type of the view state which the renderer uses for code generation.
+ * @param V The type of the view state that the renderer uses for code generation.
  * @param S The type of the settings used by the renderer. Use [Empty] if settings are not used.
  *
  * @see io.spine.tools.compiler.settings.LoadsSettings

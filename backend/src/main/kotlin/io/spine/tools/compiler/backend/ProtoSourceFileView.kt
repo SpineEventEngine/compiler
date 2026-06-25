@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import io.spine.tools.compiler.plugin.View
 import io.spine.server.entity.alter
 
 /**
- * A view which collects information about a Protobuf source file.
+ * A view that collects information about a Protobuf source file.
  */
 internal class ProtoSourceFileView
     : View<File, ProtobufSourceFile, ProtobufSourceFile.Builder>() {

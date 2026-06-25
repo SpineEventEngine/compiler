@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,12 +35,12 @@ import io.spine.server.query.Querying
 import io.spine.server.query.select
 
 /**
- * A Compiler plugin component which accesses its settings via the [Settings] view.
+ * A Compiler plugin component that accesses its settings via the [Settings] view.
  */
 public interface LoadsSettings : Querying, WithSettings {
 
     /**
-     * The ID of the settings consumer which is used for [loading settings][loadSettings].
+     * The ID of the settings consumer that is used for [loading settings][loadSettings].
      *
      * The default value is a canonical name of the Java class implementing this interface.
      */
@@ -74,10 +74,10 @@ public inline fun <reified T: Any> LoadsSettings.loadSettings(): T =
     loadSettings(T::class.java)
 
 /**
- * Obtains the default ID of the settings consumer which is used
+ * Obtains the default ID of the settings consumer that is used
  * for [loading settings][LoadsSettings.loadSettings].
  *
- * @receiver the class which implements [LoadsSettings].
+ * @receiver the class that implements [LoadsSettings].
  *           The class is not bound to avoid casting at the usage sites.
  * @return the canonical name of the given class.
  */

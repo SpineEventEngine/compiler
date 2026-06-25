@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ import org.junit.jupiter.api.assertDoesNotThrow
 
 /**
  * The purpose of this test suite is to document the signature of the [RenderAction] class and
- * prevent accidental removal of this abstract class which is not (yet) otherwise used in the code.
+ * prevent accidental removal of this abstract class that is not (yet) otherwise used in the code.
  */
 @DisplayName("`MessageAction` should")
 internal class RenderActionSpec {

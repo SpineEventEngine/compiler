@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ public val Field.isMap: Boolean
  *
  * In Protobuf `repeated` keyword denotes a sequence of values for a field.
  * However, a map is also treated as a repeated field for serialization reasons.
- * We use the term "list" for repeated fields which are not maps.
+ * We use the term "list" for repeated fields that are not maps.
  */
 public val Field.isList: Boolean
     get() = type.isList
@@ -105,7 +105,7 @@ public val FieldName.camelCase: String
     get() = value.camelCase()
 
 /**
- * Obtains the path to a Protobuf source file which declares
+ * Obtains the path to a Protobuf source file that declares
  * the message type to which this field belongs.
  *
  * @return The full path, if the declaring file is listed among [TypeSystem.compiledProtoFiles],

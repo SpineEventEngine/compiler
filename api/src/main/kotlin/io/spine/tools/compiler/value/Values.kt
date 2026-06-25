@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ private fun Message.toMessageValue(): MessageValue = messageValue {
 }
 
 /**
- * Constructs a [Value] instance which corresponds to the raw value of the field.
+ * Constructs a [Value] instance that corresponds to the raw value of the field.
  */
 private fun FieldDescriptor.toValue(raw: Any): Value = when {
     isMapField -> fromMap(raw)

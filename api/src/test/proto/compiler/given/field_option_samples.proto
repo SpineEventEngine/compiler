@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ message DiceRoll {
     int32 result = 1 [(min).value = "1", (max).value = "6"];
 }
 
-// The message type which uses `(min)` option with the floating point value.
+// The message type that uses `(min)` option with the floating point value.
 message KelvinTemperature {
     double value = 1 [(min) = {
         value: "0.0",

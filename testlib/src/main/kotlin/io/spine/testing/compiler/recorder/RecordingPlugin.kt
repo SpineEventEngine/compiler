@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ public class RecordingPlugin : Plugin(
 }
 
 /**
- * A no-op renderer which serves purely for accessing [CodegenContext] in
+ * A no-op renderer that serves purely for accessing [CodegenContext] in
  * which [RecordingPlugin] acts.
  */
 private class ContextAccess: Renderer<Java>(Java) {
@@ -100,7 +100,7 @@ internal abstract class RecordingView<S : DeclarationViewState, B: ValidatingBui
     }
 
 /**
- * The view which records message type names.
+ * The view that records message type names.
  */
 internal class MessageView : RecordingView<MessageTypes, MessageTypes.Builder>() {
 
@@ -116,7 +116,7 @@ internal class MessageView : RecordingView<MessageTypes, MessageTypes.Builder>()
 }
 
 /**
- * The view which records enum type names.
+ * The view that records enum type names.
  */
 internal class EnumView : RecordingView<EnumTypes, EnumTypes.Builder>() {
 
@@ -132,7 +132,7 @@ internal class EnumView : RecordingView<EnumTypes, EnumTypes.Builder>() {
 }
 
 /**
- * The view which records service names.
+ * The view that records service names.
  */
 internal class ServicesView : RecordingView<Services, Services.Builder>() {
 

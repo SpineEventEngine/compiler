@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import io.spine.tools.compiler.ast.ProtoFileHeader
  * [two contexts receivers](https://github.com/Kotlin/KEEP/blob/master/proposals/context-receivers.md)
  * when producing events for a Protobuf declaration.
  * The first context is the instance of a class derived from [DeclarationEvents].
- * The second context is an instance of `SequenceScope<EventMessage>` which produces the events.
+ * The second context is an instance of `SequenceScope<EventMessage>` that produces the events.
  *
  * This arrangement is needed to be able to reference the [header] of the declaring file.
  *

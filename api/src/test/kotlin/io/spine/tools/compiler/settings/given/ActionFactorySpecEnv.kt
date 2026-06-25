@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ class RenderInKotlin(
 }
 
 /**
- * Abstract base for render actions which exposes the [parameter] property for tests.
+ * Abstract base for render actions that exposes the [parameter] property for tests.
  *
  * It also implements the [render] method doing nothing for the brevity of descendants.
  */
@@ -94,7 +94,7 @@ abstract class ExposeParam<P: Message>(
 }
 
 /**
- * A stab render action implemented for Java which has no parameter.
+ * A stub render action implemented for Java that has no parameter.
  */
 class ActionNoParam(
     type: MessageType,
@@ -103,7 +103,7 @@ class ActionNoParam(
 ) : ExposeParam<Empty>(type, file, Empty.getDefaultInstance(), context)
 
 /**
- * A stab render action implemented for Java which has [StringValue] parameter.
+ * A stub render action implemented for Java that has [StringValue] parameter.
  */
 class ActionStringParams(
     type: MessageType,

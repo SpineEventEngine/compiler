@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ public fun Text.locate(name: ClassName): PsiClass? {
 }
 
 /**
- * Obtains an instance of [PsiJavaFile] which corresponds to this source file.
+ * Obtains an instance of [PsiJavaFile] that corresponds to this source file.
  *
  * The content of the source file is parsed.
  * The instance of `PsiJavaFile` is not tied to a file on the disk.
@@ -84,7 +84,7 @@ public fun SourceFile<*>.toPsi(): PsiJavaFile {
 }
 
 /**
- * The cache which allows avoiding repeated parsing of a [Text] instance for
+ * The cache that allows avoiding repeated parsing of a [Text] instance for
  * obtaining corresponding [PsiJavaFile].
  */
 private object TextToPsiParser {

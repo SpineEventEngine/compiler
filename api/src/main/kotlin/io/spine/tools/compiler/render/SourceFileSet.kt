@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -152,7 +152,7 @@ internal constructor(
         }
 
         /**
-         * Creates an empty source set which can be appended with new files and
+         * Creates an empty source set that can be appended with new files and
          * written to the given target directory.
          */
         public fun empty(target: Path): SourceFileSet {
@@ -268,7 +268,7 @@ internal constructor(
     }
 
     /**
-     * Applies given [action] to all the code files which are accessed by a [Renderer].
+     * Applies given [action] to all the code files that are accessed by a [Renderer].
      *
      * When a file's code is first accessed, the method runs the given action.
      * The action may change the code if necessary, for example,
@@ -340,7 +340,7 @@ public fun SourceFileSet.file(path: String): SourceFile<*> {
 }
 
 /**
- * Creates a subset of this source set which contains only the files
+ * Creates a subset of this source set that contains only the files
  * matching the given [predicate].
  */
 internal fun SourceFileSet.subsetWhere(predicate: (SourceFile<*>) -> Boolean) =

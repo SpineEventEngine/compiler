@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,10 @@ package io.spine.tools.compiler.jvm.style
 import io.spine.tools.compiler.plugin.Plugin
 
 /**
- * A Compiler plugin which formats the Java code in the processing pipeline.
+ * A Compiler plugin that formats the Java code in the processing pipeline.
  *
  * The plugin is useful when <em>several</em> Compiler plugins generate
- * the code which is later needed to be brought to the same style.
+ * the code that is later needed to be brought to the same style.
  * In such a case, it is recommended to put `JavaCodeStyleFormatterPlugin` plugin at
  * the end of the list when passed to the Compiler.
  */

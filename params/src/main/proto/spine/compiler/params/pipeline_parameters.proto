@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -95,7 +95,7 @@ message PipelineParameters {
     //
     repeated Directory target_root = 6 [(required) = true];
 
-    // The user classpath which contains all plugin classes specified in
+    // The user classpath that contains all plugin classes specified in
     // the `plugin_class_name` property, as well as their dependencies,
     // which are not included as a part of the Compiler library JAR.
     //

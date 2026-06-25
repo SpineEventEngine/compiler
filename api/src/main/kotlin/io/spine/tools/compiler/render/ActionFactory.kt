@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ import com.google.protobuf.Any as ProtoAny
  * Creates instances of [RenderAction] specified in the given [actions].
  *
  * The main use case for this is to create rendering actions for
- * a [io.spine.tools.compiler.render.Renderer] which obtains the instance of [Actions]
+ * a [io.spine.tools.compiler.render.Renderer] that obtains the instance of [Actions]
  * from code generation settings.
  *
  * The classes names of which are specified in the given [actions] must satisfy
@@ -50,10 +50,10 @@ import com.google.protobuf.Any as ProtoAny
  *  3. Serve the Protobuf declaration specified by the generic parameter [D].
  *
  * In addition to the criteria above, if an action accepts a parameter, its class must
- * have a `public` constructor which accepts four parameters with the following types:
+ * have a `public` constructor that accepts four parameters with the following types:
  *  1. [D] with an instance of Protobuf declaration to be served by the action.
  *  2. `SourceFile<L>` — the file to be handled by the action.
- *  3. [Message][com.google.protobuf.Message] or a derived class which corresponds to the
+ *  3. [Message][com.google.protobuf.Message] or a derived class that corresponds to the
  *   [packed parameter][com.google.protobuf.Any]
  *   [associated][io.spine.tools.compiler.render.ActionsKt.Dsl.action] with the class name.
  *  4. [CodegenContext].

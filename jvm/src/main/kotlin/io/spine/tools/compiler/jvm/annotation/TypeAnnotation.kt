@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ import java.lang.annotation.Target
 import org.jetbrains.annotations.VisibleForTesting
 
 /**
- * A [JavaRenderer] which annotates a Java type using the given [annotation][annotationClass].
+ * A [JavaRenderer] that annotates a Java type using the given [annotation][annotationClass].
  *
  * @param T the type of the annotation.
  *

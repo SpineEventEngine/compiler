@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -137,7 +137,7 @@ internal fun buildTypeName(
 /**
  * Produces a sequence by walking through all the nested message definitions staring with [type].
  *
- * @param type The message definition which may contain a nested message definition
+ * @param type The message definition that may contain a nested message definition
  *   to walk through.
  * @param extractorFun The function that, given a message definition, extracts
  *   the items of interest.

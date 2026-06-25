@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ import io.spine.tools.compiler.render.TextCoordinates.KindCase.WHOLE_LINE
 import io.spine.tools.code.Language
 
 /**
- * A [Renderer] which adds [InsertionPoint]s to the code.
+ * A [Renderer] that adds [InsertionPoint]s to the code.
  *
  * Insertion points help the developers of other `Renderer`s by marking up source files for easier
  * code insertion. This way, it's only required to parse the file's contents once — in
@@ -67,7 +67,7 @@ public abstract class InsertionPointPrinter<L: Language>(
     }
 
     /**
-     * [InsertionPoint]s which could be added to source code by this `InsertionPointPrinter`.
+     * [InsertionPoint]s that could be added to source code by this `InsertionPointPrinter`.
      *
      * The property getter may use [Renderer.select] to find out more info about the message types.
      */
