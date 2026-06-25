@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ import static io.spine.protobuf.AnyPacker.unpack;
 import static io.spine.server.route.EventRoute.withId;
 
 /**
- * A view on a field which is marked with the {@code (java_annotation)} option.
+ * A view on a field that is marked with the {@code (java_annotation)} option.
  */
 final class AnnotatedView extends View<FieldId, Annotated, Annotated.Builder> {
 

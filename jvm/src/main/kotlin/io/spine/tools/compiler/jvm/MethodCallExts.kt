@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ public fun <T> ClassName.call(
 ): MethodCall<T> = MethodCall(this, name, argument, generics)
 
 /**
- * Constructs an expression which creates a new builder for this class.
+ * Constructs an expression that creates a new builder for this class.
  *
  * Example: `ClassName("com.acme.Bird").newBuilder()` yields
  * `"com.acme.Bird.newBuilder()"`.
@@ -70,7 +70,7 @@ public fun ClassName.newBuilder(): MethodCall<Message.Builder> =
     MethodCall(this, "newBuilder")
 
 /**
- * Constructs an expression which obtains the default instance for this class.
+ * Constructs an expression that obtains the default instance for this class.
  *
  * Example: `ClassName("com.acme.Bird").getDefaultInstance()` yields
  * `"com.acme.Bird.getDefaultInstance()"`.
@@ -89,7 +89,7 @@ public fun EnumName.enumValue(number: Int): MethodCall<Message> =
     call("forNumber", listOf(Literal(number)))
 
 /**
- * Constructs an expression which creates a new builder for this [Message].
+ * Constructs an expression that creates a new builder for this [Message].
  *
  * Example: `Expression("myMessage").toBuilder()` yields `"myMessage.toBuilder()"`.
  */

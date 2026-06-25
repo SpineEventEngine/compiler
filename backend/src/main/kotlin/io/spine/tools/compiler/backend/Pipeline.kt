@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ import kotlin.io.path.exists
 import kotlin.io.path.inputStream
 
 /**
- * A pipeline which processes the Protobuf files.
+ * A pipeline that processes the Protobuf files.
  *
  * A pipeline consists of the [`Code Generation` context][codegenContext],
  * which receives Protobuf compiler events, and one or more [Plugin]s.

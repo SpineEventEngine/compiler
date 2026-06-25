@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ public val <T: Annotation> Class<T>.isRepeatable: Boolean
     get() = isAnnotationPresent(java.lang.annotation.Repeatable::class.java)
 
 /**
- * Obtains the code which is used for referencing this annotation class in Java code.
+ * Obtains the code that is used for referencing this annotation class in Java code.
  *
  * @return a simple class name for the class belonging to `java.lang` package.
  *          Otherwise, a canonical name is returned.
@@ -69,7 +69,7 @@ public val <T: Annotation> Class<T>.codeReference: String
     get() = reference
 
 /**
- * Obtains the code which is used for referencing this class in Java code.
+ * Obtains the code that is used for referencing this class in Java code.
  *
  * @return a simple class name for the class belonging to `java.lang` package.
  *         Otherwise, a canonical name is returned.

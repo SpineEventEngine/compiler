@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ import kotlin.reflect.jvm.jvmName
  */
 public class CodeGenerationContext(
     /**
-     * The ID of a pipeline which is used to create the context.
+     * The ID of a pipeline that is used to create the context.
      */
     private val pipelineId: String,
 
@@ -149,7 +149,7 @@ public class CodeGenerationContext(
 /**
  * An external bounded context.
  *
- * This context can emit events which are visible to the `Code Generation` context.
+ * This context can emit events that are visible to the `Code Generation` context.
  */
 internal sealed class ExternalContext(pipelineId: String, name: String) : AutoCloseable {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import java.nio.file.Path
 /**
  * Obtains the path to the `.java` file, generated from this message.
  *
- * The class which represents this message might not be the top-level class of the Java file,
+ * The class that represents this message might not be the top-level class of the Java file,
  * which is determined by the options in the given Protobuf file header.
  */
 public fun MessageType.javaFile(accordingTo: ProtoFileHeader): Path =

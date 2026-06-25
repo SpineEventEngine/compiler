@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import kotlin.io.path.Path
 /**
  * Obtains the path to the `.java` file, generated for the type with this name.
  *
- * The class which represents this message might not be the top-level class of the Java file,
+ * The class that represents this message might not be the top-level class of the Java file,
  * which is determined by the options in the given Protobuf file header.
  */
 public fun TypeName.javaFile(accordingTo: ProtoFileHeader): Path {
@@ -109,9 +109,9 @@ public fun TypeName.javaEnumName(accordingTo: ProtoFileHeader): EnumName =
  * @param accordingTo
  *        the header of the Protobuf file where the declaration resides in.
  * @param setup
- *        the block of code which adds the name elements to the target name.
+ *        the block of code that adds the name elements to the target name.
  * @param create
- *        the block of code which produces the name from the target Java type.
+ *        the block of code that produces the name from the target Java type.
  * @see ProtoFileHeader.javaPackage
  * @see ProtoFileHeader.javaMultipleFiles
  */

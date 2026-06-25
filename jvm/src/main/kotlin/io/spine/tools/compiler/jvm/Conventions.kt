@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ import io.spine.tools.code.Java
  * @param P The type of the Protobuf declaration name.
  * @param J The type of the Java declaration name.
  *
- * @property typeSystem the type system which is used to resolve types.
+ * @property typeSystem the type system that is used to resolve types.
  */
 public abstract class BaseJavaConvention<P: ProtoDeclarationName, J: ClassName>(
     protected val typeSystem: TypeSystem
@@ -81,7 +81,7 @@ public class MessageOrEnumConvention(ts: TypeSystem) :
 
 /**
  * This convention governs declarations of interfaces extending
- * [MessageOrBuilder][com.google.protobuf.MessageOrBuilder] which are generated along
+ * [MessageOrBuilder][com.google.protobuf.MessageOrBuilder] that are generated along
  * with corresponding message classes.
  *
  * @throws IllegalStateException if the type name is unknown.
@@ -97,7 +97,7 @@ public class MessageOrBuilderConvention(ts: TypeSystem) :
 }
 
 /**
- * Abstract base for conventions which govern generated code for protobuf services.
+ * Abstract base for conventions that govern generated code for protobuf services.
  *
  * @see <a href="https://protobuf.dev/reference/java/java-generated/#service">Protobuf Services</a>
  */
