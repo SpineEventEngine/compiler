@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ class LoggingLevelSpec {
 
         sourceFile = srcRoot.resolve("SourceCode.java")
         sourceFile.writeText("""
-            ${simply<Project>()}.getUuid() 
+            ${simply<Project>()}.getUuid()
         """.trimIndent())
 
         val testProto = TestProto.getDescriptor()
@@ -159,7 +159,7 @@ class LoggingLevelSpec {
 }
 
 /**
- * A pseudo-renderer which asserts that the logging levels are set correctly.
+ * A pseudo-renderer that asserts that the logging levels are set correctly.
  */
 class LoggingLevelAsserter: StubSoloRenderer(), WithLogging {
 

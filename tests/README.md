@@ -1,6 +1,6 @@
 # ProtoData integration tests
 
-This subdirectory —`tests`— contains a separate Gradle product which runs integration
+This subdirectory —`tests`— contains a separate Gradle product that runs integration
 tests of the ProtoData command-line application and the ProtoData Gradle plugin.
 
 This directory is a separate Gradle project, which fetches the artifacts from
@@ -31,7 +31,7 @@ If your current directory is `tests`, just run the Gradle build as usualy:
 
 ## Symlinks
 
-The `test` directory contains _soft_ symlinks to directories and files from the root project which 
+The `test` directory contains _soft_ symlinks to directories and files from the root project that
 this Gradle project needs for execution:
 
 | Symlink       | Target           |

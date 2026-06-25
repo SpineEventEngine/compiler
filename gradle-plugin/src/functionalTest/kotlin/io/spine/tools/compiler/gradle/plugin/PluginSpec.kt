@@ -264,7 +264,7 @@ class PluginSpec {
      *
      * This is the regression test for the historic "always run `clean build`"
      * requirement ([issue #21](https://github.com/SpineEventEngine/compiler/issues/21)):
-     * the stale `Test.java` references descriptors which no longer exist after
+     * the stale `Test.java` references descriptors that no longer exist after
      * the rename, so the build would fail if the launch task did not clean
      * its output directories before regenerating.
      */
@@ -324,7 +324,7 @@ class PluginSpec {
         newClass.writeText("""
             package io.spine.tools.compiler.test;
 
-            /** A class which does not depend on the generated code. */
+            /** A class that does not depend on the generated code. */
             final class Unrelated {
 
                 private Unrelated() {

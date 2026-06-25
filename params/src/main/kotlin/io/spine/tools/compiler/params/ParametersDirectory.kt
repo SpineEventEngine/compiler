@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import java.io.File
 import java.nio.file.Path
 
 /**
- * A directory under [WorkingDirectory] which manages files of [PipelineParameters].
+ * A directory under [WorkingDirectory] that manages files of [PipelineParameters].
  */
 public class ParametersDirectory(
     public val path: Path

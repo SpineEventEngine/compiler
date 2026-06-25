@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,36 +29,36 @@
 package io.spine.tools.compiler.params
 
 /**
- * The command-line parameter for specifying the name of the file which stores an instance of
+ * The command-line parameter for specifying the name of the file that stores an instance of
  * [PipelineParameters] in [ProtoJson][io.spine.format.Format.ProtoJson] format.
  */
 public object ParametersFileParam : Parameter(
     name = "--params",
     shortName = "-P",
     help = """
-        The path to the file with the serialized instance of `PipelineParameters` to 
+        The path to the file with the serialized instance of `PipelineParameters` to
         be passed to the pipeline. The file must be in `pb.json` format.
     """.trimIndent()
 )
 
 /**
- * The command-line parameter which turns the `INFO` logging level on.
+ * The command-line parameter that turns the `INFO` logging level on.
  */
 public object InfoLoggingParam : Parameter(
     name = "--info",
     shortName = "-I",
     help = """
-        Set log level to `INFO`.        
+        Set log level to `INFO`.
     """
 )
 
 /**
- * The command-line parameter which turns the `DEBUG` logging level on.
+ * The command-line parameter that turns the `DEBUG` logging level on.
  */
 public object DebugLoggingParam : Parameter(
     name = "--debug",
     shortName = "-D",
     help = """
-        Set log level to `DEBUG`.        
+        Set log level to `DEBUG`.
     """
 )

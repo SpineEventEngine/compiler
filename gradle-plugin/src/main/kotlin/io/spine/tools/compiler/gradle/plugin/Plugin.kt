@@ -76,7 +76,7 @@ import org.gradle.kotlin.dsl.register
 /**
  * The Gradle plugin of the Spine Compiler.
  *
- * Adds the `launchSpineCompiler` tasks which runs the executable with the arguments
+ * Adds the `launchSpineCompiler` tasks that runs the executable with the arguments
  * assembled from settings of this plugin.
  *
  * The users can submit configuration parameters, such as renderer and plugin class
@@ -242,10 +242,10 @@ private fun Project.createLaunchTask(
 }
 
 /**
- * Creates a task which deletes the files generated for the given [sourceSet].
+ * Creates a task that deletes the files generated for the given [sourceSet].
  *
  * Makes a `clean` task depend on the created task.
- * Also, makes the task which launches the Compiler CLI depend on the created task.
+ * Also, makes the task that launches the Compiler CLI depend on the created task.
  */
 private fun Project.createCleanTask(sourceSet: SourceSet) {
     val project = this

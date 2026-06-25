@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -143,7 +143,7 @@ internal class PipelineSetupSpec {
             inputRoot shouldBe inputPath
 
             // The output root of the source file set is configured with the subdirectory
-            // which corresponds to the input.
+            // that corresponds to the input.
             outputRoot shouldBe output.resolve(langDir)
             find(
                 Path("io/spine/given/domain/gas/CompressorStation.java")
