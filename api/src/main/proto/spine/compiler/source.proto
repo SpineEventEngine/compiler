@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,7 +77,7 @@ message ProtobufSourceFile {
     map<string, Service> service = 5 [(distinct) = true];
 }
 
-// A header of the Protobuf source code file which provides basic information about the file,
+// A header of the Protobuf source code file that provides basic information about the file,
 // such as file-wide options applied to the file.
 message ProtoFileHeader {
 
@@ -105,7 +105,7 @@ message ProtoFileHeader {
     }
 }
 
-// A Protobuf definitions file which is included into the module as a dependency.
+// A Protobuf definitions file that is included into the module as a dependency.
 //
 // Unlike `ProtobufSourceFile`, `ProtobufDependency` should not result in any code generation.
 // Rather, it serves for informative purposes.

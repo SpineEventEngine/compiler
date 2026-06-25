@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ public class EchoRenderer : StubSoloRenderer() {
 }
 
 /**
- * The plugin which exposes [EchoRenderer] as the only render.
+ * The plugin that exposes [EchoRenderer] as the only render.
  */
 public class EchoRendererPlugin : Plugin(renderers = listOf(EchoRenderer()))
 
@@ -97,7 +97,7 @@ public class PlainStringRenderer : StubSoloRenderer() {
 }
 
 /**
- * The plugin which exposes only [PlainStringRenderer].
+ * The plugin that exposes only [PlainStringRenderer].
  */
 public class PlainStringRendererPlugin : Plugin(
     renderers = listOf(PlainStringRenderer())

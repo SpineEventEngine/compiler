@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -94,7 +94,7 @@ import kotlin.reflect.KClass
  * }
  * ```
  *
- * Views have repositories which are responsible for storing states and for delivering correct
+ * Views have repositories that are responsible for storing states and for delivering correct
  * events to the correct views. See [ViewRepository] for more.
  *
  * @param I The type of the view ID; can be a Protobuf message, a `String`, an `int`, or a `long`.

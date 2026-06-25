@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ import io.spine.tools.compiler.type.TypeSystem
  * ```markdown
  * Whenever a field option is discovered, a validation rule must be added.
  * ```
- * To implement the reaction, declare a method which reacts to an event with an event:
+ * To implement the reaction, declare a method that reacts to an event with an event:
  * ```kotlin
  * class MyReaction : Reaction<FieldOptionDiscovered>() {
  *

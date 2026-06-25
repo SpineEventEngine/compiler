@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,13 +44,13 @@ public interface CodegenContext : Querying, Closeable {
     public val typeSystem: TypeSystem
 
     /**
-     * The `Insertion Points` context which generates events when
+     * The `Insertion Points` context that generates events when
      * [InsertionPoint][io.spine.tools.compiler.render.InsertionPoint]s are added to the code.
      */
     public val insertionPointsContext: ThirdPartyContext
 
     /**
-     * A test-only method which checks if the context has entities of the given type.
+     * A test-only method that checks if the context has entities of the given type.
      */
     @VisibleForTesting
     public fun <E : Entity<*, *>> hasEntitiesOfType(cls: Class<E>): Boolean

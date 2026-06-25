@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ private fun TypeBase.primitiveClassName(): String {
 }
 
 /**
- * Obtains a name of a Java class which corresponds to values with this type.
+ * Obtains a name of a Java class that corresponds to values with this type.
  */
 public fun TypeBase.javaClassName(accordingTo: ProtoFileHeader): String = when {
     isPrimitive -> primitiveClassName()

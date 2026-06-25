@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -109,7 +109,7 @@ public open class FieldMethods(
     public constructor(field: Field): this(field.name, field.type.cardinality)
 
     /**
-     * The name of the primary method which sets a value of the field.
+     * The name of the primary method that sets a value of the field.
     */
     public val primarySetter: String = setterName
 

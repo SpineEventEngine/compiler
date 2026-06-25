@@ -9,7 +9,7 @@ See [README.md](README.md) for the format and routing rules.
 
 ## Project (durable context & rationale)
 
-*(no entries yet)*
+- [which-fixer applied](which-fixer-applied.md) — bulk sweep done; skill now runs in incremental mode
 
 ## Reference (external systems)
 

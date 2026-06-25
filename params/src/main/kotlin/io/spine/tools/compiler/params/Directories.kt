@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ package io.spine.tools.compiler.params
 public object Directories {
 
     /**
-     * The name of the Compiler working directory which is conventionally
+     * The name of the Compiler working directory that is conventionally
      * placed under the `build/spine` directory.
      */
     public const val COMPILER_WORKING_DIR: String = "compiler"

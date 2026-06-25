@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,10 +82,10 @@ message MessageType {
 
     TypeName name = 1 [(required) = true];
 
-    // Path to the file which declares this type.
+    // Path to the file that declares this type.
     File file = 2 [(required) = true];
 
-    // Name of the message type which hosts the declaration of this type.
+    // Name of the message type that hosts the declaration of this type.
     //
     // This field is empty for the top level message type.
     //
@@ -138,7 +138,7 @@ message EnumType {
     // Message-level options.
     repeated Option option = 2 [(distinct) = true];
 
-    // Path to the file which declares this type.
+    // Path to the file that declares this type.
     File file = 3 [(required) = true];
 
     // The enum constants, a.k.a. values.
@@ -148,7 +148,7 @@ message EnumType {
     //
     repeated EnumConstant constant = 4 [(distinct) = true];
 
-    // Name of the message type which hosts the declaration of this type.
+    // Name of the message type that hosts the declaration of this type.
     //
     // This field is empty for the top level enum.
     //
@@ -180,7 +180,7 @@ message EnumConstant {
     //
     uint32 number = 2;
 
-    // The name of the enum type which declares this constant.
+    // The name of the enum type that declares this constant.
     TypeName declared_in = 3 [(required) = true];
 
     // The index of the constant within the enum.
@@ -426,7 +426,7 @@ message Service {
 
     ServiceName name = 1 [(required) = true];
 
-    // Path to the file which declares this service.
+    // Path to the file that declares this service.
     File file = 2;
 
     // Service-level options.

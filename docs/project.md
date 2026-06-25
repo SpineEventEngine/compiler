@@ -11,7 +11,7 @@ domain types with validation, factories, and other model conveniences.
 
 **Role**: Library + Gradle plugin + Protobuf compiler plugin.
 
-The repo is a multi-module Gradle build (`rootProject.name = "spine-compiler"`)
+The repo is a multi-module Gradle build (`rootProject.name = "compiler"`)
 with these modules:
 
 - `api`, `api-tests` — public compiler API and its tests.
@@ -25,7 +25,7 @@ with these modules:
 - `test-env`, `testlib` — shared test fixtures and utilities.
 
 Module artifacts are published under `io.spine.tools` (see
-[`dependencies.md`](../dependencies.md) for the published coordinates). Public
+[`dependencies.md`](dependencies/dependencies.md) for the published coordinates). Public
 API boundaries live in `api` and `gradle-api`; downstream Spine repos depend
 on these.
 

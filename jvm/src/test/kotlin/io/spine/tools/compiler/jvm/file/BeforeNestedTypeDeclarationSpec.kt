@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -170,21 +170,21 @@ private val nestedEnum = EnumName(PACKAGE_NAME, TOP_CLASS, NESTED_ENUM)
 private val nestedInterface = ClassName(PACKAGE_NAME, TOP_CLASS, NESTED_INTERFACE)
 
 private val sourceCode = """
-    /* File header comment. */    
+    /* File header comment. */
     package $PACKAGE_NAME;
 
-    /** 
-     * Top level class Javadoc. 
+    /**
+     * Top level class Javadoc.
      */
     public class $TOP_CLASS {
 
         /** Nested class Javadoc. */
         private static class $NESTED {
-    
+
             private static class $DEEPLY_NESTED {
             }
         }
-                
+
         /** Nested enum Javadoc. */
         public enum $NESTED_ENUM {
             UM,
@@ -192,17 +192,17 @@ private val sourceCode = """
             TRÊS
         }
 
-        // Not Javadoc, but a leading comment.                 
+        // Not Javadoc, but a leading comment.
         private interface $NESTED_INTERFACE {
             void doNothing() {
                 // By design.
             }
-        } 
+        }
     }
     """.ti() // We deliberately use OS-specific line endings here to simulate loading from disk.
 
 /**
- * Stub renderer which adds the [Internal] annotation to the given type.
+ * Stub renderer that adds the [Internal] annotation to the given type.
  */
 private class StubInternalAnnotation(subject: ClassName) :
     TypeAnnotation<Internal>(Internal::class.java, subject) {

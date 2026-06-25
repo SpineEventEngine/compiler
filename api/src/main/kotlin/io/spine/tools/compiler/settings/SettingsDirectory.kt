@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ import kotlin.io.path.listDirectoryEntries
  * Only the files belonging to the directory directly are considered,
  * no subdirectories are traversed.
  *
- * This class works in combination with the view which manages the [Settings] state class
+ * This class works in combination with the view that manages the [Settings] state class
  * on the Compiler backend. The view is subscribed to the [SettingsFileDiscovered] event for
  * storing the name of the discovered settings file.
  *

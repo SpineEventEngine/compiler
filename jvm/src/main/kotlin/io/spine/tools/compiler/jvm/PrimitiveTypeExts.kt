@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ public fun PrimitiveType.toJavaClass(): ClassName {
 }
 
 /**
- * Obtains a Kotlin class which corresponds to this primitive type.
+ * Obtains a Kotlin class that corresponds to this primitive type.
  */
 public fun PrimitiveType.primitiveClass(): KClass<*> =
     when (this) {
@@ -73,7 +73,7 @@ public fun PrimitiveType.primitiveClass(): KClass<*> =
     }
 
 /**
- * Obtains a name of the class which corresponds to this primitive type.
+ * Obtains a name of the class that corresponds to this primitive type.
  */
 public fun PrimitiveType.toPrimitiveName(): String {
     val klass = primitiveClass()

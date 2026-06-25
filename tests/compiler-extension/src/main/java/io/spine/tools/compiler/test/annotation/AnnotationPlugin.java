@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import java.util.Set;
 import java.util.List;
 
 /**
- * A plugin which exposes the {@code Annotated} view.
+ * A plugin that exposes the {@code Annotated} view.
  */
 @SuppressWarnings("unused") // Accessed reflectively by the Compiler.
 public final class AnnotationPlugin extends Plugin {

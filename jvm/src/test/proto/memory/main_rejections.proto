@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ syntax = "proto3";
 package memory;
 
 // This file is for testing processing of a bigger Java file.
-// It is based a similar proto code from McJava which caused a memory issue.
+// It is based on a similar proto code from McJava that caused a memory issue.
 
 option java_package = "memory";
 

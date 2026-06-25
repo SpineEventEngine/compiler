@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ import io.spine.tools.code.Java
  * This class applies multiple render actions to multiple types.
  * For applying rendering actions to one type, please see [TypeRenderer].
  *
- * @param V The type of the view state which gathers messages types served by this renderer.
+ * @param V The type of the view state that gathers messages types served by this renderer.
  *  The type is an [EntityState] that has [File] as its identifier and
  *  implements the [TypeListActions] interface.
  * @param S The type of the settings used by the renderer.

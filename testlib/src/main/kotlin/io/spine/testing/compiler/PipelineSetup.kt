@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,7 +81,7 @@ import org.gradle.testfixtures.ProjectBuilder
  *
  * A convenient way of capturing the generated "vanilla" code and associated files is
  * using [ProtoTap Gradle Plugin](https://github.com/SpineEventEngine/ProtoTap).
- * This is the recommended way for working with `PipelineSetup` which provides most of the input
+ * This is the recommended way for working with `PipelineSetup` that provides most of the input
  * for creation of a [Pipeline] automatically. Configuration steps associated with this approach are
  * described below.
  *
@@ -135,7 +135,7 @@ import org.gradle.testfixtures.ProjectBuilder
  * }
  * ```
  * The above call to [byResources] assumes we work with code generation in [Java].
- * For other programming languages please use the overload which accepts [Language] as
+ * For other programming languages please use the overload that accepts [Language] as
  * the first parameter (e.g. [Kotlin] or [TypeScript]).
  *
  * The callback block for writing settings accepts an instance of [SettingsDirectory] that
@@ -283,7 +283,7 @@ public class PipelineSetup(
          * Creates an instance assuming that the input directory and [CodeGeneratorRequest] are
          * placed into the resources using [ProtoTap](https://github.com/SpineEventEngine/ProtoTap).
          *
-         * @param language The programming language which is handled by the pipeline to be created.
+         * @param language The programming language that is handled by the pipeline to be created.
          * @param params The pipeline parameters instance, which may contain only
          *   partial information required for the test.
          * @param plugins The list of plugins to be passed to the created pipeline.

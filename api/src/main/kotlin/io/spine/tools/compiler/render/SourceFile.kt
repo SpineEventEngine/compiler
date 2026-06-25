@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -122,7 +122,7 @@ private constructor(
     }
 
     /**
-     * Obtains an instance of [PsiFile] which corresponds to this source file.
+     * Obtains an instance of [PsiFile] that corresponds to this source file.
      *
      * The content of the source file is parsed using the language type
      * obtained from the input file name.

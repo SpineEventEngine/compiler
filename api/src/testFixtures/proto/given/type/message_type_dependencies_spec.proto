@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -89,7 +89,7 @@ message Photo {
     string url = 1;
 }
 
-// A message type which has multiple fields of the same type.
+// A message type that has multiple fields of the same type.
 message Article {
     Headline primary_headline = 1;
     Headline secondary_headline = 2;
@@ -104,7 +104,7 @@ message ArticleText {
     string value = 1;
 }
 
-// A message type which contains a circular field reference.
+// A message type that contains a circular field reference.
 message Author {
     AuthorName name = 1;
     Author favorite_author = 2;
@@ -135,7 +135,7 @@ message Jungle {
     }
 }
 
-// A stub message which has message types used in fields in various scenarios.
+// A stub message that has message types used in fields in various scenarios.
 message OopFun {
     // Single message type field.
     Jungle jungle = 1;

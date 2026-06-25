@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,13 +78,13 @@ public abstract class MessageAction<P : Message>(
     /**
      * Modifies the class referenced by the [cls] property.
      *
-     * The update of the source code is performed by the [render] method which calls
+     * The update of the source code is performed by the [render] method that calls
      * [doRender] for doing the job of the action.
      */
     protected abstract fun doRender()
 
     /**
-     * Reference to [messageClass] which can be made in Javadoc.
+     * Reference to [messageClass] that can be made in Javadoc.
      *
      * The reference is a link to the simple class name of the enclosing class.
      */
@@ -102,7 +102,7 @@ public abstract class MessageAction<P : Message>(
         } catch (e: Throwable) {
             logger.atError().withCause(e).log { """
                 Caught exception while applying `$this`.
-                Message: ${e.message}.                                
+                Message: ${e.message}.
                 """.trimIndent()
             }
             throw e

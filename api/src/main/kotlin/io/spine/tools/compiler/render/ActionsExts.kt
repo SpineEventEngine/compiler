@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import io.spine.tools.kotlin.reference
 import kotlin.reflect.KClass
 
 /**
- * Adds an action which accepts the given [parameter].
+ * Adds an action that accepts the given [parameter].
  *
  * @param L The language served by the action.
  * @param D The Protobuf declaration handled by the action.
@@ -53,7 +53,7 @@ public fun <A : RenderAction<L, D, P>, L : Language, D : ProtoDeclaration, P : M
 }
 
 /**
- * Adds an action which accepts a [StringValue] parameter.
+ * Adds an action that accepts a [StringValue] parameter.
  *
  * @param L The language served by the action.
  * @param D The Protobuf declaration handled by the action.
@@ -68,7 +68,7 @@ public fun <A : RenderAction<L, D, StringValue>, L : Language, D : ProtoDeclarat
 }
 
 /**
- * Adds an action which has no parameter.
+ * Adds an action that has no parameter.
  *
  * @param L The language served by the action.
  * @param D The Protobuf declaration handled by the action.
@@ -81,7 +81,7 @@ public fun <A : RenderAction<L, D, Empty>, L : Language, D : ProtoDeclaration>
 }
 
 /**
- * Adds an action which accepts the given [parameter].
+ * Adds an action that accepts the given [parameter].
  *
  * @param L The language served by the action.
  * @param D The Protobuf declaration handled by the action.
@@ -96,7 +96,7 @@ public fun <A : RenderAction<L, D, P>, L : Language, D : ProtoDeclaration, P : M
 }
 
 /**
- * Adds an action which accepts a [StringValue] parameter.
+ * Adds an action that accepts a [StringValue] parameter.
  *
  * @param L The language served by the action.
  * @param D The Protobuf declaration handled by the action.
@@ -110,7 +110,7 @@ public fun <A : RenderAction<L, D, StringValue>, L : Language, D : ProtoDeclarat
 }
 
 /**
- * Adds an action which has no parameter.
+ * Adds an action that has no parameter.
  *
  * @param L The language served by the action.
  * @param D The Protobuf declaration handled by the action.

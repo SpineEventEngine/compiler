@@ -84,7 +84,7 @@ public fun main(args: Array<String>) {
 private fun readVersion(): String = Version.fromManifestOf(Run::class.java).value
 
 /**
- * The main CLI command which performs the Compiler code generation tasks.
+ * The main CLI command that performs the Compiler code generation tasks.
  */
 @Suppress("TooManyFunctions") // It is OK for the `main` entry point.
 internal class Run(private val version: String) : CliktCommand(name = "spine"), WithLogging {

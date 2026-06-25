@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import io.spine.base.EntityState
 /**
  * An abstract base for renders that do not have settings.
  *
- * @param V the type of the view state which the renderer uses for code generation.
+ * @param V the type of the view state that the renderer uses for code generation.
  *
  * @see AbstractRenderer
  */

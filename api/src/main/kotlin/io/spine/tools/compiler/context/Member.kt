@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ import io.spine.server.query.select
 import io.spine.tools.code.Language
 
 /**
- * A part of [CodegenContext] which participates in the code generation process and
+ * A part of [CodegenContext] that participates in the code generation process and
  * may have settings it can load.
  *
  * @param L The type of the programming language served by this member.
@@ -161,7 +161,7 @@ protected constructor(
 /**
  * Obtains the proto source file with the given [path].
  *
- * @param path The path to the source file which could be relative or absolute.
+ * @param path The path to the source file that could be relative or absolute.
  * @return the found source file message, or `null` if the file was not found.
  */
 public fun Member<*>.findSource(path: File): ProtobufSourceFile? {
@@ -174,7 +174,7 @@ public fun Member<*>.findSource(path: File): ProtobufSourceFile? {
 /**
  * Obtains the header of the proto file with the given [path].
  *
- * @param path The path to the source file which could be relative or absolute.
+ * @param path The path to the source file that could be relative or absolute.
  * @return the found header, or `null` if the file was not found.
  */
 public fun Member<*>.findHeader(path: File): ProtoFileHeader? = findSource(path)?.header

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,7 +73,6 @@ public inline fun <reified T : Message> Option.unpack(): T =
         )
     }
 
-
 /**
  * Tells if this is a column option.
  */
@@ -124,7 +123,7 @@ public inline fun <reified T : Message> Iterable<Option>.find(): T? {
  * Yields events regarding a set of options.
  *
  * @param options The set of options, such as `FileOptions`, `FieldOptions`, etc.
- * @param factory A function which given an option, constructs a fitting event.
+ * @param factory A function that, given an option, constructs a fitting event.
  */
 public suspend fun SequenceScope<EventMessage>.produceOptionEvents(
     options: ExtendableMessage<*>,

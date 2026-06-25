@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,9 +40,9 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * A renderer which adds the {@code randomId()} factory methods to the UUID types.
+ * A renderer that adds the {@code randomId()} factory methods to the UUID types.
  *
- * <p>A UUID type is a message which only has one field — a {@code string} field
+ * <p>A UUID type is a message that only has one field — a {@code string} field
  * called {@code uuid}.
  */
 @SuppressWarnings("unused") // Accessed by the Compiler via refection.
