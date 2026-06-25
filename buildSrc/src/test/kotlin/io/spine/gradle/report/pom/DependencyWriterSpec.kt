@@ -225,7 +225,7 @@ internal class DependencyWriterSpec {
 
         @Test
         fun `preferring a known scope over that of an unknown configuration`() {
-            subproject("a-tools").declare("protoData", SPINE_BASE)
+            subproject("a-tools").declare("spineCompiler", SPINE_BASE)
             subproject("b-tests").declare("testImplementation", SPINE_BASE)
 
             val dependency = rootProject.dependencies().single()
@@ -236,7 +236,7 @@ internal class DependencyWriterSpec {
 
         @Test
         fun `preferring the 'provided' scope over that of an unknown configuration`() {
-            subproject("a-tools").declare("protoData", SPINE_BASE)
+            subproject("a-tools").declare("spineCompiler", SPINE_BASE)
             subproject("b-lib").declare("compileOnly", SPINE_BASE)
 
             val dependency = rootProject.dependencies().single()
@@ -248,11 +248,25 @@ internal class DependencyWriterSpec {
 
     @Test
     fun `omit the scope of a dependency coming only from an unknown configuration`() {
-        subproject("lib").declare("protoData", SPINE_BASE)
+        subproject("lib").declare("spineCompiler", SPINE_BASE)
 
         val dependency = rootProject.dependencies().single()
 
         dependency.hasDefinedScope() shouldBe false
+    }
+
+    @Test
+    fun `omit the version of a dependency that declares none`() {
+        subproject("a-bom").declare("api", "io.grpc:grpc-stub")
+        subproject("b-lib").declare("api", SPINE_BASE)
+
+        val out = StringWriter()
+        DependencyWriter.of(rootProject).writeXmlTo(out)
+        val xml = out.toString()
+
+        xml shouldContain "<artifactId>grpc-stub</artifactId>"
+        xml shouldNotContain "<version>null</version>"
+        xml shouldContain "<version>2.0.0</version>"
     }
 
     @Test
