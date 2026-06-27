@@ -10,6 +10,8 @@ To apply the plugin to the project, use the `plugins { }` block syntax.
 
 ```kotlin
 plugins {
+    java
+    id("com.google.protobuf") version("<Protobuf plugin version>")
     id("io.spine.compiler") version("<Compiler version>")
 }
 ```
@@ -58,6 +60,8 @@ Here is the complete list of configuration options:
 A complete configuration may look as follows:
 ```kotlin
 plugins {
+    java
+    id("com.google.protobuf") version("<Protobuf plugin version>")
     id("io.spine.compiler") version("<Compiler version>")
 }
 
@@ -88,7 +92,7 @@ To reference a specific task by name, use the following format:
 To find all the tasks in a Gradle script, use the `LaunchSpineCompiler` task type. For example:
 ```kotlin
 tasks.withType<LaunchSpineCompiler> {
-    onlyIf { moon.phase >= 0.7 }
+    // Configure every Compiler launch task here.
 }
 ```
 

@@ -46,7 +46,7 @@ The Compiler ships as a Gradle plugin published to the Gradle Plugin Portal unde
 ```kotlin
 plugins {
     java
-    id("com.google.protobuf")
+    id("com.google.protobuf") version "<Protobuf plugin version>"
     id("io.spine.compiler") version "<Compiler version>"
 }
 ```
