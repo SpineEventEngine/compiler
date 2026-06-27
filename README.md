@@ -116,23 +116,6 @@ dependencies {
 Renderers can inspect the Protobuf model through views and react to it through policies. See the
 `api` module and its API documentation for the full set of building blocks.
 
-## Modules
-
-The build publishes its modules under the `io.spine.tools` group with the `compiler-` prefix
-(for example, `io.spine.tools:compiler-api`). The Gradle plugin is published separately to the
-Gradle Plugin Portal as `io.spine.compiler`.
-
-| Module          | Role                                                                    |
-|-----------------|-------------------------------------------------------------------------|
-| `gradle-plugin` | The `io.spine.compiler` Gradle plugin — the entry point for most users. |
-| `api`           | Public API for writing plugins, renderers, views, and policies.         |
-| `gradle-api`    | Public Gradle-facing API: settings, task names, and artifact names.     |
-| `backend`       | The code-generation engine that runs the pipeline.                      |
-| `protoc-plugin` | The `protoc` plugin that captures the code-generation request.          |
-| `cli`           | Command-line entry point that runs the pipeline.                        |
-| `params`        | The parameter model passed to the Compiler.                             |
-| `jvm`           | JVM-specific code-generation support.                                   |
-
 ## Further reading
 
 - [Spine SDK website][spine-site]
