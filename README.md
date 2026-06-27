@@ -45,20 +45,22 @@ The Compiler ships as a Gradle plugin published to the Gradle Plugin Portal unde
 
 ```kotlin
 plugins {
-    kotlin("jvm")
+    java
     id("com.google.protobuf")
     id("io.spine.compiler") version "2.0.0"
 }
 ```
 
-Once applied, the Compiler hooks into the `generateProto` tasks, so the generated model is
-refreshed on every build.
+The example applies the `java` plugin; use `kotlin("jvm")` instead for a Kotlin project — the
+Compiler generates code for both. Once applied, the Compiler hooks into the `generateProto`
+tasks, so the generated model is refreshed on every build.
 
 ### Configure code-generation plugins
 
 Out of the box the Compiler runs the pipeline without changing the generated code. To make it
-do something, attach one or more Compiler plugins: name their classes through the `compiler { }`
-extension, and put them on the Compiler classpath with the `spineCompiler` configuration.
+do something, attach one or more Compiler plugins: list their classes in the `compiler { }`
+block — nested inside the `spine { }` extension — and put them on the Compiler classpath with
+the `spineCompiler` configuration.
 
 ```kotlin
 spine {
