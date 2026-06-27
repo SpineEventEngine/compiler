@@ -41,12 +41,12 @@ whole feature to the generated code.
 ### Apply the Gradle plugin
 
 The Compiler ships as a Gradle plugin published to the Gradle Plugin Portal under the
-`io.spine.compiler` ID. It applies the Protobuf Gradle Plugin automatically,
-so you don't need to apply it explicitly.:
+`io.spine.compiler` ID. It requires the Protobuf Gradle Plugin, so apply both:
 
 ```kotlin
 plugins {
     java
+    id("com.google.protobuf")
     id("io.spine.compiler") version "$version"
 }
 ```
