@@ -47,7 +47,7 @@ The Compiler ships as a Gradle plugin published to the Gradle Plugin Portal unde
 plugins {
     java
     id("com.google.protobuf")
-    id("io.spine.compiler") version "$version"
+    id("io.spine.compiler") version "<Compiler version>"
 }
 ```
 
@@ -109,7 +109,7 @@ Compile the plugin against the public API artifact:
 
 ```kotlin
 dependencies {
-    implementation("io.spine.tools:compiler-api:2.0.0")
+    implementation("io.spine.tools:compiler-api:<Compiler version>")
 }
 ```
 
