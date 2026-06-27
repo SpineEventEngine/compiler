@@ -41,13 +41,13 @@ whole feature to the generated code.
 ### Apply the Gradle plugin
 
 The Compiler ships as a Gradle plugin published to the Gradle Plugin Portal under the
-`io.spine.compiler` ID. Apply it alongside the Protobuf Gradle Plugin:
+`io.spine.compiler` ID. It applies the Protobuf Gradle Plugin automatically,
+so you don't need to apply it explicitly.:
 
 ```kotlin
 plugins {
     java
-    id("com.google.protobuf")
-    id("io.spine.compiler") version "2.0.0"
+    id("io.spine.compiler") version "$version"
 }
 ```
 
@@ -122,16 +122,16 @@ The build publishes its modules under the `io.spine.tools` group with the `compi
 (for example, `io.spine.tools:compiler-api`). The Gradle plugin is published separately to the
 Gradle Plugin Portal as `io.spine.compiler`.
 
-| Module          | Role                                                              |
-|-----------------|------------------------------------------------------------------|
+| Module          | Role                                                                    |
+|-----------------|-------------------------------------------------------------------------|
 | `gradle-plugin` | The `io.spine.compiler` Gradle plugin — the entry point for most users. |
-| `api`           | Public API for writing plugins, renderers, views, and policies.  |
-| `gradle-api`    | Public Gradle-facing API: settings, task names, and artifact names. |
-| `backend`       | The code-generation engine that runs the pipeline.               |
-| `protoc-plugin` | The `protoc` plugin that captures the code-generation request.   |
-| `cli`           | Command-line entry point that runs the pipeline.                 |
-| `params`        | The parameter model passed to the Compiler.                      |
-| `jvm`           | JVM-specific code-generation support.                            |
+| `api`           | Public API for writing plugins, renderers, views, and policies.         |
+| `gradle-api`    | Public Gradle-facing API: settings, task names, and artifact names.     |
+| `backend`       | The code-generation engine that runs the pipeline.                      |
+| `protoc-plugin` | The `protoc` plugin that captures the code-generation request.          |
+| `cli`           | Command-line entry point that runs the pipeline.                        |
+| `params`        | The parameter model passed to the Compiler.                             |
+| `jvm`           | JVM-specific code-generation support.                                   |
 
 ## Further reading
 
