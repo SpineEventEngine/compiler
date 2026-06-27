@@ -1,7 +1,7 @@
-# ProtoData integration tests
+# Spine Compiler integration tests
 
 This subdirectory —`tests`— contains a separate Gradle product that runs integration
-tests of the ProtoData command-line application and the ProtoData Gradle plugin.
+tests of the Spine Compiler command-line application and the Compiler's Gradle plugin.
 
 This directory is a separate Gradle project, which fetches the artifacts from
 the primary Gradle project, via a Gradle [composite build][composite-build].
@@ -23,7 +23,7 @@ please run the following command:
 ./gradlew integrationTest
 ```
 
-If your current directory is `tests`, just run the Gradle build as usualy:
+If your current directory is `tests`, just run the Gradle build as usual:
 
 ```bash
 ./gradlew clean build
