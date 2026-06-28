@@ -24,10 +24,12 @@ with these modules:
   published separately from the rest of the modules.
 - `test-env`, `testlib` — shared test fixtures and utilities.
 
-Module artifacts are published under `io.spine.tools` (see
-[`dependencies.md`](dependencies/dependencies.md) for the published coordinates). Public
-API boundaries live in `api` and `gradle-api`; downstream Spine repos depend
-on these.
+Module artifacts are published under the `io.spine.tools` group with the
+`compiler-` prefix — for example, `io.spine.tools:compiler-api` (see
+[`dependencies.md`](dependencies/dependencies.md) for the full coordinates) —
+and the Gradle plugin to the Gradle Plugin Portal as `io.spine.compiler`.
+Public API boundaries live in `api` and `gradle-api`; downstream Spine repos
+depend on these.
 
 Read [`.agents/guidelines/jvm-project.md`](../.agents/guidelines/jvm-project.md) for build stack,
 coding style, tests, and versioning.

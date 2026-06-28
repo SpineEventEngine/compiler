@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@
  * This version is also used by integration test projects.
  * E.g. see `tests/consumer/build.gradle.kts`.
  */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.056")
+val compilerVersion: String by extra("2.0.0-SNAPSHOT.057")
 
 /**
  * The version, same as [compilerVersion], which is used for publishing
