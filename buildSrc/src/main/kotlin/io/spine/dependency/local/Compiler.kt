@@ -27,6 +27,8 @@
 package io.spine.dependency.local
 
 import io.spine.dependency.Dependency
+import io.spine.dependency.local.Compiler.DF_VERSION_ENV
+import io.spine.dependency.local.Compiler.VERSION_ENV
 
 /**
  * Dependencies on the Spine Compiler modules.
