@@ -46,7 +46,7 @@ protected constructor(language: L) : Member<L>(language) {
      * Performs required changes to the given source set.
      *
      * The renderer processes only the files written in its [language].
-     * If [sources] contain files, but none of them are in this language,
+     * If [sources] contains files but none of them are in this language,
      * the set is assumed to belong to another language and is left untouched.
      *
      * An empty source set is still passed to [render] because a renderer may

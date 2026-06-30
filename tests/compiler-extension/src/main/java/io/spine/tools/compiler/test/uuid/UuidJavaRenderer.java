@@ -79,6 +79,15 @@ public final class UuidJavaRenderer extends JavaRenderer {
             var lines = METHOD_FORMAT.format(className, UUID.class.getName());
             var javaFilePath = javaFileOf(typeName, file);
 
+            // `select(UuidType.class)` returns UUID types from every source root,
+            // but a `SourceFileSet` covers a single root. A type's Java file may
+            // therefore live in a different Java root than the one being rendered
+            // (e.g., under `java` while this set holds `grpc` output). Skip the
+            // types whose file is absent from the current set.
+            if (sources.findFile(javaFilePath).isEmpty()) {
+                continue;
+            }
+
             sources.file(javaFilePath)
                    .at(classScope)
                    .withExtraIndentation(INDENT_LEVEL)

@@ -99,7 +99,8 @@ internal class RendererSpec {
         @TempDir output: Path
     ) {
         val javaRenderer = RecordingJavaRenderer()
-        javaRenderer.renderSources(sourceSetWith("corp/acme/Hello.java", input, output))
+        val sourceSet = sourceSetWith("corp/acme/Hello.java", input = input, output = output)
+        javaRenderer.renderSources(sourceSet)
         javaRenderer.invoked shouldBe true
     }
 
@@ -109,7 +110,8 @@ internal class RendererSpec {
         @TempDir output: Path
     ) {
         val javaRenderer = RecordingJavaRenderer()
-        javaRenderer.renderSources(sourceSetWith("corp/acme/Hello.kt", input, output))
+        val sourceSet = sourceSetWith("corp/acme/Hello.kt", input = input, output = output)
+        javaRenderer.renderSources(sourceSet)
         javaRenderer.invoked shouldBe false
     }
 
