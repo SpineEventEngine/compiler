@@ -56,6 +56,7 @@ import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.gradle.lib.LibraryPlugin
 import io.spine.tools.gradle.lib.spineExtension
 import io.spine.tools.gradle.project.hasJavaOrKotlin
+import io.spine.tools.gradle.project.hasKotlin
 import io.spine.tools.gradle.project.sourceSets
 import io.spine.tools.gradle.task.SpineTaskGroup
 import io.spine.tools.meta.ArtifactMeta
@@ -359,11 +360,18 @@ private fun Project.excludeProtocOutputFromCompilation() {
         // `KotlinCompile` honors `exclude(Spec)` — a live predicate that needs no
         // source re-wiring. The cast targets `KotlinCompile` (which is a
         // `PatternFilterable`); any other `KotlinCompilationTask` is skipped.
-        val underProtocOutput = Spec<FileTreeElement> { element ->
-            element.file.residesIn(protocOutput)
-        }
-        tasks.withType(KotlinCompilationTask::class.java).configureEach { task ->
-            (task as? PatternFilterable)?.exclude(underProtocOutput)
+        //
+        // The Kotlin Gradle Plugin is a `compileOnly` dependency, so its task type
+        // is not on the runtime classpath. The reference to `KotlinCompilationTask`
+        // is therefore guarded by `hasKotlin()` (a name-based check), keeping the
+        // plugin loadable for consumers that apply it without Kotlin.
+        if (hasKotlin()) {
+            val underProtocOutput = Spec<FileTreeElement> { element ->
+                element.file.residesIn(protocOutput)
+            }
+            tasks.withType(KotlinCompilationTask::class.java).configureEach { task ->
+                (task as? PatternFilterable)?.exclude(underProtocOutput)
+            }
         }
     }
 }
