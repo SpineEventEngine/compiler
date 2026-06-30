@@ -66,4 +66,16 @@ internal fun Iterable<File>.excluding(excludeDir: File): Set<File> =
  * such as `…/test2` is not mistaken for residing in `…/test`.
  */
 internal fun File.residesIn(directory: File): Boolean =
-    canonicalFile.toPath().startsWith(directory.canonicalFile.toPath())
+    residesIn(directory.canonicalFile.toPath())
+
+/**
+ * Tells if this file resides under [canonicalDir] — a path that is *already* in
+ * canonical form.
+ *
+ * Resolving a path to its canonical form is a filesystem operation. This overload
+ * lets a caller canonicalize the directory once and reuse the result across many
+ * files — for example, while filtering a large source set — instead of
+ * re-canonicalizing the directory on every call, as the `File`-typed overload does.
+ */
+internal fun File.residesIn(canonicalDir: Path): Boolean =
+    canonicalFile.toPath().startsWith(canonicalDir)

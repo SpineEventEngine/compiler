@@ -339,7 +339,9 @@ private fun Project.configureWithProtobufPlugin(compilerVersion: String) {
  */
 private fun Project.excludeProtocOutputFromCompilation() {
     afterEvaluate {
-        val protocOutput = protocOutputDir
+        // Canonicalize the `protoc` output directory once and reuse it while
+        // filtering each source file, instead of re-canonicalizing it per file.
+        val protocOutput = protocOutputDir.canonicalFile.toPath()
         val compilerWritesInPlace = generatedDir.toFile().residesIn(protocOutput)
         if (compilerWritesInPlace) {
             return@afterEvaluate
