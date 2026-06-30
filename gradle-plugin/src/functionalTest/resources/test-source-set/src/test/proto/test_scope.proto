@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package spine.compiler.test;
+
+option java_package = "io.spine.tools.compiler.test";
+option java_outer_classname = "TestScopeProto";
+option java_multiple_files = true;
+
+// A `test`-scope definition. The Compiler generates code for it under
+// `generated/test`, while `protoc` puts its output under
+// `build/generated/sources/proto/test`. Both must not end up in the `test`
+// source set at the same time, or the compilation fails with duplicate classes.
+message TestScoped {
+}

@@ -1,11 +1,11 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2022, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * https://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,16 +24,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.058")
-
-/**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
- */
-val versionToPublish by extra(compilerVersion)
+pluginManagement {
+    repositories {
+        mavenLocal()
+    }
+}
