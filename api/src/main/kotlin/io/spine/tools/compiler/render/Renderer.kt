@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,9 +44,26 @@ protected constructor(language: L) : Member<L>(language) {
 
     /**
      * Performs required changes to the given source set.
+     *
+     * The renderer processes only the files written in its [language].
+     * If [sources] contain files, but none of them are in this language,
+     * the set is assumed to belong to another language and is left untouched.
+     *
+     * An empty source set is still passed to [render] because a renderer may
+     * create new files from scratch rather than modify the existing ones.
      */
     public fun renderSources(sources: SourceFileSet) {
         val relevantFiles = sources.subsetWhere { language.matches(it.relativePath) }
+
+        // A non-empty source set with no files in this renderer's `language`
+        // belongs to another language. Skip it so that, for example, a Java
+        // renderer does not attempt to create or locate `.java` files under
+        // a directory that holds generated Kotlin code.
+        val belongsToAnotherLanguage = relevantFiles.isEmpty && !sources.isEmpty
+        if (belongsToAnotherLanguage) {
+            return
+        }
+
         relevantFiles.prepareForQueries(this)
         render(relevantFiles)
         sources.mergeBack(relevantFiles)

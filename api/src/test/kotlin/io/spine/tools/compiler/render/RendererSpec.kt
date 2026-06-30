@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,12 +31,18 @@ import io.spine.tools.compiler.backend.CodeGenerationContext
 import io.spine.tools.compiler.context.CodegenContext
 import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.code.AnyLanguage
+import io.spine.tools.code.Java
+import java.nio.file.Path
+import kotlin.io.path.createParentDirectories
+import kotlin.io.path.div
+import kotlin.io.path.writeText
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.api.io.TempDir
 
 @DisplayName("`Renderer` should")
 internal class RendererSpec {
@@ -86,6 +92,46 @@ internal class RendererSpec {
             }
         }
     }
+
+    @Test
+    fun `render a source set written in its language`(
+        @TempDir input: Path,
+        @TempDir output: Path
+    ) {
+        val javaRenderer = RecordingJavaRenderer()
+        javaRenderer.renderSources(sourceSetWith("corp/acme/Hello.java", input, output))
+        javaRenderer.invoked shouldBe true
+    }
+
+    @Test
+    fun `skip a source set written in another language`(
+        @TempDir input: Path,
+        @TempDir output: Path
+    ) {
+        val javaRenderer = RecordingJavaRenderer()
+        javaRenderer.renderSources(sourceSetWith("corp/acme/Hello.kt", input, output))
+        javaRenderer.invoked shouldBe false
+    }
+
+    @Test
+    fun `render an empty source set so that new files can be created`(
+        @TempDir input: Path,
+        @TempDir output: Path
+    ) {
+        val javaRenderer = RecordingJavaRenderer()
+        javaRenderer.renderSources(SourceFileSet.create(input, output))
+        javaRenderer.invoked shouldBe true
+    }
+}
+
+/**
+ * Creates a source set with a single file under the given [input] root,
+ * placing the processed file into the [output] root.
+ */
+private fun sourceSetWith(relativePath: String, input: Path, output: Path): SourceFileSet {
+    val file = (input / relativePath).apply { createParentDirectories() }
+    file.writeText("// A stub file for testing.")
+    return SourceFileSet.create(input, output)
 }
 
 private class StubRenderer : Renderer<AnyLanguage>(AnyLanguage) {
@@ -96,4 +142,17 @@ private class StubRenderer : Renderer<AnyLanguage>(AnyLanguage) {
     fun typeSystem(): TypeSystem = typeSystem
 
     override fun render(sources: SourceFileSet) = Unit
+}
+
+/**
+ * A [Java] renderer that records whether its [render] method was invoked.
+ */
+private class RecordingJavaRenderer : Renderer<Java>(Java) {
+
+    var invoked: Boolean = false
+        private set
+
+    override fun render(sources: SourceFileSet) {
+        invoked = true
+    }
 }

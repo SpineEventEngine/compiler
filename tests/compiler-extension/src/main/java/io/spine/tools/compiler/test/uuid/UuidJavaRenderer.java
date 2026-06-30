@@ -79,12 +79,6 @@ public final class UuidJavaRenderer extends JavaRenderer {
             var lines = METHOD_FORMAT.format(className, UUID.class.getName());
             var javaFilePath = javaFileOf(typeName, file);
 
-            // If there are no Java files, we deal with another language.
-            // Have this workaround until we get access to the `sourceRoot` property.
-            if (sources.findFile(javaFilePath).isEmpty()) {
-                continue;
-            }
-
             sources.file(javaFilePath)
                    .at(classScope)
                    .withExtraIndentation(INDENT_LEVEL)
