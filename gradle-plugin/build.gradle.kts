@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,13 +68,10 @@ artifactMeta {
     }
 }
 
-@Suppress(
-    "UnstableApiUsage" /* testing suites feature */,
-    "unused" /* suite variable names obtained via `by` calls. */
-)
+@Suppress("UnstableApiUsage") /* testing suites feature */
 testing {
     suites {
-        val test by getting(JvmTestSuite::class) {
+        getByName<JvmTestSuite>("test") {
             useJUnitJupiter(JUnit.version)
             dependencies {
                 implementation(Kotlin.GradlePlugin.lib)
@@ -85,7 +82,7 @@ testing {
             }
         }
 
-        val functionalTest by registering(JvmTestSuite::class) {
+        register<JvmTestSuite>("functionalTest") {
             useJUnitJupiter(JUnit.version)
             dependencies {
                 implementation(Kotlin.GradlePlugin.lib)
@@ -123,8 +120,7 @@ dependencies {
  * Make functional tests depend on publishing all the submodules to Maven Local so that
  * the Gradle plugin can get all the dependencies when it's applied to the test projects.
  */
-@Suppress("unused")
-val functionalTest: Task by tasks.getting {
+tasks.getByName("functionalTest") {
     val task = this
     productionModules.forEach { subproject ->
         task.dependsOn(":${subproject.name}:publishToMavenLocal")
@@ -136,15 +132,14 @@ java {
     withJavadocJar()
 }
 
-val compilerVersion: String by extra
+val compilerVersion = extra["compilerVersion"] as String
 val isSnapshot = compilerVersion.isSnapshot()
 
-val publishPlugins: Task by tasks.getting {
+val publishPlugins: Task = tasks.getByName("publishPlugins") {
     enabled = !isSnapshot
 }
 
-@Suppress("unused")
-val publish: Task by tasks.getting {
+tasks.getByName("publish") {
     if (!isSnapshot) {
         dependsOn(publishPlugins)
     }
@@ -178,12 +173,11 @@ gradlePlugin {
             tags.set(listOf("spine", "ddd", "protobuf", "compiler", "code-generation", "codegen"))
         }
     }
-    val functionalTest by sourceSets.getting
+    val functionalTest = sourceSets.getByName("functionalTest")
     testSourceSets(
         functionalTest
     )
 }
-
 
 tasks {
     check {
