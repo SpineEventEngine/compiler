@@ -30,10 +30,11 @@
  * This version is also used by integration test projects.
  * E.g. see `tests/consumer/build.gradle.kts`.
  */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.058")
+private val compilerVersion = "2.0.0-SNAPSHOT.059"
+extra.set("compilerVersion", compilerVersion)
 
 /**
  * The version, same as [compilerVersion], which is used for publishing
  * the Compiler Maven artifacts.
  */
-val versionToPublish by extra(compilerVersion)
+extra.set("versionToPublish", compilerVersion)
