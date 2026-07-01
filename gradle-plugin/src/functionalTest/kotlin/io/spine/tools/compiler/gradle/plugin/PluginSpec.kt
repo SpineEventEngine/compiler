@@ -119,6 +119,34 @@ class PluginSpec {
         createProject("java-kotlin-test")
     }
 
+    /**
+     * Verifies that the `test` source set compiles even when the `protoc` output
+     * directory ends up among its source directories.
+     *
+     * The Compiler reads the `protoc` output and writes the processed code into
+     * a separate directory, which is added to the source set. The plugin keeps the
+     * `protoc` output directory out of the compilation so that each generated class
+     * is compiled once. That filtering must hold for the `test` source set too —
+     * see [issue #19](https://github.com/SpineEventEngine/compiler/issues/19).
+     *
+     * The `test-source-set` project re-adds the `protoc` output directory to the
+     * `test` source set after the plugin has configured it, reproducing the state
+     * in which the directory leaked back in. Without the compilation-level filter
+     * the `test` sources contain each generated class twice, and the compilation
+     * fails with duplicate class errors.
+     */
+    @Test
+    fun `keep duplicate generated classes out of the 'test' compilation`() {
+        createProject("test-source-set")
+        val testClasses = TaskName.of("testClasses")
+
+        val result = project.executeTask(testClasses)
+
+        result[CompilerTaskName(SourceSetName.test)] shouldBe SUCCESS
+        result[TaskName.of("compileTestJava")] shouldBe SUCCESS
+        result[TaskName.of("compileTestKotlin")] shouldBe SUCCESS
+    }
+
     private fun launchAndExpectResult(expected: TaskOutcome) {
         val result = launch()
 

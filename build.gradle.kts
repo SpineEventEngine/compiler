@@ -128,7 +128,7 @@ KoverConfig.applyTo(project)
  * publishing in the root project.
  */
 val projectsToPublish: Set<String> = the<SpinePublishing>().modules
-val localPublish by tasks.registering {
+val localPublish = tasks.register("localPublish") {
     /*
        Integration tests need the plugin subproject published to Maven Local too
        because they apply the plugin.
@@ -187,7 +187,7 @@ fun materializeTestsLink(linkName: String) {
  * This build should run _only_ if all tests of all modules passed.
  * Otherwise, integration tests make little sense.
  */
-val integrationTest by tasks.registering(RunBuild::class) {
+val integrationTest = tasks.register<RunBuild>("integrationTest") {
     directory = "$rootDir/tests"
     /* The `tests` build consumes the Compiler published to Maven Local by `localPublish`,
        so the build cache in that build exercises the plugin under development. */
@@ -195,7 +195,7 @@ val integrationTest by tasks.registering(RunBuild::class) {
     dependsOn(localPublish)
     subprojects.forEach {
         it.tasks.findByName("test")?.let { testTask ->
-            this@registering.dependsOn(testTask)
+            this@register.dependsOn(testTask)
         }
     }
     doFirst {

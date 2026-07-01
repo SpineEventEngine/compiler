@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,36 +24,31 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-plugins {
-    java
-}
+package io.spine.gradle.fs
 
-val versionDir = layout.buildDirectory.dir("version").get().asFile.path
+import io.kotest.matchers.shouldBe
+import java.nio.file.Path
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-/**
- * This file, containing the version of ProtoData, is generated at build time and included into
- * the project's resources.
- *
- * Please search for the usages of "version.txt" when making changes.
- */
-val versionFile = "$versionDir/version.txt"
+@DisplayName("`SpineTempDir` should")
+class SpineTempDirSpec {
 
-sourceSets {
-    main {
-        resources.srcDir(versionDir)
+    @Test
+    fun `place its per-JVM directory under the package-named namespace`() {
+        val namespace = Path.of(
+            System.getProperty("java.io.tmpdir"),
+            LazyTempPath::class.java.packageName
+        )
+
+        SpineTempDir.path.parent shouldBe namespace
     }
-}
 
-val createVersionFile by tasks.registering {
+    @Test
+    fun `create the directory on access`() {
+        val directory = SpineTempDir.path.toFile()
 
-    inputs.property("version", project.version)
-    outputs.file(versionFile)
-
-    doLast {
-        file(versionFile).writeText(project.version.toString())
+        directory.exists() shouldBe true
+        directory.isDirectory shouldBe true
     }
-}
-
-tasks.processResources {
-    dependsOn(createVersionFile)
 }

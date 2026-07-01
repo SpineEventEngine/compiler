@@ -36,7 +36,6 @@ import io.spine.gradle.publish.setup
 plugins {
     module
     application
-    `version-to-resources`
     `write-manifest`
     `build-proto-model`
     `maven-publish`
