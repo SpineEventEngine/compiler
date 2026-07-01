@@ -24,16 +24,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.058")
+package io.spine.dependency.storage
 
 /**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
+ * The H2 Database Engine — a fast, in-memory/embedded SQL database used for exercising
+ * the JDBC storage in tests.
+ *
+ * @see <a href="https://github.com/h2database/h2database">H2 Database Engine at GitHub</a>
+ * @see <a href="https://h2database.com/">H2 Database Engine site</a>
  */
-val versionToPublish by extra(compilerVersion)
+@Suppress("unused", "ConstPropertyName")
+object H2 {
+    private const val version = "2.4.240"
+    const val lib = "com.h2database:h2:$version"
+}

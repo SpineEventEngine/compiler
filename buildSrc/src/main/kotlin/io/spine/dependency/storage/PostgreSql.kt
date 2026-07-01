@@ -24,16 +24,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.058")
+package io.spine.dependency.storage
 
 /**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
+ * The PostgreSQL JDBC driver (pgJDBC).
+ *
+ * Used by the PostgreSQL-based storage tests to connect to a real PostgreSQL server.
+ *
+ * @see <a href="https://github.com/pgjdbc/pgjdbc">PostgreSQL JDBC Driver at GitHub</a>
  */
-val versionToPublish by extra(compilerVersion)
+@Suppress("unused", "ConstPropertyName")
+object PostgreSql {
+    private const val version = "42.7.11"
+    const val connector = "org.postgresql:postgresql:$version"
+}

@@ -24,16 +24,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.058")
+package io.spine.dependency.storage
 
 /**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
+ * HikariCP — a fast, lightweight JDBC connection pool.
+ *
+ * The JDBC storage uses it to pool database connections.
+ *
+ * @see <a href="https://github.com/brettwooldridge/HikariCP">HikariCP at GitHub</a>
  */
-val versionToPublish by extra(compilerVersion)
+@Suppress("unused", "ConstPropertyName")
+object Hikari {
+    private const val version = "7.1.0"
+    const val lib = "com.zaxxer:HikariCP:$version"
+}

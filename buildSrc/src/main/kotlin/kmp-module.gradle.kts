@@ -25,6 +25,7 @@
  */
 
 import io.spine.dependency.boms.BomsPlugin
+import io.spine.dependency.isDokka
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.local.Reflect
@@ -83,6 +84,9 @@ fun Project.forceConfigurations() {
     with(configurations) {
         forceVersions()
         all {
+            if (isDokka) {
+                return@all
+            }
             resolutionStrategy {
                 val cfg = this@all
                 val rs = this@resolutionStrategy
@@ -122,9 +126,8 @@ kotlin {
 
     // Dependencies are specified per-target.
     // Please note, common sources are implicitly available in all targets.
-    @Suppress("unused") // source set `val`s are used implicitly.
     sourceSets {
-        val commonTest by getting {
+        getByName("commonTest") {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
@@ -132,7 +135,7 @@ kotlin {
                 implementation(Kotest.frameworkEngine)
             }
         }
-        val jvmTest by getting {
+        getByName("jvmTest") {
             dependencies {
                 implementation(dependencies.enforcedPlatform(JUnit.bom))
                 implementation(TestLib.lib)

@@ -24,16 +24,22 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.058")
+package io.spine.dependency.storage
 
 /**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
+ * QueryDSL — a framework for constructing type-safe SQL-like queries in Java.
+ *
+ * The JDBC storage uses the SQL module to build database queries.
+ *
+ * @see <a href="https://github.com/querydsl/querydsl">QueryDSL at GitHub</a>
  */
-val versionToPublish by extra(compilerVersion)
+@Suppress("unused", "ConstPropertyName")
+object QueryDsl {
+    private const val version = "5.1.0"
+    private const val group = "com.querydsl"
+
+    /**
+     * The SQL module of QueryDSL.
+     */
+    const val sql = "$group:querydsl-sql:$version"
+}

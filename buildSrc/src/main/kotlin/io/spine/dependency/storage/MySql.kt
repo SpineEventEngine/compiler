@@ -24,16 +24,18 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.058")
+package io.spine.dependency.storage
 
 /**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
+ * MySQL Connector/J — the official JDBC driver for MySQL.
+ *
+ * Used by the MySQL-based storage tests. Note the modern `com.mysql:mysql-connector-j`
+ * coordinates, which superseded the legacy `mysql:mysql-connector-java` artifact.
+ *
+ * @see <a href="https://github.com/mysql/mysql-connector-j">MySQL Connector/J at GitHub</a>
  */
-val versionToPublish by extra(compilerVersion)
+@Suppress("unused", "ConstPropertyName")
+object MySql {
+    private const val version = "9.7.0"
+    const val connector = "com.mysql:mysql-connector-j:$version"
+}

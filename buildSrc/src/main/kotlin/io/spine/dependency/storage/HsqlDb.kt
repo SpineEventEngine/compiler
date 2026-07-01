@@ -24,16 +24,18 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-val compilerVersion: String by extra("2.0.0-SNAPSHOT.058")
+package io.spine.dependency.storage
 
 /**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
+ * HyperSQL DataBase (HSQLDB) — a relational database engine written in Java, used in its
+ * in-memory mode for exercising the JDBC storage in tests.
+ *
+ * HSQLDB is hosted on SourceForge rather than GitHub.
+ *
+ * @see <a href="https://hsqldb.org/">HyperSQL Database site</a>
  */
-val versionToPublish by extra(compilerVersion)
+@Suppress("unused", "ConstPropertyName")
+object HsqlDb {
+    private const val version = "2.7.4"
+    const val lib = "org.hsqldb:hsqldb:$version"
+}

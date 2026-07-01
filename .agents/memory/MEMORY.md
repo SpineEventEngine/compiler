@@ -10,6 +10,7 @@ See [README.md](README.md) for the format and routing rules.
 ## Project (durable context & rationale)
 
 - [which-fixer applied](which-fixer-applied.md) — bulk sweep done; skill now runs in incremental mode
+- [integration tests stale compiler after version bump](project/integration-tests-stale-compiler-after-version-bump.md) — after a version bump, clean-build `integrationTest` or it may launch the old compiler
 
 ## Reference (external systems)
 
