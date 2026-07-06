@@ -31,6 +31,7 @@ import io.spine.dependency.local.Spine
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.JUnit
+import io.spine.dependency.test.Jacoco
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.PublishingRepos.cloudArtifactRegistry
 import io.spine.gradle.publish.PublishingRepos.gitHub
@@ -91,6 +92,10 @@ testing {
                 implementation(TestLib.lib)
                 implementation(ToolBase.pluginTestlib)
                 implementation(project(":gradle-plugin"))
+                // Reads and analyzes the JaCoCo execution data produced by
+                // the agent attached to the forked Compiler JVM.
+                // See `LaunchTaskCoverageSpec`.
+                implementation("org.jacoco:org.jacoco.core:${Jacoco.version}")
             }
         }
     }

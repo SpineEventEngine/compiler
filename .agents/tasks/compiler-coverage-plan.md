@@ -92,12 +92,12 @@ generated sources. **None of that execution reaches the `test` JVM's coverage ag
 
 ### 3.2 Evidence (validation @ HEAD, from Codecov)
 
-| Module | Role | Source files | Coverage |
-|---|---|---|---|
-| `java` | Java-code generators / renderers (run in compiler JVM) | 44 | **~0%** |
-| `context` | ProtoData/Compiler plugin (runs in compiler JVM) | 25 | **~0%** |
-| `jvm-runtime` | Runtime library (runs in the test JVM) | 21 | measured |
-| — `UnsignedIntegerWarnings.kt` (in `java`) | has a direct in-process spec | — | **~82%** |
+| Module                                     | Role                                                   | Source files | Coverage |
+|--------------------------------------------|--------------------------------------------------------|--------------|----------|
+| `java`                                     | Java-code generators / renderers (run in compiler JVM) | 44           | **~0%**  |
+| `context`                                  | ProtoData/Compiler plugin (runs in compiler JVM)       | 25           | **~0%**  |
+| `jvm-runtime`                              | Runtime library (runs in the test JVM)                 | 21           | measured |
+| — `UnsignedIntegerWarnings.kt` (in `java`) | has a direct in-process spec                           | —            | **~82%** |
 
 Repo total ≈ **12%**. Nearly every 0% file is a generator/renderer/expression-builder that only
 ever runs inside the forked compiler JVM. (Separately, validation also suffered a ~6-month coverage
@@ -175,67 +175,101 @@ This is the **same mechanism** as `enableTestKitCoverage()`, pointed at a differ
 Ordered, with explicit decision gates. Phases 0–1 & 3 are **compiler-repo** work; Phase 2 is the
 **consumer (validation)** reference wiring, included so the hook is designed against a real caller.
 
-### Phase 0 — Feasibility spike (compiler repo) — *do this first, it's cheap and decides the design*
+### Phase 0 — Feasibility spike (compiler repo) — ✅ DONE (2026-07-06)
 
 Goal: learn how `compiler-gradle-plugin` configures the launch tasks and whether consumer `jvmArgs`
 survive.
 
-- [ ] Find where the launch tasks are registered. Grep for: `launchSpineCompiler`,
-      `JavaExec`, `register<JavaExec>`, `fatCli` / `compiler-fat-cli`, `jvmArgs`, `setJvmArgs`,
-      `allJvmArgs`, `jvmArgumentProviders`, `argumentProviders`, `debugOptions`, `WorkerExecutor`,
-      `workerExecutor`, `ProcessForkOptions`, `JavaForkOptions`.
-- [ ] Confirm the task type is `JavaExec` in **all** code paths (not the Worker API). The
-      remote-debug support strongly implies plain `JavaExec`, but verify there is no worker-based
-      alternate path.
-- [ ] Confirm the fork runs `compiler-fat-cli` and that the **plugin classes are on the fork's
-      classpath verbatim** (not shaded/relocated). If the fat-cli relocates plugin classes, their
-      **class IDs won't match** the consumer's compiled classes and the merge will silently credit
-      nothing — this is the single biggest risk; check it explicitly.
-- [ ] **Manual proof:** in a scratch consumer build (or a compiler integration test), add
-      `-javaagent:<jacocoagent.jar>=destfile=…,append=true` to `launchTestSpineCompiler`'s
-      `jvmArgs`, run codegen, and confirm (a) a **non-empty** `.exec` is produced and (b) a
-      JaCoCo/Kover report generated with that exec as an additional binary report shows **>0%** on a
-      plugin class (e.g. a generator).
+- [x] Find where the launch tasks are registered. → `Project.createLaunchTask()` in
+      `gradle-plugin/src/main/kotlin/io/spine/tools/compiler/gradle/plugin/Plugin.kt` registers
+      `LaunchSpineCompiler` per source set (name built by `CompilerTask.nameFor()`:
+      `launch[<SourceSet>]SpineCompiler`). Both code paths — the eager `createTasks()` loop and
+      the `afterEvaluate` fallback in `handleLaunchTaskDependency()` for late-added source sets —
+      go through `createLaunchTask()`.
+- [x] Confirm the task type is `JavaExec` in **all** code paths. → Confirmed:
+      `LaunchSpineCompiler : JavaExec()` (`LaunchSpineCompiler.kt`). No Worker API anywhere
+      (`WorkerExecutor`/`workerExecutor`: zero hits). **`jvmArgs` survive:** the task's `init`
+      block calls the *additive* `jvmArgs(...)` overload (four `--add-opens` for the Palantir
+      formatter); `compileCommandLine()` (a `doFirst`) touches only `classpath`, `mainClass`, and
+      program `args`. No `setJvmArgs`/`allJvmArgs`/`jvmArgumentProviders` manipulation anywhere in
+      the plugin.
+- [x] Confirm the fork runs the fat CLI and plugin classes are on the fork's classpath verbatim. →
+      The fork's classpath is two configurations, side by side (`compileCommandLine()`):
+      `spineCompilerRawArtifact` (= `io.spine.tools:compiler-cli-all`, the shadow JAR of the `cli`
+      module) and `spineCompiler` (the user classpath with consumer plugin classes as their
+      **original artifacts**). The shadow config (`ShadowJarExts.setup()`) does **no `relocate()`**
+      — only service-file merging and first-copy-wins dedup. Consumer classes never enter the fat
+      JAR at all, so **class IDs match by construction**.
+- [x] **Manual proof:** captured as the permanent functional test `LaunchTaskCoverageSpec`
+      (see Phase 1). Its fixture `coverage-agent-test` attaches
+      `-javaagent:<jacocoagent>=destfile=build/jacoco-compiler/<task>.exec,append=true` via
+      `jvmArgumentProviders`, runs codegen, and asserts: (a) a non-empty `.exec`;
+      (b) JaCoCo `Analyzer` over the very `compiler-test-env` jar the fork loaded reports
+      **covered lines > 0** on `UnderscorePrefixRenderer` (class-ID match proven);
+      (c) an `UP-TO-DATE` re-launch leaves the `.exec` intact.
+      **Executed green** on 2026-07-06: `./gradlew :gradle-plugin:functionalTest
+      --tests "...LaunchTaskCoverageSpec"` → `BUILD SUCCESSFUL` (also
+      `LaunchTaskJvmArgsSpec` via `:gradle-plugin:test`).
 
-**Decision gate:**
+**Decision gate: A.** Consumer `jvmArgs`/`jvmArgumentProviders` survive; the whole feature is
+consumer-side wiring. This repo adds the regression lock + docs (Phase 1); no new DSL is needed.
 - **A. `jvmArgs` survive** → Phase 1 is light: add a regression test that locks the behavior in,
   a short doc note, and (optional) a convenience accessor. Most of the feature is Phase 2.
-- **B. `jvmArgs` are managed/clobbered, or the task isn't cleanly reachable** → Phase 1 adds an
-  explicit, supported hook.
+- ~~B. `jvmArgs` are managed/clobbered~~ — not the case.
 
-### Phase 1 — Provide a supported coverage / JVM-args hook (compiler repo)
+Additional facts for Phase 2 (consumer wiring), verified here:
+- `LaunchSpineCompiler` is `@CacheableTask`; its inputs/outputs are declared explicitly and do
+  **not** include JVM args, so toggling the agent neither invalidates up-to-dateness nor pollutes
+  cache keys. Consequences: (1) an `UP-TO-DATE`/`FROM-CACHE` launch produces no fresh `.exec` —
+  keep the previous file (do not wire a `dependsOn`-style cleaner); (2) a full re-measure needs
+  `clean` or `--rerun-tasks`.
+- The `.exec` must **not** be declared a task output (it would leak into the build cache key
+  space and break cache-hit restores; same reasoning as `TestKitCoverage` step 4).
+- The user classpath configuration is named `spineCompiler`
+  (`Names.USER_CLASSPATH_CONFIGURATION`); the launch tasks are found by type
+  `io.spine.tools.compiler.gradle.plugin.LaunchSpineCompiler` or by name via
+  `io.spine.tools.compiler.gradle.api.CompilerTask`.
+
+### Phase 1 — Provide a supported coverage / JVM-args hook (compiler repo) — ✅ DONE (option A)
 
 Design a minimal, engine-neutral way for a consumer to contribute JVM args (a javaagent) to the
 launch tasks, applied uniformly to `launchSpineCompiler`, `launchTestSpineCompiler`, and
 `launchTestFixturesSpineCompiler`.
 
-Options (pick per Phase-0 outcome), least-invasive first:
-- [ ] **A. Guarantee + document** that consumer `jvmArgs` / `jvmArgumentProviders` on the launch
-      tasks are preserved. Add a test that sets a marker JVM arg and asserts it reaches the fork.
-- [ ] **B. First-class DSL**, e.g. on the compiler extension:
-      ```kotlin
-      spine { compiler { jvmArgumentProviders.add(myAgentProvider) } }
-      // or a focused:
-      spine { compiler { coverage { agentJar.set(...); destinationDir.set(...); enabled.set(...) } } }
-      ```
-      Prefer `jvmArgumentProviders` (a `CommandLineArgumentProvider`) over eager `jvmArgs` strings so
-      paths resolve lazily and stay configuration-cache-friendly.
+Implemented (option A per the Phase-0 gate):
+- [x] **A. Guarantee + document** that consumer `jvmArgs` / `jvmArgumentProviders` on the launch
+      tasks are preserved:
+      - `LaunchTaskJvmArgsSpec` (`gradle-plugin/src/test`) — fast in-process lock: the launch task
+        is a plain `JavaExec`; a consumer-added JVM arg coexists with the task's own
+        `--add-opens` defaults.
+      - `LaunchTaskCoverageSpec` (`gradle-plugin/src/functionalTest`) + the `coverage-agent-test`
+        fixture — end-to-end lock: a real JaCoCo agent attached via `jvmArgumentProviders`
+        reaches the forked JVM, records `UnderscorePrefixRenderer` execution, the data matches
+        the fork's own jars (class IDs), and an `UP-TO-DATE` launch keeps the `.exec`.
+        The fixture doubles as the reference wiring for consumers (Phase 2).
+      - KDoc on `LaunchSpineCompiler` now declares the fork options part of the task's public
+        contract (“Attaching instrumentation to the forked JVM”).
+- **B. First-class DSL** — deliberately **not** added: standard `JavaExec` fork options are
+      the hook; a DSL would duplicate them. Revisit only if the launch tasks ever stop
+      being `JavaExec`. Consumers should prefer `jvmArgumentProviders`
+      (a `CommandLineArgumentProvider`) over eager `jvmArgs` strings so paths resolve lazily
+      and stay configuration-cache-friendly.
 
-Cross-cutting requirements (learned from `TestKitCoverage` — reuse its reasoning):
+Cross-cutting requirements (learned from `TestKitCoverage`). Under option A the lifecycle is
+owned by the **consumer** helper (`enableSpineCompilerCoverage()`, Phase 2) — these become its
+requirements; the fixture demonstrates the per-task destfile and lazy-provider parts:
 - [ ] **Opt-in / gated** behind a property or the presence of an agent path, so normal builds pay no
-      cost. Mirror how remote-debug is opt-in.
-- [ ] **Unique destfile per task and per module** (a module can run several launch variants;
-      multi-module builds run many) to avoid clobbering. Suggest
+      cost. Mirror how remote-debug is opt-in. *(Consumer-side, Phase 2.)*
+- [x] **Unique destfile per task and per module** — the fixture uses
       `build/jacoco-compiler/<taskName>.exec` with `append=true`.
-- [ ] **Do not break incremental builds:** when a launch task is `UP-TO-DATE`, no new `.exec` is
-      produced. Ensure the consumer's report still finds the previous `.exec` (don't delete it on an
-      up-to-date run). `TestKitCoverage` solves the analogous problem with a guarded one-shot wipe +
-      marking the producing task non-cacheable; apply the same thinking if this repo owns the
-      lifecycle.
-- [ ] **Configuration cache & task-output validation friendly** (providers, not eager files;
-      declare inputs/outputs correctly).
-- [ ] Keep it **engine-agnostic**: emit binary `.exec` (JaCoCo agent's only file output); Kover
-      merges binary at the probe level. Do **not** assume XML.
+- [x] **Do not break incremental builds:** when a launch task is `UP-TO-DATE`, no new `.exec` is
+      produced and the previous one is kept — asserted by `LaunchTaskCoverageSpec`. Do **not**
+      declare the `.exec` a task output, and do not wipe it via a `dependsOn` cleaner (guarded
+      one-shot wipe if needed, per `TestKitCoverage`). *(Wipe lifecycle: consumer-side, Phase 2.)*
+- [x] **Configuration cache & task-output validation friendly**: the reference wiring uses
+      a `CommandLineArgumentProvider` (lazy agent path & destfile), no eager files
+      at configuration time.
+- [x] Keep it **engine-agnostic**: the agent emits binary `.exec`; nothing here assumes XML.
 
 ### Phase 2 — Consumer reference wiring (validation) — the pilot that proves the number moves
 
@@ -280,27 +314,30 @@ Implement in validation's `buildSrc` (then upstream to `config` in Phase 4):
 
 ## 7. Design considerations & risks
 
-| Risk / consideration | Notes & mitigation |
-|---|---|
+| Risk / consideration                       | Notes & mitigation                                                                                                                                                           |
+|--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Class-ID mismatch (shading/relocation)** | If the fat-cli relocates plugin classes, agent exec won't match the consumer's compiled classes and coverage silently reads 0%. **Verify in Phase 0.** This is the top risk. |
-| **Worker API vs JavaExec** | Confirmed `JavaExec` via `debugOptions`; verify no worker-based path exists. Worker API would need a different injection point. |
-| **Incremental / UP-TO-DATE launches** | No new `.exec` on up-to-date runs. Don't delete prior exec; keep the producing task's outputs sane. Reuse `TestKitCoverage`'s guarded-wipe + non-cacheable reasoning. |
-| **Build cost** | Agent instrumentation slows every codegen launch. Gate behind a property/CI flag; off by default for local dev. |
-| **Double counting** | Merge **binary** exec via `additionalBinaryReports` (probe-level), never merge generated XML reports. `KoverConfig` already documents why binary. |
-| **Conceptual validity** | Execution coverage ≠ assertion coverage. Report under a distinct flag and complement with unit tests (Phase 4). |
-| **Multi-launch collisions** | `launchSpineCompiler` + `launchTestSpineCompiler` + `launchTestFixturesSpineCompiler` may all run per module → unique destfiles. |
-| **Configuration cache** | Use lazy providers / `CommandLineArgumentProvider`; avoid capturing `Project` at execution time. |
+| **Worker API vs JavaExec**                 | Confirmed `JavaExec` via `debugOptions`; verify no worker-based path exists. Worker API would need a different injection point.                                              |
+| **Incremental / UP-TO-DATE launches**      | No new `.exec` on up-to-date runs. Don't delete prior exec; keep the producing task's outputs sane. Reuse `TestKitCoverage`'s guarded-wipe + non-cacheable reasoning.        |
+| **Build cost**                             | Agent instrumentation slows every codegen launch. Gate behind a property/CI flag; off by default for local dev.                                                              |
+| **Double counting**                        | Merge **binary** exec via `additionalBinaryReports` (probe-level), never merge generated XML reports. `KoverConfig` already documents why binary.                            |
+| **Conceptual validity**                    | Execution coverage ≠ assertion coverage. Report under a distinct flag and complement with unit tests (Phase 4).                                                              |
+| **Multi-launch collisions**                | `launchSpineCompiler` + `launchTestSpineCompiler` + `launchTestFixturesSpineCompiler` may all run per module → unique destfiles.                                             |
+| **Configuration cache**                    | Use lazy providers / `CommandLineArgumentProvider`; avoid capturing `Project` at execution time.                                                                             |
 
 ---
 
 ## 8. Pointers & symbols (grep targets)
 
-**In the `compiler` repo (verify these):**
+**In the `compiler` repo (verified):**
 - Plugin id `io.spine.compiler`; artifacts `io.spine.tools:compiler-gradle-plugin`,
-  `compiler-fat-cli`, `compiler-backend`, `compiler-jvm`, `compiler-api`, `compiler-gradle-api`.
-- Task registration for `launchSpineCompiler` / `launchTestSpineCompiler` /
-  `launchTestFixturesSpineCompiler`; the fat-cli fork; any `jvmArgs`/`argumentProviders`/worker use.
-- The `spine { compiler { plugins(...) } }` extension implementation.
+  `compiler-backend`, `compiler-jvm`, `compiler-api`, `compiler-gradle-api`. The fat CLI artifact
+  is **`io.spine.tools:compiler-cli-all`** (shadow JAR of the `cli` module; the plan's working
+  name `compiler-fat-cli` refers to it — see `Artifacts.fatCli()` in `gradle-api`).
+- Task registration: `Plugin.kt` → `createLaunchTask()`; task class `LaunchSpineCompiler`
+  (`JavaExec`); fork classpath assembled in `LaunchSpineCompiler.compileCommandLine()`.
+- The `spine { compiler { plugins(...) } }` extension implementation: `Extension` /
+  `CompilerDslSpec` in `gradle-plugin`.
 
 **Reusable templates (in `validation`/`config` `buildSrc` — copy the pattern):**
 - `io.spine.gradle.testing.TestKitCoverage.enableTestKitCoverage()` — agent resolution + injection +
@@ -323,12 +360,18 @@ Implement in validation's `buildSrc` (then upstream to `config` in Phase 4):
 
 ## 9. Acceptance criteria
 
-- [ ] Phase 0 conclusion documented: task type, jvmArgs behavior, class-ID match — with the manual
-      `.exec` proof attached.
-- [ ] A supported way exists for a consumer to attach a javaagent to the launch tasks, covered by a
-      **regression test** in this repo.
-- [ ] Feature is **off by default**; enabling a flag produces non-empty compiler `.exec`.
+- [x] Phase 0 conclusion documented: task type, jvmArgs behavior, class-ID match — with the
+      `.exec` proof captured as `LaunchTaskCoverageSpec` (see Phase 0 section above).
+- [x] A supported way exists for a consumer to attach a javaagent to the launch tasks
+      (standard `JavaExec` fork options, declared part of the public contract in
+      the `LaunchSpineCompiler` KDoc), covered by **regression tests** in this
+      repo (`LaunchTaskJvmArgsSpec`, `LaunchTaskCoverageSpec`).
+- [x] Feature is **off by default** — nothing in the plugin changes unless a consumer wires the
+      agent; the `coverage-agent-test` fixture shows the opt-in wiring producing a non-empty
+      `.exec`. *(The consumer-side flag gating lands with Phase 2.)*
 - [ ] In validation (pilot): `java` and `context` report **>0%** and the repo total rises materially
       from ~12%, with codegen coverage under its **own flag/component**.
+      *(Phase 2 — validation repo.)*
 - [ ] Normal (coverage-off) builds show no measurable slowdown and remain configuration-cache clean.
-- [ ] Consumer glue upstreamed to `config`; docs updated.
+      *(Verify in the Phase 2 pilot; this repo adds no always-on cost.)*
+- [ ] Consumer glue upstreamed to `config`; docs updated. *(Phase 4.)*
