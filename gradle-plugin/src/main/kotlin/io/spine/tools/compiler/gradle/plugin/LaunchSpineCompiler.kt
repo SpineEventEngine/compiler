@@ -82,7 +82,7 @@ import org.gradle.api.tasks.SourceSet
  * Users should NOT change the CLI command, user directory, etc. directly.
  * Please refer to the `compiler { }` extension configuring the Compiler.
  *
- * ### Attaching instrumentation to the forked JVM
+ * ## Attaching instrumentation to the forked JVM
  *
  * The fork options of this task are part of its public contract: JVM arguments
  * added by a consumer build — via [jvmArgs] or `jvmArgumentProviders` — are
@@ -91,6 +91,23 @@ import org.gradle.api.tasks.SourceSet
  * the JaCoCo agent (`-javaagent:`) capturing the coverage of the Compiler
  * plugins executed inside the fork, or a remote-debug agent. The contract is
  * locked by regression tests.
+ *
+ * For example, to capture the coverage of the Compiler plugins:
+ *
+ * ```kotlin
+ * val jacocoAgent: Configuration by configurations.creating
+ *
+ * dependencies {
+ *     jacocoAgent("org.jacoco:org.jacoco.agent:<version>:runtime")
+ * }
+ *
+ * tasks.withType<LaunchSpineCompiler>().configureEach {
+ *     val execFile = layout.buildDirectory.file("jacoco-compiler/$name.exec")
+ *     jvmArgumentProviders.add(CommandLineArgumentProvider {
+ *         listOf("-javaagent:${jacocoAgent.singleFile}=destfile=${execFile.get().asFile}")
+ *     })
+ * }
+ * ```
  */
 @CacheableTask
 public abstract class LaunchSpineCompiler : JavaExec() {

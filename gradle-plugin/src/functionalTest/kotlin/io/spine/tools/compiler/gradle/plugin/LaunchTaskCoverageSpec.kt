@@ -122,9 +122,11 @@ internal class LaunchTaskCoverageSpec {
         renderer.lineCounter.coveredCount shouldBeGreaterThan 0
 
         // An up-to-date launch must leave the collected data intact.
+        val sizeAfterFirstRun = execFile.length()
         val secondRun = project.executeTask(launchSpineCompiler)
         secondRun[launchSpineCompiler] shouldBe UP_TO_DATE
         assertExists(execFile)
+        execFile.length() shouldBe sizeAfterFirstRun
     }
 
     /**

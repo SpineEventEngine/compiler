@@ -38,7 +38,14 @@ import org.gradle.testkit.runner.internal.DefaultGradleRunner
  * the Protobuf version check, which is not relevant to the fixture projects.
  */
 internal fun GradleProject.tuneRunner() {
-    (runner as DefaultGradleRunner).withJvmArguments(
+    // `withJvmArguments` is not exposed on the public `GradleRunner` API.
+    val gradleRunner = runner as? DefaultGradleRunner
+        ?: error(
+            "Expected the TestKit runner to be" +
+                    " `${DefaultGradleRunner::class.qualifiedName}`," +
+                    " got `${runner::class.qualifiedName}`."
+        )
+    gradleRunner.withJvmArguments(
         "-Xmx8g",
         "-XX:MaxMetaspaceSize=1512m",
         "-XX:+UseParallelGC",

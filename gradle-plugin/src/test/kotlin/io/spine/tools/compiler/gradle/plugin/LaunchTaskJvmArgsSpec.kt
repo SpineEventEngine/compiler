@@ -51,7 +51,8 @@ import org.junit.jupiter.api.io.TempDir
  * The task must remain a plain [JavaExec], and the JVM arguments set by
  * a consumer must survive next to the defaults added by the task itself.
  * The end-to-end counterpart of this contract — a real JaCoCo agent reaching
- * the forked JVM — is locked by `LaunchTaskCoverageSpec` in `functionalTest`.
+ * the forked JVM — is locked by `LaunchTaskCoverageSpec` in
+ * the `functionalTest` suite.
  */
 @DisplayName("`LaunchSpineCompiler` should")
 internal class LaunchTaskJvmArgsSpec {
