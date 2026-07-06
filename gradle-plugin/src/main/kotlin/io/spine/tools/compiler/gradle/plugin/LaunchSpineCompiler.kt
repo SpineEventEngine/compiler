@@ -85,12 +85,15 @@ import org.gradle.api.tasks.SourceSet
  * ## Attaching instrumentation to the forked JVM
  *
  * The fork options of this task are part of its public contract: JVM arguments
- * added by a consumer build — via [jvmArgs] or `jvmArgumentProviders` — are
- * preserved and passed to the forked JVM next to the defaults added by the task
- * itself. Consumer builds rely on this to attach instrumentation — for example,
- * the JaCoCo agent (`-javaagent:`) capturing the coverage of the Compiler
- * plugins executed inside the fork, or a remote-debug agent. The contract is
- * locked by regression tests.
+ * a consumer build appends — via the additive [jvmArgs] function or via
+ * `jvmArgumentProviders` — are preserved and passed to the forked JVM next to
+ * the defaults added by the task itself. Assigning the `jvmArgs` property
+ * (`setJvmArgs(...)`) is outside the contract: it replaces the defaults,
+ * including the `--add-opens` arguments the Compiler relies on.
+ * Consumer builds use the appending forms to attach instrumentation — for
+ * example, the JaCoCo agent (`-javaagent:`) capturing the coverage of the
+ * Compiler plugins executed inside the fork, or a remote-debug agent.
+ * The contract is locked by regression tests.
  *
  * For example, to capture the coverage of the Compiler plugins:
  *
