@@ -24,17 +24,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-private val compilerVersion = "2.0.0-SNAPSHOT.060"
-extra.set("compilerVersion", compilerVersion)
+package io.spine.tools.compiler.gradle.plugin
+
+import io.spine.tools.gradle.testing.GradleProject
+import org.gradle.testkit.runner.internal.DefaultGradleRunner
 
 /**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
+ * Tunes the TestKit runner of this project for the functional tests of
+ * the Compiler Gradle plugin.
+ *
+ * Grants the build JVM generous memory limits — a fixture build compiles
+ * Kotlin, runs `protoc`, and launches the Compiler — and disables
+ * the Protobuf version check, which is not relevant to the fixture projects.
  */
-extra.set("versionToPublish", compilerVersion)
+internal fun GradleProject.tuneRunner() {
+    // `withJvmArguments` is not exposed on the public `GradleRunner` API.
+    val gradleRunner = runner as? DefaultGradleRunner
+        ?: error(
+            "Expected the TestKit runner to be" +
+                    " `${DefaultGradleRunner::class.qualifiedName}`," +
+                    " got `${runner::class.qualifiedName}`."
+        )
+    gradleRunner.withJvmArguments(
+        "-Xmx8g",
+        "-XX:MaxMetaspaceSize=1512m",
+        "-XX:+UseParallelGC",
+        "-XX:+HeapDumpOnOutOfMemoryError"
+    ).withEnvironment(
+        mapOf("TEMPORARILY_DISABLE_PROTOBUF_VERSION_CHECK" to "true")
+    )
+}

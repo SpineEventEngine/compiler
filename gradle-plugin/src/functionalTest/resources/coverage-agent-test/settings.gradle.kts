@@ -24,17 +24,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * The version of the Spine Compiler to be built by this project.
- *
- * This version is also used by integration test projects.
- * E.g. see `tests/consumer/build.gradle.kts`.
- */
-private val compilerVersion = "2.0.0-SNAPSHOT.060"
-extra.set("compilerVersion", compilerVersion)
-
-/**
- * The version, same as [compilerVersion], which is used for publishing
- * the Compiler Maven artifacts.
- */
-extra.set("versionToPublish", compilerVersion)
+pluginManagement {
+    repositories {
+        mavenLocal()
+    }
+}

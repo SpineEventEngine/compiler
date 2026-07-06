@@ -47,7 +47,6 @@ import org.gradle.testkit.runner.TaskOutcome.FROM_CACHE
 import org.gradle.testkit.runner.TaskOutcome.SKIPPED
 import org.gradle.testkit.runner.TaskOutcome.SUCCESS
 import org.gradle.testkit.runner.TaskOutcome.UP_TO_DATE
-import org.gradle.testkit.runner.internal.DefaultGradleRunner
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
@@ -97,14 +96,7 @@ class PluginSpec {
             //.enableRunnerDebug()
             .copyBuildSrc()
         project = builder.create()
-        (project.runner as DefaultGradleRunner).withJvmArguments(
-            "-Xmx8g",
-            "-XX:MaxMetaspaceSize=1512m",
-            "-XX:+UseParallelGC",
-            "-XX:+HeapDumpOnOutOfMemoryError"
-        ).withEnvironment(
-            mapOf("TEMPORARILY_DISABLE_PROTOBUF_VERSION_CHECK" to "true")
-        )
+        project.tuneRunner()
     }
 
     private fun createEmptyProject() {
