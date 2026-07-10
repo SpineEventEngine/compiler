@@ -477,22 +477,32 @@ private fun GenerateProtoTask.declareRequestFileOutputs(requestFile: File) {
 
 /**
  * Makes a [LaunchSpineCompiler], if it exists for the source set of the given [GenerateProtoTask],
- * depend on this task.
+ * depend on this task and consume the proto source directories it compiles.
  *
  * If the [LaunchSpineCompiler] task does not exist (which may be the case for custom source sets
  * created by other plugins), arranges the task creation on [Project.afterEvaluate].
  * In this case the [SpineCompilerCleanTask] is also created with appropriate dependencies.
+ *
+ * @see [consumeProtoFrom]
  */
 private fun Project.handleLaunchTaskDependency(generateProto: GenerateProtoTask) {
     val sourceSet = generateProto.sourceSet
-    CompilerTask.find(this, sourceSet)
-        ?.dependsOn(generateProto)
-        ?: afterEvaluate {
-            val launchTask = createLaunchTask(sourceSet)
-            launchTask.configure {
-                it.dependsOn(generateProto)
+    val launchTask = CompilerTask.find(this, sourceSet)
+    check(launchTask is LaunchSpineCompiler?) {
+        "The task `${launchTask?.path}` is expected to be an instance of" +
+                " `${LaunchSpineCompiler::class.qualifiedName}`," +
+                " but was `${launchTask?.javaClass?.name}`."
+    }
+    if (launchTask != null) {
+        launchTask.consumeProtoFrom(generateProto)
+    } else {
+        afterEvaluate {
+            val newTask = createLaunchTask(sourceSet)
+            newTask.configure {
+                it.consumeProtoFrom(generateProto)
             }
             createCleanTask(sourceSet)
             arrangeKspTaskDependency(sourceSet)
         }
+    }
 }

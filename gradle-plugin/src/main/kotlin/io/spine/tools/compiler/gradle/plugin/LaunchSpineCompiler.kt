@@ -47,6 +47,7 @@ import java.io.File.pathSeparator
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
+import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.Directory
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.FileSystemOperations
@@ -65,6 +66,7 @@ import org.gradle.api.tasks.OutputDirectories
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.SourceSet
+import org.gradle.process.CommandLineArgumentProvider
 
 /**
  * A task that executes a single Spine Compiler command.
@@ -160,6 +162,22 @@ public abstract class LaunchSpineCompiler : JavaExec() {
     @get:PathSensitive(PathSensitivity.RELATIVE)
     internal abstract val settingsDirectory: DirectoryProperty
 
+    /**
+     * The directories with the proto source files compiled by
+     * the [GenerateProtoTask] on which this task depends.
+     *
+     * The files found under these directories are listed in the parameters
+     * file as the compiled proto files.
+     *
+     * The property is [Internal] because the content of the compiled proto
+     * files is already fingerprinted via [requestFile], which `protoc`
+     * derives from them.
+     *
+     * @see [consumeProtoFrom]
+     */
+    @get:Internal
+    internal abstract val protoSourceDirs: ConfigurableFileCollection
+
     @get:InputFiles
     @get:Classpath
     internal lateinit var userClasspathConfiguration: Configuration
@@ -191,6 +209,9 @@ public abstract class LaunchSpineCompiler : JavaExec() {
     internal abstract val fileSystemOperations: FileSystemOperations
 
     init {
+        // The main class is a constant, so it is set once at configuration time.
+        // Doing so at execution time is deprecated and becomes an error in Gradle 11.
+        mainClass.set(CLI_APP_CLASS)
         jvmArgs(
             // Open access for Palantir Java Formatter.
             "--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
@@ -198,27 +219,6 @@ public abstract class LaunchSpineCompiler : JavaExec() {
             "--add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED",
             "--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
         )
-    }
-
-    /**
-     * Configures the CLI command for this task.
-     *
-     * This method *must* be called after all the configuration is done for the task.
-     */
-    internal fun compileCommandLine() {
-        val command = sequence {
-            // Pass the parameters file.
-            val sourceSet = SourceSetName(sourceSetName.get())
-            yield(ParametersFileParam.name)
-            yield(workingDir.parametersDirectory.file(sourceSet))
-        }.asIterable()
-        logger.info {
-            "Spine Compiler command for `${path}`: ${command.joinToString(separator = " ")}"
-        }
-        classpath(compilerConfiguration)
-        classpath(userClasspathConfiguration)
-        mainClass.set(CLI_APP_CLASS)
-        args(command)
     }
 
     /**
@@ -260,6 +260,15 @@ public abstract class LaunchSpineCompiler : JavaExec() {
 /**
  * Applies default settings to the receiver task.
  *
+ * Together with the task `init` block and [consumeProtoFrom], this function
+ * arranges the whole task state — including the CLI command line — at
+ * configuration time. The values that may change until the end of
+ * the configuration phase are captured lazily: the classpath via
+ * [Configuration]s, and the CLI arguments via `argumentProviders`, which
+ * Gradle queries only when building the actual command line.
+ * Mutating the task state at execution time is deprecated: querying
+ * `Task.dependsOn` fails in Gradle 10, changing a property in Gradle 11.
+ *
  * @param sourceSet The source set for which the task is created.
  */
 internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
@@ -269,12 +278,23 @@ internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
     plugins = ext.plugins
     compilerConfiguration = project.compilerRawArtifact
     userClasspathConfiguration = project.userClasspath
+    classpath(compilerConfiguration)
+    classpath(userClasspathConfiguration)
 
     sources = ext.sourceDirs(sourceSet)
     targets = ext.outputDirs(sourceSet)
 
-    requestFile.set(workingDir.requestDirectory.file(SourceSetName(sourceSet.name)))
+    val ssn = SourceSetName(sourceSet.name)
+    requestFile.set(workingDir.requestDirectory.file(ssn))
     settingsDirectory.set(workingDir.settingsDirectory.path.toFile())
+
+    // The parameters file path is passed via an argument provider rather
+    // than `args` so that the absolute path does not enter the build cache
+    // key, keeping the cached outputs relocatable.
+    val parametersFile = workingDir.parametersDirectory.file(ssn)
+    argumentProviders.add(CommandLineArgumentProvider {
+        listOf(ParametersFileParam.name, parametersFile.path)
+    })
 
     setDependencies(sourceSet)
 
@@ -282,7 +302,15 @@ internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
         hasRequestFile(sourceSet)
     }
     doFirst {
-        compileCommandLine()
+        // Writing the parameters file must stay a `doFirst` action rather
+        // than move into `exec()`: serializing `PipelineParameters` to JSON
+        // loads Spine `KnownTypes` via the thread context classloader, and
+        // Gradle sets that classloader to the plugin classloader only while
+        // running `doFirst`/`doLast` actions. Inside `exec()` the context
+        // classloader is a Gradle core one, and the `desc.ref` resource
+        // lookup fails. Unlike the former command-line assembly, this action
+        // only writes a file and does not mutate the task state, so it does
+        // not trip the "at execution time" deprecations.
         createParametersFile()
     }
 }
@@ -312,17 +340,32 @@ private fun LaunchSpineCompiler.setDependencies(sourceSet: SourceSet) {
 }
 
 /**
+ * Makes this task depend on the given [generateProto] task, and captures
+ * the proto source directories compiled by that task
+ * into [protoSourceDirs][LaunchSpineCompiler.protoSourceDirs].
+ *
+ * The directories are captured as a live [file collection][ConfigurableFileCollection]
+ * at configuration time, so that the parameters file can be written without
+ * querying `Task.dependsOn` at execution time. Such a query is deprecated,
+ * fails in Gradle 10, and is incompatible with the configuration cache.
+ */
+internal fun LaunchSpineCompiler.consumeProtoFrom(generateProto: GenerateProtoTask) {
+    dependsOn(generateProto)
+    protoSourceDirs.from(generateProto.sourceDirs)
+}
+
+/**
  * Writes the file with parameters for a pipeline.
  *
- * The function obtains the list of compiled proto files by querying an instance
- * of [GenerateProtoTask] on which the receiver task depends on (as set by the
- * [Plugin.handleLaunchTaskDependency][io.spine.tools.compiler.gradle.plugin.handleLaunchTaskDependency]
- * function).
+ * The function obtains the list of compiled proto files from
+ * [protoSourceDirs][LaunchSpineCompiler.protoSourceDirs] populated from the
+ * [GenerateProtoTask] on which the receiver task depends (as arranged by
+ * [consumeProtoFrom] called from the `handleLaunchTaskDependency` extension
+ * in `Plugin.kt`).
  */
 private fun LaunchSpineCompiler.createParametersFile() {
-    val generateProtoTask = dependsOn.first { it is GenerateProtoTask } as GenerateProtoTask
     val params = pipelineParameters {
-        val protoFiles = generateProtoTask.sourceDirs.asFileTree.files.toList().sorted()
+        val protoFiles = protoSourceDirs.asFileTree.files.toList().sorted()
             .map {
                 it.toAbsoluteFile()
             }
