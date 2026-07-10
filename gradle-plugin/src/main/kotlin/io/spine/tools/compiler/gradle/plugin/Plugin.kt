@@ -477,7 +477,7 @@ private fun GenerateProtoTask.declareRequestFileOutputs(requestFile: File) {
 
 /**
  * Makes a [LaunchSpineCompiler], if it exists for the source set of the given [GenerateProtoTask],
- * depend on this task and consume the proto source directories it compiles.
+ * depend on the given [generateProto] task and consume the proto source directories it compiles.
  *
  * If the [LaunchSpineCompiler] task does not exist (which may be the case for custom source sets
  * created by other plugins), arranges the task creation on [Project.afterEvaluate].

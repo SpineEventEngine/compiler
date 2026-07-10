@@ -104,8 +104,8 @@ class PluginSpec {
         createProject("empty-test")
     }
 
-    private fun createLaunchTestProject() {
-        createProject("launch-test")
+    private fun createLaunchTestProject(vararg options: String) {
+        createProject("launch-test", *options)
     }
 
     private fun createJavaKotlinProject() {
@@ -168,12 +168,13 @@ class PluginSpec {
 
     /**
      * Locks the absence of the "at execution time" Gradle deprecation warnings
-     * once triggered by the [LaunchSpineCompiler] task.
+     * formerly triggered by the [LaunchSpineCompiler] task.
      *
      * The task used to assemble its CLI command — including the `mainClass`
      * property — in a `doFirst` action, and to query `Task.dependsOn` while
-     * writing the parameters file. Gradle 9.6 deprecates both: the `dependsOn`
-     * query fails in Gradle 10, the property mutation in Gradle 11.
+     * writing the parameters file. As of Gradle 9.6, both are deprecated:
+     * the `dependsOn` query fails in Gradle 10, the property mutation
+     * in Gradle 11.
      *
      * With `--warning-mode=all` Gradle prints every deprecation warning
      * individually, so the assertions below fail if a regression reintroduces
@@ -181,7 +182,7 @@ class PluginSpec {
      */
     @Test
     fun `not mutate the launch task state at execution time`() {
-        createProject("launch-test", "--warning-mode=all")
+        createLaunchTestProject("--warning-mode=all")
         val result = launch()
 
         result[launchSpineCompiler] shouldBe SUCCESS

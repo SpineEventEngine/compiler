@@ -170,8 +170,8 @@ public abstract class LaunchSpineCompiler : JavaExec() {
      * file as the compiled proto files.
      *
      * The property is [Internal] because the content of the compiled proto
-     * files is already fingerprinted via [requestFile], which `protoc`
-     * derives from them.
+     * files is already fingerprinted via [requestFile], which the Compiler
+     * `protoc` plugin derives from them.
      *
      * @see [consumeProtoFrom]
      */
@@ -266,7 +266,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
  * the configuration phase are captured lazily: the classpath via
  * [Configuration]s, and the CLI arguments via `argumentProviders`, which
  * Gradle queries only when building the actual command line.
- * Mutating the task state at execution time is deprecated: querying
+ * Touching the task state at execution time is deprecated: querying
  * `Task.dependsOn` fails in Gradle 10, changing a property in Gradle 11.
  *
  * @param sourceSet The source set for which the task is created.
@@ -360,8 +360,8 @@ internal fun LaunchSpineCompiler.consumeProtoFrom(generateProto: GenerateProtoTa
  * The function obtains the list of compiled proto files from
  * [protoSourceDirs][LaunchSpineCompiler.protoSourceDirs] populated from the
  * [GenerateProtoTask] on which the receiver task depends (as arranged by
- * [consumeProtoFrom] called from the `handleLaunchTaskDependency` extension
- * in `Plugin.kt`).
+ * [consumeProtoFrom] called from the `handleLaunchTaskDependency`
+ * extension in `Plugin.kt`).
  */
 private fun LaunchSpineCompiler.createParametersFile() {
     val params = pipelineParameters {
