@@ -91,3 +91,17 @@ Observed in `delivery-server` `build/reports/problems/problems-report.html`
   via a scratchpad consumer project (mavenLocal plugin `.060` vs `.062`,
   `--warning-mode=all`): warnings present before, absent after.
   Working tree ready for review; not committed (no commit authorization).
+- 2026-07-10 — PR #81 opened (3 commits; pre-pr gate PASS).
+- 2026-07-10 — CI failed on `Build on Ubuntu`, `Engine performance smoke test`,
+  and `JUnit Test Report` with `io.spine.type.UnknownTypeException` +
+  placeholder-descriptor warnings. Root cause: NOT this branch's code —
+  the exact descriptor-set build-cache bug documented in PR #80. This PR's
+  version bump `.061->.062` made CI restore the stale `known_types` descriptor
+  cached by PR #80's own `.061` build (`:test-env:generateProto FROM-CACHE`);
+  the repo's bootstrap ("dogfooding") Compiler pin `.059` still carries the
+  unfixed ToolBase `.402`, and the fix "reaches consumers only by advancing
+  the Compiler's pin" (PR #80). Tests pass locally where the poisoned shared
+  cache is not in play. Fix: bump `Compiler.fallbackVersion` and
+  `fallbackDfVersion` to `2.0.0-SNAPSHOT.061` (published from master with
+  ToolBase `.403`); the new plugin classpath also changes task classloader
+  hashes, so CI takes cache misses instead of the poisoned entries.
