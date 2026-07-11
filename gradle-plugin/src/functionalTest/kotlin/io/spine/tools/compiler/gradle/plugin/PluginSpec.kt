@@ -28,6 +28,7 @@ package io.spine.tools.compiler.gradle.plugin
 
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldNotContain
 import io.spine.tools.compiler.gradle.api.CompilerTaskName
 import io.spine.tools.compiler.gradle.api.Names.GRADLE_PLUGIN_ID
 import io.spine.testing.SlowTest
@@ -103,8 +104,8 @@ class PluginSpec {
         createProject("empty-test")
     }
 
-    private fun createLaunchTestProject() {
-        createProject("launch-test")
+    private fun createLaunchTestProject(vararg options: String) {
+        createProject("launch-test", *options)
     }
 
     private fun createJavaKotlinProject() {
@@ -163,6 +164,32 @@ class PluginSpec {
     fun `launch the compiler task`() {
         createLaunchTestProject()
         launchAndExpectResult(SUCCESS)
+    }
+
+    /**
+     * Locks the absence of the "at execution time" Gradle deprecation warnings
+     * formerly triggered by the [LaunchSpineCompiler] task.
+     *
+     * The task used to assemble its CLI command — including the `mainClass`
+     * property — in a `doFirst` action, and to query `Task.dependsOn` while
+     * writing the parameters file. As of Gradle 9.6, both are deprecated:
+     * the `dependsOn` query fails in Gradle 10, the property mutation
+     * in Gradle 11.
+     *
+     * With `--warning-mode=all` Gradle prints every deprecation warning
+     * individually, so the assertions below fail if a regression reintroduces
+     * the execution-time mutation.
+     */
+    @Test
+    fun `not mutate the launch task state at execution time`() {
+        createLaunchTestProject("--warning-mode=all")
+        val result = launch()
+
+        result[launchSpineCompiler] shouldBe SUCCESS
+        val output = result.output
+        output shouldNotContain
+                "Changing property value of task ':${launchSpineCompiler.name()}'"
+        output shouldNotContain "Invocation of Task.dependsOn at execution time"
     }
 
     @Test
