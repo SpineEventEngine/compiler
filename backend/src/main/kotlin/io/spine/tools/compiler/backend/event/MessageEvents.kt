@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ internal class MessageEvents(header: ProtoFileHeader) : DeclarationEvents<Descri
      * [io.spine.tools.compiler.ast.event.TypeEntered] events.
      * Then the events regarding the type metadata come.
      * Then go the events regarding the fields.
-     * At last, closes with an [TypeExited][io.spine.tools.compiler.ast.event.TypeExited] event.
+     * At last, closes with a [TypeExited][io.spine.tools.compiler.ast.event.TypeExited] event.
      *
      * @param desc The descriptor of the message type.
      */
@@ -127,10 +127,10 @@ internal class MessageEvents(header: ProtoFileHeader) : DeclarationEvents<Descri
     /**
      * Yields compiler events for the given `oneof` group.
      *
-     * Opens with an [OneofGroupEntered] event.
+     * Opens with a [OneofGroupEntered] event.
      * Then go the events regarding the group metadata.
      * Then go the events regarding the fields.
-     * At last, closes with an [OneofGroupExited] event.
+     * At last, closes with a [OneofGroupExited] event.
      */
     private suspend fun SequenceScope<EventMessage>.produceOneofEvents(
         desc: OneofDescriptor
@@ -173,9 +173,9 @@ internal class MessageEvents(header: ProtoFileHeader) : DeclarationEvents<Descri
     /**
      * Yields compiler events for the given field.
      *
-     * Opens with an [FieldEntered] event.
+     * Opens with a [FieldEntered] event.
      * Then events regarding the field options are emitted.
-     * At last, closes with an [FieldExited] event.
+     * At last, closes with a [FieldExited] event.
      */
     @Suppress("DEPRECATION") /* Populate deprecated fields in `FieldOptionDiscovered`
         for backward compatibility. */

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -126,7 +126,7 @@ private fun message(field: FieldDescriptor): Type = type {
 
 /**
  * Converts this field type into an instance of [PrimitiveType], or
- * `null` if the type is not primitive
+ * `null` if the type is not primitive.
  */
 @Suppress("CyclomaticComplexMethod")
 public fun FieldDescriptor.Type.toPrimitiveType(): PrimitiveType? = when (this) {

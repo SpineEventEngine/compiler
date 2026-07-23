@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ package io.spine.tools.compiler.jvm
  *
  * Please, pay attention that the expressions with the same [code]
  * are not differentiated at runtime. The declared generic parameter
- * is not preserved, it serves only for compile-time type safety.
+ * is not preserved; it serves only for compile-time type safety.
  *
  * If we compare the variables declared in the example above,
  * we will get `true`:

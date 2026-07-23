@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ public object Null : Expression<Null>("null")
  *
  * @param T The type of the `this` value.
  *
- * @param explicit If `true`, the expression yields `this` keyword.
+ * @param explicit If `true`, the expression yields the `this` keyword.
  *   Otherwise, it yields an empty string.
  */
 public class This<T>(explicit: Boolean = true) : Expression<T>(if (explicit) "this" else "")

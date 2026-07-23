@@ -135,7 +135,7 @@ internal fun buildTypeName(
 }
 
 /**
- * Produces a sequence by walking through all the nested message definitions staring with [type].
+ * Produces a sequence by walking through all the nested message definitions starting with [type].
  *
  * @param type The message definition that may contain a nested message definition
  *   to walk through.

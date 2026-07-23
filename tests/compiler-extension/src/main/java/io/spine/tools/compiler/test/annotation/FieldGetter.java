@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ import static kotlin.text.StringsKt.lines;
  * An insertion point at the line right before a getter method of the given field.
  *
  * <p>This implementation should only be used for test purposes. It might not cover all the possible
- * edge cases when fining the line where the getter is.
+ * edge cases when finding the line where the getter is.
  */
 final class FieldGetter implements NonRepeatingInsertionPoint {
 

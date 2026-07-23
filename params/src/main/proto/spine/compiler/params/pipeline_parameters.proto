@@ -77,7 +77,7 @@ message PipelineParameters {
     // `target_root` directories.
     //
     // Source and target directories are paired up according to the order they
-    // are provided, e.g., the files from first source root are written to the first
+    // are provided, e.g., the files from the first source root are written to the first
     // target root and so on.
     //
     // When specifying multiple directories, some of them are allowed to be non-existent.

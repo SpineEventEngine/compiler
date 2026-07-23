@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public fun ProtoFileHeader.javaPackage(): String =
         ?: packageName
 
 /**
- * Obtains a value of `java_multiple_files` option set for this file.
+ * Obtains a value of the `java_multiple_files` option set for this file.
  */
 public fun ProtoFileHeader.javaMultipleFiles(): Boolean =
     optionList.find("java_multiple_files", BoolValue::class.java)

@@ -89,7 +89,7 @@ public abstract class AbstractRenderer<V : EntityState<*>, S : Message> : JavaRe
     /**
      * Tells if the [settings] allow this renderer to work.
      *
-     * If this method returns `false` the method [doRender] is never called.
+     * If this method returns `false`, the method [doRender] is never called.
      */
     protected abstract fun isEnabled(settings: S): Boolean
 
@@ -102,7 +102,7 @@ public abstract class AbstractRenderer<V : EntityState<*>, S : Message> : JavaRe
      * Renders the code traversing all the views calling [doRender], if
      * the rendering is [enabled][isEnabled] by [settings].
      *
-     * If the method [isEnabled] returns `false` does nothing.
+     * If the method [isEnabled] returns `false`, does nothing.
      */
     override fun render(sources: SourceFileSet) {
         this.sources = sources

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ public class StringLiteral(value: String) : Literal<String>("\"$value\"")
 /**
  * A `long` literal.
  *
- * Represents the same value as the given long, followed by `L` symbol.
+ * Represents the same value as the given long, followed by the `L` symbol.
  * For example, for "12" it will produce the following code: "12L".
  */
 public class LongLiteral(value: Long) : Literal<String>("${value}L")

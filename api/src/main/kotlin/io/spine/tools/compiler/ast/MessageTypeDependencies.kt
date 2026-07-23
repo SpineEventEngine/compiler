@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,12 +32,12 @@ import io.spine.tools.compiler.type.TypeSystem
  * Contains information about [MessageType]s on which the given [MessageType] depends either
  * directly through its immediate fields, or through the fields of its immediate dependencies.
  *
- * The given [messageType] is not considered as dependency (for itself), unless it is used
+ * The given [messageType] is not considered as a dependency (for itself), unless it is used
  * recursively in one of the immediate or nested fields.
  *
  * @param messageType The type for which we collect dependencies.
  * @param cardinalities The cardinalities of fields taken into account when traversing the types.
- *    Empty set means that all fields, including `repeated` and `map` ones will be
+ *    An empty set means that all fields, including `repeated` and `map` ones will be
  *    taken into account when collecting types.
  * @param typeSystem The type system to obtain a `MessageType` by its name.
  */

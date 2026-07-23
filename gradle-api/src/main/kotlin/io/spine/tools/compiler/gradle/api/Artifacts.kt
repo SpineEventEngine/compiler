@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ public object Artifacts {
     public fun fatCli(version: String): String = "$group:compiler-cli-all:$version"
 
     /**
-     * Obtains Maven coordinates for Compiler command-line application.
+     * Obtains Maven coordinates for the Compiler command-line application.
      */
     public fun cli(version: String): String = "$group:compiler-cli:$version"
 
@@ -78,7 +78,7 @@ public object Artifacts {
 }
 
 /**
- * Holds Maven references to `protoc` plugin artifact of the Compiler.
+ * Holds Maven references to the `protoc` plugin artifact of the Compiler.
  *
  * Provided to treat this important dependency in a type-safe way.
  */

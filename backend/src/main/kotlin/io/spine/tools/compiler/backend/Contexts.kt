@@ -98,7 +98,7 @@ public class CodeGenerationContext(
      * Lazy initializer for [insertionPointsContext] property.
      *
      * We have the initializer as a separate property to avoid unnecessary creation
-     * of `ThirdPartyContext` instance, if [insertionPointsContext] was never called.
+     * of a `ThirdPartyContext` instance, if [insertionPointsContext] was never called.
      *
      * @see [close]
      */

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import com.google.protobuf.ExtensionRegistry
 import io.spine.option.OptionsProvider
 
 /**
- * Register options declared in [extra_opts.proto][XtraOptsProto] file.
+ * Registers options declared in [extra_opts.proto][XtraOptsProto] file.
  */
 @AutoService(OptionsProvider::class)
 public class TestEnvOptionsProvider : OptionsProvider {

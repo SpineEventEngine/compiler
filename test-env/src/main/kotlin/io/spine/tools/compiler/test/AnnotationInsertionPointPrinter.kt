@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ public class AnnotationInsertionPointPrinter :
 public enum class AnnotationInsertionPoint : NonRepeatingInsertionPoint {
 
     /**
-     * An insertion point in the imports black.
+     * An insertion point in the imports block.
      *
      * This insertion point allows importing types into the Java file.
      */
@@ -62,7 +62,7 @@ public enum class AnnotationInsertionPoint : NonRepeatingInsertionPoint {
     },
 
     /**
-     * An insertion point before the return type of method called `foo`.
+     * An insertion point before the return type of the method called `foo`.
      *
      * This insertion point allows annotating the return type.
      */

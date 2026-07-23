@@ -45,7 +45,7 @@ package io.spine.tools.compiler.settings
  * Jackson is capable of working with Kotlin `val`-s, so the data class can be immutable.
  * In Java, Jackson is capable of working with immutable types as well.
  * However, it may require some annotations to be added to the class.
- * Please see the Jackson's documentation for more info.
+ * Please see Jackson's documentation for more info.
  */
 public interface WithSettings {
 

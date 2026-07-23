@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,7 +82,7 @@ public abstract class AbstractCompilationErrorTest {
 
     /**
      * Asserts that the messages represented by the given [descriptor]
-     * fails the compilation process.
+     * fail the compilation process.
      */
     public fun assertCompilationFails(descriptor: Descriptor): Compilation.Error {
         val setup = createSetup(descriptor)

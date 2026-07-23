@@ -70,7 +70,7 @@ import kotlin.reflect.KClass
  * [@Subscribe][io.spine.core.Subscribe]. In these methods, change the state of the view via
  * the `builder()`, `update { }`, or `alter { }` methods.
  *
- * We recommend to use `internal` access for the subscriber methods in Kotlin and package-private —
+ * We recommend using `internal` access for the subscriber methods in Kotlin and package-private —
  * in Java. The methods are not `private`, as they are invoked by the framework, and not `public`,
  * as they must not be called directly.
  *

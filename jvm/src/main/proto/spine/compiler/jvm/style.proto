@@ -61,7 +61,7 @@ message InnerClassImports {
     repeated string exclude = 2;
 }
 
-// Settings for on-demand or start import (`*`) to be used instead of
+// Settings for on-demand or star import (`*`) to be used instead of
 // individual import statements in a Java file.
 message ImportOnDemand {
 

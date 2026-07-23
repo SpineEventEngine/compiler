@@ -42,7 +42,7 @@ import kotlin.io.path.listDirectoryEntries
  *
  * Only the files with the [recognized extensions][Format] are considered settings files.
  *
- * Only the files belonging to the directory directly are considered,
+ * Only the files belonging to the directory directly are considered;
  * no subdirectories are traversed.
  *
  * This class works in combination with the view that manages the [Settings] state class

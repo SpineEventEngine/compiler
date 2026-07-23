@@ -342,7 +342,7 @@ option (every_is).java_type = "FileAwareEvent";
      ServiceName service = 2 [(required) = true];
  }
 
- // Emitted when an service-level option is found.
+ // Emitted when a service-level option is found.
  message ServiceOptionDiscovered {
      option (is).java_type = "OptionAwareEvent";
 
@@ -359,7 +359,7 @@ option (every_is).java_type = "FileAwareEvent";
      Service subject = 4 [(required) = true];
  }
 
- // Emitted when a service is completely discovered, including all the option and RPCs.
+ // Emitted when a service is completely discovered, including all the options and RPCs.
  message ServiceExited {
 
      // The file in which the service is defined.

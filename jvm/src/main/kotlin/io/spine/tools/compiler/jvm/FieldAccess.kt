@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,13 +77,13 @@ internal constructor(
         MethodCall(message, addAllName, value)
 
     /**
-     * Constructs an `putField(..)` expression for the associated field.
+     * Constructs a `putField(..)` expression for the associated field.
      */
     public fun put(key: Expression<*>, value: Expression<*>): MethodCall<Message.Builder> =
         MethodCall(message, putName, listOf(key, value))
 
     /**
-     * Constructs an `putAllField(..)` expression for the associated field.
+     * Constructs a `putAllField(..)` expression for the associated field.
      */
     public fun putAll(value: Expression<*>): MethodCall<Message.Builder> =
         MethodCall(message, putAllName, value)

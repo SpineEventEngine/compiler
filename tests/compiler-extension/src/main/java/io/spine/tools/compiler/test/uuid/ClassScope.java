@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,7 +64,7 @@ final class ClassScope implements NonRepeatingInsertionPoint {
     /**
      * Finds the place to put the {@code ClassScope} insertion point among the given code lines.
      *
-     * <p>To locate our insertion point, we use Protoc native {@code class_scope} insertion point.
+     * <p>To locate our insertion point, we use the Protoc native {@code class_scope} insertion point.
      *
      * <p>If there is no Protoc native insertion point to be found, the {@code ClassScope} point
      * is not added either.

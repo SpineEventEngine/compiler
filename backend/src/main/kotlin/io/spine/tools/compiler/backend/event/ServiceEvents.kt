@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,10 +54,10 @@ internal class ServiceEvents(header: ProtoFileHeader) :
     /**
      * Yields events for the given service.
      *
-     * Opens with an [ServiceEntered] event.
+     * Opens with a [ServiceEntered] event.
      * Then go the events regarding the service metadata.
      * Then go the events regarding the RPC methods.
-     * At last, closes with an [ServiceExited] event.
+     * At last, closes with a [ServiceExited] event.
      */
     override suspend fun SequenceScope<EventMessage>.produceEvents(
         desc: ServiceDescriptor

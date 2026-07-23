@@ -55,7 +55,7 @@ It is more complicated under Windows.
 ### Symlink support in Windows
 
 Symlink creation under Windows requires either Administrator privileges or
-the [Developer Mode on][developer-mode] turned on. If you develop under Windows you may want
+the [Developer Mode on][developer-mode] turned on. If you develop under Windows, you may want
 to turn the [Developer Mode on][developer-mode] for your workstation.  
 
 The recommended configuration under Windows is:

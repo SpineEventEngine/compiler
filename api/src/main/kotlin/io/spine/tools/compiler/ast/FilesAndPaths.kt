@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -87,7 +87,7 @@ public fun java.io.File.toDirectory(): Directory =
 public fun File.toPath(): Path = Path(path)
 
 /**
- * Converts this [File] into [java.io] counterpart.
+ * Converts this [File] into a [java.io] counterpart.
  */
 public fun File.toJava(): java.io.File = java.io.File(path)
 
@@ -106,7 +106,7 @@ private val PB_JSON_SUFFIX: String by lazy {
 /**
  * Returns the name of this file without an extension.
  *
- * Takes care of the special case for "pb.json" quasi-extension.
+ * Takes care of the special case for the "pb.json" quasi-extension.
  *
  * @see File.name
  */
