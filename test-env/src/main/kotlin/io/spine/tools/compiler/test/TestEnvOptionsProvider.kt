@@ -31,7 +31,7 @@ import com.google.protobuf.ExtensionRegistry
 import io.spine.option.OptionsProvider
 
 /**
- * Registers options declared in [extra_opts.proto][XtraOptsProto] file.
+ * Registers options declared in the [extra_opts.proto][XtraOptsProto] file.
  */
 @AutoService(OptionsProvider::class)
 public class TestEnvOptionsProvider : OptionsProvider {
