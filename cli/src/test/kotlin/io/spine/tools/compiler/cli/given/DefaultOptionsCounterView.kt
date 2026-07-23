@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,13 +34,12 @@ import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.event.FieldOptionDiscovered
 import io.spine.tools.compiler.cli.test.DefaultOptionsCounter
 import io.spine.tools.compiler.plugin.View
-import io.spine.server.entity.alter
 import io.spine.server.route.Route
 import io.spine.time.validation.Time
 import io.spine.time.validation.TimeOption
 
 /**
- * Records the processing of options defined for `SpineAnnotatedType` in `test.proto`
+ * Records the processing of options defined for `SpineAnnotatedType` in `test.proto`.
  *
  * The options are defined in Spine-default `options.proto` and `time_options.proto`.
  * The corresponding test case in `CliTest` checks that these Proto options are provided

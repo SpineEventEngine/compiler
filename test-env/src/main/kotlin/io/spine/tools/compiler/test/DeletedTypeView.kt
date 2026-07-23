@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,6 @@ import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.event.TypeDiscovered
 import io.spine.tools.compiler.plugin.View
 import io.spine.tools.compiler.plugin.ViewRepository
-import io.spine.server.entity.update
 import io.spine.server.route.Route
 
 /**
@@ -65,7 +64,7 @@ public class DeletedTypeView : View<TypeName, DeletedType, DeletedType.Builder>(
 
 /**
  * This class of the repository is used for tests checking the case when both
- * view class and a repository class are passed to the plugin constructor.
+ * a view class and a repository class are passed to the plugin constructor.
  */
 public class DeletedTypeRepository
     : ViewRepository<TypeName, DeletedTypeView, DeletedType>()

@@ -35,7 +35,6 @@ import io.spine.tools.compiler.ast.event.FileEntered
 import io.spine.tools.compiler.ast.event.ServiceDiscovered
 import io.spine.tools.compiler.ast.event.TypeDiscovered
 import io.spine.tools.compiler.plugin.View
-import io.spine.server.entity.alter
 
 /**
  * A view that collects information about a Protobuf source file.

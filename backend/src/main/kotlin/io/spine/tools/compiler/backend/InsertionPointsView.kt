@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,6 @@ import io.spine.tools.compiler.plugin.View
 import io.spine.tools.compiler.render.InsertedPoints
 import io.spine.tools.compiler.render.event.InsertionPointPrinted
 import io.spine.tools.compiler.render.insertedPoint
-import io.spine.server.entity.alter
 
 /**
  * A view of insertion points added to a single code file.
