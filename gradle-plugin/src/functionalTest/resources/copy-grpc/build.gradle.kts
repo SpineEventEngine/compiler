@@ -28,17 +28,9 @@ import com.google.protobuf.gradle.protobuf
 import com.google.protobuf.gradle.id
 import io.spine.gradle.repo.standardToSpineSdk
 import io.spine.dependency.lib.Protobuf
-import io.spine.gradle.repo.standardToSpineSdk
 
 buildscript {
     standardSpineSdkRepositories()
-    configurations.all {
-        resolutionStrategy {
-            force(
-                io.spine.dependency.lib.JetBrainsAnnotations.lib,
-            )
-        }
-    }
 }
 
 group = "io.spine.tools.test"
