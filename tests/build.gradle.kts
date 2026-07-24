@@ -79,7 +79,7 @@ subprojects {
     }
     apply<BomsPlugin>()
 
-    val compilerVersion: String by extra
+    val compilerVersion = extra["compilerVersion"] as String
     group = "io.spine.compiler.tests"
     version = compilerVersion
 
