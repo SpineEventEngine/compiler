@@ -173,7 +173,4 @@ internal class DefaultViewRepository(
 
     override fun entityModelClass(): ProjectionClass<View<Any, ProjectionState<Any>, *>> =
         ProjectionClass.asProjectionClass(cls)
-
-    override fun logName(): String =
-        "${ViewRepository::class.simpleName}.default()"
 }
