@@ -113,7 +113,7 @@ testing {
  * graph — making the plugin unresolvable without a consumer-side workaround,
  * such as forcing the module version on the build script classpath.
  *
- * The annotations are compile-time metadata, not needed at run time.
+ * The annotations are compile-time metadata, not needed at runtime.
  * Consumers still receive version `13.0` through the `kotlin-stdlib`
  * dependency, which satisfies the pin.
  */

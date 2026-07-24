@@ -57,11 +57,12 @@ dependencies {
     implementation(Aedile.lib) {
         // Aedile brings `kotlinx-coroutines`, which requires
         // `org.jetbrains:annotations:23.0.0`. Build script classpaths pin
-        // the module to the version of the Kotlin embedded into Gradle
-        // (`strictly 13.0`), and Gradle 9.6 may fail to reconcile the two
-        // declarations, making any artifact that transitively carries this
-        // requirement unresolvable as a build-time dependency.
-        // The annotations are compile-time metadata, not needed at run time.
+        // the module to the version used by the Kotlin runtime embedded
+        // into Gradle (`strictly 13.0`), and Gradle 9.6 may fail to
+        // reconcile the two declarations, making any artifact that
+        // transitively carries this requirement unresolvable as
+        // a build-time dependency.
+        // The annotations are compile-time metadata, not needed at runtime.
         exclude(group = JetBrainsAnnotations.groupId, module = JetBrainsAnnotations.artifactId)
     }
 

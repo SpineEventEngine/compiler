@@ -33,9 +33,10 @@ buildscript {
             // The CoreJvm Compiler plugin on the classpath below still carries
             // the `org.jetbrains:annotations:23.0.0` requirement, which clashes
             // with the `strictly 13.0` pin Gradle puts on build script
-            // classpaths ("Pinned to the embedded Kotlin"). Remove this force
-            // once the CoreJvm Compiler excludes the module from its published
-            // dependencies the way the Spine Compiler Gradle plugin does.
+            // classpaths ("Pinned to the embedded Kotlin").
+            // TODO:2026-07-24:alexander.yevsyukov: Remove this force once the
+            //  CoreJvm Compiler excludes the module from its published
+            //  dependencies the way the Spine Compiler Gradle plugin does.
             //
             // The `Logging.grpcContext` force formerly kept here became
             // unnecessary with the CoreJvm `.521` bump: the integration tests
