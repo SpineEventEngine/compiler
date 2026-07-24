@@ -48,7 +48,7 @@ import io.spine.tools.compiler.ast.File as PFile
  * In the production mode, the [error] method prints an error message to [System.err] and
  * exits the process with [ERROR_EXIT_CODE].
  *
- * In the testing mode, the [error] method throws [Compilation.Error] exception with
+ * In the testing mode, the [error] method throws a [Compilation.Error] exception with
  * the same error message as printed to the console in the production mode.
  *
  * The execution mode is [detected][Tests.enabled] via the [Tests] environment type.
@@ -89,7 +89,7 @@ public object Compilation {
      * The termination of the compilation in the production mode is done by
      * exiting the process with [ERROR_EXIT_CODE].
      *
-     * If the code is run [under tests][Tests] the method throws [Compilation.Error].
+     * If the code is run [under tests][Tests], the method throws [Compilation.Error].
      *
      * @param file The file in which the error occurred.
      * @param line The one-based number of the line with the error.
@@ -114,7 +114,7 @@ public object Compilation {
      * The termination of the compilation in the production mode is done by
      * exiting the process with [ERROR_EXIT_CODE].
      *
-     * If the code is run [under tests][Tests] the method throws [Compilation.Error].
+     * If the code is run [under tests][Tests], the method throws [Compilation.Error].
      *
      * @param file The file in which the error occurred.
      * @param line The one-based number of the line with the error.
@@ -131,7 +131,7 @@ public object Compilation {
      * The termination of the compilation in the production mode is done by
      * exiting the process with [ERROR_EXIT_CODE].
      *
-     * If the code is run [under tests][Tests] the method throws [Compilation.Error].
+     * If the code is run [under tests][Tests], the method throws [Compilation.Error].
      *
      * @param file The file in which the error occurred.
      * @param span The span of the Protobuf declaration that caused the error.
@@ -164,7 +164,7 @@ public object Compilation {
     }
 
     /**
-     * Prints the warning diagnostics to [System.out]
+     * Prints the warning diagnostics to [System.out].
      *
      * The method returns the string printed to the console so that it could be also
      * put into logging output by the calling code.
@@ -178,7 +178,7 @@ public object Compilation {
         warning(file, span.startLine, span.startColumn, message())
 
     /**
-     * Prints the warning diagnostics to [System.out]
+     * Prints the warning diagnostics to [System.out].
      *
      * The method returns the string printed to the console so that it could be also
      * put into logging output by the calling code.
@@ -227,7 +227,7 @@ public object Compilation {
         // "+1" counts whitespace between a prefix and the file path.
         val indent = Indent(prefix.length + 1)
 
-        // The first line is appended to the location, each consequent line is
+        // The first line is appended to the location; each subsequent line is
         // prepended with indentation.
         val indentedBody = messageLines.drop(1)
             .indent(indent, level = 1)
@@ -277,8 +277,8 @@ public fun Compilation.check(condition: Boolean, file: PFile, span: Span, messag
  * it could be opened in an IDE or a browser.
  *
  * If the path is relative, it is simply returned as the result of this function.
- * Even though file URI could be
- * [relative](https://stackoverflow.com/questions/7857416/file-uri-scheme-and-relative-files)
+ * Even though a file URI could be
+ * [relative](https://stackoverflow.com/questions/7857416/file-uri-scheme-and-relative-files),
  * we do not want to use this because its full path would be resolved relatively
  * to a user home directory or the current directory.
  * None of these cases represent a directory with proto files.

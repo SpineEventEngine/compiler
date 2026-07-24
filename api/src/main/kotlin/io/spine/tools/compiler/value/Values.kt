@@ -78,7 +78,7 @@ private fun FieldDescriptor.toValue(raw: Any): Value = when {
 }
 
 /**
- * Converts the given [raw] value into an instace of [Value] by taking type
+ * Converts the given [raw] value into an instance of [Value] by taking type
  * information from this [FieldDescriptor].
  *
  * @see com.google.protobuf.Descriptors.FieldDescriptor.JavaType

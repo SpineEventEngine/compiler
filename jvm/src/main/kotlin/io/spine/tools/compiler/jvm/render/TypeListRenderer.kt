@@ -35,12 +35,12 @@ import io.spine.tools.compiler.render.TypeListActions
 import io.spine.tools.code.Java
 
 /**
- * An abstract base for Java renders handling message types.
+ * An abstract base for Java renderers handling message types.
  *
  * This class applies multiple render actions to multiple types.
  * For applying rendering actions to one type, please see [TypeRenderer].
  *
- * @param V The type of the view state that gathers messages types served by this renderer.
+ * @param V The type of the view state that gathers message types served by this renderer.
  *  The type is an [EntityState] that has [File] as its identifier and
  *  implements the [TypeListActions] interface.
  * @param S The type of the settings used by the renderer.
@@ -52,7 +52,7 @@ public abstract class TypeListRenderer<V, S : Message> : AbstractRenderer<V, S>(
 
     /**
      * Implement this method to render the code for the given entity state [type]
-     * the source code of which present in the given [file].
+     * the source code of which is present in the given [file].
      */
     protected abstract fun doRender(type: MessageType, file: SourceFile<Java>)
 

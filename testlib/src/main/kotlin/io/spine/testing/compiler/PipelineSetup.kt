@@ -85,7 +85,7 @@ import org.gradle.testfixtures.ProjectBuilder
  * for creation of a [Pipeline] automatically. Configuration steps associated with this approach are
  * described below.
  *
- * The class also allows fine-tuned way of working using its constructor directly for the usage
+ * The class also allows a fine-tuned way of working using its constructor directly for the usage
  * scenarios when generated code and [CodeGeneratorRequest] are already available or generated via
  * a custom procedure.
  *
@@ -163,7 +163,7 @@ import org.gradle.testfixtures.ProjectBuilder
  *  The primary usage scenario for this parameter is accepting only
  *  descriptors of interest when running tests.
  * @param writeSettings A callback for writing plugin settings before the pipeline is created.
- * @constructor Creates in instance for creating [Pipeline] for testing the given [plugins].
+ * @constructor Creates an instance for creating [Pipeline] for testing the given [plugins].
  *
  * @see [byResources]
  * @see [SettingsDirectory]
@@ -180,7 +180,7 @@ public class PipelineSetup(
     private val writeSettings: (SettingsDirectory) -> Unit
 ) {
     /**
-     * Parameters with populated source and target rood directories passed as `inputDir` and
+     * Parameters with populated source and target root directories passed as `inputDir` and
      * `outputDir` constructor parameters.
      */
     public val params: PipelineParameters = params.toBuilder()
@@ -253,7 +253,7 @@ public class PipelineSetup(
         createPipelineWithBlackBox()
 
     /**
-     * Creates a [Pipeline] and a [BlackBox] to for testing the [CodeGenerationContext] of
+     * Creates a [Pipeline] and a [BlackBox] for testing the [CodeGenerationContext] of
      * the created pipeline.
      *
      * The created instances of [Pipeline] and [BlackBox] are "entangled" in the sense

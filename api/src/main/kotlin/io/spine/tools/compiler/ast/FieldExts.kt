@@ -38,7 +38,7 @@ import io.spine.type.typeName
 import java.io.File
 
 /**
- * Obtains the type of this field as [Type] instance.
+ * Obtains the type of this field as a [Type] instance.
  *
  * @throws IllegalStateException If the field is a list or a map.
  */
@@ -54,7 +54,7 @@ public val Field.isMessage: Boolean
  * Shows if this field is a `map`.
  *
  * If the field is a `map`, the `Field.type` contains the type of the value, and
- * the `Field.map.key_type` contains the type the map key.
+ * the `Field.map.key_type` contains the type of the map key.
  */
 public val Field.isMap: Boolean
     get() = type.isMap
@@ -62,7 +62,7 @@ public val Field.isMap: Boolean
 /**
  * Shows if this field is a list.
  *
- * In Protobuf `repeated` keyword denotes a sequence of values for a field.
+ * In Protobuf the `repeated` keyword denotes a sequence of values for a field.
  * However, a map is also treated as a repeated field for serialization reasons.
  * We use the term "list" for repeated fields that are not maps.
  */
@@ -70,7 +70,7 @@ public val Field.isList: Boolean
     get() = type.isList
 
 /**
- * Shows if this field repeated.
+ * Shows if this field is repeated.
  *
  * Can be declared in Protobuf either as a `map` or a `repeated` field.
  */

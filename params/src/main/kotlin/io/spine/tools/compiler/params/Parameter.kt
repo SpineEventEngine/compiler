@@ -52,12 +52,12 @@ public sealed class Parameter(
 
     /**
      * A short name of the parameter, which conventionally comes with the `-` prefix
-     * if the short name is one letter, and with `--` prefix for two or more letters.
+     * if the short name is one letter, and with the `--` prefix for two or more letters.
      */
     public val shortName: String,
 
     /**
-     * Description of the parameter with the usage instructions which
+     * Description of the parameter with the usage instructions that
      * could be passed as a raw string.
      */
     help: String

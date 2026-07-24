@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,8 +45,8 @@ public fun MessageType.withAbsoluteFile(path: File): MessageType =
 /**
  * Obtains column fields of this message type.
  *
- * @return the list if the column fields, or
- *         empty list if none of the fields has the `(column)` option.
+ * @return the list of the column fields, or
+ *         an empty list if none of the fields has the `(column)` option.
  */
 public val MessageType.columns: List<Field>
     get() = fieldList.filter { it.optionList.any { option -> option.isColumn } }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ class BeforePrimaryDeclarationSpec {
     }
 
     /**
-     * Prepares test environment for the integration tests that use
+     * Prepares the test environment for the integration tests that use
      * [BeforePrimaryDeclaration] for adding the [Generated] annotation.
      */
     companion object {
@@ -113,8 +113,8 @@ class BeforePrimaryDeclarationSpec {
     }
 
     /**
-     * Integration tests for using `BeforePrimaryDeclaration` in a pipeline which
-     * annotates top level types with the [Generated] annotation.
+     * Integration tests for using `BeforePrimaryDeclaration` in a pipeline that
+     * annotates top-level types with the [Generated] annotation.
      * See the companion object for the pipeline definition.
      */
     @Nested inner class
@@ -161,11 +161,11 @@ class BeforePrimaryDeclarationSpec {
 private const val PACKAGE_NAME = "given.java.file"
 
 private val classSource = """
-    /* File header comment. */    
+    /* File header comment. */
     package $PACKAGE_NAME;
 
-    /** 
-     * Top level class Javadoc. 
+    /**
+     * Top level class Javadoc.
      */
     public class TopLevelClass {
 
@@ -182,7 +182,7 @@ private val interfaceSource = """
     """.ti()
 
 private val enumSource = """
-    // File header comment.    
+    // File header comment.
     package $PACKAGE_NAME;
     public enum TopLevelEnum { ONE, TWO }
     """.ti()

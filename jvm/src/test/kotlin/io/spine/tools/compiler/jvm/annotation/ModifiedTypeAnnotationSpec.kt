@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,7 +78,7 @@ internal class ModifiedTypeAnnotationSpec : WithSourceFileSet() {
 
         @BeforeEach
         fun freezeTime() {
-            // Have time shifted, event when testing at UTC.
+            // Have time shifted, even when testing at UTC.
             frozenTime = ZonedDateTime.now(ZoneId.of("Europe/Istanbul"))
             val timeProvider = FrozenPartyAtTimezone(frozenTime!!)
             Time.setProvider(timeProvider)

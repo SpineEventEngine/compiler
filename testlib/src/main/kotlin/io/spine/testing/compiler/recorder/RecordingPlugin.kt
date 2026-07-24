@@ -29,7 +29,6 @@ package io.spine.testing.compiler.recorder
 import io.spine.base.EventMessage
 import io.spine.core.External
 import io.spine.core.Subscribe
-import io.spine.server.entity.alter
 import io.spine.server.query.Querying
 import io.spine.server.query.select
 import io.spine.server.route.Route

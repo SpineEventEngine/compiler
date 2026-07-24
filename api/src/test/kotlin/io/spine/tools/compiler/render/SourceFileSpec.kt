@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,14 +66,14 @@ internal class SourceFileSpec {
         // The type of file was calculated by its name.
         (firstPsi is PsiJavaFile) shouldBe true
 
-        // Repeated calls returns the same instance.
+        // Repeated calls return the same instance.
         sourceFile.psi() shouldBe firstPsi
         sourceFile.psi() shouldBe firstPsi
 
         // Overwriting the code should result in getting a new instance of `PsiJavaFile`.
         sourceFile.overwrite("""
-            public final class HelloWorld { 
-                System.out.println("Hello, World!"); 
+            public final class HelloWorld {
+                System.out.println("Hello, World!");
             }
             """.ti()
         )

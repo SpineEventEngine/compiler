@@ -135,7 +135,7 @@ public open class FieldMethods(
     public companion object {
 
         /**
-         * Obtains the name of the getter
+         * Obtains the name of the getter.
          */
         public fun getterOf(fieldName: String, cardinality: Cardinality): String {
             return FieldMethods(fieldName { value = fieldName }, cardinality).getter

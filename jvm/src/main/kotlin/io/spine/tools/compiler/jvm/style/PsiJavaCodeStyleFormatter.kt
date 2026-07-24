@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,10 +45,10 @@ import io.spine.tools.psi.java.Parser
 import io.spine.tools.psi.java.execute
 
 /**
- * Reformats Java source code files using settings passed as [JavaCodeStyle] instance.
+ * Reformats Java source code files using settings passed as a [JavaCodeStyle] instance.
  *
  * If no settings are passed, default Java code style settings used in Spine SDK are applied.
- * 
+ *
  * @see javaCodeStyleDefaults
  * @see PalantirJavaFormatter
  */

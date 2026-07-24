@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,6 @@ import io.spine.core.Subscribe
 import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.event.TypeEntered
 import io.spine.tools.compiler.plugin.View
-import io.spine.server.entity.update
 import io.spine.server.route.Route
 
 /**

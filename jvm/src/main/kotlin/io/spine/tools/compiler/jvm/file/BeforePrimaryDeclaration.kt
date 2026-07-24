@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import io.spine.tools.psi.java.lineNumber
  * The primary declaration is the top-level class, interface, annotation, or an enum type,
  * which matches by name with the class.
  *
- * While technically Java allows other top-level declarations is the same file, those are rarely
+ * While technically Java allows other top-level declarations in the same file, those are rarely
  * used. `BeforePrimaryDeclaration` does not account for such declarations when searching for
  * a line number.
  *
@@ -67,11 +67,11 @@ internal object BeforePrimaryDeclaration : NonRepeatingInsertionPoint {
             """
             Could not find a primary declaration in the code:
             ```java
-            
+
             """.ti() +
             text.trimIndent() +
             """
-                
+
             ```
             """.ti()
         }

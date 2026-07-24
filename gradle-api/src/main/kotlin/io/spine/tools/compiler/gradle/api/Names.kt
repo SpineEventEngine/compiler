@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ public object Names {
     public const val EXTENSION_NAME: String = "compiler"
 
     /**
-     * The name of the Gradle Configuration created by Compiler Gradle plugin
+     * The name of the Gradle Configuration created by the Compiler Gradle plugin
      * for holding user-defined classpath.
      */
     public const val USER_CLASSPATH_CONFIGURATION: String = "spineCompiler"

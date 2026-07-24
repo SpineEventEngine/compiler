@@ -34,7 +34,7 @@ import io.spine.server.query.select
 import io.spine.tools.code.Java
 
 /**
- * A test [Renderer] that prepends underscore before an [InternalType] in all source files.
+ * A test [Renderer] that prepends an underscore before an [InternalType] in all source files.
  */
 public class UnderscorePrefixRenderer : Renderer<Java>(Java) {
 

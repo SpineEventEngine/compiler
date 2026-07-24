@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ import io.spine.tools.compiler.util.Cache
 public class Coordinates private constructor(file: FileDescriptorProto) : Locations(file) {
 
     /**
-     * Obtains declaration coordinates the given message.
+     * Obtains declaration coordinates for the given message.
      */
     public fun forMessage(d: Descriptor): Span {
         val path = LocationPath.fromMessage(d)
@@ -54,7 +54,7 @@ public class Coordinates private constructor(file: FileDescriptorProto) : Locati
     }
 
     /**
-     * Obtains declaration coordinates the given message.
+     * Obtains declaration coordinates for the given message.
      */
     public fun forField(d: FieldDescriptor): Span {
         val path = LocationPath.fromMessage(d.containingType).field(d)
@@ -145,7 +145,7 @@ private fun Location.toSpan(): Span {
     if (this == Location.getDefaultInstance()) {
         return Span.getDefaultInstance()
     }
-    // Convert the value of the `span` field into four-elements array.
+    // Convert the value of the `span` field into a four-element array.
     val slots =
         if (spanCount == 3)
             arrayOf(getSpan(0), getSpan(1), getSpan(0), getSpan(2))
@@ -161,7 +161,7 @@ private fun Location.toSpan(): Span {
 }
 
 /**
- * Obtains coordinates for the file this [GenericDescriptor].
+ * Obtains coordinates for the file of this [GenericDescriptor].
  */
 internal fun GenericDescriptor.coordinates(): Coordinates {
     val fromResources = withSourceLines()

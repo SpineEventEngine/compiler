@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -142,7 +142,7 @@ public val InsertionPoint.codeLine: String
  * The user is responsible for ensuring that the insertion point exists and
  * the label is spelled correctly.
  *
- * [InsertionPointPrinter]s will never add such a point to exising code.
+ * [InsertionPointPrinter]s will never add such a point to existing code.
  * However, if Protoc generates one, the users may base their code generation on it.
  *
  * @property label The name of the insertion point. Typically, starts with the identifier of

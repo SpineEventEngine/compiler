@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,7 +82,7 @@ public class InitTypedVar<T>(
 }
 
 /**
- * Declares a local Java variable with the give [name] and [type].
+ * Declares a local Java variable with the given [name] and [type].
  *
  * An example usage:
  *

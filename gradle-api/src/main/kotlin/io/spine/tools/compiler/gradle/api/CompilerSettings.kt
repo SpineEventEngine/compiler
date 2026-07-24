@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import org.gradle.api.file.DirectoryProperty
 public interface CompilerSettings {
 
     /**
-     * Passes given names of Java classes to the Compiler as classes
+     * Passes the given names of Java classes to the Compiler as classes
      * extending the `io.spine.tools.compiler.plugin.Plugin` class.
      */
     public fun plugins(vararg classNames: String)

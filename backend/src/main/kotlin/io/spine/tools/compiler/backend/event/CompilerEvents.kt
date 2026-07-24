@@ -58,7 +58,7 @@ internal object CompilerEvents {
      *
      * The sequence is produced lazily. An element is produced only when polled.
      *
-     * The resulting sequence is always finite, it's limited by the type set.
+     * The resulting sequence is always finite; it's limited by the type set.
      */
     fun parse(
         request: CodeGeneratorRequest,
@@ -114,10 +114,10 @@ private class ProtoFileEvents(
     /**
      * Yields compiler events for the given file.
      *
-     * Opens with an [FileEntered][io.spine.tools.compiler.ast.event.FileEntered] event.
+     * Opens with a [FileEntered][io.spine.tools.compiler.ast.event.FileEntered] event.
      * Then go the events regarding the file metadata.
      * Then go the events regarding the file contents.
-     * At last, closes with an [FileExited][io.spine.tools.compiler.ast.event.FileExited] event.
+     * At last, closes with a [FileExited][io.spine.tools.compiler.ast.event.FileExited] event.
      */
     suspend fun SequenceScope<EventMessage>.produceEvents() {
         yield(
@@ -158,7 +158,7 @@ private class ProtoFileEvents(
 }
 
 /**
- * Convert this collection of [FileDescriptorProto] to a set of corresponding
+ * Converts this collection of [FileDescriptorProto] to a set of corresponding
  * instances of [FileDescriptor].
  */
 private fun Collection<FileDescriptorProto>.toDescriptors(): ImmutableSet<FileDescriptor> {

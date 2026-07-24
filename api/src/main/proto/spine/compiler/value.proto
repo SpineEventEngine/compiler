@@ -180,8 +180,8 @@ message Reference {
 
     // The type of the referenced value.
     //
-    // If the reference is obtained by parsing a "source" field option.
-    // The referenced field must have the same type as the field where the option is used.
+    // If the reference is obtained by parsing a "source" field option,
+    // the referenced field must have the same type as the field where the option is used.
     // If this is not the case, a compilation error will occur.
     //
     FieldType type = 1 [(required) = true];

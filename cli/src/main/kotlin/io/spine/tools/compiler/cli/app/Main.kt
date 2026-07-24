@@ -55,7 +55,7 @@ import kotlin.system.exitProcess
 /**
  * Launches the CLI application.
  *
- * When the application is done exists the process with the code `0`.
+ * When the application is done, exits the process with the code `0`.
  * If an unhandled error occurs, exits the process with the code `-1`.
  */
 @Suppress(

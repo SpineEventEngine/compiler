@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import io.spine.tools.compiler.ast.FilePattern.KindCase.INFIX
 import io.spine.tools.compiler.ast.FilePattern.KindCase.SUFFIX
 
 /**
- * Tells if this patterns matches the given [file].
+ * Tells if this pattern matches the given [file].
  */
 public fun FilePattern.matches(file: File): Boolean {
     val path = file.path

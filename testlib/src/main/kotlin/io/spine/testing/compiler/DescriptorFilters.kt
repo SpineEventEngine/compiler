@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ import io.spine.tools.compiler.backend.DescriptorFilter
 /**
  * Creates a predicate accepting only the given [descriptor] of
  * a Protobuf declaration and the descriptor of the file in
- * which declaration was made, so that a [Pipeline][io.spine.tools.compiler.backend.Pipeline]
+ * which the declaration was made, so that a [Pipeline][io.spine.tools.compiler.backend.Pipeline]
  * can get down to the [descriptor] of interest.
  *
- * If the given [descriptor] is [FileDescriptor] the predicate accepts
+ * If the given [descriptor] is [FileDescriptor], the predicate accepts
  * the file itself, all the declarations made in this file.
  */
 public fun acceptingOnly(descriptor: GenericDescriptor): DescriptorFilter =

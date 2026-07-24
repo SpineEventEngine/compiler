@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ package io.spine.tools.compiler.jvm
  * A parameterized Java type name.
  *
  * The type name can be parameterized with any other [JavaTypeName].
- * Usually, it is class or a generic type variable (like `T` or `E`).
+ * Usually, it is a class or a generic type variable (like `T` or `E`).
  *
  * Example usages:
  *

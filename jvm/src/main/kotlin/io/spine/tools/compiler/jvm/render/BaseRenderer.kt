@@ -30,7 +30,7 @@ import com.google.protobuf.Empty
 import io.spine.base.EntityState
 
 /**
- * An abstract base for renders that do not have settings.
+ * An abstract base for renderers that do not have settings.
  *
  * @param V the type of the view state that the renderer uses for code generation.
  *

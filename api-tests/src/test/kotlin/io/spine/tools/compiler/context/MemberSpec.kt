@@ -67,8 +67,8 @@ internal class MemberSpec {
         /**
          * Creates and runs a pipeline with [ProbeRenderer].
          *
-         * Java language is used in the pipeline for simplicity of the setup
-         * assisted by ProtoTap Gradle plugin.
+         * The Java language is used in the pipeline for simplicity of the setup
+         * assisted by the ProtoTap Gradle plugin.
          *
          * No Java codegen features are checked by this test suite.
          */
@@ -160,7 +160,7 @@ internal class MemberSpec {
 }
 
 /**
- * A diagnostic probe that performs queries as a [Member] of code generation process,
+ * A diagnostic probe that performs queries as a [Member] of the code generation process,
  * but does not render anything.
  */
 class ProbeRenderer : Renderer<Java>(Java) {

@@ -94,7 +94,7 @@ class BeforeNestedTypeDeclarationSpec {
     }
 
     /**
-     * Prepares test environment for the integration tests that use
+     * Prepares the test environment for the integration tests that use
      * [BeforePrimaryDeclaration] for adding the [Generated] annotation.
      */
     companion object {

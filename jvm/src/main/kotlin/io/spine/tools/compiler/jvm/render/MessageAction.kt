@@ -91,7 +91,7 @@ public abstract class MessageAction<P : Message>(
     protected val messageJavadocRef: String = "{@link ${messageClass.simpleName}}"
 
     /**
-     * Adds a nested class the top class of the given [file].
+     * Adds a nested class to the top class of the given [file].
      */
     @Suppress("TooGenericExceptionCaught") // ... to log diagnostic.
     override fun render() {

@@ -62,7 +62,7 @@ public open class ModifiedTypeAnnotation(
     protected val generator: String = CLI_APP_CLASS,
 
     /**
-     * Tells if the annotated code should have [Modified.timestamp] parameter.
+     * Tells if the annotated code should have the [Modified.timestamp] parameter.
      * If `true`, the value will be set to the moment at local time when
      * the annotation was generated.
      */
@@ -136,9 +136,9 @@ public open class ModifiedTypeAnnotation(
 
         /**
          * Obtains the representation of the current time with the offset,
-         * as defined in the documentation of [Modified.timestamp] parameter.
+         * as defined in the documentation of the [Modified.timestamp] parameter.
          *
-         * The curren time is obtained via [Time.currentTime] so that tests can supply
+         * The current time is obtained via [Time.currentTime] so that tests can supply
          * custom [io.spine.base.Time.Provider].
          */
         @VisibleForTesting

@@ -133,7 +133,7 @@ public abstract class TypeAnnotation<T : Annotation>(
      * If a [Repeatable] annotation is attached to the annotation class,
      * it always applies the annotation and returns `true`.
      *
-     * If file does not contain a [BeforePrimaryDeclaration] insertion point,
+     * If the file does not contain a [BeforePrimaryDeclaration] insertion point,
      * it returns `false`.
      *
      * If the insertion point exists, it checks the presence of the annotation.

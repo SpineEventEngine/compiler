@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,12 +33,12 @@ import com.google.protobuf.compiler.PluginProtos.CodeGeneratorResponse
 import io.spine.tools.code.proto.CodeGeneratorRequestWriter
 
 /**
- * Stores received `CodeGeneratorRequest` message to the file the name of which is passed as
+ * Stores the received `CodeGeneratorRequest` message to the file the name of which is passed as
  * the value of the [parameter][CodeGeneratorRequest.getParameter] property of the request.
  *
  * The name of the file is [Base64][java.util.Base64] encoded.
  *
- * The function returns empty [CodeGeneratorRequest] written to [System.out]
+ * The function returns an empty [CodeGeneratorRequest] written to [System.out]
  * according to the `protoc` plugin
  * [protocol](https://protobuf.dev/reference/cpp/api-docs/google.protobuf.compiler.plugin.pb/).
  *

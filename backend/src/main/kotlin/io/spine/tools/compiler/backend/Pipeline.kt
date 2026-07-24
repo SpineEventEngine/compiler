@@ -153,7 +153,7 @@ public class Pipeline(
     }
 
     /**
-     * Obtains code generation context used by this pipeline.
+     * Obtains the code generation context used by this pipeline.
      */
     @VisibleForTesting
     public val codegenContext: CodegenContext by lazy {

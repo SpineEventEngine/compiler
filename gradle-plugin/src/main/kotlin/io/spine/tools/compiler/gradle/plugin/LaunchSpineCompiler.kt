@@ -397,7 +397,7 @@ private fun LaunchSpineCompiler.createParametersFile() {
 /**
  * Tells if the request file for this task exists.
  *
- * Logs error if the given source set contains `proto` directory that contains files,
+ * Logs an error if the given source set contains a `proto` directory that contains files,
  * which assumes that the request file should have been created.
  */
 internal fun LaunchSpineCompiler.hasRequestFile(sourceSet: SourceSet): Boolean {

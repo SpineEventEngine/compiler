@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -91,7 +91,7 @@ public abstract class CreateNestedClass(
     /**
      * Creates the constructor for the class.
      *
-     * Default implementation creates a parameterless private constructor.
+     * The default implementation creates a parameterless private constructor.
      */
     protected open fun createConstructor(cls: PsiClass): PsiMethod {
         val ctor = elementFactory.createPrivateConstructor(
@@ -102,7 +102,7 @@ public abstract class CreateNestedClass(
     }
 
     /**
-     * Calls [tuneClass] and the inserts the tuned class into the message class.
+     * Calls [tuneClass] and inserts the tuned class into the message class.
      */
     protected override fun doRender() {
         tuneClass()
@@ -121,7 +121,7 @@ public abstract class CreateNestedClass(
     /**
      * Generates an annotation to be added for the created class.
      *
-     * Overriding methods may return custom annotation or `null`, if no annotation is necessary.
+     * Overriding methods may return a custom annotation or `null`, if no annotation is necessary.
      */
     protected abstract fun createAnnotation(): PsiAnnotation?
 

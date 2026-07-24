@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ public abstract class JavaTypeName : NameElement<Java>, JavaElement {
      * 1. For classes and interfaces, this includes the package and any enclosing classes.
      * 2. For primitives, since they are not part of any package or class, the canonical
      * name is the same as the simple name.
-     * 3. When canonical name contains type variables, they are printed "as is".
+     * 3. When the canonical name contains type variables, they are printed "as is".
      */
     public abstract val canonical: String
 

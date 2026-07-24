@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ public fun PipelineParameters.Builder.withRoots(
 }
 
 /**
- * Creates a partial instance of [PipelineParameters] that refer to the given settings directory.
+ * Creates a partial instance of [PipelineParameters] that refers to the given settings directory.
  */
 public fun parametersWithSettingsDir(dir: Path): @NonValidated PipelineParameters =
     PipelineParameters.newBuilder()

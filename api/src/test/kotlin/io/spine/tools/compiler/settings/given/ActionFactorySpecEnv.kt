@@ -43,7 +43,7 @@ import io.spine.tools.code.Java
 import io.spine.tools.code.Kotlin
 
 /**
- * The class constructor of which matches the expectation of [RenderAction]
+ * The class constructor of which matches the expectation of [RenderAction].
  */
 @Suppress("unused") // To be called reflectively.
 class JustMatchingConstructor(
@@ -103,7 +103,7 @@ class ActionNoParam(
 ) : ExposeParam<Empty>(type, file, Empty.getDefaultInstance(), context)
 
 /**
- * A stub render action implemented for Java that has [StringValue] parameter.
+ * A stub render action implemented for Java that has a [StringValue] parameter.
  */
 class ActionStringParams(
     type: MessageType,

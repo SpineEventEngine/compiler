@@ -54,7 +54,7 @@ message ProtobufSourceFile {
     //
     ProtoFileHeader header = 2 [(required) = true, (validate) = true];
 
-    // All the message types in this source files.
+    // All the message types in this source file.
     //
     // The keys are the type URLs of the message types.
     //
@@ -62,7 +62,7 @@ message ProtobufSourceFile {
     //
     map<string, MessageType> type = 3 [(distinct) = true];
 
-    // All the enum types in this source files.
+    // All the enum types in this source file.
     //
     // The keys are the type URLs of the enum types.
     //
@@ -70,7 +70,7 @@ message ProtobufSourceFile {
     //
     map<string, EnumType> enum_type = 4 [(distinct) = true];
 
-    // All the services declared in this source files.
+    // All the services declared in this source file.
     //
     // The keys are the type URLs of the services.
     //

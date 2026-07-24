@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ public open class ClassName(
     public val isNested: Boolean = simpleNames.size > 1
 
     /**
-     * Returns an expression that obtains `Class` instance of this class.
+     * Returns an expression that obtains the `Class` instance of this class.
      *
      * For example:
      *
@@ -143,7 +143,7 @@ public open class ClassName(
      *
      * This is the name by which the class is referred to in Bytecode.
      *
-     * For regular Java classes, This is similar to [canonical], except that
+     * For regular Java classes, this is similar to [canonical], except that
      * in a binary name nested classes are separated by the dollar (`$`) sign,
      * and in canonical — by the dot (`.`) sign.
      */
@@ -230,7 +230,7 @@ public open class ClassName(
         public const val PACKAGE_SEPARATOR: String = "."
 
         /**
-         * The Unix style separator used to delimit directory names in a Java file name.
+         * The Unix-style separator used to delimit directory names in a Java file name.
          *
          * This separator is compatible with IntelliJ PSI.
          */

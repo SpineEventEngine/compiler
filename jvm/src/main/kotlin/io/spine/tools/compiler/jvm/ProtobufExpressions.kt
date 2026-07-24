@@ -39,7 +39,7 @@ import io.spine.tools.compiler.ast.cardinality
 
 /**
  * An expression that yields the given Protobuf [ByteString]
- * using [ByteString.copyFrom] method.
+ * using the [ByteString.copyFrom] method.
  */
 public class CopyByteString(bytes: ByteString) : Expression<ByteString>(
     "$ByteStringClass.copyFrom(new byte[]{${bytes.toByteArray().joinToString()}})"
@@ -48,7 +48,7 @@ public class CopyByteString(bytes: ByteString) : Expression<ByteString>(
 private val ByteStringClass = ByteString::class.qualifiedName!!
 
 /**
- * Wraps this [Expression] into Protobuf `Any` using [TypeConverter.toAny] method.
+ * Wraps this [Expression] into Protobuf `Any` using the [TypeConverter.toAny] method.
  */
 public fun Expression<*>.packToAny(): Expression<ProtoAny> {
     val type = ClassName(TypeConverter::class)

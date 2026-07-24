@@ -104,7 +104,7 @@ public val FieldType.cardinality: Cardinality
 /**
  * Converts this field type to [Type].
  *
- * @throws IllegalStateException If this is field type is a list or a map.
+ * @throws IllegalStateException If this field type is a list or a map.
  *
  * @see extractType
  */
@@ -125,7 +125,7 @@ public fun FieldType.toType(): Type = type {
  * @param typeSystem The type system to be used for obtaining type information.
  *
  * @return the message type instance or `null` if this field type is not a message,
- *   or if it does not refer to message being a list or a map.
+ *   or if it does not refer to a message being a list or a map.
  *
  * @see extractType
  * @see extractPrimitiveType

@@ -172,7 +172,7 @@ internal val Project.compilerSettings: Extension
 
 /**
  * Creates configurations for [`spineCompilerRawArtifact`][COMPILER_RAW_ARTIFACT] and
- * user-defined classpath, and adds dependency on [Artifacts.fatCli].
+ * user-defined classpath, and adds a dependency on [Artifacts.fatCli].
  */
 private fun Project.createConfigurations(compilerVersion: String) {
     val artifactConfig = configurations.create(COMPILER_RAW_ARTIFACT)

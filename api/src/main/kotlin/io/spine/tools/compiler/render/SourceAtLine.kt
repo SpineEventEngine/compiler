@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,6 @@ import io.spine.annotation.VisibleForTesting
 import io.spine.string.Indent
 import io.spine.string.Indent.Companion.DEFAULT_JAVA_INDENT_SIZE
 import io.spine.string.Separator
-import io.spine.string.atLevel
 
 /**
  * A fluent builder for inserting code into pre-prepared insertion points.
@@ -47,7 +46,7 @@ internal constructor(
     private var indentLevel: Int = 0
 
     /**
-     * Specifies extra indentation to be added to inserted code lines
+     * Specifies extra indentation to be added to inserted code lines.
      *
      * Each unit adds the number of spaces specified by the [indent] property.
      */
