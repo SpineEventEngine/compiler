@@ -36,6 +36,10 @@ buildscript {
             // classpaths ("Pinned to the embedded Kotlin"). Remove this force
             // once the CoreJvm Compiler excludes the module from its published
             // dependencies the way the Spine Compiler Gradle plugin does.
+            //
+            // The `Logging.grpcContext` force formerly kept here became
+            // unnecessary with the CoreJvm `.521` bump: the integration tests
+            // pass without it.
             force(
                 io.spine.dependency.lib.JetBrainsAnnotations.lib,
             )
