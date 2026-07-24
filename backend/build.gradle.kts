@@ -82,7 +82,7 @@ tasks.test {
 // (a coarse hang ceiling, not a performance budget). Intentionally NOT wired
 // into `check`/`build`; the `Engine performance smoke test` workflow runs it on
 // pull requests.
-val performanceTest by tasks.registering(Test::class) {
+tasks.register<Test>("performanceTest") {
     description = "Runs the engine performance smoke signal (timed `Pipeline` run, hang ceiling)."
     group = "verification"
     testClassesDirs = sourceSets.test.get().output.classesDirs
