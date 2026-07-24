@@ -30,6 +30,12 @@ buildscript {
     standardSpineSdkRepositories()
     configurations.all {
         resolutionStrategy {
+            // The CoreJvm Compiler plugin on the classpath below still carries
+            // the `org.jetbrains:annotations:23.0.0` requirement, which clashes
+            // with the `strictly 13.0` pin Gradle puts on build script
+            // classpaths ("Pinned to the embedded Kotlin"). Remove this force
+            // once the CoreJvm Compiler excludes the module from its published
+            // dependencies the way the Spine Compiler Gradle plugin does.
             force(
                 io.spine.dependency.lib.JetBrainsAnnotations.lib,
             )

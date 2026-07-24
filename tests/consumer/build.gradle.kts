@@ -39,13 +39,6 @@ buildscript {
     dependencies {
         classpath(spineCompiler.pluginLib(compilerVersion))
     }
-    configurations.all {
-        resolutionStrategy {
-            force(
-                io.spine.dependency.lib.JetBrainsAnnotations.lib,
-            )
-        }
-    }
 }
 
 apply(plugin = "io.spine.compiler")

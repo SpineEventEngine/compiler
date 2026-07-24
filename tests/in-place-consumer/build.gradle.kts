@@ -28,13 +28,6 @@ import com.google.protobuf.gradle.protobuf
 
 buildscript {
     standardSpineSdkRepositories()
-    configurations.all {
-        resolutionStrategy {
-            force(
-                io.spine.dependency.lib.JetBrainsAnnotations.lib,
-            )
-        }
-    }
     apply(from = "$rootDir/../version.gradle.kts")
     val compilerVersion = extra["compilerVersion"] as String
     dependencies {
