@@ -228,7 +228,7 @@ class PluginSpec {
     }
 
     @Test
-    @Disabled("https://github.com/SpineEventEngine/ProtoData/issues/88")
+    @Disabled("https://github.com/SpineEventEngine/compiler/issues/16")
     fun `add 'kotlin' built-in only' if 'java' plugin or Kotlin compile tasks are present`() {
         createProject("android-library")  // could be in native code
         launchAndExpectResult(SUCCESS)
