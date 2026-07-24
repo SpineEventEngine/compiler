@@ -24,13 +24,19 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import com.google.protobuf.gradle.protobuf
 import io.spine.dependency.lib.Protobuf
 import io.spine.gradle.repo.standardToSpineSdk
 import org.gradle.api.plugins.jvm.JvmTestSuite
 
 buildscript {
     standardSpineSdkRepositories()
+    configurations.all {
+        resolutionStrategy {
+            force(
+                io.spine.dependency.lib.JetBrainsAnnotations.lib,
+            )
+        }
+    }
 }
 
 group = "io.spine.tools.test"

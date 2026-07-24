@@ -31,6 +31,13 @@ import org.gradle.api.tasks.SourceSetContainer
 
 buildscript {
     standardSpineSdkRepositories()
+    configurations.all {
+        resolutionStrategy {
+            force(
+                io.spine.dependency.lib.JetBrainsAnnotations.lib,
+            )
+        }
+    }
 }
 
 group = "io.spine.tools.test"
