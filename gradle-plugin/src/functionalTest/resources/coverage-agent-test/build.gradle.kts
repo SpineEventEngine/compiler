@@ -77,7 +77,7 @@ spine {
  * [LaunchSpineCompiler] task via the standard `JavaExec` fork options.
  * The agent writes a per-task `.exec` file under `build/jacoco-compiler/`.
  */
-val jacocoAgent: Configuration by configurations.creating
+val jacocoAgent: Configuration = configurations.create("jacocoAgent")
 
 dependencies {
     jacocoAgent("org.jacoco:org.jacoco.agent:${Jacoco.version}:runtime")
