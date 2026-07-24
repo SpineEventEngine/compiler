@@ -6,6 +6,7 @@ See [README.md](README.md) for the format and routing rules.
 ## Feedback (validated patterns & corrections)
 
 - [copilot-review-request](feedback/copilot-review-request.md) — GraphQL `requestReviews` with `botIds: ["BOT_kgDOCnlnWA"]`; REST endpoint silently no-ops on re-requests.
+- [gradle-annotations-pin-exclusion](feedback/gradle-annotations-pin-exclusion.md) — publish plugins without `org.jetbrains:annotations`; never fix the `strictly 13.0` pin with consumer-side forces.
 
 ## Project (durable context & rationale)
 
