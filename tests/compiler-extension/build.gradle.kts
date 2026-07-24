@@ -24,7 +24,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.lib.AutoService
 import io.spine.dependency.local.ToolBase
 
 buildscript {
@@ -32,7 +31,7 @@ buildscript {
     configurations.all {
         resolutionStrategy {
             force(
-                io.spine.dependency.local.Logging.grpcContext,
+                io.spine.dependency.lib.JetBrainsAnnotations.lib,
             )
         }
     }
