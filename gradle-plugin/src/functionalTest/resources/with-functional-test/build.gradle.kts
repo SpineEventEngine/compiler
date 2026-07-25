@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import com.google.protobuf.gradle.protobuf
 import io.spine.dependency.lib.Protobuf
 import io.spine.gradle.repo.standardToSpineSdk
 import org.gradle.api.plugins.jvm.JvmTestSuite
@@ -70,14 +69,8 @@ dependencies {
     Protobuf.libs.forEach { implementation(it) }
 }
 
-@Suppress("UNUSED_VARIABLE") /* `test` and `functionalTest` variables are really used by their
-  names and types for obtaining or creating corresponding suite instances via `by` calls. */
 testing {
     suites {
-        val test by getting(JvmTestSuite::class) {
-        }
-
-        val functionalTest by registering(JvmTestSuite::class) {
-        }
+        register<JvmTestSuite>("functionalTest")
     }
 }

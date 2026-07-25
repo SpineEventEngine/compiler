@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 
 import io.spine.dependency.lib.Aedile
 import io.spine.dependency.lib.Jackson
+import io.spine.dependency.lib.JetBrainsAnnotations
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
@@ -53,7 +54,17 @@ dependencies {
     api(Logging.lib)
 
     implementation(Reflect.lib)
-    implementation(Aedile.lib)
+    implementation(Aedile.lib) {
+        // Aedile brings `kotlinx-coroutines`, which requires
+        // `org.jetbrains:annotations:23.0.0`. Build script classpaths pin
+        // the module to the version used by the Kotlin runtime embedded
+        // into Gradle (`strictly 13.0`), and Gradle 9.6 may fail to
+        // reconcile the two declarations, making any artifact that
+        // transitively carries this requirement unresolvable as
+        // a build-time dependency.
+        // The annotations are compile-time metadata, not needed at runtime.
+        exclude(group = JetBrainsAnnotations.groupId, module = JetBrainsAnnotations.artifactId)
+    }
 
     implementation(platform(Jackson.bom))
     with(Jackson) {

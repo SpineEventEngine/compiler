@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,21 +24,31 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.lib.AutoService
 import io.spine.dependency.local.ToolBase
 
 buildscript {
     standardSpineSdkRepositories()
     configurations.all {
         resolutionStrategy {
+            // The CoreJvm Compiler plugin on the classpath below still carries
+            // the `org.jetbrains:annotations:23.0.0` requirement, which clashes
+            // with the `strictly 13.0` pin Gradle puts on build script
+            // classpaths ("Pinned to the embedded Kotlin").
+            // TODO:2026-07-24:alexander.yevsyukov: Remove this force once the
+            //  CoreJvm Compiler excludes the module from its published
+            //  dependencies the way the Spine Compiler Gradle plugin does.
+            //
+            // The `Logging.grpcContext` force formerly kept here became
+            // unnecessary with the CoreJvm `.521` bump: the integration tests
+            // pass without it.
             force(
-                io.spine.dependency.local.Logging.grpcContext,
+                io.spine.dependency.lib.JetBrainsAnnotations.lib,
             )
         }
     }
     apply(from = "$rootDir/../version.gradle.kts")
 
-    val compilerVersion: String by extra
+    val compilerVersion = extra["compilerVersion"] as String
     dependencies {
         classpath(spineCompiler.pluginLib(compilerVersion))
         classpath(coreJvmCompiler.pluginLib)
@@ -65,7 +75,7 @@ configurations.all {
     }
 }
 
-val compilerVersion: String by extra
+val compilerVersion = extra["compilerVersion"] as String
 
 dependencies {
     compileOnly("io.spine.tools:compiler-backend:$compilerVersion")

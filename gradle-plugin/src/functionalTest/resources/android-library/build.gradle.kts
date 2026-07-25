@@ -24,12 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import com.google.protobuf.gradle.protobuf
-import io.spine.dependency.lib.Grpc
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.CoreJava
-import io.spine.dependency.local.Reflect
-import io.spine.dependency.local.TestLib
 import io.spine.gradle.repo.standardToSpineSdk
 
 buildscript {
