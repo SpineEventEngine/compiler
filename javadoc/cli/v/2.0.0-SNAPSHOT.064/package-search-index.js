@@ -1,0 +1,1 @@
+var packageSearchIndex = [{"l":"io.spine.tools.compiler.cli.app","url":"io/spine/tools/compiler/cli/app/package-summary.html"}, {"l":"All packages","url":"index.html"}]
