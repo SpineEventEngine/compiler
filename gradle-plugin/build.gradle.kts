@@ -203,10 +203,6 @@ tasks {
     check {
         dependsOn(testing.suites.named("functionalTest"))
     }
-
-    publishPlugins {
-        notCompatibleWithConfigurationCache("https://github.com/gradle/gradle/issues/21283")
-    }
 }
 
 /**
