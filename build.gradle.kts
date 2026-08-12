@@ -31,6 +31,7 @@ import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.TestLib
+import io.spine.dependency.local.Time
 import io.spine.dependency.local.Validation
 import io.spine.gradle.RunBuild
 import io.spine.gradle.publish.PublishingRepos
@@ -111,6 +112,8 @@ allprojects {
                 Reflect.lib,
                 Base.lib,
                 TestLib.lib,
+                Time.lib,
+                Time.javaExtensions,
                 CoreJvm.server,
                 Validation.runtime,
                 Validation.javaBundle
