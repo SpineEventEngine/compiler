@@ -28,6 +28,7 @@ import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.lib.Caffeine
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Jackson
+import io.spine.dependency.lib.JacksonV2
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
@@ -107,6 +108,32 @@ subprojects {
                 Jackson.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Jackson.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Jackson.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
+
+                /*
+                   Jackson 2.x reaches this build only transitively — Palantir Java
+                   Format and the IntelliJ Platform both consume it — while `Jackson`
+                   declares the 3.x line under the `tools.jackson` group and so no
+                   longer aligns `com.fasterxml.jackson.*`. Whenever those consumers
+                   disagree on a version, the `failOnVersionConflict()` set by
+                   `forceVersions()` above turns the divergence into a build failure
+                   instead of resolving it.
+
+                   A BOM cannot do this job here: the Protobuf plugin configurations
+                   such as `compileProtoPath` ignore `enforcedPlatform`. Matching the
+                   whole group also covers the artifacts `JacksonV2` does not model,
+                   e.g. `jackson-jr-objects` and `jackson-module-kotlin`.
+
+                   `jackson-annotations` is excluded on purpose: Jackson 3.x keeps
+                   consuming it at its own version, forced via `Jackson.annotations`.
+                 */
+                eachDependency {
+                    val jackson2 = requested.group.startsWith(JacksonV2.group)
+                    if (jackson2 && requested.name != "jackson-annotations") {
+                        useVersion(JacksonV2.version)
+                        because("Align the Jackson 2.x line pulled in transitively.")
+                    }
+                }
+
                 @Suppress("DEPRECATION") // To force `Kotlin.stdLibJdk7`.
                 force(
                     Grpc.bom,
