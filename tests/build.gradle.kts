@@ -110,12 +110,13 @@ subprojects {
                 Jackson.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
 
                 /*
-                   Jackson 2.x reaches this build only transitively: Palantir Java
-                   Format brings 2.21.1, while IntelliJ Platform brings 2.22.1.
-                   Since `Jackson` moved to the `tools.jackson` group (Jackson 3.x),
-                   it no longer aligns `com.fasterxml.jackson.*`, and the
-                   `failOnVersionConflict()` set by `forceVersions()` above turns
-                   that divergence into a build failure.
+                   Jackson 2.x reaches this build only transitively — Palantir Java
+                   Format and the IntelliJ Platform both consume it — while `Jackson`
+                   declares the 3.x line under the `tools.jackson` group and so no
+                   longer aligns `com.fasterxml.jackson.*`. Whenever those consumers
+                   disagree on a version, the `failOnVersionConflict()` set by
+                   `forceVersions()` above turns the divergence into a build failure
+                   instead of resolving it.
 
                    A BOM cannot do this job here: the Protobuf plugin configurations
                    such as `compileProtoPath` ignore `enforcedPlatform`. Matching the
