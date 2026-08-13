@@ -1,0 +1,1 @@
+var memberSearchIndex = [{"p":"io.spine.tools.compiler.cli.app","c":"MainKt","l":"main(Array<String>)","url":"io/spine/tools/compiler/cli/app/MainKt.html#main(kotlin.Array)"}]
