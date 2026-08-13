@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test
 @DisplayName("`JavaCodeStyleFormatterPlugin` should")
 internal class JavaCodeStyleFormatterPluginSpec {
 
-    @Disabled
+    @Disabled("because we use `PalantirJavaFormatter` instead of `PsiJavaCodeStyleFormatter`")
     @Test
     fun `have only the 'JavaCodeStyleFormatter' renderer`() {
         val plugin = JavaCodeStyleFormatterPlugin()
