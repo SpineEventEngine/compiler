@@ -25,6 +25,7 @@
  */
 
 import io.spine.dependency.local.ToolBase
+import io.spine.dependency.local.Validation
 
 buildscript {
     standardSpineSdkRepositories()
@@ -61,16 +62,20 @@ apply {
 
 configurations.all {
     resolutionStrategy {
-        // Substitute the legacy artifact coordinates with the new `ToolBase.lib` alias.
-        dependencySubstitution {
-            substitute(module("io.spine.tools:spine-tool-base")).using(module(ToolBase.lib))
-        }
+        // The legacy `spine-tool-base` coordinates used to be substituted with the
+        // monolithic `tool-base` module. That target is no longer published, so the
+        // rule cannot be kept, and nothing on the classpath requests the legacy
+        // coordinates any more.
         force(
-            io.spine.dependency.local.ToolBase.lib,
-            io.spine.dependency.local.ToolBase.intellijPlatform,
-            io.spine.dependency.local.ToolBase.intellijPlatformJava,
-            io.spine.dependency.local.Validation.runtime,
-            io.spine.dependency.local.Validation.javaBundle
+            ToolBase.code,
+            ToolBase.fs,
+            ToolBase.javaCode,
+            ToolBase.kotlinCode,
+            ToolBase.protoCode,
+            ToolBase.intellijPlatform,
+            ToolBase.intellijPlatformJava,
+            Validation.runtime,
+            Validation.javaBundle
         )
     }
 }

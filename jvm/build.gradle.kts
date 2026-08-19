@@ -42,6 +42,11 @@ dependencies {
                 " `CodeGenerationContext` APIs."
     )
     api(ToolBase.psiJava)
+    api(ToolBase.javaCode)?.because(
+        "`Class.reference`, `isJavaLang`, and `isRepeatable` are needed." +
+                " The `ReplaceWith` clauses in `JavaLangExts` point consumers at" +
+                " these declarations, so they must stay on the compile classpath."
+    )
     implementation(PalantirJavaFormat.lib)
     implementation(Time.javaExtensions)
 

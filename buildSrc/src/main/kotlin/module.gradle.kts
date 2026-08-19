@@ -94,7 +94,11 @@ fun Module.forceConfigurations() {
             force(
                 Protobuf.compiler,
                 Base.lib,
-                ToolBase.lib,
+                ToolBase.code,
+                ToolBase.fs,
+                ToolBase.javaCode,
+                ToolBase.kotlinCode,
+                ToolBase.protoCode,
                 Validation.runtime,
             )
         }
