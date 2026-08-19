@@ -45,7 +45,8 @@ dependencies {
         Base.lib,
         Base.format,
         CoreJvm.server,
-        ToolBase.lib,
+        ToolBase.code,
+        ToolBase.kotlinCode,
         ToolBase.psiJava
     ).forEach {
         api(it)

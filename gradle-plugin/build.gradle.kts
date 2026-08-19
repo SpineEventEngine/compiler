@@ -122,7 +122,10 @@ dependencies {
     implementation(project(":params")) {
         excludeJetBrainsAnnotations()
     }
-    implementation(ToolBase.lib) {
+    implementation(ToolBase.code) {
+        excludeJetBrainsAnnotations()
+    }
+    implementation(ToolBase.fs) {
         excludeJetBrainsAnnotations()
     }
     implementation(ToolBase.jvmTools) {

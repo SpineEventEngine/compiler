@@ -45,7 +45,7 @@ plugins {
 dependencies {
     api(AutoService.annotations)
     api(CoreJvm.server)
-    api(ToolBase.lib)
+    api(ToolBase.code)
     api(project(":api"))
 
     implementation(project(":params"))?.because("We need the `PipelineParameters` type.")

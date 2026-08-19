@@ -36,7 +36,7 @@ plugins {
 dependencies {
     implementation(Protobuf.javaLib)
     implementation(Base.lib)?.because("`MessageOrBuilder.toJson()` is needed.")
-    implementation(ToolBase.lib)?.because("`CodeGeneratorRequestWriter` is needed.")
+    implementation(ToolBase.protoCode)?.because("`CodeGeneratorRequestWriter` is needed.")
 }
 
 description = "The Spine Compiler plugin for `protoc`."

@@ -42,6 +42,9 @@ dependencies {
                 " `CodeGenerationContext` APIs."
     )
     api(ToolBase.psiJava)
+    implementation(ToolBase.javaCode)?.because(
+        "`Class.reference`, `isJavaLang`, and `isRepeatable` are needed."
+    )
     implementation(PalantirJavaFormat.lib)
     implementation(Time.javaExtensions)
 
