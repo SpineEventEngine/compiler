@@ -56,6 +56,16 @@ buildscript {
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib)
         classpath(io.spine.dependency.lib.Kotlin.GradlePlugin.lib)
     }
+    configurations.all {
+        resolutionStrategy {
+            force(
+                // Subproject buildscripts inherit this classloader (parent-first),
+                // and the refresh-era Spine plugin jars carry Protobuf 4.36
+                // gencode: the runtime resolved here must not be older.
+                io.spine.dependency.lib.Protobuf.javaLib,
+            )
+        }
+    }
 }
 
 plugins {

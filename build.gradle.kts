@@ -51,7 +51,7 @@ buildscript {
         classpath(io.spine.dependency.build.Ksp.run { artifact(gradlePlugin) })
         classpath(io.spine.dependency.local.ToolBase.jvmToolPluginDogfooding)
         classpath(spineCompiler.pluginLib)
-        classpath(coreJvmCompiler.pluginLib)
+        classpath(coreJvmCompiler.gradlePlugin)
     }
     configurations.all {
         resolutionStrategy {
