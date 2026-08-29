@@ -86,31 +86,31 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-base</artifactId>
-    <version>2.0.0-SNAPSHOT.441</version>
+    <version>2.0.0-SNAPSHOT.442</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-environment</artifactId>
-    <version>2.0.0-SNAPSHOT.441</version>
+    <version>2.0.0-SNAPSHOT.442</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-format</artifactId>
-    <version>2.0.0-SNAPSHOT.441</version>
+    <version>2.0.0-SNAPSHOT.442</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-logging</artifactId>
-    <version>2.0.0-SNAPSHOT.424</version>
+    <version>2.0.0-SNAPSHOT.425</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-logging-jvm</artifactId>
-    <version>2.0.0-SNAPSHOT.424</version>
+    <version>2.0.0-SNAPSHOT.425</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -128,13 +128,13 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-time</artifactId>
-    <version>2.0.0-SNAPSHOT.250</version>
+    <version>2.0.0-SNAPSHOT.251</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-time-java</artifactId>
-    <version>2.0.0-SNAPSHOT.250</version>
+    <version>2.0.0-SNAPSHOT.251</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -188,7 +188,7 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>logging-testlib</artifactId>
-    <version>2.0.0-SNAPSHOT.424</version>
+    <version>2.0.0-SNAPSHOT.425</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -212,7 +212,7 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>prototap-api</artifactId>
-    <version>0.17.0</version>
+    <version>0.17.1</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -314,7 +314,7 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>time-testlib</artifactId>
-    <version>2.0.0-SNAPSHOT.250</version>
+    <version>2.0.0-SNAPSHOT.251</version>
     <scope>test</scope>
   </dependency>
   <dependency>
@@ -425,7 +425,7 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>prototap-protoc-plugin</artifactId>
-    <version>0.17.0</version>
+    <version>0.17.1</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
