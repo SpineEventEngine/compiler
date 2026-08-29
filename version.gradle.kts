@@ -30,7 +30,7 @@
  * This version is also used by integration test projects.
  * E.g. see `tests/consumer/build.gradle.kts`.
  */
-private val compilerVersion = "2.0.0-SNAPSHOT.068"
+private val compilerVersion = "2.0.0-SNAPSHOT.069"
 extra.set("compilerVersion", compilerVersion)
 
 /**
