@@ -56,11 +56,12 @@ buildscript {
     configurations.all {
         resolutionStrategy {
             force(
-                // Bootstrap-only: refresh-era plugin jars require the Kotlin
-                // 2.4.10 stdlib, above the Gradle-embedded 2.4.0 that the
-                // distributed helper pins strictly. `force` overrides the
-                // constraint; the lasting answer (Gradle upgrade or a plugin
-                // stdlib policy) is a `config`-level decision.
+                // Policy (2026-08-29): the Kotlin runtime artifacts are
+                // forced at the toolchain version, overriding the
+                // Gradle-embedded 2.4.0 pinned strictly by the distributed
+                // helper — refresh-era plugin jars require 2.4.10. To be
+                // applied centrally by the distributed build logic; this
+                // local force is then superseded.
                 "org.jetbrains.kotlin:kotlin-stdlib:${io.spine.dependency.lib.Kotlin.runtimeVersion}",
                 "org.jetbrains.kotlin:kotlin-reflect:${io.spine.dependency.lib.Kotlin.runtimeVersion}",
                 io.spine.dependency.lib.JetBrainsAnnotations.lib,
