@@ -56,13 +56,6 @@ buildscript {
     configurations.all {
         resolutionStrategy {
             force(
-                // Policy (2026-08-29): the Kotlin runtime artifacts are
-                // forced at `Kotlin.runtimeVersion`, overriding the 2.4.0
-                // that Gradle embeds and pins strictly — the refresh-era
-                // plugin jars require 2.4.10.
-                //
-                // TODO (2026-08-29): apply this centrally in the distributed
-                //  build logic, which will then supersede this local force.
                 io.spine.dependency.lib.Kotlin.StdLib.run { artifact(itself) },
                 io.spine.dependency.lib.Kotlin.run { artifact(reflect) },
                 io.spine.dependency.lib.JetBrainsAnnotations.lib,
