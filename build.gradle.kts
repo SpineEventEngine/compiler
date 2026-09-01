@@ -62,8 +62,8 @@ buildscript {
                 // helper — refresh-era plugin jars require 2.4.10. To be
                 // applied centrally by the distributed build logic; this
                 // local force is then superseded.
-                "org.jetbrains.kotlin:kotlin-stdlib:${io.spine.dependency.lib.Kotlin.runtimeVersion}",
-                "org.jetbrains.kotlin:kotlin-reflect:${io.spine.dependency.lib.Kotlin.runtimeVersion}",
+                io.spine.dependency.lib.Kotlin.StdLib.run { artifact(itself) },
+                io.spine.dependency.lib.Kotlin.run { artifact(reflect) },
                 io.spine.dependency.lib.JetBrainsAnnotations.lib,
                 io.spine.dependency.lib.Protobuf.javaLib,
                 io.spine.dependency.local.Logging.grpcContext,
