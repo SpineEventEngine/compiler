@@ -51,11 +51,13 @@ buildscript {
         classpath(io.spine.dependency.build.Ksp.run { artifact(gradlePlugin) })
         classpath(io.spine.dependency.local.ToolBase.jvmToolPluginDogfooding)
         classpath(spineCompiler.pluginLib)
-        classpath(coreJvmCompiler.pluginLib)
+        classpath(coreJvmCompiler.gradlePlugin)
     }
     configurations.all {
         resolutionStrategy {
             force(
+                io.spine.dependency.lib.Kotlin.StdLib.run { artifact(itself) },
+                io.spine.dependency.lib.Kotlin.run { artifact(reflect) },
                 io.spine.dependency.lib.JetBrainsAnnotations.lib,
                 io.spine.dependency.lib.Protobuf.javaLib,
                 io.spine.dependency.local.Logging.grpcContext,

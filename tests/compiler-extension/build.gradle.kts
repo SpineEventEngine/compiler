@@ -44,6 +44,9 @@ buildscript {
             // pass without it.
             force(
                 io.spine.dependency.lib.JetBrainsAnnotations.lib,
+                // The refresh-era plugin jars carry Protobuf 4.36 gencode; the
+                // runtime must not be older, so pin it to the baseline.
+                io.spine.dependency.lib.Protobuf.javaLib,
             )
         }
     }
@@ -52,7 +55,7 @@ buildscript {
     val compilerVersion = extra["compilerVersion"] as String
     dependencies {
         classpath(spineCompiler.pluginLib(compilerVersion))
-        classpath(coreJvmCompiler.pluginLib)
+        classpath(coreJvmCompiler.gradlePlugin)
     }
 }
 

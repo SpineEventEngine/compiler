@@ -25,6 +25,9 @@
  */
 
 import io.spine.dependency.boms.BomsPlugin
+import io.spine.dependency.isDokka
+import io.spine.dependency.kotlinx.AtomicFu
+import io.spine.dependency.kotlinx.Coroutines
 import io.spine.dependency.lib.Caffeine
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Jackson
@@ -33,8 +36,8 @@ import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Compiler
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.Time
@@ -55,6 +58,23 @@ buildscript {
     dependencies {
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib)
         classpath(io.spine.dependency.lib.Kotlin.GradlePlugin.lib)
+    }
+    configurations.all {
+        resolutionStrategy {
+            force(
+                // Subproject buildscripts inherit this classloader
+                // (parent-first). The refresh-era Spine plugin jars they load
+                // carry Protobuf 4.36 gencode, so the runtime is pinned here
+                // for them to inherit rather than in each child.
+                io.spine.dependency.lib.Protobuf.javaLib,
+                // The Kotlin Gradle plugin above requires the refreshed Kotlin
+                // runtime, while Gradle pins the version it embeds strictly.
+                // The root buildscript forces these for the same reason; this
+                // build does not inherit that.
+                io.spine.dependency.lib.Kotlin.StdLib.run { artifact(itself) },
+                io.spine.dependency.lib.Kotlin.run { artifact(reflect) },
+            )
+        }
     }
 }
 
@@ -77,6 +97,22 @@ subprojects {
         plugin("com.google.protobuf")
         plugin("module-testing")
         from("$rootDir/../version.gradle.kts")
+    }
+
+    configurations.all {
+        if (isDokka) {
+            return@all
+        }
+        resolutionStrategy {
+            // Floor artifacts request the pre-refresh versions of these,
+            // tripping `failOnVersionConflict()`; the Protobuf runtime must
+            // additionally never be older than the refreshed gencode.
+            force(
+                Protobuf.javaLib,
+                Coroutines.bom,
+                AtomicFu.lib,
+            )
+        }
     }
     apply<BomsPlugin>()
 
@@ -166,7 +202,6 @@ subprojects {
                     Logging.libJvm,
                     Reflect.lib,
                     CoreJvm.server,
-                    "io.spine.validation:spine-validation-java-runtime:2.0.0-SNAPSHOT.352"
                 )
             }
         }
