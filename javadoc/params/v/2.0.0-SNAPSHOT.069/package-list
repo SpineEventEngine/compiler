@@ -1,0 +1,4 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.compiler.params/PipelineParameters.Builder///PointingToDeclaration/io/spine/tools/compiler/params/PipelineParameters.Builder.html
+io.spine.tools.compiler.params
