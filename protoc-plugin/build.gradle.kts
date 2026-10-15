@@ -46,6 +46,8 @@ tasks.jar {
         attributes(mapOf("Main-Class" to "io.spine.tools.compiler.protoc.Plugin"))
     }
     // Assemble the "Fat-JAR" artifact containing all the dependencies.
+    // Resolve the classpath lazily: the root project's publishing setup realizes
+    // this task, and Gradle forbids resolving this project's configuration there.
     from(configurations.runtimeClasspath.map { classpath ->
         classpath.map {
             when {
