@@ -1,0 +1,5 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.compiler.protoc////PointingToDeclaration/protoc-plugin/io.spine.tools.compiler.protoc/index.html
+$dokka.location:io.spine.tools.compiler.protoc//main/#/PointingToDeclaration/protoc-plugin/io.spine.tools.compiler.protoc/main.html
+io.spine.tools.compiler.protoc
