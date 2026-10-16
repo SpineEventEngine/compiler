@@ -29,7 +29,7 @@ package io.spine.tools.compiler.test
 import io.spine.tools.compiler.plugin.Plugin
 
 /**
- * A Compiler plugin built with a Protobuf release other than the one of the Compiler CLI.
+ * A Compiler plugin built with a Protobuf release other than the one used by the CLI.
  *
  * Creating the plugin loads [GencodeMarker]. Its gencode validates the Protobuf runtime
  * of the Compiler JVM and fails with `ProtobufRuntimeVersionException` if the runtime

@@ -46,7 +46,8 @@ configurations.all {
 }
 
 // The Protobuf release the plugin is built with.
-// `protoc` of this release makes the gencode require a runtime not older than it.
+// `protoc` of this release generates code that requires a runtime at least as new
+// as the release.
 val pluginProtobuf = "@PLUGIN_PROTOBUF@"
 
 dependencies {

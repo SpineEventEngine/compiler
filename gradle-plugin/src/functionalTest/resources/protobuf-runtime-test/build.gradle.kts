@@ -46,8 +46,9 @@ repositories {
     standardToSpineSdk()
 }
 
-// Unlike Spine builds, this project does not force `Protobuf.libs`.
-// The Protobuf runtime of the Compiler JVM comes from dependency resolution alone.
+// Unlike Spine builds, this project does not force `Protobuf.libs`, so the Protobuf
+// runtime of the Compiler JVM comes from dependency resolution alone.
+// Only `Base.lib` is forced, as in the other fixtures.
 configurations.all {
     resolutionStrategy {
         force(
@@ -73,7 +74,8 @@ tasks.withType<LaunchSpineCompiler>().configureEach {
     environment.remove("TEMPORARILY_DISABLE_PROTOBUF_VERSION_CHECK")
     // Record the classpath of the Compiler JVM, letting the functional test
     // check which Protobuf runtime comes first.
+    val classpathFile = layout.projectDirectory.file("compiler-classpath.txt")
     doLast {
-        file("compiler-classpath.txt").writeText(classpath.asPath)
+        classpathFile.asFile.writeText(classpath.asPath)
     }
 }

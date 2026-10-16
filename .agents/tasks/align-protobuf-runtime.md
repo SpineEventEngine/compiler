@@ -38,10 +38,14 @@ Options considered:
   configuration as the source would give the maximum, but its strict locks
   would fight configuration-specific rules like the ones above.
 - **Derived constraints (chosen).** `spineCompilerRawArtifact` gets
-  a `require` constraint for each module resolved in `spineCompiler`.
+  a `require` constraint for each external module resolved in `spineCompiler`.
   Constraints do not add modules, so they matter only for the modules the CLI
   depends on: the Protobuf runtime. Conflict resolution then picks the higher
-  version, and `strictly` or `force` declared by the consumer still apply.
+  version. A consumer's `force` on the configuration still wins; a lower
+  `strictly` or lock fails the resolution (checked with a probe build).
+  The constraints are added in `withDependencies`, right before resolution:
+  `dependencyConstraints.addAllLater` would resolve, and so lock,
+  `spineCompiler` whenever anything reads the constraints (`CliConfigurationSpec`).
 
 ## Plan
 
@@ -52,6 +56,7 @@ Options considered:
   the gencode/runtime check turned back on in the forked JVM. Two cases:
   a newer plugin runtime wins; an older one does not downgrade the CLI's.
 - [x] Derive the constraints in `Plugin.createConfigurations`.
+- [x] Address the reviews of `/pre-pr`.
 - [ ] `build`, `/pre-pr`, PR, Copilot review.
 
 ## Log
