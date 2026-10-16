@@ -35,10 +35,19 @@ the `force(Protobuf.libs)` that Spine builds apply to every configuration
 `compiler-protoc-plugin` (`-exe.jar`) still bundles the runtime, and it should:
 `protoc` launches it in a JVM of its own, where nothing else shares its classpath.
 
+Limits: `spineCompilerRawArtifact` and the user classpath are still resolved
+separately, and the former comes first. A consumer that does not force
+`Protobuf.libs` gets the version this JAR declares, as before, but can now
+override it. Resolving both from one graph in the Gradle plugin would remove
+the need to force; that is a separate change. The configuration also now needs
+a repository hosting Protobuf, which every project compiling Protobuf has.
+
 ## Plan
 
 - [x] Exclude `Protobuf.libs` from `shadowJar` by the dependency filter.
-- [x] Declare them, non-transitively, in the `cliFatJar` POM and in `shadow`.
+- [x] Declare them, non-transitively, in the `cliFatJar` POM and in
+  a `protobufRuntime` configuration extended by `shadowRuntimeElements`
+  (not `shadow`, which Shadow writes into the manifest `Class-Path`).
 - [x] Verify: no Protobuf runtime classes in the JAR; the POM declares
   `Protobuf.libs`; the functional tests run the CLI from Maven Local.
 - [x] `build`, `/pre-pr`.

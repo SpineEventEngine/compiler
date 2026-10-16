@@ -73,15 +73,33 @@ dependencies {
     testImplementation(Logging.testLib)?.because("We need `tapConsole`.")
     testImplementation(project(":testlib"))
     testImplementation(project(":test-env"))
+}
 
-    // The Protobuf runtime, which `tasks.shadowJar` below leaves out of the fat JAR.
-    // The `shadow` configuration lists it in the shadowed variant of `compiler-cli`.
-    // The POM of `compiler-cli-all` lists it via `declareRuntimeDependencies()`.
-    Protobuf.libs.forEach {
-        shadow(it) {
-            isTransitive = false
-        }
+/**
+ * The Protobuf runtime, which `tasks.shadowJar` below leaves out of the fat JAR.
+ *
+ * The shadowed variant of `compiler-cli` lists it, as `shadowRuntimeElements` extends
+ * this configuration. The POM of `compiler-cli-all` lists it via
+ * `declareRuntimeDependencies()`.
+ *
+ * The `shadow` configuration is not used for the purpose: Shadow writes its files into
+ * the `Class-Path` attribute of the JAR manifest. Such entries are relative to the JAR
+ * and carry the version of this build in the file names, so in a directory holding
+ * the JAR along with other Protobuf JARs, they would put the runtime of this build
+ * first again.
+ */
+val protobufRuntime: Configuration = configurations.create("protobufRuntime") {
+    description = "The Protobuf runtime, which the fat JAR declares rather than bundles."
+    isCanBeConsumed = false
+    isCanBeResolved = false
+}
+Protobuf.libs.forEach {
+    dependencies.add(protobufRuntime.name, it) {
+        isTransitive = false
     }
+}
+configurations.named("shadowRuntimeElements") {
+    extendsFrom(protobufRuntime)
 }
 
 sourceSets.test {
