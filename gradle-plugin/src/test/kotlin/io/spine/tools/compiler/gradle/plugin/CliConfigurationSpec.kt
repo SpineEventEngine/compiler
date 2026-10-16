@@ -39,10 +39,12 @@ import org.gradle.api.Project
 import org.gradle.api.artifacts.result.UnresolvedDependencyResult
 import org.gradle.kotlin.dsl.apply
 import org.gradle.testfixtures.ProjectBuilder
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
+import org.junit.jupiter.api.io.CleanupMode
 import org.junit.jupiter.api.io.TempDir
 
 /**
@@ -57,11 +59,22 @@ import org.junit.jupiter.api.io.TempDir
 @DisplayName("The configuration of the CLI should")
 internal class CliConfigurationSpec {
 
+    private lateinit var projectDir: File
     private lateinit var project: Project
     private lateinit var repository: File
 
+    /**
+     * Creates the project in the given directory.
+     *
+     * JUnit does not clean up the directory: under Windows, `ProjectBuilder` keeps
+     * a file of the resolution open in the Gradle user home under the directory,
+     * and the deletion fails. See
+     * [gradle/gradle#12535](https://github.com/gradle/gradle/issues/12535).
+     * [deleteProjectDir] removes what it can instead.
+     */
     @BeforeEach
-    fun prepareProject(@TempDir projectDir: File) {
+    fun prepareProject(@TempDir(cleanup = CleanupMode.NEVER) projectDir: File) {
+        this.projectDir = projectDir
         project = ProjectBuilder.builder()
             .withProjectDir(projectDir)
             .build()
@@ -78,6 +91,12 @@ internal class CliConfigurationSpec {
                 it.metadataSources { sources -> sources.mavenPom() }
             }
         }
+    }
+
+    @AfterEach
+    fun deleteProjectDir() {
+        // Best effort: under Windows, the files kept open by `ProjectBuilder` stay.
+        projectDir.deleteRecursively()
     }
 
     @Test
