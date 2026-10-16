@@ -43,7 +43,8 @@ the exec files of all test tasks matched all 249 executed `api` classes as compi
 
 ## Plan
 
-- [x] Bump the version to `2.0.0-SNAPSHOT.076` (`.075` is taken by PR #90 and another branch).
+- [x] Bump the version to `2.0.0-SNAPSHOT.077`. Bumped to `.076` first, then re-bumped:
+      PR #90 now claims `.076`, after merging PR #93 with `.075`.
 - [x] Drop `includeBuild("..")`: the `tests` build consumes the artifacts that `localPublish`
       publishes to Maven Local, which `integrationTest` already depends on.
 - [x] Resolve the Compiler of the version under development from Maven Local only
@@ -66,3 +67,4 @@ identifiers; writing the renderer settings before input fingerprinting.
 - 2026-10-16 23:05 — review: Maven Local was not first for subproject repositories; switched
   to `exclusiveContent` scoped to the version under development. Verified: with that version
   absent from Maven Local, resolution fails instead of falling back to the registry.
+- 2026-10-16 23:40 — re-bumped to `.077` for the collision with PR #90.
