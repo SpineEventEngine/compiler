@@ -27,10 +27,16 @@
 package io.spine.tools.compiler.gradle.plugin
 
 import com.google.protobuf.gradle.ProtobufPlugin
+import io.kotest.assertions.withClue
+import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
+import io.spine.tools.compiler.gradle.api.Artifacts
 import io.spine.tools.compiler.gradle.api.Names.COMPILER_RAW_ARTIFACT
 import io.spine.tools.compiler.gradle.api.Names.USER_CLASSPATH_CONFIGURATION
 import java.io.File
 import org.gradle.api.Project
+import org.gradle.api.artifacts.result.UnresolvedDependencyResult
 import org.gradle.kotlin.dsl.apply
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.BeforeEach
@@ -43,24 +49,59 @@ import org.junit.jupiter.api.io.TempDir
  * Verifies how the plugin sets up the configuration of the CLI,
  * [`spineCompilerRawArtifact`][COMPILER_RAW_ARTIFACT].
  *
- * The resolution of the Protobuf runtime for the Compiler JVM is locked
- * by `ProtobufRuntimeSpec` in the `functionalTest` suite.
+ * The tests resolve the configuration against a local Maven repository of POMs,
+ * in which the CLI and a Compiler plugin depend on different versions of
+ * a runtime library. The end-to-end counterpart, with the Protobuf runtime and
+ * a forked Compiler JVM, is `ProtobufRuntimeSpec` in the `functionalTest` suite.
  */
 @DisplayName("The configuration of the CLI should")
 internal class CliConfigurationSpec {
 
     private lateinit var project: Project
+    private lateinit var repository: File
 
     @BeforeEach
     fun prepareProject(@TempDir projectDir: File) {
         project = ProjectBuilder.builder()
             .withProjectDir(projectDir)
             .build()
+        repository = projectDir.resolve("repository")
         with(project) {
             apply(plugin = "java")
             apply<ProtobufPlugin>()
             apply<Plugin>()
+            // Leave only the local repository, so that the real CLI published to
+            // Maven Local or elsewhere does not shadow its POM written by the tests.
+            repositories.clear()
+            repositories.maven {
+                it.setUrl(repository)
+                it.metadataSources { sources -> sources.mavenPom() }
+            }
         }
+    }
+
+    @Test
+    fun `require the newer version of a module from the user classpath`() {
+        publishCliAndPlugin(cliRuntime = "1.0", pluginRuntime = "2.0")
+
+        resolvedRuntime() shouldBe "2.0"
+    }
+
+    @Test
+    fun `keep the version of the CLI over an older one from the user classpath`() {
+        publishCliAndPlugin(cliRuntime = "1.0", pluginRuntime = "0.9")
+
+        resolvedRuntime() shouldBe "1.0"
+    }
+
+    @Test
+    fun `let a 'force' rule override the version from the user classpath`() {
+        publishCliAndPlugin(cliRuntime = "1.0", pluginRuntime = "2.0")
+        project.configurations.getByName(COMPILER_RAW_ARTIFACT)
+            .resolutionStrategy
+            .force("$RUNTIME:1.0")
+
+        resolvedRuntime() shouldBe "1.0"
     }
 
     /**
@@ -75,7 +116,80 @@ internal class CliConfigurationSpec {
         cli.dependencyConstraints.toList()
 
         assertDoesNotThrow {
-            project.dependencies.add(USER_CLASSPATH_CONFIGURATION, "com.acme:plugin:1.0")
+            project.dependencies.add(USER_CLASSPATH_CONFIGURATION, PLUGIN)
         }
     }
+
+    /**
+     * Publishes the POMs of the CLI and of a plugin, which depend on
+     * the given versions of the runtime library, and adds the plugin
+     * to the user classpath.
+     */
+    private fun publishCliAndPlugin(cliRuntime: String, pluginRuntime: String) {
+        val cli = Artifacts.fatCli(Plugin.version)
+        publishPom(cli, dependency = "$RUNTIME:$cliRuntime")
+        publishPom(PLUGIN, dependency = "$RUNTIME:$pluginRuntime")
+        publishPom("$RUNTIME:$cliRuntime")
+        publishPom("$RUNTIME:$pluginRuntime")
+        project.dependencies.add(USER_CLASSPATH_CONFIGURATION, PLUGIN)
+    }
+
+    /**
+     * Writes the POM of the module with the given [coordinates] into the [repository].
+     */
+    private fun publishPom(coordinates: String, dependency: String? = null) {
+        val (group, name, version) = coordinates.split(':')
+        val dependencies = dependency?.split(':')?.let { (depGroup, depName, depVersion) ->
+            """
+            |  <dependencies>
+            |    <dependency>
+            |      <groupId>$depGroup</groupId>
+            |      <artifactId>$depName</artifactId>
+            |      <version>$depVersion</version>
+            |    </dependency>
+            |  </dependencies>
+            """.trimMargin()
+        } ?: ""
+        val dir = repository.resolve("${group.replace('.', '/')}/$name/$version")
+        dir.mkdirs()
+        dir.resolve("$name-$version.pom").writeText(
+            """
+            |<project xmlns="http://maven.apache.org/POM/4.0.0">
+            |  <modelVersion>4.0.0</modelVersion>
+            |  <groupId>$group</groupId>
+            |  <artifactId>$name</artifactId>
+            |  <version>$version</version>
+            |  <packaging>pom</packaging>
+            |$dependencies
+            |</project>
+            """.trimMargin()
+        )
+    }
+
+    /**
+     * Resolves the CLI configuration and obtains the version of the runtime library in it.
+     */
+    private fun resolvedRuntime(): String {
+        val result = project.configurations.getByName(COMPILER_RAW_ARTIFACT)
+            .incoming.resolutionResult
+        result.allDependencies
+            .filterIsInstance<UnresolvedDependencyResult>()
+            .map { "${it.attempted}: ${it.failure.message}" }
+            .shouldBeEmpty()
+        val modules = result.allComponents.mapNotNull { it.moduleVersion }
+        val runtime = withClue("Resolved modules: $modules.") {
+            modules.find { "${it.group}:${it.name}" == RUNTIME }.shouldNotBeNull()
+        }
+        return runtime.version
+    }
 }
+
+/**
+ * The module of a Compiler plugin in the user classpath.
+ */
+private const val PLUGIN = "com.acme:plugin:1.0"
+
+/**
+ * The module of a runtime library on which both the CLI and the plugin depend.
+ */
+private const val RUNTIME = "com.acme:runtime"
