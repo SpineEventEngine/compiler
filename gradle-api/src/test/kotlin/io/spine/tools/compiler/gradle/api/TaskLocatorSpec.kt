@@ -1,0 +1,92 @@
+/*
+ * Copyright 2026, TeamDev. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Redistribution and use in source and/or binary forms, with or without
+ * modification, must retain the above copyright notice and the following
+ * disclaimer.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+package io.spine.tools.compiler.gradle.api
+
+import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.types.shouldBeSameInstanceAs
+import org.gradle.api.Project
+import org.gradle.api.Task
+import org.gradle.api.tasks.SourceSet
+import org.gradle.api.tasks.SourceSet.MAIN_SOURCE_SET_NAME
+import org.gradle.api.tasks.SourceSet.TEST_SOURCE_SET_NAME
+import org.gradle.api.tasks.SourceSetContainer
+import org.gradle.testfixtures.ProjectBuilder
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+
+@DisplayName("`TaskLocator` should")
+internal class TaskLocatorSpec {
+
+    private lateinit var project: Project
+    private lateinit var main: SourceSet
+    private lateinit var launchTask: Task
+    private lateinit var cleanTask: Task
+
+    /**
+     * Creates a project in which the `main` source set has both the launch and
+     * the clean task, so that a locator returning the task of the other kind fails.
+     */
+    @BeforeEach
+    fun createProject() {
+        project = ProjectBuilder.builder().build()
+        project.pluginManager.apply("java")
+        main = sourceSet(MAIN_SOURCE_SET_NAME)
+        launchTask = project.tasks.register(CompilerTask.nameFor(main)).get()
+        cleanTask = project.tasks.register(SpineCompilerCleanTask.nameFor(main)).get()
+    }
+
+    @Test
+    fun `get the launch task via 'CompilerTask'`() {
+        CompilerTask.get(project, main) shouldBeSameInstanceAs launchTask
+    }
+
+    @Test
+    fun `find the launch task via 'CompilerTask'`() {
+        CompilerTask.find(project, main) shouldBeSameInstanceAs launchTask
+    }
+
+    @Test
+    fun `get the clean task via 'SpineCompilerCleanTask'`() {
+        SpineCompilerCleanTask.get(project, main) shouldBeSameInstanceAs cleanTask
+    }
+
+    @Test
+    fun `find the clean task via 'SpineCompilerCleanTask'`() {
+        SpineCompilerCleanTask.find(project, main) shouldBeSameInstanceAs cleanTask
+    }
+
+    @Test
+    fun `find no task for a source set which does not have one`() {
+        val test = sourceSet(TEST_SOURCE_SET_NAME)
+        CompilerTask.find(project, test).shouldBeNull()
+        SpineCompilerCleanTask.find(project, test).shouldBeNull()
+    }
+
+    private fun sourceSet(name: String): SourceSet =
+        project.extensions.getByType(SourceSetContainer::class.java).getByName(name)
+}
