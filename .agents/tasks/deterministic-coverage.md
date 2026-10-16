@@ -46,8 +46,10 @@ the exec files of all test tasks matched all 249 executed `api` classes as compi
 - [x] Bump the version to `2.0.0-SNAPSHOT.076` (`.075` is taken by PR #90 and another branch).
 - [x] Drop `includeBuild("..")`: the `tests` build consumes the artifacts that `localPublish`
       publishes to Maven Local, which `integrationTest` already depends on.
-- [x] Resolve the Compiler from Maven Local first in the `tests` build, so that a remote
-      repository with the same version never serves it instead.
+- [x] Resolve the Compiler of the version under development from Maven Local only
+      (`exclusiveContent`), so that a remote repository with the same version never
+      serves it instead. Repository order alone does not do it: the `tests` root script
+      adds the remote repositories to the subprojects before their own scripts run.
 - [x] Update `tests/README.md`.
 - [ ] Verify two consecutive CI coverage uploads give the same totals for the files
       listed in Context.
@@ -61,3 +63,6 @@ identifiers; writing the renderer settings before input fingerprinting.
 - 2026-10-16 22:45 — fixed clean builds, with and without the build cache: the nested build
   runs no root tasks, all 249 executed `api` classes match, and both Kover reports are
   identical file by file.
+- 2026-10-16 23:05 — review: Maven Local was not first for subproject repositories; switched
+  to `exclusiveContent` scoped to the version under development. Verified: with that version
+  absent from Maven Local, resolution fails instead of falling back to the registry.

@@ -37,10 +37,12 @@
  * files that differ from those the tests ran against, and drop the coverage of the
  * mismatched classes.
  *
- * Maven Local comes first for the Compiler artifacts, so that a remote repository
- * that already has the version under development never serves it instead.
+ * The Compiler artifacts of the version under development come from Maven Local only.
+ * So a remote repository that already has this version never serves it instead,
+ * and the build fails if the artifacts were not published.
  */
 pluginManagement {
+    // The dependencies of the plugin resolve via the repositories of the applying build script.
     repositories {
         mavenLocal {
             content {
@@ -58,17 +60,20 @@ pluginManagement {
 }
 
 apply(from = "$rootDir/../version.gradle.kts")
+val compilerVersion = extra["compilerVersion"] as String
 
 include(":consumer")
 include(":in-place-consumer")
 include(":compiler-extension")
 
-// Runs before each project declares its own repositories, so Maven Local is consulted first.
+// The projects declare their repositories in their own scripts, via `standardToSpineSdk()`.
+// Exclusive content takes precedence over all of them, whatever their order.
 gradle.beforeProject {
     listOf(buildscript.repositories, repositories).forEach { repos ->
-        repos.mavenLocal {
-            content {
-                includeModuleByRegex("io\\.spine\\.tools", "compiler-.*")
+        repos.exclusiveContent {
+            forRepository { repos.mavenLocal() }
+            filter {
+                includeVersionByRegex("io\\.spine\\.tools", "compiler-.*", Regex.escape(compilerVersion))
             }
         }
     }
