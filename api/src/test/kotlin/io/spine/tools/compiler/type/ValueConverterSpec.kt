@@ -36,6 +36,7 @@ import io.spine.tools.code.AnyLanguage
 import io.spine.tools.compiler.ast.PrimitiveType.TYPE_STRING
 import io.spine.tools.compiler.ast.Type
 import io.spine.tools.compiler.ast.fieldType
+import io.spine.tools.compiler.ast.type
 import io.spine.tools.compiler.test.TypesTestEnv.enumTypeName
 import io.spine.tools.compiler.test.TypesTestEnv.messageTypeName
 import io.spine.tools.compiler.value.EnumValue
@@ -43,17 +44,17 @@ import io.spine.tools.compiler.value.ListValue
 import io.spine.tools.compiler.value.MapValue
 import io.spine.tools.compiler.value.MapValueKt.entry
 import io.spine.tools.compiler.value.MessageValue
-import io.spine.tools.compiler.value.NULL
+import io.spine.tools.compiler.value.NullValue.NULL_VALUE
 import io.spine.tools.compiler.value.Reference
 import io.spine.tools.compiler.value.Value
 import io.spine.tools.compiler.value.enumValue
 import io.spine.tools.compiler.value.listValue
+import io.spine.tools.compiler.value.mapValue
 import io.spine.tools.compiler.value.messageValue
 import io.spine.tools.compiler.value.reference
 import io.spine.tools.compiler.value.value
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import io.spine.tools.compiler.value.mapValue as newMapValue
 
 @DisplayName("`ValueConverter` should dispatch")
 internal class ValueConverterSpec {
@@ -62,7 +63,11 @@ internal class ValueConverterSpec {
 
     @Test
     fun nulls() {
-        converter.dispatchOf(NULL) shouldBe "null"
+        val typedNull = value {
+            nullValue = NULL_VALUE
+            type = type { primitive = TYPE_STRING }
+        }
+        converter.dispatchOf(typedNull) shouldBe "null:TYPE_STRING"
     }
 
     @Test
@@ -114,8 +119,8 @@ internal class ValueConverterSpec {
     fun lists() {
         val list = value {
             listValue = listValue {
-                values.add(value { stringValue = "a" })
-                values.add(value { stringValue = "b" })
+                values += value { stringValue = "a" }
+                values += value { stringValue = "b" }
             }
         }
         converter.dispatchOf(list) shouldBe "list:2"
@@ -124,11 +129,11 @@ internal class ValueConverterSpec {
     @Test
     fun maps() {
         val map = value {
-            mapValue = newMapValue {
-                value.add(entry {
+            mapValue = mapValue {
+                value += entry {
                     key = value { stringValue = "k" }
                     this.value = value { stringValue = "v" }
-                })
+                }
             }
         }
         converter.dispatchOf(map) shouldBe "map:1"
@@ -149,28 +154,29 @@ internal class ValueConverterSpec {
      * The `kind` oneof of `Value` is `(choice).required`, so a value with no kind
      * cannot be obtained from the DSL — building one fails validation before
      * [ValueConverter.valueToCode] is ever called. The default instance is
-     * pre-built, and so is the only way to reach the rejecting branch.
+     * pre-built and skips validation, so it is the only way to reach
+     * the rejecting branch.
      */
     @Test
     @DisplayName("and fail on a value with no kind set")
     fun failOnUnsetKind() {
         val error = shouldThrow<IllegalStateException> {
-            converter.valueToCode(Value.getDefaultInstance())
+            converter.dispatchOf(Value.getDefaultInstance())
         }
-        error.message!! shouldContain Value.KindCase.KIND_NOT_SET.name
+        error.message shouldContain Value.KindCase.KIND_NOT_SET.name
     }
 }
 
 /**
- * Tags each conversion with the name of the abstract member [ValueConverter]
- * routed to, so that a spec can assert the dispatch rather than the formatting
- * of a particular target language.
+ * Tags each conversion with the name of the abstract member to which
+ * [ValueConverter] routed it, so that a spec can assert the dispatch rather
+ * than the formatting of a particular target language.
  */
 private class StubValueConverter : ValueConverter<AnyLanguage, StubCode>() {
 
     fun dispatchOf(value: Value): String = valueToCode(value).toCode()
 
-    override fun nullToCode(type: Type): StubCode = StubCode("null")
+    override fun nullToCode(type: Type): StubCode = StubCode("null:${type.primitive.name}")
 
     override fun toCode(value: Boolean): StubCode = StubCode("bool:$value")
 
