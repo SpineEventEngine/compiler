@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.AutoServiceKsp
 import io.spine.dependency.lib.Clikt
+import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
@@ -72,6 +73,14 @@ dependencies {
     testImplementation(Logging.testLib)?.because("We need `tapConsole`.")
     testImplementation(project(":testlib"))
     testImplementation(project(":test-env"))
+
+    // The fat JAR declares the Protobuf runtime instead of bundling it.
+    // See `tasks.shadowJar` below.
+    Protobuf.libs.forEach {
+        shadow(it) {
+            isTransitive = false
+        }
+    }
 }
 
 sourceSets.test {
@@ -123,6 +132,41 @@ publishing {
                 // the `ValidatingMavenPublisher` class.
                 classifier = ""
             }
+            declareRuntimeDependencies(Protobuf.libs)
+        }
+    }
+}
+
+/**
+ * Declares the dependencies on the given `group:name:version` [coordinates]
+ * in the POM of this publication, in the `runtime` scope and without
+ * transitive dependencies.
+ *
+ * Each of the Protobuf runtime libraries this function is called for has
+ * its own dependencies either declared along with it (`protobuf-java`), or
+ * bundled into the fat JAR (Guava, Gson, the Kotlin runtime). So the fat JAR
+ * brings the same classes onto the classpath as before, except that those of
+ * the Protobuf runtime come from genuine artifacts.
+ *
+ * The publication must not declare dependencies of its own, as `cliFatJar`
+ * does not: this function appends a new `dependencies` block to the POM
+ * without merging into an existing one.
+ */
+fun MavenPublication.declareRuntimeDependencies(coordinates: List<String>) {
+    pom.withXml {
+        val dependencies = asNode().appendNode("dependencies")
+        coordinates.forEach {
+            val (group, name, version) = it.split(':')
+            with(dependencies.appendNode("dependency")) {
+                appendNode("groupId", group)
+                appendNode("artifactId", name)
+                appendNode("version", version)
+                appendNode("scope", "runtime")
+                with(appendNode("exclusions").appendNode("exclusion")) {
+                    appendNode("groupId", "*")
+                    appendNode("artifactId", "*")
+                }
+            }
         }
     }
 }
@@ -131,8 +175,37 @@ tasks.publish {
     dependsOn(tasks.shadowJar)
 }
 
+/**
+ * The `group:name` coordinates of the Protobuf runtime libraries.
+ */
+val protobufRuntimeModules: Set<String> =
+    Protobuf.libs.mapTo(mutableSetOf()) { it.substringBeforeLast(':') }
+
 tasks.shadowJar {
     setup()
+
+    /*
+     * Do not bundle the Protobuf runtime. The `cliFatJar` publication declares it
+     * as a `runtime` dependency instead.
+     *
+     * The Compiler runs the plugins of a user project on the same classpath, after
+     * this JAR. A bundled copy of the runtime cannot be relocated, as the runtime
+     * depends on the names of its classes, and the plugins exchange Protobuf messages
+     * with the Compiler. Left unrelocated, the copy shadows the runtime of the user
+     * classpath. Should the copy be older than the code generated for the plugins,
+     * loading that code fails with `ProtobufRuntimeVersionException`, and no forcing
+     * of a version on the user side can replace the copy. Declared as a dependency,
+     * the runtime is resolved along with this JAR, so a consumer chooses its version
+     * by the standard dependency resolution, as Spine builds do by forcing
+     * `Protobuf.libs` in every configuration.
+     *
+     * The libraries are excluded by the dependency filter rather than by the paths
+     * of their entries, so that the classes of the runtime are left out together
+     * with the resources of the libraries.
+     */
+    dependencies {
+        exclude { "${it.moduleGroup}:${it.moduleName}" in protobufRuntimeModules }
+    }
 
     // minimize() ?
 
