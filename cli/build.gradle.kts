@@ -74,8 +74,9 @@ dependencies {
     testImplementation(project(":testlib"))
     testImplementation(project(":test-env"))
 
-    // The fat JAR declares the Protobuf runtime instead of bundling it.
-    // See `tasks.shadowJar` below.
+    // The Protobuf runtime, which `tasks.shadowJar` below leaves out of the fat JAR.
+    // The `shadow` configuration lists it in the shadowed variant of `compiler-cli`.
+    // The POM of `compiler-cli-all` lists it via `declareRuntimeDependencies()`.
     Protobuf.libs.forEach {
         shadow(it) {
             isTransitive = false
@@ -142,12 +143,6 @@ publishing {
  * in the POM of this publication, in the `runtime` scope and without
  * transitive dependencies.
  *
- * Each of the Protobuf runtime libraries this function is called for has
- * its own dependencies either declared along with it (`protobuf-java`), or
- * bundled into the fat JAR (Guava, Gson, the Kotlin runtime). So the fat JAR
- * brings the same classes onto the classpath as before, except that those of
- * the Protobuf runtime come from genuine artifacts.
- *
  * The publication must not declare dependencies of its own, as `cliFatJar`
  * does not: this function appends a new `dependencies` block to the POM
  * without merging into an existing one.
@@ -156,11 +151,12 @@ fun MavenPublication.declareRuntimeDependencies(coordinates: List<String>) {
     pom.withXml {
         val dependencies = asNode().appendNode("dependencies")
         coordinates.forEach {
-            val (group, name, version) = it.split(':')
+            // Not `name` and `version`, which would hide those of the publication.
+            val (libGroup, libName, libVersion) = it.split(':')
             with(dependencies.appendNode("dependency")) {
-                appendNode("groupId", group)
-                appendNode("artifactId", name)
-                appendNode("version", version)
+                appendNode("groupId", libGroup)
+                appendNode("artifactId", libName)
+                appendNode("version", libVersion)
                 appendNode("scope", "runtime")
                 with(appendNode("exclusions").appendNode("exclusion")) {
                     appendNode("groupId", "*")
@@ -174,12 +170,6 @@ fun MavenPublication.declareRuntimeDependencies(coordinates: List<String>) {
 tasks.publish {
     dependsOn(tasks.shadowJar)
 }
-
-/**
- * The `group:name` coordinates of the Protobuf runtime libraries.
- */
-val protobufRuntimeModules: Set<String> =
-    Protobuf.libs.mapTo(mutableSetOf()) { it.substringBeforeLast(':') }
 
 tasks.shadowJar {
     setup()
@@ -199,10 +189,16 @@ tasks.shadowJar {
      * by the standard dependency resolution, as Spine builds do by forcing
      * `Protobuf.libs` in every configuration.
      *
-     * The libraries are excluded by the dependency filter rather than by the paths
-     * of their entries, so that the classes of the runtime are left out together
-     * with the resources of the libraries.
+     * Each runtime library is declared non-transitively. Its own dependencies are
+     * declared too (`protobuf-java`), or bundled into this JAR (Guava, Gson,
+     * the Kotlin runtime). So the classpath gets the same classes as before, except
+     * that those of the Protobuf runtime come from genuine artifacts.
+     *
+     * The runtime libraries are excluded by the dependency filter rather than by
+     * the paths of their entries, so that everything they contribute, classes and
+     * resources alike, is left out.
      */
+    val protobufRuntimeModules = Protobuf.libs.map { it.substringBeforeLast(':') }.toSet()
     dependencies {
         exclude { "${it.moduleGroup}:${it.moduleName}" in protobufRuntimeModules }
     }
