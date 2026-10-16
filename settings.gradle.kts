@@ -36,14 +36,6 @@ pluginManagement {
     }
 }
 
-dependencyResolutionManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
-    }
-}
-
 include(
     "api",
     "api-tests",
