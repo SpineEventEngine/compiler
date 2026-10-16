@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ public abstract class TaskLocator {
      * Obtains an instance of the task in the given project for the specified source set.
      */
     public fun get(project: Project, sourceSet: SourceSet): Task {
-        val name = CompilerTask.nameFor(sourceSet)
+        val name = nameFor(sourceSet)
         return project.tasks.getByName(name)
     }
 
@@ -55,7 +55,7 @@ public abstract class TaskLocator {
      * @return the task or `null` if there is no task created for this source set
      */
     public fun find(project: Project, sourceSet: SourceSet): Task? {
-        val name = CompilerTask.nameFor(sourceSet)
+        val name = nameFor(sourceSet)
         return project.tasks.findByName(name)
     }
 }
