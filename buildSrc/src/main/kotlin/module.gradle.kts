@@ -40,8 +40,6 @@ import io.spine.gradle.javadoc.JavadocConfig
 import io.spine.gradle.kotlin.setFreeCompilerArgs
 import io.spine.gradle.publish.IncrementGuard
 import io.spine.gradle.report.license.LicenseReporter
-import org.gradle.api.publish.PublishingExtension
-import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
@@ -71,7 +69,6 @@ project.run {
     configureKotlin()
 
     setupTests()
-    suppressTestFixturesPomWarnings()
 
     afterEvaluate {
         configureTaskDependencies()
@@ -116,27 +113,6 @@ fun Module.setupTests() {
             events = setOf(TestLogEvent.PASSED, TestLogEvent.FAILED, TestLogEvent.SKIPPED)
             showExceptions = true
             showCauses = true
-        }
-    }
-}
-
-/**
- * Silences the warnings about the test fixtures variants when generating POM files.
- *
- * The test fixtures of a module are published as variants with a capability of
- * their own. Gradle Module Metadata (`.module`) keeps them, while a POM cannot
- * describe a capability and leaves them out by design. So the warnings,
- * printed for every POM, carry no information.
- */
-fun Module.suppressTestFixturesPomWarnings() {
-    pluginManager.withPlugin("java-test-fixtures") {
-        pluginManager.withPlugin("maven-publish") {
-            the<PublishingExtension>().publications
-                .withType<MavenPublication>()
-                .configureEach {
-                    suppressPomMetadataWarningsFor("testFixturesApiElements")
-                    suppressPomMetadataWarningsFor("testFixturesRuntimeElements")
-                }
         }
     }
 }
