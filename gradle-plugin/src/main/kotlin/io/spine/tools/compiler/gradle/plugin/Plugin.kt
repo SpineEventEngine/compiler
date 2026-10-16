@@ -68,6 +68,8 @@ import io.spine.tools.protobuf.gradle.protobufExtension
 import java.io.File
 import java.nio.file.Path
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.artifacts.component.ModuleComponentIdentifier
 import org.gradle.api.file.FileTreeElement
 import org.gradle.api.specs.Spec
 import org.gradle.api.tasks.Delete
@@ -173,14 +175,58 @@ internal val Project.compilerSettings: Extension
 /**
  * Creates configurations for [`spineCompilerRawArtifact`][COMPILER_RAW_ARTIFACT] and
  * user-defined classpath, and adds a dependency on [Artifacts.fatCli].
+ *
+ * The `spineCompilerRawArtifact` configuration requires the versions resolved in
+ * the [`spineCompiler`][USER_CLASSPATH_CONFIGURATION] configuration.
+ * See [requireVersionsOf].
  */
 private fun Project.createConfigurations(compilerVersion: String) {
     val artifactConfig = configurations.create(COMPILER_RAW_ARTIFACT)
     val cliDependency = Artifacts.fatCli(compilerVersion)
     dependencies.add(artifactConfig.name, cliDependency)
 
-    configurations.create(USER_CLASSPATH_CONFIGURATION) {
+    val userClasspath = configurations.create(USER_CLASSPATH_CONFIGURATION) {
         it.exclude(group = compilerBackend.group, module = compilerBackend.name)
+    }
+    requireVersionsOf(userClasspath, target = artifactConfig)
+}
+
+/**
+ * Makes the [target] configuration require the version of each external module
+ * resolved in the [source] configuration.
+ *
+ * [LaunchSpineCompiler] puts the CLI before the user classpath, so that the modules
+ * bundled into the CLI JAR take precedence. The CLI declares the Protobuf runtime
+ * instead of bundling it. The version the CLI declares must not shadow a newer one
+ * that the gencode of the Compiler plugins on the user classpath needs.
+ *
+ * The function adds a dependency constraint on each external module resolved in
+ * the [source]. A constraint does not bring a module into the graph, so only
+ * the modules the CLI depends on are affected. Gradle's conflict resolution then
+ * picks the higher of the versions asked for by the CLI and by the [source].
+ * A `force` rule applied to the [target] still wins. A `strictly` version or
+ * a dependency lock lower than the version of the [source] fails the resolution,
+ * as such a runtime would fail the gencode of the plugins.
+ *
+ * `shouldResolveConsistentlyWith` is not suitable here: it locks the versions with
+ * `strictly`, so it would downgrade the runtime of the CLI to an older one
+ * from the user classpath.
+ *
+ * The constraints are added right before the [target] is resolved, so the [source]
+ * remains open for new dependencies until then. Adding them resolves the [source].
+ */
+private fun Project.requireVersionsOf(source: Configuration, target: Configuration) {
+    val constraints = dependencies.constraints
+    val reason = "version resolved in `${source.name}`"
+    target.withDependencies {
+        source.incoming.resolutionResult.allComponents
+            .map { it.id }
+            .filterIsInstance<ModuleComponentIdentifier>()
+            .forEach { id ->
+                constraints.add(target.name, "${id.group}:${id.module}:${id.version}") {
+                    it.because(reason)
+                }
+            }
     }
 }
 

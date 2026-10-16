@@ -45,7 +45,6 @@ public fun FilePattern.matches(file: File): Boolean {
         SUFFIX -> path.endsWith(suffix)
         REGEX -> path.matches(Regex(regex))
         KIND_NOT_SET -> false
-        else -> return false
     }
 }
 
