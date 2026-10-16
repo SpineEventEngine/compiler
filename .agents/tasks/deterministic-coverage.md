@@ -68,3 +68,5 @@ identifiers; writing the renderer settings before input fingerprinting.
   to `exclusiveContent` scoped to the version under development. Verified: with that version
   absent from Maven Local, resolution fails instead of falling back to the registry.
 - 2026-10-16 23:40 — re-bumped to `.077` for the collision with PR #90.
+- 2026-10-16 23:55 — PR #94 opened; merged `master` (PR #93, `.075`), kept `.077`. Pushing
+  two heads in a row to get two consecutive CI coverage uploads to compare.
