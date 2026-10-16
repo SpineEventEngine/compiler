@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,52 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*
+ * This build tests the Compiler artifacts that the root build publishes to Maven Local
+ * (see `localPublish` in `../build.gradle.kts`) before it runs this build as its
+ * `integrationTest` task.
+ *
+ * Do not turn this build back into a composite of the root one (`includeBuild("..")`).
+ * Gradle would then substitute the `compiler-*` artifacts with the root projects and run
+ * their code generation, compilation, and packaging tasks from here, overwriting the
+ * outputs in the root project directories. As `integrationTest` runs after the tests of
+ * the root build and, usually, before its coverage report, the report would analyze class
+ * files that differ from those the tests ran against, and drop the coverage of the
+ * mismatched classes.
+ *
+ * Maven Local comes first for the Compiler artifacts, so that a remote repository
+ * that already has the version under development never serves it instead.
+ */
+pluginManagement {
+    repositories {
+        mavenLocal {
+            content {
+                includeGroup("io.spine.compiler")
+                includeModuleByRegex("io\\.spine\\.tools", "compiler-.*")
+            }
+        }
+        gradlePluginPortal()
+    }
+    resolutionStrategy.eachPlugin {
+        if (requested.id.id == "io.spine.compiler") {
+            useVersion(settings.extra["compilerVersion"] as String)
+        }
+    }
+}
+
+apply(from = "$rootDir/../version.gradle.kts")
+
 include(":consumer")
 include(":in-place-consumer")
 include(":compiler-extension")
 
-includeBuild("..")
+// Runs before each project declares its own repositories, so Maven Local is consulted first.
+gradle.beforeProject {
+    listOf(buildscript.repositories, repositories).forEach { repos ->
+        repos.mavenLocal {
+            content {
+                includeModuleByRegex("io\\.spine\\.tools", "compiler-.*")
+            }
+        }
+    }
+}
