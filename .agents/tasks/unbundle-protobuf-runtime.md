@@ -48,6 +48,8 @@ a repository hosting Protobuf, which every project compiling Protobuf has.
 - [x] Declare them, non-transitively, in the `cliFatJar` POM and in
   a `protobufRuntime` configuration extended by `shadowRuntimeElements`
   (not `shadow`, which Shadow writes into the manifest `Class-Path`).
+- [x] Replace the inline code with `unbundleProtobufRuntime(publication = "cliFatJar")`
+  of config (config#796), taken with `./config/pull`.
 - [x] Verify: no Protobuf runtime classes in the JAR; the POM declares
   `Protobuf.libs`; the functional tests run the CLI from Maven Local.
 - [x] `build`, `/pre-pr`.
@@ -61,3 +63,4 @@ a repository hosting Protobuf, which every project compiling Protobuf has.
   `PluginSpec` > copy 'grpc', which needs the x86_64 `protoc-gen-grpc-java` 1.50.2
   on an arm64 host without Rosetta (environmental; CI on Linux is unaffected).
   The other 16 functional tests launch the CLI `.073` from Maven Local and pass.
+- 2026-10-16 — merged master (#91, `.072`), pulled config, switched to config's function.
