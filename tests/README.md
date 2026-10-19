@@ -3,9 +3,12 @@
 This subdirectory —`tests`— contains a separate Gradle product that runs integration
 tests of the Spine Compiler command-line application and the Compiler's Gradle plugin.
 
-This directory is a separate Gradle project, which fetches the artifacts from
-the primary Gradle project, via a Gradle [composite build][composite-build].
+This directory is a separate Gradle project, which consumes the artifacts that
+the primary Gradle project publishes to Maven Local with its `localPublish` task.
 
+It is deliberately not a [composite build][composite-build] of the primary project:
+such a build would recompile the primary project's modules in their own directories
+in the middle of the primary build, after its tests and, usually, before its coverage report.
 Please see [`settings.gradle.kts`](settings.gradle.kts) for details.
 
 ## Execution
@@ -23,11 +26,16 @@ please run the following command:
 ./gradlew integrationTest
 ```
 
-If your current directory is `tests`, just run the Gradle build as usual:
+If your current directory is `tests`, publish the artifacts under test first,
+then run the Gradle build as usual:
 
 ```bash
+(cd .. && ./gradlew localPublish)
 ./gradlew clean build
 ```
+
+Publish again after every change to the Compiler sources. Otherwise, the build tests
+the artifacts published earlier.
 
 ## Symlinks
 
