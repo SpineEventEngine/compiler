@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ class ExtensionSpec {
 
     private lateinit var project: Project
     private lateinit var extension: Extension
-    
+
     @BeforeEach
     fun prepareProject(@TempDir projectDir: File) {
         project = ProjectBuilder.builder()
@@ -86,6 +86,11 @@ class ExtensionSpec {
         val mainDir = project.projectDir.toPath() / basePath / MAIN_SOURCE_SET_NAME
         targetDirs[0].toPath() shouldBe mainDir / expected[0]
         targetDirs[1].toPath() shouldBe mainDir / expected[1]
+    }
+
+    @Test
+    fun `keep the Protobuf version check enabled by default`() {
+        extension.disableProtobufVersionCheck.get() shouldBe false
     }
 }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,9 +37,11 @@ import org.gradle.api.file.Directory
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.plugins.ExtensionContainer
 import org.gradle.api.provider.ListProperty
+import org.gradle.api.provider.Property
 import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.SourceSet
 import org.gradle.kotlin.dsl.listProperty
+import org.gradle.kotlin.dsl.property
 
 /**
  * The `compiler { }` Gradle project extension.
@@ -107,6 +109,16 @@ public class Extension(private val project: Project): CompilerSettings {
             layout.projectDirectory.dir(generated.name)
         )
     }
+
+    /**
+     * Allows disabling the Protobuf version check in the Compiler process.
+     *
+     * Defaults to `false`.
+     *
+     * @see CompilerSettings.disableProtobufVersionCheck
+     */
+    public override val disableProtobufVersionCheck: Property<Boolean> =
+        factory.property<Boolean>().convention(false)
 
     /**
      * Obtains the source directories for the given source set.
