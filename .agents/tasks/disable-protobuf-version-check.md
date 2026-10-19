@@ -49,9 +49,13 @@ When set to `true`, every `LaunchSpineCompiler` task passes
 - Out of scope: the Gradle daemon and the `protoc` plugin processes. Their
   environment cannot be changed from the build script; users still export the
   variable for those.
+- After #90 (`align-protobuf-runtime`), the fork runs on the highest Protobuf runtime
+  requested by the CLI and by `spineCompiler`, so a newer plugin runtime no longer
+  fails. The setting remains for builds that force an older runtime (e.g. via `force`).
 - Not covered end-to-end: the functional tests export the variable for every
-  fixture build (`RunnerTuning.tuneRunner()`), so a TestKit test cannot tell
-  the cases apart. The `exec()` call is a one-liner; the helper is unit-tested.
+  fixture build (`RunnerTuning.tuneRunner()`). The `protobuf-runtime-test` fixture
+  from #90 removes it in the fork, so a follow-up can force an older runtime there
+  and show the flag fixing the failure. The helper is unit-tested here.
 
 ## Plan
 
