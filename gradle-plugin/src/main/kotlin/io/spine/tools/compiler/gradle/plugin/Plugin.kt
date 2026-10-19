@@ -41,6 +41,7 @@ import io.spine.tools.code.SourceSetName
 import io.spine.tools.compiler.gradle.api.Artifacts
 import io.spine.tools.compiler.gradle.api.Artifacts.compilerBackend
 import io.spine.tools.compiler.gradle.api.Artifacts.compilerGradlePlugin
+import io.spine.tools.compiler.gradle.api.Artifacts.protobufGroup
 import io.spine.tools.compiler.gradle.api.Artifacts.protobufProtocArtifact
 import io.spine.tools.compiler.gradle.api.CompilerSettings
 import io.spine.tools.compiler.gradle.api.CompilerTask
@@ -200,8 +201,8 @@ private fun Project.createConfigurations(compilerVersion: String) {
  * instead of bundling it. The version the CLI declares must not shadow a newer one
  * that the gencode of the Compiler plugins on the user classpath needs.
  *
- * The function adds a dependency constraint on each module of [PROTOBUF_GROUP]
- * resolved in the [source]. Gradle's conflict resolution then picks the higher of
+ * The function adds a dependency constraint on each module of the Protobuf group
+ * ([protobufGroup]) resolved in the [source]. Gradle's conflict resolution then picks the higher of
  * the versions asked for by the CLI and by the [source]. A `force` rule applied to
  * the [target] still wins. A `strictly` version or a dependency lock lower than
  * the version of the [source] fails the resolution, as such a runtime would fail
@@ -226,7 +227,7 @@ private fun Project.requireProtobufRuntimeOf(source: Configuration, target: Conf
         source.incoming.resolutionResult.allComponents
             .map { it.id }
             .filterIsInstance<ModuleComponentIdentifier>()
-            .filter { it.group == PROTOBUF_GROUP }
+            .filter { it.group == protobufGroup }
             .forEach { id ->
                 constraints.add(target.name, "${id.group}:${id.module}:${id.version}") {
                     it.because(reason)
@@ -234,11 +235,6 @@ private fun Project.requireProtobufRuntimeOf(source: Configuration, target: Conf
             }
     }
 }
-
-/**
- * The group of the Protobuf runtime artifacts, such as `protobuf-java`.
- */
-private const val PROTOBUF_GROUP = "com.google.protobuf"
 
 /**
  * Creates the [SpineCompilerCleanTask] and [LaunchSpineCompiler] tasks for all source sets

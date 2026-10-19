@@ -50,9 +50,15 @@ public object Artifacts {
     public val compilerGradlePlugin: Module = Module(group, "compiler-gradle-plugin")
 
     /**
+     * The Maven group of the Google Protobuf artifacts, such as `protoc` and
+     * the runtime libraries like `protobuf-java`.
+     */
+    public const val protobufGroup: String = "com.google.protobuf"
+
+    /**
      * The module of the `protoc` artifact of Google Protobuf.
      */
-    public val protobufProtocArtifact: Module = Module("com.google.protobuf", "protoc")
+    public val protobufProtocArtifact: Module = Module(protobufGroup, "protoc")
 
     /**
      * Obtains Maven coordinates of the `fat-cli` variant of the command-line application.
