@@ -15,6 +15,7 @@
 package io.spine.tools.compiler.gradle.plugin
 
 import com.google.protobuf.gradle.ProtobufPlugin
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.matchers.maps.shouldNotContainKey
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
@@ -30,15 +31,16 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * Verifies that [LaunchSpineCompiler] controls the variable disabling the Protobuf
- * version check in the environment of the Compiler process as configured via
- * [Extension.disableProtobufVersionCheck].
+ * Verifies how [LaunchSpineCompiler] controls the variable disabling the Protobuf
+ * version check in the environment of the Compiler process.
+ *
+ * The end-to-end counterpart, with a real version check failing in the Compiler
+ * process, is `DisableProtobufVersionCheckSpec` in the `functionalTest` suite.
  */
 @DisplayName("`LaunchSpineCompiler` should")
 internal class LaunchTaskEnvironmentSpec {
 
     private lateinit var project: Project
-    private lateinit var task: LaunchSpineCompiler
 
     @BeforeEach
     fun prepareProject(@TempDir projectDir: File) {
@@ -50,40 +52,61 @@ internal class LaunchTaskEnvironmentSpec {
             apply<ProtobufPlugin>()
             apply<Plugin>()
         }
+    }
+
+    /**
+     * Obtains the launch task for the `main` source set, configuring it on first access.
+     */
+    private fun launchTask(): LaunchSpineCompiler {
         val taskName = CompilerTaskName(SourceSetName.main).value()
-        // Obtaining the task configures it before the extension is changed by a test,
-        // as in a real build, where the task is configured before the `compiler { }` block runs.
-        task = project.tasks.getByName(taskName).shouldBeInstanceOf<LaunchSpineCompiler>()
+        return project.tasks.getByName(taskName).shouldBeInstanceOf<LaunchSpineCompiler>()
     }
 
     @Test
-    fun `leave the inherited environment intact by default`() {
+    fun `apply the setting of the extension when configured`() {
+        project.compilerSettings.disableProtobufVersionCheck.set(true)
+
+        launchTask().environment[ENV_VARIABLE] shouldBe "true"
+    }
+
+    @Test
+    fun `reject a change of the setting after the task is configured`() {
+        launchTask()
+
+        shouldThrow<IllegalStateException> {
+            project.compilerSettings.disableProtobufVersionCheck.set(true)
+        }
+    }
+
+    @Test
+    fun `leave the inherited environment intact when the setting is not set`() {
+        val task = launchTask()
         // A value other than `true` tells an untouched variable from an overwritten one,
         // regardless of the environment of the machine running the test.
         val inherited = "inherited-from-build"
         task.environment(ENV_VARIABLE, inherited)
 
-        task.applyProtobufVersionCheckSetting()
+        task.applyProtobufVersionCheckSetting(null)
 
         task.environment[ENV_VARIABLE] shouldBe inherited
     }
 
     @Test
-    fun `disable the Protobuf version check when the extension says 'true'`() {
-        project.compilerSettings.disableProtobufVersionCheck.set(true)
+    fun `disable the Protobuf version check when the setting is 'true'`() {
+        val task = launchTask()
 
-        task.applyProtobufVersionCheckSetting()
+        task.applyProtobufVersionCheckSetting(true)
 
         task.environment[ENV_VARIABLE] shouldBe "true"
     }
 
     @Test
-    fun `keep the Protobuf version check when the extension says 'false'`() {
+    fun `keep the Protobuf version check when the setting is 'false'`() {
+        val task = launchTask()
         // As if the variable were set in the environment of the build.
         task.environment(ENV_VARIABLE, "true")
-        project.compilerSettings.disableProtobufVersionCheck.set(false)
 
-        task.applyProtobufVersionCheckSetting()
+        task.applyProtobufVersionCheckSetting(false)
 
         task.environment shouldNotContainKey ENV_VARIABLE
     }

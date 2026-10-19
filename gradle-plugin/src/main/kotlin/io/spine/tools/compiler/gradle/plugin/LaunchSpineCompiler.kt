@@ -167,20 +167,6 @@ public abstract class LaunchSpineCompiler : JavaExec() {
     @get:Internal
     internal abstract val protoSourceDirs: ConfigurableFileCollection
 
-    /**
-     * Tells whether to disable the Protobuf version check in the Compiler process.
-     *
-     * When not set, the Compiler process inherits the setting from the environment
-     * of the build.
-     *
-     * The property is [Internal] because disabling the check does not affect
-     * the generated code: the check either passes or fails the task.
-     *
-     * @see io.spine.tools.compiler.gradle.api.CompilerSettings.disableProtobufVersionCheck
-     */
-    @get:Internal
-    internal abstract val disableProtobufVersionCheck: Property<Boolean>
-
     @get:InputFiles
     @get:Classpath
     internal lateinit var userClasspathConfiguration: Configuration
@@ -230,38 +216,10 @@ public abstract class LaunchSpineCompiler : JavaExec() {
      * The cleanup runs only when the task itself executes: a task that is
      * up-to-date, or restored from the build cache, leaves the previously
      * generated code intact.
-     *
-     * Applies the Protobuf version check setting of the `compiler { }` extension
-     * to the environment of the Compiler process.
      */
     override fun exec() {
         cleanTargetDirs()
-        applyProtobufVersionCheckSetting()
         super.exec()
-    }
-
-    /**
-     * Applies [disableProtobufVersionCheck] to the [PROTOBUF_VERSION_CHECK_ENV]
-     * environment variable of the Compiler process.
-     *
-     * Sets the variable to `true` if the property is `true`, and removes the variable
-     * if the property is `false`. When the property is not set, leaves the environment
-     * intact, so that the variable set in the environment of the build still reaches
-     * the Compiler.
-     *
-     * The environment is amended when the task executes rather than when it is
-     * configured: the property may be set after the task is configured, and Gradle
-     * does not evaluate providers passed as environment values. Once Gradle turns
-     * the environment of `JavaExec` into a lazy property, the variable can be set
-     * at configuration time instead.
-     */
-    @VisibleForTesting
-    internal fun applyProtobufVersionCheckSetting() {
-        when (disableProtobufVersionCheck.orNull) {
-            true -> environment(PROTOBUF_VERSION_CHECK_ENV, "true")
-            false -> environment.remove(PROTOBUF_VERSION_CHECK_ENV)
-            null -> {} // Inherit the variable from the environment of the build.
-        }
     }
 
     /**
@@ -300,10 +258,6 @@ public abstract class LaunchSpineCompiler : JavaExec() {
  * Touching the task state at execution time is deprecated: querying
  * `Task.dependsOn` fails in Gradle 10, changing a property in Gradle 11.
  *
- * The environment of the Compiler process is the only exception: `exec()` amends it
- * via `applyProtobufVersionCheckSetting()`. The environment is a plain map
- * rather than a tracked property, so the amendment is not subject to the deprecation.
- *
  * @param sourceSet The source set for which the task is created.
  */
 internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
@@ -311,7 +265,7 @@ internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
     val project = project
     val ext = project.compilerSettings
     plugins = ext.plugins
-    disableProtobufVersionCheck.set(ext.disableProtobufVersionCheck)
+    applyProtobufVersionCheckSetting(ext.disableProtobufVersionCheck.orNull)
     compilerConfiguration = project.compilerRawArtifact
     userClasspathConfiguration = project.userClasspath
     classpath(compilerConfiguration)
@@ -446,6 +400,27 @@ internal fun LaunchSpineCompiler.hasRequestFile(sourceSet: SourceSet): Boolean {
         }
     }
     return file.exists()
+}
+
+/**
+ * Applies the given setting of the Protobuf version check to
+ * the [PROTOBUF_VERSION_CHECK_ENV] environment variable of the Compiler process.
+ *
+ * Sets the variable to `true` if [disableCheck] is `true`, and removes the variable
+ * if it is `false`. If the setting is `null`, leaves the environment intact, so that
+ * the variable set in the environment of the build still reaches the Compiler.
+ *
+ * @param disableCheck The value of `CompilerSettings.disableProtobufVersionCheck`,
+ *  or `null` if it is not set.
+ */
+@VisibleForTesting
+internal fun LaunchSpineCompiler.applyProtobufVersionCheckSetting(disableCheck: Boolean?) {
+    // `else` rather than `null` keeps Kotlin from adding an unreachable exhaustiveness branch.
+    when (disableCheck) {
+        true -> environment(PROTOBUF_VERSION_CHECK_ENV, "true")
+        false -> environment.remove(PROTOBUF_VERSION_CHECK_ENV)
+        else -> {} // Not set: inherit the variable from the environment of the build.
+    }
 }
 
 /**

@@ -39,15 +39,14 @@ relying on the exported variable, including this repo's functional tests
   is a convenience shortcut for the latter.
 - Gradle 9.8.1 (this branch's wrapper; also checked 9.7.1)
   `DefaultProcessForkOptions.getActualEnvironment()` converts values
-  with `String.valueOf()` — no `Provider` unpacking. `JavaExec.getEnvironment()`
-  is marked `@ToBeReplacedByLazyProperty`; once it is lazy, move the write to
-  configuration time. Launch tasks are realized
-  while the plugin is applied, before the user's `compiler { }` block runs, so
-  the flag must be read at execution time.
-- `JavaExec.getEnvironment()` is a plain `@Internal` map (not a tracked
-  `Property`), so setting it in the `exec()` override does not trip the
-  "changing property value at execution time" deprecation addressed by
-  `fix-launch-task-exec-time-config`.
+  with `String.valueOf()` — no `Provider` unpacking, so the setting cannot be
+  passed to `environment` lazily (`JavaExec.getEnvironment()` is marked
+  `@ToBeReplacedByLazyProperty`).
+- A probe showed the launch tasks are not realized while the plugins are applied,
+  but in the `afterEvaluate` hooks, after the build script body. So `applyDefaults()`
+  reads the setting at configuration time; the extension property is
+  `finalizeValueOnRead()`, so a change after that (early task realization, a late
+  `afterEvaluate`) fails loudly instead of being ignored.
 - `Extension` is the only implementation of `CompilerSettings` across Spine repos
   (`core-jvm-compiler` only calls it), so adding an interface member is safe.
 - Out of scope: the Gradle daemon and the `protoc` plugin processes. Their
@@ -64,17 +63,19 @@ relying on the exported variable, including this repo's functional tests
 
 - [x] `CompilerSettings` (`gradle-api`): add
       `public val disableProtobufVersionCheck: Property<Boolean>` with KDoc.
-- [x] `Extension` (`gradle-plugin`): implement it, not set by default.
-- [x] `LaunchSpineCompiler`:
-  - [x] `@get:Internal internal abstract val disableProtobufVersionCheck:
-        Property<Boolean>` — internal because it does not affect the outputs.
-  - [x] Wire it to the extension in `applyDefaults()`.
-  - [x] In `exec()`, `applyProtobufVersionCheckSetting()`: `true` sets the
-        variable, `false` removes it, not set leaves the environment intact.
+- [x] `Extension` (`gradle-plugin`): implement it, not set by default,
+      `finalizeValueOnRead()`.
+- [x] `LaunchSpineCompiler`: no copy of the setting on the task (review by
+      the user). `applyDefaults()` calls
+      `applyProtobufVersionCheckSetting(ext.disableProtobufVersionCheck.orNull)`:
+      `true` sets the variable, `false` removes it, `null` leaves the environment
+      intact. Not a task input: the check does not change the outputs.
 - [x] Tests (`gradle-plugin/src/test`):
   - [x] `ExtensionSpec` — not set by default.
-  - [x] `LaunchTaskEnvironmentSpec` — not set keeps a planted inherited value;
-        `true` sets the variable; `false` removes a planted `true`.
+  - [x] `LaunchTaskEnvironmentSpec` — the extension's value reaches the task;
+        a change after the task is configured is rejected; `null` keeps
+        a planted inherited value; `true` sets the variable; `false` removes
+        a planted `true`.
 - [x] Functional test `DisableProtobufVersionCheckSpec` — `false` keeps the check
       even when the build sets the variable (fails with
       `ProtobufRuntimeVersionException`); `true` lets the Compiler run.

@@ -77,6 +77,10 @@ public interface CompilerSettings {
      * This is a shortcut for setting the variable in the environment of
      * the `LaunchSpineCompiler` tasks directly.
      *
+     * The tasks read the property when they are configured, which happens after
+     * the build script is evaluated. Set the property in the `compiler { }` block:
+     * once read, it cannot be changed.
+     *
      * The setting affects neither the Gradle daemon nor the `protoc` plugins.
      * If the check fails there, set the variable in the environment of the build instead.
      *

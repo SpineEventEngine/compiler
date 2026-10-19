@@ -104,10 +104,13 @@ public class Extension(private val project: Project): CompilerSettings {
      * Not set by default, so the Compiler process inherits the setting from
      * the environment of the build.
      *
+     * The value is finalized when the Compiler launch tasks read it as they are
+     * configured, so that a later change fails instead of being silently ignored.
+     *
      * @see CompilerSettings.disableProtobufVersionCheck
      */
     public override val disableProtobufVersionCheck: Property<Boolean> =
-        factory.property<Boolean>()
+        factory.property<Boolean>().apply { finalizeValueOnRead() }
 
     /**
      * Obtains the source directories for the given source set.
