@@ -38,12 +38,14 @@ import org.junit.jupiter.api.io.TempDir
  * Verifies that `compiler { disableProtobufVersionCheck }` controls the Protobuf
  * gencode/runtime version check in the JVM forked by [LaunchSpineCompiler].
  *
- * The tests use the `protobuf-runtime-test` fixture of [ProtobufRuntimeSpec], which turns
- * the check back on in the forked JVM. The plugin of the fixture is built with a Protobuf
- * release newer than the runtime of the CLI. Each test forces the runtime of the CLI
- * configuration, which comes first on the classpath of the forked JVM, to stay at the CLI's
- * own version. So the gencode of the plugin finds a runtime older than itself, as in a build
- * that forces an older Protobuf runtime.
+ * The tests use the `protobuf-runtime-test` fixture of [ProtobufRuntimeSpec]. The plugin
+ * of the fixture is built with a Protobuf release newer than the runtime of the CLI.
+ * Each test forces the runtime of the CLI configuration, which comes first on the classpath
+ * of the forked JVM, to stay at the CLI's own version. So the gencode of the plugin finds
+ * a runtime older than itself, as in a build that forces an older Protobuf runtime.
+ *
+ * Unlike [ProtobufRuntimeSpec], the tests ask the fixture to keep the variable of the build
+ * in the forked JVM, so that only the setting under test changes it.
  */
 @SlowTest
 @DisplayName("`disableProtobufVersionCheck` should")
@@ -63,20 +65,8 @@ internal class DisableProtobufVersionCheckSpec {
 
     @Test
     fun `keep the check when set to 'false', even if the build disables it`() {
-        val project = createProject(
-            """
-            // Put the variable back, as if it were set in the environment of the build.
-            tasks.withType<LaunchSpineCompiler>().configureEach {
-                environment("$VERSION_CHECK_VARIABLE", "true")
-            }
-
-            spine {
-                compiler {
-                    disableProtobufVersionCheck.set(false)
-                }
-            }
-            """
-        )
+        // `tuneRunner()` sets the variable for the whole build, as a user may do.
+        val project = createProject(disableCheck = false)
 
         val result = project.executeAndFail(launchSpineCompiler)
 
@@ -86,15 +76,9 @@ internal class DisableProtobufVersionCheckSpec {
 
     @Test
     fun `turn the check off when set to 'true'`() {
-        val project = createProject(
-            """
-            spine {
-                compiler {
-                    disableProtobufVersionCheck.set(true)
-                }
-            }
-            """
-        )
+        val project = createProject(disableCheck = true)
+        // Drop the variable set by `tuneRunner()`, so that only the setting turns the check off.
+        project.runner.withEnvironment(emptyMap())
 
         val result = project.executeTask(launchSpineCompiler)
 
@@ -105,14 +89,14 @@ internal class DisableProtobufVersionCheckSpec {
      * Creates the fixture project with the plugin built on [NEWER_PROTOBUF].
      *
      * Appends to the build script of the project the code that forces the runtime of
-     * the CLI configuration to [CLI_PROTOBUF], followed by the given [caseSetup].
+     * the CLI configuration to [CLI_PROTOBUF], and sets the property under test.
      * A `force` wins over the constraints the Compiler Gradle plugin derives from
      * the user classpath, so the newer runtime of the plugin stays behind the CLI's one
      * on the classpath of the forked JVM.
      *
-     * @param caseSetup The build script code setting up the test case.
+     * @param disableCheck The value to set to the `disableProtobufVersionCheck` property.
      */
-    private fun createProject(caseSetup: String): GradleProject {
+    private fun createProject(disableCheck: Boolean): GradleProject {
         val project = GradleProject.setupAt(projectDir)
             .fromResources("protobuf-runtime-test")
             .withSharedTestKitDirectory()
@@ -123,19 +107,21 @@ internal class DisableProtobufVersionCheckSpec {
             .copyBuildSrc()
             .create()
         project.tuneRunner()
-        val forceCliRuntime = """
+        projectDir.resolve("gradle.properties")
+            .appendText("\nkeepVersionCheckVariable=true\n")
+        val caseSetup = """
             configurations.named("$COMPILER_RAW_ARTIFACT") {
                 resolutionStrategy.force("com.google.protobuf:protobuf-java:$CLI_PROTOBUF")
             }
+
+            spine {
+                compiler {
+                    disableProtobufVersionCheck.set($disableCheck)
+                }
+            }
             """
-        projectDir.resolve("build.gradle.kts").appendText(
-            "\n" + forceCliRuntime.trimIndent() + "\n\n" + caseSetup.trimIndent() + "\n"
-        )
+        projectDir.resolve("build.gradle.kts")
+            .appendText("\n" + caseSetup.trimIndent() + "\n")
         return project
     }
 }
-
-/**
- * The name of the variable checked by the Protobuf runtime.
- */
-private const val VERSION_CHECK_VARIABLE = "TEMPORARILY_DISABLE_PROTOBUF_VERSION_CHECK"

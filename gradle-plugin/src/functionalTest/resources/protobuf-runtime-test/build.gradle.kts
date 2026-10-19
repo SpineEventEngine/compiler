@@ -55,11 +55,16 @@ spine {
     }
 }
 
+// Set by a test that controls the version check variable via the `compiler { }` extension.
+val keepVersionCheckVariable = providers.gradleProperty("keepVersionCheckVariable").isPresent
+
 tasks.withType<LaunchSpineCompiler>().configureEach {
     // The functional tests turn off the Protobuf gencode/runtime version check
     // for the whole build. Turn it back on in the Compiler JVM, where the gencode
     // of the plugin must not find a runtime older than itself.
-    environment.remove("TEMPORARILY_DISABLE_PROTOBUF_VERSION_CHECK")
+    if (!keepVersionCheckVariable) {
+        environment.remove("TEMPORARILY_DISABLE_PROTOBUF_VERSION_CHECK")
+    }
     // Record the classpath of the Compiler JVM, letting the functional test
     // check which Protobuf runtime comes first.
     val classpathFile = layout.projectDirectory.file("compiler-classpath.txt")
