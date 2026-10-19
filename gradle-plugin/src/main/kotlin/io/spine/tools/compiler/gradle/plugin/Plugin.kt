@@ -176,9 +176,9 @@ internal val Project.compilerSettings: Extension
  * Creates configurations for [`spineCompilerRawArtifact`][COMPILER_RAW_ARTIFACT] and
  * user-defined classpath, and adds a dependency on [Artifacts.fatCli].
  *
- * The `spineCompilerRawArtifact` configuration requires the versions resolved in
- * the [`spineCompiler`][USER_CLASSPATH_CONFIGURATION] configuration.
- * See [requireVersionsOf].
+ * The `spineCompilerRawArtifact` configuration requires the Protobuf runtime resolved
+ * in the [`spineCompiler`][USER_CLASSPATH_CONFIGURATION] configuration.
+ * See [requireProtobufRuntimeOf].
  */
 private fun Project.createConfigurations(compilerVersion: String) {
     val artifactConfig = configurations.create(COMPILER_RAW_ARTIFACT)
@@ -188,11 +188,11 @@ private fun Project.createConfigurations(compilerVersion: String) {
     val userClasspath = configurations.create(USER_CLASSPATH_CONFIGURATION) {
         it.exclude(group = compilerBackend.group, module = compilerBackend.name)
     }
-    requireVersionsOf(userClasspath, target = artifactConfig)
+    requireProtobufRuntimeOf(userClasspath, target = artifactConfig)
 }
 
 /**
- * Makes the [target] configuration require the version of each external module
+ * Makes the [target] configuration require the version of each Protobuf module
  * resolved in the [source] configuration.
  *
  * [LaunchSpineCompiler] puts the CLI before the user classpath, so that the modules
@@ -200,13 +200,17 @@ private fun Project.createConfigurations(compilerVersion: String) {
  * instead of bundling it. The version the CLI declares must not shadow a newer one
  * that the gencode of the Compiler plugins on the user classpath needs.
  *
- * The function adds a dependency constraint on each external module resolved in
- * the [source]. A constraint does not bring a module into the graph, so only
- * the modules the CLI depends on are affected. Gradle's conflict resolution then
- * picks the higher of the versions asked for by the CLI and by the [source].
- * A `force` rule applied to the [target] still wins. A `strictly` version or
- * a dependency lock lower than the version of the [source] fails the resolution,
- * as such a runtime would fail the gencode of the plugins.
+ * The function adds a dependency constraint on each module of [PROTOBUF_GROUP]
+ * resolved in the [source]. Gradle's conflict resolution then picks the higher of
+ * the versions asked for by the CLI and by the [source]. A `force` rule applied to
+ * the [target] still wins. A `strictly` version or a dependency lock lower than
+ * the version of the [source] fails the resolution, as such a runtime would fail
+ * the gencode of the plugins.
+ *
+ * Other modules of the [source] are left alone. The user classpath may hold any
+ * library that a Compiler plugin brings, for example, Spine Validation used by
+ * the CoreJvm Compiler. The Protobuf runtime is the only part of it that the CLI
+ * shares by design.
  *
  * `shouldResolveConsistentlyWith` is not suitable here: it locks the versions with
  * `strictly`, so it would downgrade the runtime of the CLI to an older one
@@ -215,13 +219,14 @@ private fun Project.createConfigurations(compilerVersion: String) {
  * The constraints are added right before the [target] is resolved, so the [source]
  * remains open for new dependencies until then. Adding them resolves the [source].
  */
-private fun Project.requireVersionsOf(source: Configuration, target: Configuration) {
+private fun Project.requireProtobufRuntimeOf(source: Configuration, target: Configuration) {
     val constraints = dependencies.constraints
-    val reason = "version resolved in `${source.name}`"
+    val reason = "Protobuf runtime resolved in `${source.name}`"
     target.withDependencies {
         source.incoming.resolutionResult.allComponents
             .map { it.id }
             .filterIsInstance<ModuleComponentIdentifier>()
+            .filter { it.group == PROTOBUF_GROUP }
             .forEach { id ->
                 constraints.add(target.name, "${id.group}:${id.module}:${id.version}") {
                     it.because(reason)
@@ -229,6 +234,11 @@ private fun Project.requireVersionsOf(source: Configuration, target: Configurati
             }
     }
 }
+
+/**
+ * The group of the Protobuf runtime artifacts, such as `protobuf-java`.
+ */
+private const val PROTOBUF_GROUP = "com.google.protobuf"
 
 /**
  * Creates the [SpineCompilerCleanTask] and [LaunchSpineCompiler] tasks for all source sets

@@ -38,11 +38,13 @@ Options considered:
   configuration as the source would give the maximum, but its strict locks
   would fight configuration-specific rules like the ones above.
 - **Derived constraints (chosen).** `spineCompilerRawArtifact` gets
-  a `require` constraint for each external module resolved in `spineCompiler`.
-  Constraints do not add modules, so they matter only for the modules the CLI
-  depends on: the Protobuf runtime. Conflict resolution then picks the higher
-  version. A consumer's `force` on the configuration still wins; a lower
-  `strictly` or lock fails the resolution (checked with a probe build).
+  a `require` constraint for each `com.google.protobuf` module resolved in
+  `spineCompiler`. Conflict resolution then picks the higher version. Other
+  libraries are left alone: `spineCompiler` is an extension point that may hold
+  any library a Compiler plugin brings (review of #90), so the constraints are
+  scoped to the Protobuf runtime, the only part of it the CLI shares by design.
+  A consumer's `force` on the configuration still wins; a lower `strictly`
+  or lock fails the resolution (checked with a probe build).
   The constraints are added in `withDependencies`, right before resolution:
   `dependencyConstraints.addAllLater` would resolve, and so lock,
   `spineCompiler` whenever anything reads the constraints (`CliConfigurationSpec`).
@@ -57,7 +59,8 @@ Options considered:
   a newer plugin runtime wins; an older one does not downgrade the CLI's.
 - [x] Derive the constraints in `Plugin.createConfigurations`.
 - [x] Address the reviews of `/pre-pr`.
-- [ ] `build`, `/pre-pr`, PR, Copilot review.
+- [x] `build`, `/pre-pr`, PR (#90), Copilot review.
+- [x] Scope the constraints to the Protobuf runtime (review of #90).
 
 ## Log
 

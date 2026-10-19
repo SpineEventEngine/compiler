@@ -52,9 +52,10 @@ import org.junit.jupiter.api.io.TempDir
  * [`spineCompilerRawArtifact`][COMPILER_RAW_ARTIFACT].
  *
  * The tests resolve the configuration against a local Maven repository of POMs,
- * in which the CLI and a Compiler plugin depend on different versions of
- * a runtime library. The end-to-end counterpart, with the Protobuf runtime and
- * a forked Compiler JVM, is `ProtobufRuntimeSpec` in the `functionalTest` suite.
+ * in which the CLI and a Compiler plugin depend on different versions of the same
+ * library: the Protobuf runtime, or another one. The end-to-end counterpart, with
+ * the real Protobuf runtime and a forked Compiler JVM, is `ProtobufRuntimeSpec`
+ * in the `functionalTest` suite.
  */
 @DisplayName("The configuration of the CLI should")
 internal class CliConfigurationSpec {
@@ -100,31 +101,42 @@ internal class CliConfigurationSpec {
     }
 
     @Test
-    fun `require the newer version of a module from the user classpath`() {
-        publishCliAndPlugin(cliRuntime = "1.0", pluginRuntime = "2.0")
+    fun `require the newer Protobuf runtime from the user classpath`() {
+        publishCliAndPlugin(PROTOBUF_JAVA, cliVersion = "1.0", pluginVersion = "2.0")
 
-        resolvedRuntime() shouldBe "2.0"
+        resolvedVersion(PROTOBUF_JAVA) shouldBe "2.0"
     }
 
     @Test
-    fun `keep the version of the CLI over an older one from the user classpath`() {
-        publishCliAndPlugin(cliRuntime = "1.0", pluginRuntime = "0.9")
+    fun `keep the Protobuf runtime of the CLI over an older one from the user classpath`() {
+        publishCliAndPlugin(PROTOBUF_JAVA, cliVersion = "1.0", pluginVersion = "0.9")
 
-        resolvedRuntime() shouldBe "1.0"
+        resolvedVersion(PROTOBUF_JAVA) shouldBe "1.0"
     }
 
     @Test
-    fun `let a 'force' rule override the version from the user classpath`() {
-        publishCliAndPlugin(cliRuntime = "1.0", pluginRuntime = "2.0")
+    fun `let a 'force' rule override the Protobuf runtime from the user classpath`() {
+        publishCliAndPlugin(PROTOBUF_JAVA, cliVersion = "1.0", pluginVersion = "2.0")
         project.configurations.getByName(COMPILER_RAW_ARTIFACT)
             .resolutionStrategy
-            .force("$RUNTIME:1.0")
+            .force("$PROTOBUF_JAVA:1.0")
 
-        resolvedRuntime() shouldBe "1.0"
+        resolvedVersion(PROTOBUF_JAVA) shouldBe "1.0"
     }
 
     /**
-     * The CLI configuration requires the versions resolved in the user classpath.
+     * The user classpath may hold any library that a Compiler plugin brings.
+     * Only the Protobuf runtime of it may change the dependencies of the CLI.
+     */
+    @Test
+    fun `leave other libraries of the user classpath out`() {
+        publishCliAndPlugin(LIBRARY, cliVersion = "1.0", pluginVersion = "2.0")
+
+        resolvedVersion(LIBRARY) shouldBe "1.0"
+    }
+
+    /**
+     * The CLI configuration requires the Protobuf runtime resolved in the user classpath.
      * Reading the constraints of the CLI configuration, as a dependency report or
      * an IDE import does, must not resolve the user classpath, which would make it
      * reject the dependencies added later.
@@ -141,15 +153,14 @@ internal class CliConfigurationSpec {
 
     /**
      * Publishes the POMs of the CLI and of a plugin, which depend on
-     * the given versions of the runtime library, and adds the plugin
-     * to the user classpath.
+     * the given versions of the [module], and adds the plugin to the user classpath.
      */
-    private fun publishCliAndPlugin(cliRuntime: String, pluginRuntime: String) {
+    private fun publishCliAndPlugin(module: String, cliVersion: String, pluginVersion: String) {
         val cli = Artifacts.fatCli(Plugin.version)
-        publishPom(cli, dependency = "$RUNTIME:$cliRuntime")
-        publishPom(PLUGIN, dependency = "$RUNTIME:$pluginRuntime")
-        publishPom("$RUNTIME:$cliRuntime")
-        publishPom("$RUNTIME:$pluginRuntime")
+        publishPom(cli, dependency = "$module:$cliVersion")
+        publishPom(PLUGIN, dependency = "$module:$pluginVersion")
+        publishPom("$module:$cliVersion")
+        publishPom("$module:$pluginVersion")
         project.dependencies.add(USER_CLASSPATH_CONFIGURATION, PLUGIN)
     }
 
@@ -186,9 +197,9 @@ internal class CliConfigurationSpec {
     }
 
     /**
-     * Resolves the CLI configuration and obtains the version of the runtime library in it.
+     * Resolves the CLI configuration and obtains the version of the [module] in it.
      */
-    private fun resolvedRuntime(): String {
+    private fun resolvedVersion(module: String): String {
         val result = project.configurations.getByName(COMPILER_RAW_ARTIFACT)
             .incoming.resolutionResult
         result.allDependencies
@@ -196,10 +207,10 @@ internal class CliConfigurationSpec {
             .map { "${it.attempted}: ${it.failure.message}" }
             .shouldBeEmpty()
         val modules = result.allComponents.mapNotNull { it.moduleVersion }
-        val runtime = withClue("Resolved modules: $modules.") {
-            modules.find { "${it.group}:${it.name}" == RUNTIME }.shouldNotBeNull()
+        val resolved = withClue("Resolved modules: $modules.") {
+            modules.find { "${it.group}:${it.name}" == module }.shouldNotBeNull()
         }
-        return runtime.version
+        return resolved.version
     }
 }
 
@@ -209,6 +220,11 @@ internal class CliConfigurationSpec {
 private const val PLUGIN = "com.acme:plugin:1.0"
 
 /**
- * The module of a runtime library on which both the CLI and the plugin depend.
+ * The module of the Protobuf runtime.
  */
-private const val RUNTIME = "com.acme:runtime"
+private const val PROTOBUF_JAVA = "com.google.protobuf:protobuf-java"
+
+/**
+ * The module of a library other than the Protobuf runtime.
+ */
+private const val LIBRARY = "com.acme:library"
