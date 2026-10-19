@@ -123,7 +123,7 @@ internal class ProtobufRuntimeSpec {
  * the build after the build moves to the latest stable release. Replace it once
  * the build reaches that minor version.
  */
-private const val NEWER_PROTOBUF = "4.37.0-RC1"
+internal const val NEWER_PROTOBUF = "4.37.0-RC1"
 
 /**
  * A Protobuf release older than the one used by this build.
@@ -136,7 +136,7 @@ private const val OLDER_PROTOBUF = "4.33.0"
  * It equals the version the CLI declares: both come from `Protobuf.libs`, which
  * the CLI declares in its POM, and the build forces in every configuration.
  */
-private val CLI_PROTOBUF =
+internal val CLI_PROTOBUF =
     "${RuntimeVersion.MAJOR}.${RuntimeVersion.MINOR}.${RuntimeVersion.PATCH}"
 
 /**
@@ -148,7 +148,7 @@ private val PROTOBUF_JAVA_JAR = Regex("""protobuf-java-\d.*\.jar""")
  * Tells whether the [version] is newer than the [than] version, comparing only
  * the major, minor, and patch numbers. A qualifier such as `-RC1` is ignored.
  */
-private fun isNewer(version: String, than: String): Boolean {
+internal fun isNewer(version: String, than: String): Boolean {
     fun numbers(v: String) = v.substringBefore('-').split('.').map(String::toInt)
     val (mine, theirs) = numbers(version).zip(numbers(than))
         .firstOrNull { (a, b) -> a != b }

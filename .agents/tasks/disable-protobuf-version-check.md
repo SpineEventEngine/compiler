@@ -19,8 +19,12 @@ spine {
 }
 ```
 
-When set to `true`, every `LaunchSpineCompiler` task passes
-`TEMPORARILY_DISABLE_PROTOBUF_VERSION_CHECK=true` to the forked Compiler JVM.
+The property controls `TEMPORARILY_DISABLE_PROTOBUF_VERSION_CHECK` in the environment
+of every `LaunchSpineCompiler` fork: `true` sets it to `true` (check off), `false`
+removes it (check on, even if the build exports it), not set (default) inherits it
+from the build. A default that cleared the variable would silently break builds
+relying on the exported variable, including this repo's functional tests
+(`RunnerTuning.tuneRunner()`), hence three states rather than `false` by default.
 
 ## Context
 
@@ -52,28 +56,28 @@ When set to `true`, every `LaunchSpineCompiler` task passes
 - After #90 (`align-protobuf-runtime`), the fork runs on the highest Protobuf runtime
   requested by the CLI and by `spineCompiler`, so a newer plugin runtime no longer
   fails. The setting remains for builds that force an older runtime (e.g. via `force`).
-- Not covered end-to-end: the functional tests export the variable for every
-  fixture build (`RunnerTuning.tuneRunner()`). The `protobuf-runtime-test` fixture
-  from #90 removes it in the fork, so a follow-up can force an older runtime there
-  and show the flag fixing the failure. The helper is unit-tested here.
+- End-to-end: the `protobuf-runtime-test` fixture from #90 removes the variable in
+  the fork. `DisableProtobufVersionCheckSpec` reuses it, forcing the CLI runtime
+  below the plugin gencode (`4.37.0-RC1`) so the check really fails.
 
 ## Plan
 
 - [x] `CompilerSettings` (`gradle-api`): add
       `public val disableProtobufVersionCheck: Property<Boolean>` with KDoc.
-- [x] `Extension` (`gradle-plugin`): implement it with `convention(false)`.
+- [x] `Extension` (`gradle-plugin`): implement it, not set by default.
 - [x] `LaunchSpineCompiler`:
   - [x] `@get:Internal internal abstract val disableProtobufVersionCheck:
         Property<Boolean>` — internal because it does not affect the outputs.
   - [x] Wire it to the extension in `applyDefaults()`.
-  - [x] In `exec()`, add the variable to `environment` only when the flag is
-        `true`; when `false`, leave the inherited environment untouched so a
-        variable exported for the daemon still reaches the fork.
+  - [x] In `exec()`, `applyProtobufVersionCheckSetting()`: `true` sets the
+        variable, `false` removes it, not set leaves the environment intact.
 - [x] Tests (`gradle-plugin/src/test`):
-  - [x] `ExtensionSpec` — default `false` (a "can be set" case would only
-        test Gradle's `Property`; dropped).
-  - [x] `LaunchTaskEnvironmentSpec` — flag `true` adds the variable; flag
-        `false` leaves a planted inherited value intact.
+  - [x] `ExtensionSpec` — not set by default.
+  - [x] `LaunchTaskEnvironmentSpec` — not set keeps a planted inherited value;
+        `true` sets the variable; `false` removes a planted `true`.
+- [x] Functional test `DisableProtobufVersionCheckSpec` — `false` keeps the check
+      even when the build sets the variable (fails with
+      `ProtobufRuntimeVersionException`); `true` lets the Compiler run.
 - [x] Docs: `gradle-plugin/README.md` configuration table + a short section on
       when to use it and its scope.
 - [x] Version bump `.077` → `.079` (`.078` is taken by
@@ -93,3 +97,8 @@ When set to `true`, every `LaunchSpineCompiler` task passes
 - 2026-10-19 — the worktree's pinned `.agents/shared` `version-bumped.sh` cannot
   parse `extra.set(...)` in `version.gradle.kts` (exit 2); the floated copy in
   the main checkout handles it. Fixed upstream; resolves on the next `config` pull.
+- 2026-10-19 — PR #95 opened; merged `origin/master` after #90 landed (conflicts only
+  in `version.gradle.kts` and reports; kept `.079`); CodeMatters headers applied.
+- 2026-10-19 — per review by the user, `false` now removes the variable; the default
+  became "not set" to keep the exported-variable workaround working. Added the
+  end-to-end spec.
