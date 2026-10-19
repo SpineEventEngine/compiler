@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package spine.compiler.test;
+
+option java_package = "io.spine.tools.compiler.test";
+option java_outer_classname = "MarkerProto";
+option java_multiple_files = true;
+
+// The message whose gencode validates the Protobuf runtime it is loaded with.
+message GencodeMarker {
+}

@@ -1,27 +1,15 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 // Performs many Gradle configuration routines via extension functions.
@@ -41,6 +29,7 @@ import io.spine.tools.code.SourceSetName
 import io.spine.tools.compiler.gradle.api.Artifacts
 import io.spine.tools.compiler.gradle.api.Artifacts.compilerBackend
 import io.spine.tools.compiler.gradle.api.Artifacts.compilerGradlePlugin
+import io.spine.tools.compiler.gradle.api.Artifacts.protobufGroup
 import io.spine.tools.compiler.gradle.api.Artifacts.protobufProtocArtifact
 import io.spine.tools.compiler.gradle.api.CompilerSettings
 import io.spine.tools.compiler.gradle.api.CompilerTask
@@ -68,6 +57,8 @@ import io.spine.tools.protobuf.gradle.protobufExtension
 import java.io.File
 import java.nio.file.Path
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.artifacts.component.ModuleComponentIdentifier
 import org.gradle.api.file.FileTreeElement
 import org.gradle.api.specs.Spec
 import org.gradle.api.tasks.Delete
@@ -173,14 +164,63 @@ internal val Project.compilerSettings: Extension
 /**
  * Creates configurations for [`spineCompilerRawArtifact`][COMPILER_RAW_ARTIFACT] and
  * user-defined classpath, and adds a dependency on [Artifacts.fatCli].
+ *
+ * The `spineCompilerRawArtifact` configuration requires the Protobuf runtime resolved
+ * in the [`spineCompiler`][USER_CLASSPATH_CONFIGURATION] configuration.
+ * See [requireProtobufRuntimeOf].
  */
 private fun Project.createConfigurations(compilerVersion: String) {
     val artifactConfig = configurations.create(COMPILER_RAW_ARTIFACT)
     val cliDependency = Artifacts.fatCli(compilerVersion)
     dependencies.add(artifactConfig.name, cliDependency)
 
-    configurations.create(USER_CLASSPATH_CONFIGURATION) {
+    val userClasspath = configurations.create(USER_CLASSPATH_CONFIGURATION) {
         it.exclude(group = compilerBackend.group, module = compilerBackend.name)
+    }
+    requireProtobufRuntimeOf(userClasspath, target = artifactConfig)
+}
+
+/**
+ * Makes the [target] configuration require the version of each Protobuf module
+ * resolved in the [source] configuration.
+ *
+ * [LaunchSpineCompiler] puts the CLI before the user classpath, so that the modules
+ * bundled into the CLI JAR take precedence. The CLI declares the Protobuf runtime
+ * instead of bundling it. The version the CLI declares must not shadow a newer one
+ * that the gencode of the Compiler plugins on the user classpath needs.
+ *
+ * The function adds a dependency constraint on each module of the Protobuf group
+ * ([protobufGroup]) resolved in the [source]. Gradle's conflict resolution then picks the higher of
+ * the versions asked for by the CLI and by the [source]. A `force` rule applied to
+ * the [target] still wins. A `strictly` version or a dependency lock lower than
+ * the version of the [source] fails the resolution, as such a runtime would fail
+ * the gencode of the plugins.
+ *
+ * Other modules of the [source] are left alone. The user classpath may hold any
+ * library that a Compiler plugin brings, for example, Spine Validation used by
+ * the CoreJvm Compiler. The Protobuf runtime is the only part of it that the CLI
+ * shares by design.
+ *
+ * `shouldResolveConsistentlyWith` is not suitable here: it locks the versions with
+ * `strictly`, so it would downgrade the runtime of the CLI to an older one
+ * from the user classpath.
+ *
+ * The constraints are added right before the [target] is resolved, so the [source]
+ * remains open for new dependencies until then. Adding them resolves the [source].
+ */
+private fun Project.requireProtobufRuntimeOf(source: Configuration, target: Configuration) {
+    val constraints = dependencies.constraints
+    val reason = "Protobuf runtime resolved in `${source.name}`"
+    target.withDependencies {
+        source.incoming.resolutionResult.allComponents
+            .map { it.id }
+            .filterIsInstance<ModuleComponentIdentifier>()
+            .filter { it.group == protobufGroup }
+            .forEach { id ->
+                constraints.add(target.name, "${id.group}:${id.module}:${id.version}") {
+                    it.because(reason)
+                }
+            }
     }
 }
 
