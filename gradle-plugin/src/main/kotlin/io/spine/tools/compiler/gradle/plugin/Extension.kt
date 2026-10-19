@@ -101,12 +101,13 @@ public class Extension(private val project: Project): CompilerSettings {
     /**
      * Allows disabling the Protobuf version check in the Compiler process.
      *
-     * Defaults to `false`.
+     * Not set by default, so the Compiler process inherits the setting from
+     * the environment of the build.
      *
      * @see CompilerSettings.disableProtobufVersionCheck
      */
     public override val disableProtobufVersionCheck: Property<Boolean> =
-        factory.property<Boolean>().convention(false)
+        factory.property<Boolean>()
 
     /**
      * Obtains the source directories for the given source set.

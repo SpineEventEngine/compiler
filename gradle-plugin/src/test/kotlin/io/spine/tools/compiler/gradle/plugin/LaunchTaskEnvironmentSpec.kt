@@ -15,6 +15,7 @@
 package io.spine.tools.compiler.gradle.plugin
 
 import com.google.protobuf.gradle.ProtobufPlugin
+import io.kotest.matchers.maps.shouldNotContainKey
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
 import io.spine.tools.code.SourceSetName
@@ -29,8 +30,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * Verifies that [LaunchSpineCompiler] passes the variable disabling the Protobuf
- * version check to the process of the Compiler as configured via
+ * Verifies that [LaunchSpineCompiler] controls the variable disabling the Protobuf
+ * version check in the environment of the Compiler process as configured via
  * [Extension.disableProtobufVersionCheck].
  */
 @DisplayName("`LaunchSpineCompiler` should")
@@ -62,18 +63,29 @@ internal class LaunchTaskEnvironmentSpec {
         val inherited = "inherited-from-build"
         task.environment(ENV_VARIABLE, inherited)
 
-        task.disableProtobufVersionCheckIfRequested()
+        task.applyProtobufVersionCheckSetting()
 
         task.environment[ENV_VARIABLE] shouldBe inherited
     }
 
     @Test
-    fun `disable the Protobuf version check when requested via the extension`() {
+    fun `disable the Protobuf version check when the extension says 'true'`() {
         project.compilerSettings.disableProtobufVersionCheck.set(true)
 
-        task.disableProtobufVersionCheckIfRequested()
+        task.applyProtobufVersionCheckSetting()
 
         task.environment[ENV_VARIABLE] shouldBe "true"
+    }
+
+    @Test
+    fun `keep the Protobuf version check when the extension says 'false'`() {
+        // As if the variable were set in the environment of the build.
+        task.environment(ENV_VARIABLE, "true")
+        project.compilerSettings.disableProtobufVersionCheck.set(false)
+
+        task.applyProtobufVersionCheckSetting()
+
+        task.environment shouldNotContainKey ENV_VARIABLE
     }
 
     private companion object {

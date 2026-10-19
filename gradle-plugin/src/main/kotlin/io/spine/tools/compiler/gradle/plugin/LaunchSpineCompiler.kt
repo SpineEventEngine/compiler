@@ -168,7 +168,10 @@ public abstract class LaunchSpineCompiler : JavaExec() {
     internal abstract val protoSourceDirs: ConfigurableFileCollection
 
     /**
-     * Tells whether the Protobuf version check is disabled in the Compiler process.
+     * Tells whether to disable the Protobuf version check in the Compiler process.
+     *
+     * When not set, the Compiler process inherits the setting from the environment
+     * of the build.
      *
      * The property is [Internal] because disabling the check does not affect
      * the generated code: the check either passes or fails the task.
@@ -228,21 +231,23 @@ public abstract class LaunchSpineCompiler : JavaExec() {
      * up-to-date, or restored from the build cache, leaves the previously
      * generated code intact.
      *
-     * If requested via the `compiler { }` extension, disables the Protobuf version check
-     * in the Compiler process.
+     * Applies the Protobuf version check setting of the `compiler { }` extension
+     * to the environment of the Compiler process.
      */
     override fun exec() {
         cleanTargetDirs()
-        disableProtobufVersionCheckIfRequested()
+        applyProtobufVersionCheckSetting()
         super.exec()
     }
 
     /**
-     * Sets the [PROTOBUF_VERSION_CHECK_ENV] environment variable to `true` for
-     * the Compiler process, if [disableProtobufVersionCheck] is `true`.
+     * Applies [disableProtobufVersionCheck] to the [PROTOBUF_VERSION_CHECK_ENV]
+     * environment variable of the Compiler process.
      *
-     * Otherwise, leaves the environment intact, so that a variable set in
-     * the environment of the build still reaches the Compiler.
+     * Sets the variable to `true` if the property is `true`, and removes the variable
+     * if the property is `false`. When the property is not set, leaves the environment
+     * intact, so that the variable set in the environment of the build still reaches
+     * the Compiler.
      *
      * The environment is amended when the task executes rather than when it is
      * configured: the property may be set after the task is configured, and Gradle
@@ -251,9 +256,11 @@ public abstract class LaunchSpineCompiler : JavaExec() {
      * at configuration time instead.
      */
     @VisibleForTesting
-    internal fun disableProtobufVersionCheckIfRequested() {
-        if (disableProtobufVersionCheck.get()) {
-            environment(PROTOBUF_VERSION_CHECK_ENV, "true")
+    internal fun applyProtobufVersionCheckSetting() {
+        when (disableProtobufVersionCheck.orNull) {
+            true -> environment(PROTOBUF_VERSION_CHECK_ENV, "true")
+            false -> environment.remove(PROTOBUF_VERSION_CHECK_ENV)
+            null -> {} // Inherit the variable from the environment of the build.
         }
     }
 
@@ -294,7 +301,7 @@ public abstract class LaunchSpineCompiler : JavaExec() {
  * `Task.dependsOn` fails in Gradle 10, changing a property in Gradle 11.
  *
  * The environment of the Compiler process is the only exception: `exec()` amends it
- * via `disableProtobufVersionCheckIfRequested()`. The environment is a plain map
+ * via `applyProtobufVersionCheckSetting()`. The environment is a plain map
  * rather than a tracked property, so the amendment is not subject to the deprecation.
  *
  * @param sourceSet The source set for which the task is created.

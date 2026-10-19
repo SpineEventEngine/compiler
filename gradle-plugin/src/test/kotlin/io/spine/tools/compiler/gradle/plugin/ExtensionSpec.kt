@@ -77,8 +77,8 @@ class ExtensionSpec {
     }
 
     @Test
-    fun `keep the Protobuf version check enabled by default`() {
-        extension.disableProtobufVersionCheck.get() shouldBe false
+    fun `leave the Protobuf version check to the build environment by default`() {
+        extension.disableProtobufVersionCheck.isPresent shouldBe false
     }
 }
 
