@@ -108,26 +108,17 @@ var pathtoroot = "../../../../../";
     <div class="typeSummary">
 
 <table>
-<caption><span>Interface Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Enum Summary</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colFirst" scope="col">Interface</th>
+<th class="colFirst" scope="col">Enum</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tbody>
 
-    <tr class="altColor"><th class="colFirst" scope="row"><a href=ValueOrBuilder.html>ValueOrBuilder</a></th><td class="colLast"></td></tr>
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=NullValue.html>NullValue</a></th><td class="colLast"><pre><code>`NullValue` is a singleton enumeration to represent the `null` value for the `Value` type union.
+</code></pre> Protobuf enum <code>spine.compiler.NullValue</code></td></tr>
 
-    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MapValueOrBuilder.html>MapValueOrBuilder</a></th><td class="colLast"></td></tr>
-
-    <tr class="altColor"><th class="colFirst" scope="row"><a href=ListValueOrBuilder.html>ListValueOrBuilder</a></th><td class="colLast"></td></tr>
-
-    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ReferenceOrBuilder.html>ReferenceOrBuilder</a></th><td class="colLast"></td></tr>
-
-    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageValueOrBuilder.html>MessageValueOrBuilder</a></th><td class="colLast"></td></tr>
-
-    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumValueOrBuilder.html>EnumValueOrBuilder</a></th><td class="colLast"></td></tr>
-
-    <tr class="altColor"><th class="colFirst" scope="row"><a href=MapValue.EntryOrBuilder.html>EntryOrBuilder</a></th><td class="colLast"></td></tr>
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Value.KindCase.html>KindCase</a></th><td class="colLast"></td></tr>
 </tbody>
 </table>
 
@@ -150,34 +141,6 @@ var pathtoroot = "../../../../../";
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tbody>
-
-    <tr class="altColor"><th class="colFirst" scope="row"><a href=Reference.Builder.html>Builder</a></th><td class="colLast"><pre><code>A reference to a value in the field specified in the [target] property.
-
-Typically such a reference is obtained by parsing an option of a &quot;source&quot; field.
-</code></pre> Protobuf type <code>spine.compiler.Reference</code></td></tr>
-
-    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Reference.html>Reference</a></th><td class="colLast"><pre><code>A reference to a value in the field specified in the [target] property.
-
-Typically such a reference is obtained by parsing an option of a &quot;source&quot; field.
-</code></pre> Protobuf type <code>spine.compiler.Reference</code></td></tr>
-
-    <tr class="altColor"><th class="colFirst" scope="row"><a href=Value.Builder.html>Builder</a></th><td class="colLast"><pre><code>`Value` represents a dynamically typed value that can be either `null`, a `bool`, a number,
-a string, a byte string, a recursive message value, an enum value, a list, or a map of values.
-
-Absence of any kind of value indicates an error.
-</code></pre> Protobuf type <code>spine.compiler.Value</code></td></tr>
-
-    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Value.html>Value</a></th><td class="colLast"><pre><code>`Value` represents a dynamically typed value that can be either `null`, a `bool`, a number,
-a string, a byte string, a recursive message value, an enum value, a list, or a map of values.
-
-Absence of any kind of value indicates an error.
-</code></pre> Protobuf type <code>spine.compiler.Value</code></td></tr>
-
-    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageValue.Builder.html>Builder</a></th><td class="colLast"><pre><code>`MessageValue` represents a message for the `Value` type union.
-</code></pre> Protobuf type <code>spine.compiler.MessageValue</code></td></tr>
-
-    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageValue.html>MessageValue</a></th><td class="colLast"><pre><code>`MessageValue` represents a message for the `Value` type union.
-</code></pre> Protobuf type <code>spine.compiler.MessageValue</code></td></tr>
 
     <tr class="altColor"><th class="colFirst" scope="row"><a href=ListValue.Builder.html>Builder</a></th><td class="colLast"><pre><code>`ListValue` is a wrapper around a repeated field of values.
 </code></pre> Protobuf type <code>spine.compiler.ListValue</code></td></tr>
@@ -203,11 +166,39 @@ The map must not contain repeating keys.
 The map must not contain repeating keys.
 </code></pre> Protobuf type <code>spine.compiler.MapValue</code></td></tr>
 
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Value.Builder.html>Builder</a></th><td class="colLast"><pre><code>`Value` represents a dynamically typed value that can be either `null`, a `bool`, a number,
+a string, a byte string, a recursive message value, an enum value, a list, or a map of values.
+
+Absence of any kind of value indicates an error.
+</code></pre> Protobuf type <code>spine.compiler.Value</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Value.html>Value</a></th><td class="colLast"><pre><code>`Value` represents a dynamically typed value that can be either `null`, a `bool`, a number,
+a string, a byte string, a recursive message value, an enum value, a list, or a map of values.
+
+Absence of any kind of value indicates an error.
+</code></pre> Protobuf type <code>spine.compiler.Value</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=Reference.Builder.html>Builder</a></th><td class="colLast"><pre><code>A reference to a value in the field specified in the [target] property.
+
+Typically such a reference is obtained by parsing an option of a &quot;source&quot; field.
+</code></pre> Protobuf type <code>spine.compiler.Reference</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=Reference.html>Reference</a></th><td class="colLast"><pre><code>A reference to a value in the field specified in the [target] property.
+
+Typically such a reference is obtained by parsing an option of a &quot;source&quot; field.
+</code></pre> Protobuf type <code>spine.compiler.Reference</code></td></tr>
+
     <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumValue.Builder.html>Builder</a></th><td class="colLast"><pre><code>`MessageValue` represents an enum constant for the `Value` type union.
 </code></pre> Protobuf type <code>spine.compiler.EnumValue</code></td></tr>
 
     <tr class="altColor"><th class="colFirst" scope="row"><a href=EnumValue.html>EnumValue</a></th><td class="colLast"><pre><code>`MessageValue` represents an enum constant for the `Value` type union.
 </code></pre> Protobuf type <code>spine.compiler.EnumValue</code></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MessageValue.Builder.html>Builder</a></th><td class="colLast"><pre><code>`MessageValue` represents a message for the `Value` type union.
+</code></pre> Protobuf type <code>spine.compiler.MessageValue</code></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageValue.html>MessageValue</a></th><td class="colLast"><pre><code>`MessageValue` represents a message for the `Value` type union.
+</code></pre> Protobuf type <code>spine.compiler.MessageValue</code></td></tr>
 
     <tr class="rowColor"><th class="colFirst" scope="row"><a href=Values.html>Values</a></th><td class="colLast"></td></tr>
 
@@ -228,17 +219,26 @@ The map must not contain repeating keys.
     <div class="typeSummary">
 
 <table>
-<caption><span>Enum Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Interface Summary</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colFirst" scope="col">Enum</th>
+<th class="colFirst" scope="col">Interface</th>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tbody>
 
-    <tr class="altColor"><th class="colFirst" scope="row"><a href=Value.KindCase.html>KindCase</a></th><td class="colLast"></td></tr>
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ReferenceOrBuilder.html>ReferenceOrBuilder</a></th><td class="colLast"></td></tr>
 
-    <tr class="rowColor"><th class="colFirst" scope="row"><a href=NullValue.html>NullValue</a></th><td class="colLast"><pre><code>`NullValue` is a singleton enumeration to represent the `null` value for the `Value` type union.
-</code></pre> Protobuf enum <code>spine.compiler.NullValue</code></td></tr>
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=MapValueOrBuilder.html>MapValueOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MapValue.EntryOrBuilder.html>EntryOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=ListValueOrBuilder.html>ListValueOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=MessageValueOrBuilder.html>MessageValueOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="rowColor"><th class="colFirst" scope="row"><a href=EnumValueOrBuilder.html>EnumValueOrBuilder</a></th><td class="colLast"></td></tr>
+
+    <tr class="altColor"><th class="colFirst" scope="row"><a href=ValueOrBuilder.html>ValueOrBuilder</a></th><td class="colLast"></td></tr>
 </tbody>
 </table>
 
