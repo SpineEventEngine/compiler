@@ -5,6 +5,7 @@ $dokka.location:io.spine.tools.compiler.gradle.plugin/Extension.Companion///Poin
 $dokka.location:io.spine.tools.compiler.gradle.plugin/Extension.Companion/defaultSubdirectories/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/-companion/default-subdirectories.html
 $dokka.location:io.spine.tools.compiler.gradle.plugin/Extension///PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/index.html
 $dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/Extension/#org.gradle.api.Project/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/-extension.html
+$dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/disableProtobufVersionCheck/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/disable-protobuf-version-check.html
 $dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/outputBaseDir/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/output-base-dir.html
 $dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/plugins/#/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/plugins.html
 $dokka.location:io.spine.tools.compiler.gradle.plugin/Extension/plugins/#vararg(kotlin.String)/PointingToDeclaration/gradle-plugin/io.spine.tools.compiler.gradle.plugin/-extension/plugins.html
