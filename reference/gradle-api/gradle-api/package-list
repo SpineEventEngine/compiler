@@ -18,9 +18,11 @@ $dokka.location:io.spine.tools.compiler.gradle.api/Artifacts/compilerBackend/#/P
 $dokka.location:io.spine.tools.compiler.gradle.api/Artifacts/compilerGradlePlugin/#/PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-artifacts/compiler-gradle-plugin.html
 $dokka.location:io.spine.tools.compiler.gradle.api/Artifacts/fatCli/#kotlin.String/PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-artifacts/fat-cli.html
 $dokka.location:io.spine.tools.compiler.gradle.api/Artifacts/group/#/PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-artifacts/group.html
+$dokka.location:io.spine.tools.compiler.gradle.api/Artifacts/protobufGroup/#/PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-artifacts/protobuf-group.html
 $dokka.location:io.spine.tools.compiler.gradle.api/Artifacts/protobufProtocArtifact/#/PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-artifacts/protobuf-protoc-artifact.html
 $dokka.location:io.spine.tools.compiler.gradle.api/Artifacts/protocPlugin/#kotlin.String/PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-artifacts/protoc-plugin.html
 $dokka.location:io.spine.tools.compiler.gradle.api/CompilerSettings///PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-compiler-settings/index.html
+$dokka.location:io.spine.tools.compiler.gradle.api/CompilerSettings/disableProtobufVersionCheck/#/PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-compiler-settings/disable-protobuf-version-check.html
 $dokka.location:io.spine.tools.compiler.gradle.api/CompilerSettings/outputBaseDir/#/PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-compiler-settings/output-base-dir.html
 $dokka.location:io.spine.tools.compiler.gradle.api/CompilerSettings/plugins/#vararg(kotlin.String)/PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-compiler-settings/plugins.html
 $dokka.location:io.spine.tools.compiler.gradle.api/CompilerSettings/subDirs/#/PointingToDeclaration/gradle-api/io.spine.tools.compiler.gradle.api/-compiler-settings/sub-dirs.html
