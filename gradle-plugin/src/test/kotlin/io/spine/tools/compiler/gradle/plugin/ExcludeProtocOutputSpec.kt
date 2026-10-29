@@ -40,11 +40,11 @@ internal class ExcludeProtocOutputSpec {
      * from the source set during the evaluation, so a directory added earlier would
      * not reach the task even without the filter applied to the task itself.
      *
-     * The paths are resolved against [Project.getProjectDir][org.gradle.api.Project.getProjectDir],
+     * The paths are resolved against [Project.projectDir][org.gradle.api.Project.getProjectDir],
      * which Gradle canonicalizes, rather than against the given temporary directory,
-     * which may be reached via a symbolic link, such as `/var` on macOS. Otherwise,
-     * the paths of the same file may differ, and the assertions pass whatever the task
-     * source contains.
+     * which may be reached via a symbolic link, such as `/var` on macOS. Otherwise, the
+     * paths of the same file may differ, and `shouldNotContain` would pass whatever the
+     * task source contains.
      */
     @Test
     fun `keeping it out of the Java compile task source`(@TempDir tempDir: File) {

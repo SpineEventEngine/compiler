@@ -56,3 +56,6 @@ as they are.
   `protoSourceDirs` contents, and the Kotlin compile task; `createCleanTask()` takes
   the launch task provider. Not staged for commit: the version bump and dependency
   reports (separate commits per the version policy).
+- 2026-10-29 — pre-PR review (`spine-code-review`, `kotlin-engineer`, `review-docs`): no
+  Must-fix. Added a test creating each task as soon as it is registered, made
+  `consumeProtoFrom()` private, and fixed KDoc wording.

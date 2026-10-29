@@ -49,8 +49,7 @@ internal class TaskLocatorSpec {
     private val cleanTask = project.tasks.register(SpineCompilerCleanTask.nameFor(main))
 
     /**
-     * The names of the tasks that Gradle created after the [launchTask] and
-     * the [cleanTask] were registered.
+     * The names of the [launchTask] and the [cleanTask], recorded when Gradle creates them.
      */
     private val created = mutableListOf<String>().also { names ->
         project.tasks.named { it == launchTask.name || it == cleanTask.name }
@@ -107,12 +106,12 @@ internal class TaskLocatorSpec {
 
     @Test
     fun `provide a task without creating it`() {
-        val launchTaskProvider = CompilerTask.named(project, main)
-        val cleanTaskProvider = SpineCompilerCleanTask.named(project, main)
+        val namedLaunchTask = CompilerTask.named(project, main)
+        val namedCleanTask = SpineCompilerCleanTask.named(project, main)
 
         created.shouldBeEmpty()
-        launchTaskProvider.get() shouldBeSameInstanceAs launchTask.get()
-        cleanTaskProvider.get() shouldBeSameInstanceAs cleanTask.get()
+        namedLaunchTask.get() shouldBeSameInstanceAs launchTask.get()
+        namedCleanTask.get() shouldBeSameInstanceAs cleanTask.get()
     }
 
     @Test

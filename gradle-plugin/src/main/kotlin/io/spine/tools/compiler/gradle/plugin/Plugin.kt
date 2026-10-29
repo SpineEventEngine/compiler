@@ -225,10 +225,10 @@ private fun Project.requireProtobufRuntimeOf(source: Configuration, target: Conf
 }
 
 /**
- * Creates the [SpineCompilerCleanTask] and [LaunchSpineCompiler] tasks for each source set
+ * Registers the [SpineCompilerCleanTask] and [LaunchSpineCompiler] tasks for each source set
  * of this project, including the source sets added by other plugins after this call.
  *
- * The tasks are registered, not created. Arranging the dependencies on
+ * Gradle creates none of the tasks by this call. Making other tasks depend on
  * the [LaunchSpineCompiler] tasks creates no tasks either.
  *
  * @see [Project.makeCodeTasksDependOn]
@@ -236,7 +236,7 @@ private fun Project.requireProtobufRuntimeOf(source: Configuration, target: Conf
 private fun Project.createTasks() {
     sourceSets.configureEach { sourceSet ->
         val launchTask = createLaunchTask(sourceSet)
-        makeCodeTasksDependOn(launchTask, sourceSet)
+        makeCodeTasksDependOn(sourceSet, launchTask)
         createCleanTask(sourceSet, launchTask)
     }
 }
@@ -245,17 +245,15 @@ private fun Project.createTasks() {
  * Makes the tasks processing the code of the given [sourceSet] depend on
  * the [launchTask], so that the Compiler runs before them.
  *
- * These are the Java and Kotlin compilation tasks, and the Kotlin Symbol
- * Processing (KSP) task.
+ * These are the Java and Kotlin compilation tasks and the Kotlin Symbol Processing (KSP) task.
  *
- * The tasks are matched by name and configured once Gradle creates them, so this
- * call creates no tasks. The match also covers the tasks registered after this call,
- * such as the KSP task, which the KSP plugin registers after the Compiler plugin
- * is applied.
+ * The tasks are matched by name and configured once Gradle creates them, so this call
+ * creates no tasks. The match also covers the tasks registered after this call, such as
+ * the KSP task, which the KSP plugin registers after the Compiler plugin is applied.
  */
 private fun Project.makeCodeTasksDependOn(
+    sourceSet: SourceSet,
     launchTask: TaskProvider<LaunchSpineCompiler>,
-    sourceSet: SourceSet
 ) {
     val dependents = setOf(
         sourceSet.compileJavaTaskName,
@@ -290,7 +288,7 @@ private fun Project.createLaunchTask(
  */
 private fun Project.createCleanTask(
     sourceSet: SourceSet,
-    launchTask: TaskProvider<LaunchSpineCompiler>
+    launchTask: TaskProvider<LaunchSpineCompiler>,
 ) {
     val cleanSourceSet = SpineCompilerCleanTask.nameFor(sourceSet)
     val spineCompilerCleanTask = tasks.register<Delete>(cleanSourceSet) {
@@ -447,11 +445,12 @@ private fun Project.configureGenerateProtoTasks() {
            (see `configureSourceSetDirs()`). That must happen before the Protobuf Gradle
            Plugin passes the source directories to the IDEA plugin, right after running
            this block. Otherwise, reading the directories makes Gradle create the task,
-           and the rewrite fails the iteration over them with
-           `ConcurrentModificationException`. The Protobuf Gradle Plugin creates
-           the tasks at that point anyway when the IDEA plugin is applied.
+           and the rewrite breaks the iteration over the directories with
+           `ConcurrentModificationException`. If the IDEA plugin is applied, the Protobuf
+           Gradle Plugin creates the tasks at that point anyway.
 
-           The list is copied so that the configuration does not iterate a live collection. */
+           The result of `all()` is copied so that configuring the tasks does not iterate
+           over a live collection. */
         generateProtoTasks {
             val all = ImmutableList.copyOf(it.all())
             all.forEach { task ->
@@ -471,7 +470,6 @@ private fun Project.configureGenerateProtoTasks() {
  * by the [LaunchSpineCompiler] task itself.
  *
  * @see [GenerateProtoTask.configureSourceSetDirs]
- * @see [LaunchSpineCompiler.consumeProtoFrom]
  */
 context(_: GeneratedDirectoryContext)
 private fun Project.configureProtoTask(task: GenerateProtoTask) {

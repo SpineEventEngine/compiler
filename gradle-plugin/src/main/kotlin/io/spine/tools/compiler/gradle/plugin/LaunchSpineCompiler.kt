@@ -55,6 +55,7 @@ import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.SourceSet
 import org.gradle.api.tasks.TaskProvider
+import org.gradle.kotlin.dsl.named
 import org.gradle.process.CommandLineArgumentProvider
 
 /**
@@ -311,7 +312,12 @@ internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
  * Makes this task depend on the build of the configurations used to run the Compiler,
  * and on the [GenerateProtoTask] of the given [sourceSet], if the project has one.
  *
- * The dependencies of other tasks on this task are arranged when this task is registered.
+ * The [GenerateProtoTask] is registered by the time Gradle creates this task:
+ * the Protobuf Gradle Plugin, which must be applied before the Compiler plugin,
+ * registers it once the source set is added, before the Compiler plugin registers
+ * this task.
+ *
+ * The plugin makes other tasks depend on this task right after registering it.
  *
  * @see [Project.makeCodeTasksDependOn][io.spine.tools.compiler.gradle.plugin.makeCodeTasksDependOn]
  */
@@ -323,7 +329,7 @@ private fun LaunchSpineCompiler.setDependencies(sourceSet: SourceSet) {
     )
     val generateProtoName = ProtobufTaskName.generateProto(SourceSetName(sourceSet.name)).value()
     if (generateProtoName in project.tasks.names) {
-        consumeProtoFrom(project.tasks.named(generateProtoName, GenerateProtoTask::class.java))
+        consumeProtoFrom(project.tasks.named<GenerateProtoTask>(generateProtoName))
     }
 }
 
@@ -339,7 +345,7 @@ private fun LaunchSpineCompiler.setDependencies(sourceSet: SourceSet) {
  *
  * The call does not make Gradle create the [generateProto] task.
  */
-internal fun LaunchSpineCompiler.consumeProtoFrom(generateProto: TaskProvider<GenerateProtoTask>) {
+private fun LaunchSpineCompiler.consumeProtoFrom(generateProto: TaskProvider<GenerateProtoTask>) {
     dependsOn(generateProto)
     protoSourceDirs.from(generateProto.map { it.sourceDirs })
 }

@@ -23,7 +23,7 @@ import org.gradle.api.tasks.TaskProvider
  * Abstract base for utilities finding tasks of a certain type by
  * the [provided name pattern][nameFor].
  *
- * The [exists] and [named] functions do not make Gradle create a task registered
+ * The [exists] and [named] functions do not make Gradle create a task that is registered
  * but not yet created. Prefer them to [find] and [get] during the configuration phase.
  */
 public abstract class TaskLocator {
@@ -38,6 +38,7 @@ public abstract class TaskLocator {
      *
      * Creates the task if it is registered but not yet created.
      *
+     * @throws org.gradle.api.UnknownTaskException if there is no task for this source set
      * @see named
      */
     public fun get(project: Project, sourceSet: SourceSet): Task {
@@ -50,7 +51,7 @@ public abstract class TaskLocator {
      *
      * Creates the task if it is registered but not yet created.
      *
-     * @return the task or `null` if there is no task created for this source set
+     * @return the task or `null` if there is no task for this source set
      * @see exists
      */
     public fun find(project: Project, sourceSet: SourceSet): Task? {
@@ -61,7 +62,8 @@ public abstract class TaskLocator {
     /**
      * Tells if the given project has the task for the specified source set.
      *
-     * Unlike [find], does not create the task if it is registered but not yet created.
+     * Unlike [find], this function does not create the task if it is registered
+     * but not yet created.
      */
     public fun exists(project: Project, sourceSet: SourceSet): Boolean =
         nameFor(sourceSet) in project.tasks.names
@@ -69,7 +71,8 @@ public abstract class TaskLocator {
     /**
      * Obtains a provider of the task in the given project for the specified source set.
      *
-     * Unlike [get], does not create the task if it is registered but not yet created.
+     * Unlike [get], this function does not create the task if it is registered
+     * but not yet created.
      *
      * @throws org.gradle.api.UnknownTaskException if there is no task for this source set
      */
