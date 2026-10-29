@@ -1,33 +1,23 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.compiler.gradle.api
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import io.spine.tools.gradle.project.sourceSets
 import org.gradle.api.Project
@@ -57,6 +47,15 @@ internal class TaskLocatorSpec {
     private val test: SourceSet = project.sourceSets.getByName(TEST_SOURCE_SET_NAME)
     private val launchTask = project.tasks.register(CompilerTask.nameFor(main))
     private val cleanTask = project.tasks.register(SpineCompilerCleanTask.nameFor(main))
+
+    /**
+     * The names of the tasks that Gradle created after the [launchTask] and
+     * the [cleanTask] were registered.
+     */
+    private val created = mutableListOf<String>().also { names ->
+        project.tasks.named { it == launchTask.name || it == cleanTask.name }
+            .configureEach { names.add(it.name) }
+    }
 
     @Test
     fun `get the launch task via 'CompilerTask'`() {
@@ -94,5 +93,31 @@ internal class TaskLocatorSpec {
     fun `fail to get a task for a source set that does not have one`() {
         shouldThrow<UnknownTaskException> { CompilerTask.get(project, test) }
         shouldThrow<UnknownTaskException> { SpineCompilerCleanTask.get(project, test) }
+    }
+
+    @Test
+    fun `tell if a task exists without creating it`() {
+        CompilerTask.exists(project, main) shouldBe true
+        SpineCompilerCleanTask.exists(project, main) shouldBe true
+        CompilerTask.exists(project, test) shouldBe false
+        SpineCompilerCleanTask.exists(project, test) shouldBe false
+
+        created.shouldBeEmpty()
+    }
+
+    @Test
+    fun `provide a task without creating it`() {
+        val launchTaskProvider = CompilerTask.named(project, main)
+        val cleanTaskProvider = SpineCompilerCleanTask.named(project, main)
+
+        created.shouldBeEmpty()
+        launchTaskProvider.get() shouldBeSameInstanceAs launchTask.get()
+        cleanTaskProvider.get() shouldBeSameInstanceAs cleanTask.get()
+    }
+
+    @Test
+    fun `fail to provide a task for a source set that does not have one`() {
+        shouldThrow<UnknownTaskException> { CompilerTask.named(project, test) }
+        shouldThrow<UnknownTaskException> { SpineCompilerCleanTask.named(project, test) }
     }
 }

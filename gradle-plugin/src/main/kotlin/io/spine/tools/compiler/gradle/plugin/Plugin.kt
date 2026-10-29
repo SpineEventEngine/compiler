@@ -18,13 +18,13 @@
 package io.spine.tools.compiler.gradle.plugin
 
 import com.google.common.collect.ImmutableList
-import com.google.errorprone.annotations.CanIgnoreReturnValue
 import com.google.protobuf.gradle.GenerateProtoTask
 import com.google.protobuf.gradle.ProtobufExtension
 import io.spine.annotation.VisibleForTesting
 import io.spine.format.Format
 import io.spine.io.replaceExtension
 import io.spine.string.toBase64Encoded
+import io.spine.tools.code.Kotlin
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.compiler.gradle.api.Artifacts
 import io.spine.tools.compiler.gradle.api.Artifacts.compilerBackend
@@ -225,56 +225,51 @@ private fun Project.requireProtobufRuntimeOf(source: Configuration, target: Conf
 }
 
 /**
- * Creates the [SpineCompilerCleanTask] and [LaunchSpineCompiler] tasks for all source sets
- * in this project available by the time of the call.
+ * Creates the [SpineCompilerCleanTask] and [LaunchSpineCompiler] tasks for each source set
+ * of this project, including the source sets added by other plugins after this call.
  *
- * There may be cases of source sets added by other plugins after this function is invoked.
- * Such cases are handled by the [handleLaunchTaskDependency] function.
+ * The tasks are registered, not created. Arranging the dependencies on
+ * the [LaunchSpineCompiler] tasks creates no tasks either.
  *
- * The dependency of the Kotlin Symbol Processing (KSP) task on the [LaunchSpineCompiler]
- * task is arranged on [Project.afterEvaluate] because the KSP task is not yet registered
- * by the time this plugin is applied.
- *
- * @see [Project.handleLaunchTaskDependency]
- * @see [Project.arrangeKspTaskDependency]
+ * @see [Project.makeCodeTasksDependOn]
  */
 private fun Project.createTasks() {
-    sourceSets.forEach { sourceSet ->
-        createLaunchTask(sourceSet)
-        createCleanTask(sourceSet)
-    }
-    afterEvaluate {
-        sourceSets.forEach { sourceSet ->
-            arrangeKspTaskDependency(sourceSet)
-        }
+    sourceSets.configureEach { sourceSet ->
+        val launchTask = createLaunchTask(sourceSet)
+        makeCodeTasksDependOn(launchTask, sourceSet)
+        createCleanTask(sourceSet, launchTask)
     }
 }
 
 /**
- * Makes the Kotlin Symbol Processing (KSP) task for the given [sourceSet] depend on
- * the [LaunchSpineCompiler] task, so that the Compiler runs before the generated code
- * is processed by KSP.
+ * Makes the tasks processing the code of the given [sourceSet] depend on
+ * the [launchTask], so that the Compiler runs before them.
  *
- * Does nothing if the [LaunchSpineCompiler] task was not created for the [sourceSet],
- * or if the KSP task is not present in the project.
+ * These are the Java and Kotlin compilation tasks, and the Kotlin Symbol
+ * Processing (KSP) task.
  *
- * This function must be called after the project is evaluated because the KSP task is
- * not yet registered by the time the Compiler plugin is applied. The dependencies of
- * the compilation tasks are arranged earlier, when the [LaunchSpineCompiler] task is
- * configured.
- *
- * @see [LaunchSpineCompiler.setDependencies][io.spine.tools.compiler.gradle.plugin.setDependencies]
+ * The tasks are matched by name and configured once Gradle creates them, so this
+ * call creates no tasks. The match also covers the tasks registered after this call,
+ * such as the KSP task, which the KSP plugin registers after the Compiler plugin
+ * is applied.
  */
-private fun Project.arrangeKspTaskDependency(sourceSet: SourceSet) {
-    val launchTask = CompilerTask.find(this, sourceSet) ?: return
-    val kspTaskName = KspTaskName.of(sourceSet).value()
-    tasks.findByName(kspTaskName)?.dependsOn(launchTask)
+private fun Project.makeCodeTasksDependOn(
+    launchTask: TaskProvider<LaunchSpineCompiler>,
+    sourceSet: SourceSet
+) {
+    val dependents = setOf(
+        sourceSet.compileJavaTaskName,
+        sourceSet.getCompileTaskName(Kotlin.name),
+        KspTaskName.of(sourceSet).value()
+    )
+    tasks.named { it in dependents }.configureEach {
+        it.dependsOn(launchTask)
+    }
 }
 
 /**
  * Creates [LaunchSpineCompiler] to serve the given [sourceSet].
  */
-@CanIgnoreReturnValue
 private fun Project.createLaunchTask(
     sourceSet: SourceSet,
 ): TaskProvider<LaunchSpineCompiler> {
@@ -290,10 +285,13 @@ private fun Project.createLaunchTask(
 /**
  * Creates a task that deletes the files generated for the given [sourceSet].
  *
- * Makes the `clean` task depend on the created task, and orders the task that
- * launches the Compiler CLI to run after it when both are scheduled.
+ * Makes the `clean` task depend on the created task, and orders the [launchTask]
+ * to run after it when both are scheduled.
  */
-private fun Project.createCleanTask(sourceSet: SourceSet) {
+private fun Project.createCleanTask(
+    sourceSet: SourceSet,
+    launchTask: TaskProvider<LaunchSpineCompiler>
+) {
     val cleanSourceSet = SpineCompilerCleanTask.nameFor(sourceSet)
     val spineCompilerCleanTask = tasks.register<Delete>(cleanSourceSet) {
         group = SpineTaskGroup.name
@@ -306,7 +304,7 @@ private fun Project.createCleanTask(sourceSet: SourceSet) {
     tasks.named("clean") {
         it.dependsOn(spineCompilerCleanTask)
     }
-    tasks.named(CompilerTask.nameFor(sourceSet)) {
+    launchTask.configure {
         it.mustRunAfter(spineCompilerCleanTask)
     }
 }
@@ -440,9 +438,20 @@ context(_: GeneratedDirectoryContext)
 private fun Project.configureGenerateProtoTasks() {
     protobufExtension?.apply {
         /* The below block adds a configuration action for the `GenerateProtoTaskCollection`.
-           We cannot do it like `generateProtoTasks.all().forEach { ... }` because it
-           breaks the configuration order of the `GenerateProtoTaskCollection`.
-           This, in turn, leads to missing generated sources in the `compileJava` task. */
+           We cannot call `generateProtoTasks.all().forEach { ... }` outside the block
+           because it breaks the configuration order of the `GenerateProtoTaskCollection`.
+           This, in turn, leads to missing generated sources in the `compileJava` task.
+
+           Inside the block, the tasks are configured right away rather than via `configureEach`.
+           Configuring a task rewrites the source directories of its source set
+           (see `configureSourceSetDirs()`). That must happen before the Protobuf Gradle
+           Plugin passes the source directories to the IDEA plugin, right after running
+           this block. Otherwise, reading the directories makes Gradle create the task,
+           and the rewrite fails the iteration over them with
+           `ConcurrentModificationException`. The Protobuf Gradle Plugin creates
+           the tasks at that point anyway when the IDEA plugin is applied.
+
+           The list is copied so that the configuration does not iterate a live collection. */
         generateProtoTasks {
             val all = ImmutableList.copyOf(it.all())
             all.forEach { task ->
@@ -456,10 +465,13 @@ private fun Project.configureGenerateProtoTasks() {
  * Configures the given [task] by enabling Kotlin code generation and adding and
  * configuring the Compiler `protoc` plugin for the task.
  *
- * The function also handles the exclusion of duplicated source code and task dependencies.
+ * The function also handles the exclusion of duplicated source code.
+ *
+ * The dependency of the [LaunchSpineCompiler] task on the given [task] is arranged
+ * by the [LaunchSpineCompiler] task itself.
  *
  * @see [GenerateProtoTask.configureSourceSetDirs]
- * @see [Project.handleLaunchTaskDependency]
+ * @see [LaunchSpineCompiler.consumeProtoFrom]
  */
 context(_: GeneratedDirectoryContext)
 private fun Project.configureProtoTask(task: GenerateProtoTask) {
@@ -468,7 +480,6 @@ private fun Project.configureProtoTask(task: GenerateProtoTask) {
     }
     task.addProtocPlugin()
     task.configureSourceSetDirs()
-    handleLaunchTaskDependency(task)
 }
 
 private fun GenerateProtoTask.addProtocPlugin() {
@@ -515,36 +526,4 @@ private fun GenerateProtoTask.declareRequestFileOutputs(requestFile: File) {
         .withPropertyName(REQUEST_FILE_PROPERTY)
     outputs.file(requestFile.replaceExtension(Format.ProtoJson.extension))
         .withPropertyName(REQUEST_FILE_JSON_PROPERTY)
-}
-
-/**
- * Makes a [LaunchSpineCompiler], if it exists for the source set of the given [GenerateProtoTask],
- * depend on the given [generateProto] task and consume the proto source directories it compiles.
- *
- * If the [LaunchSpineCompiler] task does not exist (which may be the case for custom source sets
- * created by other plugins), arranges the task creation on [Project.afterEvaluate].
- * In this case the [SpineCompilerCleanTask] is also created with appropriate dependencies.
- *
- * @see [consumeProtoFrom]
- */
-private fun Project.handleLaunchTaskDependency(generateProto: GenerateProtoTask) {
-    val sourceSet = generateProto.sourceSet
-    val launchTask = CompilerTask.find(this, sourceSet)
-    check(launchTask is LaunchSpineCompiler?) {
-        "The task `${launchTask?.path}` is expected to be an instance of" +
-                " `${LaunchSpineCompiler::class.qualifiedName}`," +
-                " but was `${launchTask?.javaClass?.name}`."
-    }
-    if (launchTask != null) {
-        launchTask.consumeProtoFrom(generateProto)
-    } else {
-        afterEvaluate {
-            val newTask = createLaunchTask(sourceSet)
-            newTask.configure {
-                it.consumeProtoFrom(generateProto)
-            }
-            createCleanTask(sourceSet)
-            arrangeKspTaskDependency(sourceSet)
-        }
-    }
 }
