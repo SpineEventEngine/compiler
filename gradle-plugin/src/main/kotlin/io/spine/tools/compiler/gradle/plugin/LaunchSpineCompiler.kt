@@ -28,8 +28,7 @@ import io.spine.tools.compiler.gradle.api.info
 import io.spine.tools.compiler.params.ParametersFileParam
 import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.compiler.params.pipelineParameters
-import io.spine.tools.gradle.project.findJavaCompileFor
-import io.spine.tools.gradle.project.findKotlinCompileFor
+import io.spine.tools.protobuf.gradle.ProtobufTaskName
 import io.spine.tools.protobuf.gradle.containsProtoFiles
 import java.io.File
 import java.io.File.pathSeparator
@@ -55,6 +54,8 @@ import org.gradle.api.tasks.OutputDirectories
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.SourceSet
+import org.gradle.api.tasks.TaskProvider
+import org.gradle.kotlin.dsl.named
 import org.gradle.process.CommandLineArgumentProvider
 
 /**
@@ -306,17 +307,19 @@ internal fun LaunchSpineCompiler.applyDefaults(sourceSet: SourceSet) {
 }
 
 /**
- * Arranges the dependencies of this task that can be resolved by the time the
- * Compiler plugin is applied.
+ * Arranges the dependencies of this task.
  *
  * Makes this task depend on the build of the configurations used to run the Compiler,
- * and makes the Java and Kotlin compilation tasks depend on this task.
+ * and on the [GenerateProtoTask] of the given [sourceSet], if the project has one.
  *
- * The dependency of the Kotlin Symbol Processing (KSP) task is arranged separately
- * after the project is evaluated because the KSP task is not yet registered by the
- * time the Compiler plugin is applied.
+ * The [GenerateProtoTask] is registered by the time Gradle creates this task:
+ * the Protobuf Gradle Plugin, which must be applied before the Compiler plugin,
+ * registers it once the source set is added, before the Compiler plugin registers
+ * this task.
  *
- * @see [Project.arrangeKspTaskDependency][io.spine.tools.compiler.gradle.plugin.arrangeKspTaskDependency]
+ * The plugin makes other tasks depend on this task right after registering it.
+ *
+ * @see [Project.makeCodeTasksDependOn][io.spine.tools.compiler.gradle.plugin.makeCodeTasksDependOn]
  */
 private fun LaunchSpineCompiler.setDependencies(sourceSet: SourceSet) {
     val project = project
@@ -324,9 +327,10 @@ private fun LaunchSpineCompiler.setDependencies(sourceSet: SourceSet) {
         project.compilerRawArtifact.buildDependencies,
         project.userClasspath.buildDependencies,
     )
-    val launchTask = this
-    project.findJavaCompileFor(sourceSet)?.dependsOn(launchTask)
-    project.findKotlinCompileFor(sourceSet)?.dependsOn(launchTask)
+    val generateProtoName = ProtobufTaskName.generateProto(SourceSetName(sourceSet.name)).value()
+    if (generateProtoName in project.tasks.names) {
+        consumeProtoFrom(project.tasks.named<GenerateProtoTask>(generateProtoName))
+    }
 }
 
 /**
@@ -338,10 +342,12 @@ private fun LaunchSpineCompiler.setDependencies(sourceSet: SourceSet) {
  * at configuration time, so that the parameters file can be written without
  * querying `Task.dependsOn` at execution time. Such a query is deprecated,
  * fails in Gradle 10, and is incompatible with the configuration cache.
+ *
+ * The call does not make Gradle create the [generateProto] task.
  */
-internal fun LaunchSpineCompiler.consumeProtoFrom(generateProto: GenerateProtoTask) {
+private fun LaunchSpineCompiler.consumeProtoFrom(generateProto: TaskProvider<GenerateProtoTask>) {
     dependsOn(generateProto)
-    protoSourceDirs.from(generateProto.sourceDirs)
+    protoSourceDirs.from(generateProto.map { it.sourceDirs })
 }
 
 /**
@@ -350,8 +356,7 @@ internal fun LaunchSpineCompiler.consumeProtoFrom(generateProto: GenerateProtoTa
  * The function obtains the list of compiled proto files from
  * [protoSourceDirs][LaunchSpineCompiler.protoSourceDirs] populated from the
  * [GenerateProtoTask] on which the receiver task depends (as arranged by
- * [consumeProtoFrom] called from the `handleLaunchTaskDependency`
- * extension in `Plugin.kt`).
+ * [consumeProtoFrom]).
  */
 private fun LaunchSpineCompiler.createParametersFile() {
     val params = pipelineParameters {
