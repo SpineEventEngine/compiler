@@ -1,27 +1,15 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.compiler.backend
@@ -30,12 +18,7 @@ import com.google.protobuf.compiler.PluginProtos.CodeGeneratorRequest
 import io.spine.annotation.Internal
 import io.spine.annotation.VisibleForTesting
 import io.spine.code.proto.FileSet
-import io.spine.environment.DefaultMode
 import io.spine.logging.WithLogging
-import io.spine.server.delivery.Delivery
-import io.spine.server.storage.memory.InMemoryStorageFactory
-import io.spine.server.transport.memory.InMemoryTransportFactory
-import io.spine.server.under
 import io.spine.string.ti
 import io.spine.tools.compiler.ast.Coordinates
 import io.spine.tools.compiler.ast.Directory
@@ -177,14 +160,6 @@ public class Pipeline(
         id: String = generateId()
     ) : this(id, params, listOf(plugin))
 
-    init {
-        under<DefaultMode> {
-            use(InMemoryStorageFactory.newInstance())
-            use(InMemoryTransportFactory.newInstance())
-            use(Delivery.direct())
-        }
-    }
-
     private fun loadPlugins(plugins: List<String>): List<Plugin> {
         val classpath = params.userClasspathList.map { Path(it) }
         val factory = PluginFactory(
@@ -227,7 +202,8 @@ public class Pipeline(
     /**
      * Executes the processing pipeline.
      *
-     * The execution is performed in [Delivery.direct] mode, meaning
+     * The execution is performed in
+     * [Delivery.direct][io.spine.server.delivery.Delivery.direct] mode, meaning
      * that no concurrent modification of entity states is allowed.
      * Therefore, the execution of the code related to the signal processing
      * should be single-threaded.
@@ -268,13 +244,10 @@ public class Pipeline(
 
     private fun emitEventsAndRenderSources(afterCompile: (CodegenContext) -> Unit) {
         codegenContext.use {
-            ConfigurationContext(id).use { configuration ->
-                ProtobufCompilerContext(id).use { compiler ->
-                    emitEvents(configuration, compiler)
-                    renderSources()
-                    afterCompile(codegenContext)
-                }
-            }
+            // The pipeline always assembles a `CodeGenerationContext`.
+            emitEvents(it as CodeGenerationContext)
+            renderSources(it)
+            afterCompile(it)
         }
     }
 
@@ -288,19 +261,19 @@ public class Pipeline(
             }
         }
 
-    private fun emitEvents(
-        configuration: ConfigurationContext,
-        compiler: ProtobufCompilerContext
-    ) {
+    /**
+     * Emits the events of the settings and the Protobuf compiler into the given context.
+     */
+    private fun emitEvents(context: CodeGenerationContext) {
         settings.emitEvents().forEach {
-            configuration.emitted(it)
+            context.configuration.emitted(it)
         }
         val events = CompilerEvents.parse(request, typeSystem, descriptorFilter)
-        compiler.emitted(events)
+        context.protobufCompiler.emitted(events)
     }
 
-    private fun renderSources() {
-        plugins.forEach { it.render(codegenContext, sources) }
+    private fun renderSources(context: CodegenContext) {
+        plugins.forEach { it.render(context, sources) }
         sources.forEach { it.write() }
     }
 
