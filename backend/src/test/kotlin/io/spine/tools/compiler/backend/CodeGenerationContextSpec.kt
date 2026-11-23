@@ -25,6 +25,7 @@ import com.google.protobuf.compiler.codeGeneratorRequest
 import io.kotest.matchers.collections.containExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.maps.shouldContainKey
+import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
@@ -34,6 +35,7 @@ import io.spine.option.OptionsProto
 import io.spine.option.OptionsProto.BETA_TYPE_FIELD_NUMBER
 import io.spine.protobuf.AnyPacker
 import io.spine.time.TimeProto
+import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.PrimitiveType.TYPE_BOOL
 import io.spine.tools.compiler.ast.ProtobufDependency
 import io.spine.tools.compiler.ast.ProtobufSourceFile
@@ -60,12 +62,22 @@ import org.junit.jupiter.api.Test
 class CodeGenerationContextSpec {
 
     @Test
-    fun `stay open with the context of another pipeline in one JVM`() {
-        CodeGenerationContext.newInstance().use { first ->
-            CodeGenerationContext.newInstance().use { second ->
-                first.isOpen shouldBe true
-                second.isOpen shouldBe true
+    fun `stay apart from the context of another pipeline in one JVM`() {
+        val doctorFile = typeSystem.findAbsolute(DoctorProto.getDescriptor())
+            .shouldNotBeNull()
+            .toAbsoluteFile()
+        val first = CodeGenerationContext.newInstance()
+        CodeGenerationContext.newInstance().use { second ->
+            first.use {
+                emitCompilerEvents(it)
+                it.sourceFile(doctorFile).shouldNotBeNull()
+                second.sourceFile(doctorFile).shouldBeNull()
             }
+
+            // The other context keeps working after the first one is closed.
+            second.isOpen shouldBe true
+            emitCompilerEvents(second)
+            second.sourceFile(doctorFile).shouldNotBeNull()
         }
     }
 
@@ -224,3 +236,9 @@ class CodeGenerationContextSpec {
         }
     }
 }
+
+/**
+ * Obtains the view on the Protobuf source file with the given path, if this context has one.
+ */
+private fun CodegenContext.sourceFile(file: File): ProtobufSourceFile? =
+    select(ProtobufSourceFile::class.java).findById(file)
