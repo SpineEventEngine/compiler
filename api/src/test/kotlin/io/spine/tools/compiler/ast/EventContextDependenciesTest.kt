@@ -29,8 +29,6 @@
 package io.spine.tools.compiler.ast
 
 import com.google.protobuf.AnyProto
-import com.google.protobuf.Duration
-import com.google.protobuf.DurationProto
 import com.google.protobuf.Timestamp
 import com.google.protobuf.TimestampProto
 import io.kotest.matchers.collections.shouldBeEmpty
@@ -45,8 +43,6 @@ import io.spine.core.CommandContext
 import io.spine.core.CommandId
 import io.spine.core.CommandProto
 import io.spine.core.DiagnosticsProto
-import io.spine.core.Enrichment
-import io.spine.core.EnrichmentProto
 import io.spine.core.EventContext
 import io.spine.core.EventId
 import io.spine.core.EventProto
@@ -82,9 +78,7 @@ internal class EventContextDependenciesTest {
             AnyProto.getDescriptor(),
             CommandProto.getDescriptor(),
             DiagnosticsProto.getDescriptor(),
-            DurationProto.getDescriptor(),
             EmailAddressProto.getDescriptor(),
-            EnrichmentProto.getDescriptor(),
             EventProto.getDescriptor(),
             InternetDomainProto.getDescriptor(),
             LanguageProto.getDescriptor(),
@@ -107,15 +101,10 @@ internal class EventContextDependenciesTest {
 
         val expected = setOf(
             messageTypeOf<ActorContext>(),
-            messageTypeOf<Command.SystemProperties>(),
             messageTypeOf<Command>(),
-            messageTypeOf<CommandContext.Schedule>(),
             messageTypeOf<CommandContext>(),
             messageTypeOf<CommandId>(),
-            messageTypeOf<Duration>(),
             messageTypeOf<EmailAddress>(),
-            messageTypeOf<Enrichment.Container>(),
-            messageTypeOf<Enrichment>(),
             messageTypeOf<EventContext>(),
             messageTypeOf<EventId>(),
             messageTypeOf<InternetDomain>(),
