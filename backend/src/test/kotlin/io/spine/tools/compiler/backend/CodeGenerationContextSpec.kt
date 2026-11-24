@@ -1,27 +1,15 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.compiler.backend
@@ -37,6 +25,8 @@ import com.google.protobuf.compiler.codeGeneratorRequest
 import io.kotest.matchers.collections.containExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.maps.shouldContainKey
+import io.kotest.matchers.nulls.shouldBeNull
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
@@ -44,10 +34,10 @@ import io.spine.collect.theOnly
 import io.spine.option.OptionsProto
 import io.spine.option.OptionsProto.BETA_TYPE_FIELD_NUMBER
 import io.spine.protobuf.AnyPacker
-import io.spine.testing.server.blackbox.BlackBox
-import io.spine.testing.server.blackbox.assertEntity
 import io.spine.time.TimeProto
+import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.PrimitiveType.TYPE_BOOL
+import io.spine.tools.compiler.ast.ProtobufDependency
 import io.spine.tools.compiler.ast.ProtobufSourceFile
 import io.spine.tools.compiler.ast.doc
 import io.spine.tools.compiler.ast.option
@@ -70,6 +60,43 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("`Code Generation` context should")
 class CodeGenerationContextSpec {
+
+    @Test
+    fun `stay apart from the context of another pipeline in one JVM`() {
+        val doctorFile = typeSystem.findAbsolute(DoctorProto.getDescriptor())
+            .shouldNotBeNull()
+            .toAbsoluteFile()
+        val first = CodeGenerationContext.newInstance()
+        CodeGenerationContext.newInstance().use { second ->
+            first.use {
+                emitCompilerEvents(it)
+                it.sourceFile(doctorFile).shouldNotBeNull()
+                second.sourceFile(doctorFile).shouldBeNull()
+            }
+
+            // The other context keeps working after the first one is closed.
+            second.isOpen shouldBe true
+            emitCompilerEvents(second)
+            second.sourceFile(doctorFile).shouldNotBeNull()
+        }
+    }
+
+    @Test
+    fun `close the third-party contexts of its pipeline`() {
+        val ctx = CodeGenerationContext.newInstance()
+        val thirdParties = listOf(
+            ctx.insertionPointsContext,
+            ctx.protobufCompiler.thirdParty,
+            ctx.configuration.thirdParty,
+        )
+        thirdParties.forEach { it.isOpen shouldBe true }
+
+        ctx.close()
+
+        ctx.isOpen shouldBe false
+        ctx.context.isOpen shouldBe false
+        thirdParties.forEach { it.isOpen shouldBe false }
+    }
 
     @Nested
     @DisplayName("provide")
@@ -127,51 +154,38 @@ class CodeGenerationContextSpec {
             createTypeSystem(codeGeneratorRequest)
         }
 
-        fun createCodegenBlackBox(pipelineId: String): Pair<CodegenContext, BlackBox> {
-            val context = CodeGenerationContext(pipelineId)
-            val blackBox = BlackBox.from(context.context)
-            return Pair(context, blackBox)
-        }
-
-        fun emitCompilerEvents(pipelineId: String) {
+        /**
+         * Emits the events of the Protobuf compiler, parsed from the [codeGeneratorRequest],
+         * into the given context.
+         */
+        fun emitCompilerEvents(context: CodeGenerationContext) {
             val events = CompilerEvents.parse(codeGeneratorRequest, typeSystem, { true })
-            ProtobufCompilerContext(pipelineId).use {
-                it.emitted(events)
-            }
+            context.protobufCompiler.emitted(events)
         }
     }
 
     @Nested
     inner class `construct views based on a descriptor set` {
 
-        private lateinit var codegen: CodegenContext
-        private lateinit var ctx: BlackBox
-        private lateinit var pipelineId: String
+        private lateinit var ctx: CodeGenerationContext
 
         @BeforeEach
         fun buildViews() {
-            pipelineId = Pipeline.generateId()
-            val pair = createCodegenBlackBox(pipelineId)
-            codegen = pair.first
-            ctx = pair.second
-            emitCompilerEvents(pipelineId)
+            ctx = CodeGenerationContext.newInstance()
+            emitCompilerEvents(ctx)
         }
 
         @AfterEach
         fun closeContext() {
-            codegen.close()
             ctx.close()
         }
 
         @Test
         fun `with files marked for generation`() {
-            val fullPath = typeSystem.findAbsolute(DoctorProto.getDescriptor())
-            val assertSourceFile = ctx.assertEntity<ProtoSourceFileView, _>(
-                fullPath!!.toAbsoluteFile()
-            )
-            assertSourceFile.exists()
-
-            val actual = assertSourceFile.actual()!!.state() as ProtobufSourceFile
+            val fullPath = typeSystem.findAbsolute(DoctorProto.getDescriptor()).shouldNotBeNull()
+            val actual = ctx.select(ProtobufSourceFile::class.java)
+                .findById(fullPath.toAbsoluteFile())
+                .shouldNotBeNull()
 
             val types = actual.typeMap
             val typeName = "type.spine.io/spine.compiler.test.Journey"
@@ -202,19 +216,17 @@ class CodeGenerationContextSpec {
 
         @Test
         fun `with dependencies`() {
-            val assertSourceFile = ctx.assertEntity(
-                AnyProto.getDescriptor().file(),
-                DependencyView::class.java
-            )
-            assertSourceFile.exists()
+            ctx.select(ProtobufDependency::class.java)
+                .findById(AnyProto.getDescriptor().file())
+                .shouldNotBeNull()
         }
 
         @Test
         fun `with respect for custom options among the source files`() {
-            val filePath = typeSystem.findAbsolute(PhDProto.getDescriptor())
-            val phdFile = ctx.assertEntity<ProtoSourceFileView, _>(
-                filePath!!.toAbsoluteFile()
-            ).actual()!!.state() as ProtobufSourceFile
+            val filePath = typeSystem.findAbsolute(PhDProto.getDescriptor()).shouldNotBeNull()
+            val phdFile = ctx.select(ProtobufSourceFile::class.java)
+                .findById(filePath.toAbsoluteFile())
+                .shouldNotBeNull()
             val paperType = phdFile.typeMap.values.find { it.name.simpleName == "Paper" }!!
             val keywordsField = paperType.fieldList.find { it.name.value == "keywords" }!!
             keywordsField.optionList shouldHaveSize 1
@@ -224,3 +236,9 @@ class CodeGenerationContextSpec {
         }
     }
 }
+
+/**
+ * Obtains the view on the Protobuf source file with the given path, if this context has one.
+ */
+private fun CodegenContext.sourceFile(file: File): ProtobufSourceFile? =
+    select(ProtobufSourceFile::class.java).findById(file)

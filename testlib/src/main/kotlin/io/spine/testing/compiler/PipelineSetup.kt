@@ -1,27 +1,15 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.testing.compiler
@@ -34,7 +22,6 @@ import io.spine.io.ResourceDirectory
 import io.spine.io.replaceExtension
 import io.spine.reflect.CallerFinder.findCallerOf
 import io.spine.testing.compiler.PipelineSetup.Companion.byResources
-import io.spine.testing.server.blackbox.BlackBox
 import io.spine.tools.code.Java
 import io.spine.tools.code.Kotlin
 import io.spine.tools.code.Language
@@ -42,7 +29,6 @@ import io.spine.tools.code.Protobuf
 import io.spine.tools.code.TypeScript
 import io.spine.tools.compiler.ast.toAbsoluteFile
 import io.spine.tools.compiler.ast.toPath
-import io.spine.tools.compiler.backend.CodeGenerationContext
 import io.spine.tools.compiler.backend.DescriptorFilter
 import io.spine.tools.compiler.backend.Pipeline
 import io.spine.tools.compiler.params.PipelineParameters
@@ -243,30 +229,6 @@ public class PipelineSetup(
         )
         this.pipeline = p
         return p
-    }
-
-    @Deprecated(
-        message = "Please use `createPipelineAndBlackBox()` instead.",
-        replaceWith = ReplaceWith("createPipelineAndBlackBox()")
-    )
-    public fun createPipelineAndBlackbox(): Pair<Pipeline, BlackBox> =
-        createPipelineWithBlackBox()
-
-    /**
-     * Creates a [Pipeline] and a [BlackBox] for testing the [CodeGenerationContext] of
-     * the created pipeline.
-     *
-     * The created instances of [Pipeline] and [BlackBox] are "entangled" in the sense
-     * that the [BlackBox] instance should be queried only after the [Pipeline] is
-     * [executed][Pipeline.invoke].
-     *
-     * @see BlackBox
-     */
-    public fun createPipelineWithBlackBox(): Pair<Pipeline, BlackBox> {
-        val pipeline = createPipeline()
-        val codegenContext = (pipeline.codegenContext as CodeGenerationContext).context
-        val blackbox = BlackBox.from(codegenContext)
-        return Pair(pipeline, blackbox)
     }
 
     public companion object {
