@@ -1,27 +1,15 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 @file:Suppress("DEPRECATION") /* The deprecated types are still the dependencies. */
@@ -29,8 +17,6 @@
 package io.spine.tools.compiler.ast
 
 import com.google.protobuf.AnyProto
-import com.google.protobuf.Duration
-import com.google.protobuf.DurationProto
 import com.google.protobuf.Timestamp
 import com.google.protobuf.TimestampProto
 import io.kotest.matchers.collections.shouldBeEmpty
@@ -45,8 +31,6 @@ import io.spine.core.CommandContext
 import io.spine.core.CommandId
 import io.spine.core.CommandProto
 import io.spine.core.DiagnosticsProto
-import io.spine.core.Enrichment
-import io.spine.core.EnrichmentProto
 import io.spine.core.EventContext
 import io.spine.core.EventId
 import io.spine.core.EventProto
@@ -82,9 +66,7 @@ internal class EventContextDependenciesTest {
             AnyProto.getDescriptor(),
             CommandProto.getDescriptor(),
             DiagnosticsProto.getDescriptor(),
-            DurationProto.getDescriptor(),
             EmailAddressProto.getDescriptor(),
-            EnrichmentProto.getDescriptor(),
             EventProto.getDescriptor(),
             InternetDomainProto.getDescriptor(),
             LanguageProto.getDescriptor(),
@@ -107,15 +89,10 @@ internal class EventContextDependenciesTest {
 
         val expected = setOf(
             messageTypeOf<ActorContext>(),
-            messageTypeOf<Command.SystemProperties>(),
             messageTypeOf<Command>(),
-            messageTypeOf<CommandContext.Schedule>(),
             messageTypeOf<CommandContext>(),
             messageTypeOf<CommandId>(),
-            messageTypeOf<Duration>(),
             messageTypeOf<EmailAddress>(),
-            messageTypeOf<Enrichment.Container>(),
-            messageTypeOf<Enrichment>(),
             messageTypeOf<EventContext>(),
             messageTypeOf<EventId>(),
             messageTypeOf<InternetDomain>(),
